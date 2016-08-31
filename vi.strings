@@ -1,0 +1,26 @@
+/*
+  File.strings
+  wassup
+
+  Created by MAC on 8/23/16.
+  Copyright © 2016 MAC. All rights reserved.
+*/
+"Thông báo" = "Thông báo";
+"Email hoặc Phone không được để trống" = "Email hoặc Phone không được để trống";
+"Không được để trống thông tin đăng ký" = "Không được để trống thông tin đăng ký";
+"Mật khẩu không khớp" = "Mật khẩu không khớp";
+"Captcha không đúng" = "Captcha không đúng";
+"Email không hợp lệ" = "Email không hợp lệ";
+"Sự kiện" = "Sự kiện";
+"Địa điểm" = "Địa điểm";
+"%s Tham Gia | %s Check In" = "%s Tham Gia | %s Check In";
+"%s Check In" = "%s Check In";
+"Quan Tâm" = "Quan Tâm";
+"Follow" = "Follow";
+"Tất cả" = "Tất cả";
+"Tìm kiếm" = "Tìm kiếm";
+"Huỷ" = "Huỷ";
+"Từ khoá" = "Từ khoá";
+"User" = "User";
+"Blog" = "Blog";
+"Bài viết" = "Bài viết";

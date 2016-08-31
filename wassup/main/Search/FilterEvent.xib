@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterEvent" customModule="wassup" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCenter" destination="NBv-yU-ru1" id="R50-dv-M0u"/>
+                <outlet property="btnLeft" destination="Hth-ag-ayS" id="Oja-9w-kBy"/>
+                <outlet property="btnRight" destination="yon-Qm-8Ag" id="mVc-oX-Y2M"/>
+                <outlet property="tbl" destination="opn-xo-mZG" id="Tlb-zH-S60"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-ag-ayS">
+                    <rect key="frame" x="0.0" y="0.0" width="106" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Ex0-rw-bA2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="Gần nhất">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickBtnLeft:" destination="-1" eventType="touchUpInside" id="iM4-Qt-zUm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBv-yU-ru1">
+                    <rect key="frame" x="107" y="0.0" width="106" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="a80-a3-Yt7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="Hồ Chí Minh">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickBtnCenter:" destination="-1" eventType="touchUpInside" id="jdz-gV-Ijf"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yon-Qm-8Ag">
+                    <rect key="frame" x="214" y="0.0" width="106" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dwp-dY-caA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="Tất cả">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="clickBtnRight:" destination="-1" eventType="touchUpInside" id="Npa-ZZ-ZZu"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="opn-xo-mZG">
+                    <rect key="frame" x="0.0" y="41" width="320" height="487"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="VDm-bA-kyW"/>
+                        <outlet property="delegate" destination="-1" id="F1G-eb-52Y"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-If-9a5">
+                    <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="UY4-qi-mYy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                    <state key="normal" title="Huỷ">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="clickCancel:" destination="-1" eventType="touchUpInside" id="kxb-WO-gV3"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.72549019609999998" green="0.76470588240000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="opn-xo-mZG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1h4-2Z-eWS"/>
+                <constraint firstItem="yon-Qm-8Ag" firstAttribute="leading" secondItem="NBv-yU-ru1" secondAttribute="trailing" constant="1" id="4sw-km-tmm"/>
+                <constraint firstItem="NBv-yU-ru1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6rA-mo-10X"/>
+                <constraint firstAttribute="bottom" secondItem="yKM-If-9a5" secondAttribute="bottom" id="8yO-AY-4S3"/>
+                <constraint firstItem="yon-Qm-8Ag" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9LB-jC-Kf1"/>
+                <constraint firstItem="yKM-If-9a5" firstAttribute="top" secondItem="opn-xo-mZG" secondAttribute="bottom" id="BMG-g1-BbW"/>
+                <constraint firstItem="Hth-ag-ayS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="G1L-u4-xWe"/>
+                <constraint firstItem="yKM-If-9a5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HTc-3j-ymt"/>
+                <constraint firstAttribute="trailing" secondItem="yon-Qm-8Ag" secondAttribute="trailing" id="I0q-7o-hDH"/>
+                <constraint firstAttribute="trailing" secondItem="yKM-If-9a5" secondAttribute="trailing" id="JIe-gj-8KE"/>
+                <constraint firstItem="opn-xo-mZG" firstAttribute="top" secondItem="yon-Qm-8Ag" secondAttribute="bottom" constant="1" id="MvD-gj-IIh"/>
+                <constraint firstItem="Hth-ag-ayS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:3" id="iQ5-4z-f60"/>
+                <constraint firstItem="Hth-ag-ayS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="n51-vs-AqO"/>
+                <constraint firstAttribute="trailing" secondItem="opn-xo-mZG" secondAttribute="trailing" id="nMN-A7-u2n"/>
+                <constraint firstItem="NBv-yU-ru1" firstAttribute="leading" secondItem="Hth-ag-ayS" secondAttribute="trailing" constant="1" id="oQ4-0L-JCq"/>
+                <constraint firstItem="NBv-yU-ru1" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:3" id="tci-01-cfA"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="52" y="178"/>
+        </view>
+    </objects>
+</document>

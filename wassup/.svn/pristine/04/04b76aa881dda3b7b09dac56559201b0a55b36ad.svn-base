@@ -1,0 +1,79 @@
+//
+//  Utils.swift
+//  wassup
+//
+//  Created by MAC on 8/17/16.
+//  Copyright (c) 2016 MAC. All rights reserved.
+//
+
+import UIKit
+import CoreLocation
+
+class Location {
+    var lat:CLLocationDegrees = 0
+    var long:CLLocationDegrees = 0
+    
+    init(lat: CLLocationDegrees, long: CLLocationDegrees) {
+        self.lat = lat
+        self.long = long
+    }
+}
+
+class Utils: NSObject, CLLocationManagerDelegate {
+    static let sharedInstance = Utils()
+    
+    var location = Location(lat: 0, long: 0)
+    let locationManager = CLLocationManager()
+    var loop = false
+    var hasSetup = false
+    
+    func refreshLocation(observe: AnyObject, action: Selector, loop: Bool) {
+        
+        self.hasSetup = false
+        
+        // Ask for Authorisation from the User.
+        if #available(iOS 8.0, *) {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        // For use in foreground
+        if #available(iOS 8.0, *) {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            NSNotificationCenter.defaultCenter().removeObserver(observe)
+            NSNotificationCenter.defaultCenter().addObserver(observe, selector: action, name: "callback_location", object: nil)
+            self.loop = loop
+        }
+    }
+    
+    @objc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if !self.hasSetup {
+            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+            location.lat = locValue.latitude
+            location.long = locValue.longitude
+            NSNotificationCenter.defaultCenter().postNotificationName("callback_location", object: nil, userInfo: nil)
+            self.hasSetup = true
+        }
+        
+        if self.loop {
+            self.hasSetup = false
+        }
+    }
+    
+    func convertFromStringToNumber(str: String) -> NSNumber {
+        let f = NSNumberFormatter()
+        f.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        let myNumber = f.numberFromString(str)
+        return myNumber!
+    }
+
+}

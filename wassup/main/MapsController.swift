@@ -1,0 +1,61 @@
+//
+//  FeedsController.swift
+//  wassup
+//
+//  Created by MAC on 8/18/16.
+//  Copyright (c) 2016 MAC. All rights reserved.
+//
+
+import UIKit
+import GoogleMaps
+
+class MapsController: UIViewController, GMSMapViewDelegate {
+    
+    @IBOutlet weak var maps: GMSMapView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        Utils.sharedInstance.refreshLocation(self, action: #selector(loadMap), loop: false)
+    }
+    
+    func loadMap() {
+        let camera = GMSCameraPosition.cameraWithLatitude(Utils.sharedInstance.location.lat, longitude: Utils.sharedInstance.location.long, zoom: 16.0)
+        maps = GMSMapView.mapWithFrame(CGRect.zero, camera: camera)
+        maps.myLocationEnabled = true
+        maps.delegate = self
+        
+        // Creates a marker in the center of the map.
+        let md = MapsModel()
+        md.getEventsOnMap(Utils.sharedInstance.location.lat, long: Utils.sharedInstance.location.long, keyword: "", tags: "") {
+            (result:AnyObject?) in
+            let dict:Dictionary<String, Array<Dictionary<String, String>>> = result as! Dictionary<String, Array<Dictionary<String, String>>>
+            let img = UIImage(named: "ic_map_maker")
+            for a:Dictionary<String, String> in dict["events"]! {
+//                print(a)
+                let lat = Utils.convertFromStringToNumber(a["lattitude"]!).doubleValue
+                let long = Utils.convertFromStringToNumber(a["longtitude"]!).doubleValue
+                let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: lat, longitude: long))
+                marker.icon = img
+                marker.snippet = "haha"
+                marker.map = self.maps
+                
+            }
+        }
+    }
+    
+    func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let info = InfoMarker(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        self.view.addSubview(info)
+        return nil
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}

@@ -1,0 +1,55 @@
+//
+//  ForgotPassword.swift
+//  wassup
+//
+//  Created by MAC on 8/17/16.
+//  Copyright (c) 2016 MAC. All rights reserved.
+//
+
+import UIKit
+
+class ForgotPassword: UIViewController {
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak var btnSubmit: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        btnCancel.corner(20, border: 1, colorBorder: 0xFFFFFF)
+        btnSubmit.corner(20, border: 1, colorBorder: 0xFFFFFF)
+        email.corner(20, border: 0, colorBorder: 0x000000)
+        
+        view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func clickCancel(sender: AnyObject) {
+        self.removeFromParentViewController()
+        self.view.removeFromSuperview()
+    }
+    
+    @IBAction func clickSubmit(sender: AnyObject) {
+        let alert = UIAlertView(title: Localization("Thông báo"), message: "", delegate: nil, cancelButtonTitle: "OK")
+        if email.text == "" {
+            alert.message = Localization("Email hoặc Phone không được để trống")
+            alert.show()
+            return
+        }
+        let md = User()
+        md.forgotPass(email.text!) {
+            (result:AnyObject?) in
+            if let dict = result as? Dictionary<String, AnyObject> {
+                let status = Int(dict["status"] as! NSNumber)
+                if status == 1 {
+                    
+                }
+                alert.message = dict["message"] as? String
+                alert.show()
+            }
+        }
+    }
+}

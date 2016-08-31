@@ -1,0 +1,52 @@
+//
+//  FeedsController.swift
+//  wassup
+//
+//  Created by MAC on 8/18/16.
+//  Copyright (c) 2016 MAC. All rights reserved.
+//
+
+import UIKit
+
+class SearchController: UIViewController {
+    
+    @IBOutlet weak var content: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let items = ["Most Popular", "Latest", "Trending", "Nearest", "Top Picks"]
+        let menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: "Dropdown Menu", items: items)
+        self.navigationItem.titleView = menuView
+        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
+            print("Did select item at index: \(indexPath)")
+        }
+        menuView.menuTitleColor = UIColor.whiteColor()
+        
+        let tabPage = TabPageViewController.create()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc1 = storyboard.instantiateViewControllerWithIdentifier("TabSearchController")
+        let vc2 = UIViewController()
+        let vc3 = UIViewController()
+        let vc4 = UIViewController()
+        tabPage.tabItems = [(vc1, "Hot"), (vc2, "Sự kiện"), (vc3, "Địa Điểm"), (vc4, "Blog")]
+        
+        var option = TabPageOption()
+        option.currentColor = UIColor.fromRgbHex(0x4A525A)
+        option.tabEqualizeWidth = true
+        option.numberOfItem = 4
+        tabPage.option = option
+        
+        self.addChildViewController(tabPage)
+        tabPage.view.frame = self.content.frame
+        self.content.addSubview(tabPage.view)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}

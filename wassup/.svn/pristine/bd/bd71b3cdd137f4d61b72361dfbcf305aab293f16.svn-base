@@ -1,0 +1,123 @@
+//
+//  User.swift
+//  wassup
+//
+//  Created by MAC on 8/16/16.
+//  Copyright (c) 2016 MAC. All rights reserved.
+//
+
+import UIKit
+
+class User: ModelBase {
+    
+    static let sharedInstance = User()
+    var callback: ServiceResponse?
+    
+    var userId:String {
+        get {
+            if let id:String = NSUserDefaults.standardUserDefaults().stringForKey("user_id") {
+                return id
+            }
+            return ""
+        }
+        set(id) {
+            NSUserDefaults.standardUserDefaults().setObject(id, forKey: "user_id")
+        }
+    }
+    
+    var token:String {
+        get {
+            let id = NSUserDefaults.standardUserDefaults().stringForKey("user_token")
+            return id!
+        }
+        set(id) {
+            NSUserDefaults.standardUserDefaults().setObject(id, forKey: "user_token")
+        }
+    }
+    
+    var login_style:String {
+        get {
+            let id = NSUserDefaults.standardUserDefaults().stringForKey("user_login_style")
+            return id!
+        }
+        set(id) {
+            NSUserDefaults.standardUserDefaults().setObject(id, forKey: "user_login_style")
+        }
+    }
+    
+    var isLogined:Bool {
+        get {
+            return self.userId != ""
+        }
+    }
+    
+    func login(username: String, passwd: String, callback: ServiceResponse) {
+        let model = "user/login"
+        let dict = ["email":username,
+                    "password": passwd]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func facebook(callback: ServiceResponse) {
+        self.callback = callback
+        let fbManager = FBSDKLoginManager()
+        fbManager.logInWithReadPermissions(["email"], handler:  {
+            (result, error) -> Void in
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result
+                if (fbloginresult.grantedPermissions.contains("email") as? Bool) != nil {
+                    let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: fbloginresult.token.tokenString, version: nil, HTTPMethod: "GET")
+                    req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+                        if(error == nil) {
+                            self.getFBUserData(result["email"] as! String, fullname: result["name"] as! String, token:fbloginresult.token.tokenString)
+                        }
+                        else
+                        {
+                            print("error \(error)", terminator: "")
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
+    func getFBUserData(email: String, fullname: String, token: String){
+        self.loginFB(email, fullname: fullname, token: token) {
+            (result) in
+            if self.callback != nil {
+                self.callback!(result)
+            }
+            
+        }
+    }
+    
+    func loginFB(email: String, fullname: String, token: String, callback: ServiceResponse) {
+        let model = "user/loginFacebook"
+        let dict = ["email":email,
+                    "fullname": fullname,
+                    "etoken": token]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func register(username: String, passwd: String, callback: ServiceResponse) {
+        let model = "user/registerUser"
+        let dict = ["email":username,
+            "password": passwd]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func forgotPass(username: String, callback: ServiceResponse) {
+        let model = "user/sendEmailResetPassword"
+        let dict = ["email":username,]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    var isFirstTimeOpen:Bool {
+        get {
+            return !NSUserDefaults.standardUserDefaults().boolForKey("IS_FIRST_TIME_OPEN")
+        }
+        set(val) {
+            return NSUserDefaults.standardUserDefaults().setBool(val, forKey: "IS_FIRST_TIME_OPEN")
+        }
+    }
+}

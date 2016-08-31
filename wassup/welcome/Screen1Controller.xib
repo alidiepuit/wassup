@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Screen1Controller" customModule="wassup" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="518"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="what to do?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uha-lS-TEg">
+                    <rect key="frame" x="71" y="19" width="169" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="AYS-G8-9K0"/>
+                        <constraint firstAttribute="width" constant="169" id="NRa-k1-g4y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-K0-D47">
+                    <rect key="frame" x="135" y="55" width="40" height="4"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="9ca-qs-A3a"/>
+                        <constraint firstAttribute="height" constant="4" id="hYl-W4-kve"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGT-I2-EJi">
+                    <rect key="frame" x="16" y="67" width="279" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="69" id="2a6-Fq-hJk"/>
+                        <constraint firstAttribute="width" constant="279" id="U5C-8g-Fga"/>
+                    </constraints>
+                    <string key="text">Khong biet di dau, lam gi? 
+Xem hang nghin hoat dong va dia diem hot nhat tren Wassup!</string>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wc1" translatesAutoresizingMaskIntoConstraints="NO" id="bbj-jv-Coh">
+                    <rect key="frame" x="67" y="144" width="176" height="297"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="297" id="Qhk-Hx-53Y"/>
+                        <constraint firstAttribute="width" constant="176" id="Uxb-rk-dVf"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.30980392159999998" green="0.19215686269999999" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="bbj-jv-Coh" firstAttribute="top" secondItem="EGT-I2-EJi" secondAttribute="bottom" constant="8" id="80Y-qT-mg2"/>
+                <constraint firstItem="EGT-I2-EJi" firstAttribute="top" secondItem="NGZ-K0-D47" secondAttribute="bottom" constant="8" id="8ga-xJ-ywI"/>
+                <constraint firstAttribute="centerX" secondItem="bbj-jv-Coh" secondAttribute="centerX" constant="0.5" id="9n5-mR-5gz"/>
+                <constraint firstItem="Uha-lS-TEg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="GSQ-WQ-Ql3"/>
+                <constraint firstItem="NGZ-K0-D47" firstAttribute="top" secondItem="Uha-lS-TEg" secondAttribute="bottom" constant="8" id="PFF-7N-Nzo"/>
+                <constraint firstItem="Uha-lS-TEg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UEA-9X-VVQ"/>
+                <constraint firstAttribute="centerX" secondItem="NGZ-K0-D47" secondAttribute="centerX" id="UG7-x0-3vP"/>
+                <constraint firstAttribute="centerX" secondItem="EGT-I2-EJi" secondAttribute="centerX" id="wV8-1F-U1R"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="386.5" y="258"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wc1" width="205" height="375"/>
+    </resources>
+</document>
