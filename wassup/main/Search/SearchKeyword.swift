@@ -8,12 +8,15 @@
 
 import UIKit
 
+var GLOBAL_KEYWORD = ""
+
 class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
     
     var searchController: UISearchDisplayController!
     var searchText = ""
     var tabPage:TabPageViewController?
     let searchBar = UISearchBar()
+    var debounceTimer: NSTimer?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var container: UIView!
@@ -22,7 +25,8 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         super.viewDidLoad()
         let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], forState: UIControlState.Normal)
-        
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        GLOBAL_KEYWORD = ""
         
         searchBar.delegate = self
         searchBar.sizeToFit()
@@ -44,6 +48,7 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
                 if v is UITextField {
                     if let btn = v as? UITextField {
                         btn.autocapitalizationType = .None
+                        btn.becomeFirstResponder()
                     }
                 }
             }
@@ -76,6 +81,8 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
                              (vc4, Localization("Địa điểm")),
                              (vc5, Localization("Blog"))]
         
+        tabPage?.pageViewDelegate = self
+        
         var option = TabPageOption()
         option.currentColor = UIColor.fromRgbHex(0x31ACF9)
         option.tabEqualizeWidth = true
@@ -97,13 +104,22 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     //MARK: UISearchBar Delegate
-    func filterContentForSearchText(searchText: String, scope: String = "All") {
-        tableView.reloadData()
+    func filterContentForSearchText() {
+        NSNotificationCenter.defaultCenter().postNotificationName("LOAD_DATA_SEARCH_WITH_NEW_KEYWORD", object: nil, userInfo: ["keyword": searchText])
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
-        NSNotificationCenter.defaultCenter().postNotificationName("LOAD_DATA_SEARCH", object: nil, userInfo: ["keyword": searchText])
+        let text = searchText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        GLOBAL_KEYWORD = text
+        if let timer = debounceTimer {
+            timer.invalidate()
+        }
+        debounceTimer = NSTimer(timeInterval: 1.0, target: self, selector: #selector(filterContentForSearchText), userInfo: nil, repeats: false)
+        NSRunLoop.currentRunLoop().addTimer(debounceTimer!, forMode: "NSDefaultRunLoopMode")
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -126,5 +142,11 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellFeed", forIndexPath: indexPath)
         return cell
+    }
+}
+
+extension SearchKeyword: TabPageViewDelegate {
+    func didFinishScroll() {
+//        NSNotificationCenter.defaultCenter().postNotificationName("RELOAD_DATA_SEARCH_WHEN_APPEAR", object: nil)
     }
 }

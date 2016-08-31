@@ -118,7 +118,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     var MyObservationContext = 0
     
     deinit {
-        stopObservingHeight()
+//        stopObservingHeight()
     }
     
     func startObservingHeight() {
@@ -128,7 +128,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     }
     
     func stopObservingHeight() {
-        webview.scrollView.removeObserver(self, forKeyPath: "contentSize", context: &MyObservationContext)
+        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
         observing = false
     }
     
@@ -140,6 +140,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
         switch (keyPath, context) {
         case("contentSize", &MyObservationContext):
             webviewHeightConstraint.constant = webview.scrollView.contentSize.height
+            stopObservingHeight()
         default:
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }

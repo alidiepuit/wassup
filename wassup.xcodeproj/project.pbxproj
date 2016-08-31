@@ -76,6 +76,7 @@
 		048AA7401D6AE0BD001912BA /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 048AA73F1D6AE0BD001912BA /* test.html */; };
 		048AA7421D6AE82F001912BA /* DemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AA7411D6AE82F001912BA /* DemoCell.swift */; };
 		048AA7441D6AF682001912BA /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048AA7431D6AF682001912BA /* DemoCell.xib */; };
+		04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04954F2B1D7749680096B4B3 /* SearchTagController.swift */; };
 		04A74E621D6EA198005F6418 /* CellImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A74E601D6EA198005F6418 /* CellImage.swift */; };
 		04A74E631D6EA198005F6418 /* CellImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A74E611D6EA198005F6418 /* CellImage.xib */; };
 		04A74E651D6EC8B6005F6418 /* Feeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A74E641D6EC8B6005F6418 /* Feeds.swift */; };
@@ -211,6 +212,7 @@
 		048AA73F1D6AE0BD001912BA /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		048AA7411D6AE82F001912BA /* DemoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCell.swift; sourceTree = "<group>"; };
 		048AA7431D6AF682001912BA /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
+		04954F2B1D7749680096B4B3 /* SearchTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTagController.swift; path = wassup/main/Search/SearchTagController.swift; sourceTree = "<group>"; };
 		04A74E601D6EA198005F6418 /* CellImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellImage.swift; path = wassup/main/Search/CellImage.swift; sourceTree = "<group>"; };
 		04A74E611D6EA198005F6418 /* CellImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellImage.xib; path = wassup/main/Search/CellImage.xib; sourceTree = "<group>"; };
 		04A74E641D6EC8B6005F6418 /* Feeds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feeds.swift; path = wassup/model/Feeds.swift; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				04F389461D6820B300625121 /* CellSearch.xib */,
 				048AA7371D6A904D001912BA /* CellBlog.swift */,
 				048AA7351D6A8EF2001912BA /* CellBlog.xib */,
+				04954F2B1D7749680096B4B3 /* SearchTagController.swift */,
 				04F3894A1D6821C000625121 /* SearchHotController.swift */,
 				042C20851D6D4CAE0069DDFB /* SearchEventController.swift */,
 				042C20871D6D4CC30069DDFB /* SearchHostController.swift */,
@@ -846,6 +849,7 @@
 				04F3890F1D66BCA200625121 /* Candy.swift in Sources */,
 				04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */,
 				042C208A1D6D4CDA0069DDFB /* SearchBlogController.swift in Sources */,
+				04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */,
 				047F36321D62F9C500F0FE80 /* OptionController.swift in Sources */,
 				04F389401D67F91100625121 /* BTNavigationDropdownMenu.swift in Sources */,
 				043298041D7416FE00616D09 /* Host.swift in Sources */,

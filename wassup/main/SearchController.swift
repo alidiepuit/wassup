@@ -62,16 +62,18 @@ class SearchController: UIViewController {
         let md = Filter()
         md.getProvince() {
             (result:AnyObject?) in
-            if let d = result!["provinces"] as? Dictionary<String, String> {
-                self.listProvince = []
-                var a = [String]()
-                for b in 1...80 {
-                    if let val = d[CONVERT_STRING(b)] {
-                        a.append(val)
-                        self.listProvince.append(CellDropdown(id: CONVERT_STRING(b), value: val))
+            if result != nil {
+                if let d = result!["provinces"] as? Dictionary<String, String> {
+                    self.listProvince = []
+                    var a = [String]()
+                    for b in 1...80 {
+                        if let val = d[CONVERT_STRING(b)] {
+                            a.append(val)
+                            self.listProvince.append(CellDropdown(id: CONVERT_STRING(b), value: val))
+                        }
                     }
+                    self.selProvince?.updateItems(a)
                 }
-                self.selProvince?.updateItems(a)
             }
         }
     }
@@ -86,5 +88,9 @@ class SearchController: UIViewController {
     
     @IBAction func clickFilter(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName("CLICK_FILTER", object: nil)
+    }
+    
+    @IBAction func clickSearch(sender: AnyObject) {
+        performSegueWithIdentifier("SearchKeyword", sender: nil)
     }
 }

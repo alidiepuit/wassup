@@ -47,6 +47,9 @@ class SearchHostController: SearchEventController {
     }
     
     override func loadData(ref: UIRefreshControl?) {
+        if isFinish {
+            return
+        }
         isLoading = true
         if ref != nil {
             self.data = nil
@@ -63,6 +66,9 @@ class SearchHostController: SearchEventController {
                 if self.data == nil {
                     self.data = d
                 } else {
+                    if d.count <= 0 {
+                        self.isFinish = true
+                    }
                     self.data?.appendContentsOf(d)
                 }
                 self.tableView.reloadData()

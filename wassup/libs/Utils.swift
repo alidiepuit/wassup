@@ -48,11 +48,11 @@ func CONVERT_INT32(a:AnyObject?) -> Int32 {
 }
 
 func CONVERT_FLOAT(a:AnyObject?) -> Float32 {
-    return Utils.convertToNumber(a).floatValue
+    return a!.floatValue
 }
 
 func CONVERT_DOUBLE(a:AnyObject?) -> Double {
-    return Utils.convertToNumber(a).doubleValue
+    return Utils.convertToDouble(a)
 }
 
 func CONVERT_BOOL(a:AnyObject?) -> Bool {
@@ -123,6 +123,19 @@ class Utils: NSObject, CLLocationManagerDelegate {
             return 0
         }
         if let id = str as? NSNumber {
+            return id
+        }
+        if let id = str?.doubleValue {
+            return id
+        }
+        return 0
+    }
+    
+    class func convertToDouble(str: AnyObject?) -> Double {
+        if str == nil {
+            return 0
+        }
+        if let id = str?.doubleValue {
             return id
         }
         return 0

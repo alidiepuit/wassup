@@ -52,8 +52,9 @@ class DetailEvent: UITableViewCell {
         }
         lblNumberCheckin.text = Utils.convertToString(data["checkin_number"])
         
-        
-        loadMap(Location(lat: Utils.convertFromStringToNumber(data["lattitude"]! as! String).doubleValue, long: Utils.convertFromStringToNumber(data["longtitude"]! as! String).doubleValue))
+        if CONVERT_STRING(data["lattitude"]) != "" {
+            loadMap(Location(lat: CONVERT_DOUBLE(data["lattitude"]), long: CONVERT_DOUBLE(data["longtitude"])))
+        }
         
         let isAttend = CONVERT_BOOL(data["is_attend"])
         let isFollow = CONVERT_BOOL(data["is_follow"])

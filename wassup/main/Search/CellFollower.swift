@@ -21,7 +21,7 @@ class CellFollower: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        avatar.corner(40, border: 0, colorBorder: 0x000000)
+        avatar.corner(30, border: 0, colorBorder: 0x000000)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

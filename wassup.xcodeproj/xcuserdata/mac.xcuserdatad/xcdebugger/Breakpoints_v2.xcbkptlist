@@ -17,6 +17,38 @@
             endingLineNumber = "45"
             landmarkName = "clickSubmit(_:)"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "wassup.ForgotPassword.(clickSubmit (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "wassup"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/q/Documents/wassup/trunk/iOS/swift%20source/git/wassup/login/ForgotPassword.swift"
+                  timestampString = "494360099.003186"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "wassup.ForgotPassword.(clickSubmit (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "wassup"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/q/Documents/wassup/trunk/iOS/swift%20source/git/wassup/login/ForgotPassword.swift"
+                  timestampString = "494360099.003354"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "278">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

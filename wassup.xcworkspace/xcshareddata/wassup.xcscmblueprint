@@ -1,30 +1,37 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9a1d18af-426b-5d4c-a061-5b0222d0ee62++5408",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++5408" : {
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : {
 
     },
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : {
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++4588" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++5408" : 0,
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : 0
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : 0,
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++4588" : 0,
+    "9B4D61AF0AA229AA4DEAC81CEC1461FAF88BAC06" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F296399B-9779-4BEF-B88B-BC4A7B16C1AA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++5408" : "FBSDKCoreKit.framework\/",
-    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : "wassup.xcodeproj\/"
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++9361" : "FBSDKCoreKit.framework\/",
+    "9a1d18af-426b-5d4c-a061-5b0222d0ee62++4588" : "wassup.xcodeproj\/",
+    "9B4D61AF0AA229AA4DEAC81CEC1461FAF88BAC06" : ""
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : ".",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : ".",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:alidiepuit\/wassup.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9B4D61AF0AA229AA4DEAC81CEC1461FAF88BAC06"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/183.91.31.79:8443\/svn\/wassup",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9a1d18af-426b-5d4c-a061-5b0222d0ee62++5408"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9a1d18af-426b-5d4c-a061-5b0222d0ee62++4588"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/183.91.31.79:8443\/svn\/wassup",

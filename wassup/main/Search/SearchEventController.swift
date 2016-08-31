@@ -11,7 +11,7 @@ import UIKit
 class SearchEventController: UITableViewController {
 
     var page = 1
-    var data: [Dictionary<String, AnyObject>]?
+    var data: [Dictionary<String, AnyObject>]!
     var isLoading = false
     var cate:ObjectType {
         return ObjectType.Event
@@ -19,6 +19,7 @@ class SearchEventController: UITableViewController {
     var action = ""
     var districtId = ""
     var filterEvent:FilterEvent?
+    var isFinish = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,8 @@ class SearchEventController: UITableViewController {
         tableView.registerNib(UINib(nibName: "CellSearch", bundle: nil), forCellReuseIdentifier: "CellSearch")
         tableView.registerNib(UINib(nibName: "CellBlog", bundle: nil), forCellReuseIdentifier: "CellBlog")
         
-        let inset = UIEdgeInsetsMake(TabPageOption().tabHeight, 0, 0, 0)
-        tableView.contentInset = inset;
-        
-        
+        self.initView()
+                
         let ref = UIRefreshControl()
         ref.addTarget(self, action: #selector(loadData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
@@ -45,6 +44,11 @@ class SearchEventController: UITableViewController {
         //init select province
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "SELECT_PROVINCE", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectProvince), name: "SELECT_PROVINCE", object: nil)
+    }
+    
+    func initView() {
+        let inset = UIEdgeInsetsMake(TabPageOption().tabHeight, 0, 0, 0)
+        tableView.contentInset = inset;
     }
     
     func initFilter() {
@@ -101,6 +105,9 @@ class SearchEventController: UITableViewController {
     }
     
     func loadData(ref: UIRefreshControl?) {
+        if isFinish {
+            return
+        }
         isLoading = true
         if ref != nil {
             self.data = nil
@@ -112,12 +119,14 @@ class SearchEventController: UITableViewController {
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
                     self.data = nil
-                    self.tableView.reloadData()
                     return
                 }
                 if self.data == nil {
                     self.data = d
                 } else {
+                    if d.count <= 0 {
+                        self.isFinish = true
+                    }
                     self.data?.appendContentsOf(d)
                 }
                 self.tableView.reloadData()

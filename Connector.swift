@@ -52,7 +52,7 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     }
     
     public func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-//        print(error)
+        print(error)
         if (_call != nil) {
             _call!(nil)
         }

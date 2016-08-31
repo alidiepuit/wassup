@@ -88,6 +88,9 @@ class FollowerController: UITableViewController {
         if CONVERT_BOOL(d["is_follow"]) {
             cell.btnFollow.hidden = true
             cell.btnFollowed.hidden = false
+        } else {
+            cell.btnFollow.hidden = false
+            cell.btnFollowed.hidden = true
         }
         if User.sharedInstance.userId == CONVERT_STRING(d["user_id"]) {
             cell.btnFollow.hidden = true

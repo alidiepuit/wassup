@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TabPageViewDelegate {
+    func didFinishScroll()
+}
+
 public class TabPageViewController: UIPageViewController {
     public var isInfinity: Bool = false
     public var option: TabPageOption = TabPageOption()
@@ -16,7 +20,7 @@ public class TabPageViewController: UIPageViewController {
             tabItemsCount = tabItems.count
         }
     }
-
+    var pageViewDelegate: TabPageViewDelegate!
     var currentIndex: Int? {
         guard let viewController = viewControllers?.first else {
             return nil
@@ -240,6 +244,9 @@ extension TabPageViewController: UIPageViewControllerDelegate {
         }
 
         tabView.updateCollectionViewUserInteractionEnabled(true)
+        if pageViewDelegate != nil {
+            pageViewDelegate.didFinishScroll()
+        }
     }
 }
 

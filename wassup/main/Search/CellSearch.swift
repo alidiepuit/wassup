@@ -47,7 +47,7 @@ class CellSearch: UITableViewCell {
         }
         position.text = data["location"] as? String
         
-        if data["starttime"] != nil {
+        if CONVERT_STRING(data["endtime"]) != "" && CONVERT_STRING(data["starttime"]) != "" && data["starttime"] != nil {
             time.text = Date().printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
         } else {
             

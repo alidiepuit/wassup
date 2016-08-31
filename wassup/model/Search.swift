@@ -34,6 +34,16 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
+    func tag(tagId: String, index page: Int, callback: ServiceResponse) {
+        let model = "search/getItemsByTag"
+        let dict = ["tag_id": tagId,
+                    "index": getIndex(page),
+                    "seed": getSeed(),
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
     func eventDetailEvent(id: String, callback: ServiceResponse) {
         let model = "event/getEvent"
         let dict = ["id": id,
