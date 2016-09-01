@@ -44,6 +44,29 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
+    func getCheckinSuggestion(keyword: String, callback: ServiceResponse) {
+        let model = "checkin/getCheckinSuggestion"
+        let dict = ["longtitude": String(Utils.sharedInstance.location.long),
+                    "lattitude": String(Utils.sharedInstance.location.lat),
+                    "keyword": keyword,
+                    "seed": getSeed(),
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func getTagsEachStepCheckIn(step: Int, keyword: String, callback: ServiceResponse) {
+        let model = "checkin/getTags"
+        let dict = ["longtitude": String(Utils.sharedInstance.location.long),
+                    "lattitude": String(Utils.sharedInstance.location.lat),
+                    "type": String(step),
+                    "keyword": keyword,
+                    "seed": getSeed(),
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
     func eventDetailEvent(id: String, callback: ServiceResponse) {
         let model = "event/getEvent"
         let dict = ["id": id,

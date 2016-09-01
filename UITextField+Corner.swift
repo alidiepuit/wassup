@@ -18,4 +18,10 @@ extension UITextField {
         attributedPlaceholder = NSAttributedString(string:placeholder!,
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
+    
+    func intentLeft(left: Int) {
+        let spacerView = UIView(frame:CGRect(x:0, y:0, width:left, height:10))
+        self.leftViewMode = UITextFieldViewMode.Always
+        self.leftView = spacerView
+    }
 }

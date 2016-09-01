@@ -67,7 +67,7 @@ class SubSearchKeyword: UITableViewController {
             (result:AnyObject?) in
             if result != nil {
                 if let d = result!["objects"] as? [Dictionary<String,AnyObject>] {
-                    if d.count <= 4 {
+                    if d.count <= 0 {
                         self.finishData = true
                     }
                     for ele:Dictionary<String,AnyObject> in d {
