@@ -53,8 +53,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 self.removeFromParentViewController()
                 self.performSegueWithIdentifier("afterLogin", sender: nil)
             }
-            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: self, cancelButtonTitle: "OK")
-            alert.show()
+//            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: self, cancelButtonTitle: "OK")
+//            alert.show()
         }
     }
     

@@ -11,17 +11,20 @@ import UIKit
 class Feeds: ModelBase {
     func listEventFeeds(eventId: String, index page:Int, top:Int, callback: ServiceResponse) {
         let model = "event/getEventFeeds"
-        var idx = 0
-        if page <= 1 {
-            idx = 0
-        } else {
-            idx = (page-1)*10
-        }
         let dict = ["event_id": eventId,
                     "user_token": User.sharedInstance.token,
                     "login_style": User.sharedInstance.login_style,
-                    "index": CONVERT_STRING(idx),
+                    "index": getIndex(page),
                     "top": CONVERT_STRING(top)]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func getFeeds(index page:Int, callback: ServiceResponse) {
+        let model = "feed/getFeeds"
+        let dict = ["user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style,
+                    "index": getIndex(page),
+                    ]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
 }

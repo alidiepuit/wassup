@@ -19,7 +19,7 @@ class FilterBlog: FilterEvent {
     }
     
     override var dataTime: [CellDropdown] {
-        return [CellDropdown(id: "1", value:"Gần nhất"),
+        return [CellDropdown(id: "1", value:"Mới nhất"),
                 CellDropdown(id: "8", value:"Hot nhất"),
         ]
     }

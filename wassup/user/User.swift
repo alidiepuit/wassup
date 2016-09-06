@@ -142,7 +142,7 @@ class User: ModelBase {
                     "user_id": User.sharedInstance.userId,
                     "user_token": User.sharedInstance.token,
                     "login_style": User.sharedInstance.login_style]
-        self.callAPI("GET", module: model, params: dict, callback: nil)
+        self.callAPI("POST", module: model, params: dict, callback: nil)
     }
     
     func followHost(hostId: String) {

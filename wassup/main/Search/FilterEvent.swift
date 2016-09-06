@@ -37,7 +37,7 @@ class FilterEvent: UIView {
                     ]
     
     var selIndex = 0
-    var selTime = "8"
+    var selTime = "1"
     var selDistrict = ""
     var selRange = ""
     
@@ -116,7 +116,7 @@ class FilterEvent: UIView {
         if btnCenter != nil {
             btnCenter.setTitle(cityId.value, forState: .Normal)
         }
-        tbl.reloadData()
+        loadDistrict()
     }
     
     func resetFilterAfterSelectProvince(noti: NSNotification) {
@@ -149,18 +149,21 @@ extension FilterEvent: UITableViewDataSource, UITableViewDelegate {
             cell.title.text = dataTime[indexPath.row].value
             if selTime == dataTime[indexPath.row].id {
                 selected = true
+                btnLeft.setTitle(dataTime[indexPath.row].value, forState: .Normal)
             }
             break;
         case 1:
             cell.title.text = dataDistrict[indexPath.row].value
             if selDistrict == dataDistrict[indexPath.row].id {
                 selected = true
+                btnCenter.setTitle(dataDistrict[indexPath.row].value, forState: .Normal)
             }
             break;
         case 2:
             cell.title.text = dataRange[indexPath.row].value
             if selRange == dataRange[indexPath.row].id {
                 selected = true
+                btnRight.setTitle(dataRange[indexPath.row].value, forState: .Normal)
             }
             break;
         default:

@@ -39,9 +39,11 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         NSURLConnection.sendAsynchronousRequest(myRequest, queue: NSOperationQueue.mainQueue()) {
             (response, data, error) -> Void in
             do {
-                let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-                if (self._call != nil) {
-                    self._call!(jsonObject)
+                if data != nil {
+                    let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+                    if (self._call != nil) {
+                        self._call!(jsonObject)
+                    }
                 }
             } catch let aError as NSError {
                 let str = NSString(data: data!, encoding: NSUTF8StringEncoding)

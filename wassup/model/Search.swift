@@ -9,20 +9,7 @@
 import UIKit
 
 class Search: ModelBase {
-    func getIndex(page: Int) -> String {
-        var idx = 0
-        if page <= 1 {
-            idx = 0
-        } else {
-            idx = (page-1)*10
-        }
-        return String(idx)
-    }
     
-    func getSeed() -> String{
-        let ran = arc4random_uniform(9999) + 1;
-        return String(ran)
-    }
     
     func keyword(keyword: String, index page: Int, callback: ServiceResponse) {
         let model = "search/get"

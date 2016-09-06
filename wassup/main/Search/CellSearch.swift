@@ -76,6 +76,7 @@ class CellSearch: UITableViewCell {
         if isAttend || isFollow {
             imgBtnLeft.image = UIImage(named: "ic_join_selected")
             activeLeft = true
+            btnLeft.text = Localization("Đã quan tâm")
         }
         
         let isCheckin = CONVERT_BOOL(data["is_checkin"])
@@ -89,8 +90,10 @@ class CellSearch: UITableViewCell {
         activeLeft = !activeLeft
         if activeLeft {
             imgBtnLeft.image = UIImage(named: "ic_join_selected")
+            btnLeft.text = Localization("Đã quan tâm")
         } else {
             imgBtnLeft.image = UIImage(named: "ic_join_normal")
+            btnLeft.text = Localization("Quan Tâm")
         }
         let md = User()
         if cate == ObjectType.Event {

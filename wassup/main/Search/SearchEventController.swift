@@ -33,11 +33,11 @@ class SearchEventController: UITableViewController {
         ref.addTarget(self, action: #selector(loadData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
         
+        //init filter
+        initFilter()
         
         loadData(nil)
         
-        //init filter
-        initFilter()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_FILTER", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickFilter), name: "CLICK_FILTER", object: nil)
         

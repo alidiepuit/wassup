@@ -13,12 +13,18 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
                         <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstItem="vkU-ur-bi6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cin-Qs-Wir"/>
+                <constraint firstAttribute="trailing" secondItem="vkU-ur-bi6" secondAttribute="trailing" id="g7G-oM-eE0"/>
+                <constraint firstAttribute="bottom" secondItem="vkU-ur-bi6" secondAttribute="bottom" id="iaT-ki-8mN"/>
+                <constraint firstItem="vkU-ur-bi6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zLf-HD-pwM"/>
+            </constraints>
             <connections>
                 <outlet property="img" destination="vkU-ur-bi6" id="lN0-Lb-Wsc"/>
             </connections>

@@ -66,8 +66,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVh-fz-RVb">
                                 <rect key="frame" x="0.0" y="351" width="160" height="44"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqQ-81-PMW">
-                                        <rect key="frame" x="32" y="8" width="96" height="31"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqQ-81-PMW">
+                                        <rect key="frame" x="32" y="7" width="96" height="31"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="FbG-gS-rkB">
                                                 <rect key="frame" x="8" y="6" width="13" height="18"/>
@@ -79,17 +79,23 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="96" id="3IT-uZ-cYT"/>
+                                            <constraint firstAttribute="height" constant="31" id="VPk-P5-hRi"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="OVX-sd-aUj"/>
+                                    <constraint firstItem="lqQ-81-PMW" firstAttribute="centerX" secondItem="SVh-fz-RVb" secondAttribute="centerX" id="gJO-hb-JcA"/>
+                                    <constraint firstItem="lqQ-81-PMW" firstAttribute="centerY" secondItem="SVh-fz-RVb" secondAttribute="centerY" id="stU-I4-D7j"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsW-0o-B4k">
                                 <rect key="frame" x="160" y="351" width="160" height="44"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-d3-HR9">
-                                        <rect key="frame" x="32" y="8" width="96" height="31"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-d3-HR9">
+                                        <rect key="frame" x="32" y="7" width="96" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thích" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCo-PW-gek">
                                                 <rect key="frame" x="32" y="5" width="64" height="21"/>
@@ -100,10 +106,16 @@
                                                 <rect key="frame" x="8" y="8" width="16" height="16"/>
                                             </imageView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="96" id="aH5-x6-uPy"/>
+                                            <constraint firstAttribute="height" constant="31" id="klV-mD-kD9"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="AyL-DV-FnX"/>
+                                    <constraint firstItem="Qjo-d3-HR9" firstAttribute="centerY" secondItem="tsW-0o-B4k" secondAttribute="centerY" id="rFK-6n-egy"/>
+                                    <constraint firstItem="Qjo-d3-HR9" firstAttribute="centerX" secondItem="tsW-0o-B4k" secondAttribute="centerX" id="zZz-YQ-xVR"/>
                                 </constraints>
                             </view>
                         </subviews>

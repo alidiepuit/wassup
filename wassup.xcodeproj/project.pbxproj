@@ -120,7 +120,6 @@
 		04C504041D64599400E2B266 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504031D64599400E2B266 /* Utils.swift */; };
 		04C504061D645A7700E2B266 /* LazyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504051D645A7700E2B266 /* LazyImage.swift */; };
 		04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504071D646A3300E2B266 /* HeaderCellTags.swift */; };
-		04F3890F1D66BCA200625121 /* Candy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3890E1D66BCA200625121 /* Candy.swift */; };
 		04F389111D66E3A600625121 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F389101D66E3A600625121 /* CoreLocation.framework */; };
 		04F389131D66F9FD00625121 /* MapsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F389121D66F9FD00625121 /* MapsModel.swift */; };
 		04F389161D67059F00625121 /* InfoMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F389151D67059F00625121 /* InfoMarker.swift */; };
@@ -297,7 +296,6 @@
 		04C504031D64599400E2B266 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = wassup/libs/Utils.swift; sourceTree = "<group>"; };
 		04C504051D645A7700E2B266 /* LazyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyImage.swift; sourceTree = "<group>"; };
 		04C504071D646A3300E2B266 /* HeaderCellTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCellTags.swift; path = wassup/tags/HeaderCellTags.swift; sourceTree = "<group>"; };
-		04F3890E1D66BCA200625121 /* Candy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Candy.swift; sourceTree = "<group>"; };
 		04F389101D66E3A600625121 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		04F389121D66F9FD00625121 /* MapsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapsModel.swift; path = wassup/model/MapsModel.swift; sourceTree = "<group>"; };
 		04F389151D67059F00625121 /* InfoMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoMarker.swift; path = wassup/main/maps/InfoMarker.swift; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 		04F3890D1D66BC9A00625121 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
-				04F3890E1D66BCA200625121 /* Candy.swift */,
 				04BBAD291D6C419000626019 /* CellFeed.swift */,
 				043594791D69B73600604133 /* CellFeed.xib */,
 			);
@@ -995,7 +992,6 @@
 				047F35D11D62A0C500F0FE80 /* ViewController.swift in Sources */,
 				04C504001D64486C00E2B266 /* CellTags.swift in Sources */,
 				04F389351D67F90D00625121 /* TabCollectionCell.swift in Sources */,
-				04F3890F1D66BCA200625121 /* Candy.swift in Sources */,
 				04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */,
 				042C208A1D6D4CDA0069DDFB /* SearchBlogController.swift in Sources */,
 				04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */,

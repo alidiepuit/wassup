@@ -16,6 +16,7 @@
 "%s Tham Gia | %s Check In" = "%s Tham Gia | %s Check In";
 "%s Check In" = "%s Check In";
 "Quan Tâm" = "Quan Tâm";
+"Đã quan tâm" = "Đã quan tâm";
 "Follow" = "Follow";
 "Tất cả" = "Tất cả";
 "Tìm kiếm" = "Tìm kiếm";
@@ -24,3 +25,5 @@
 "User" = "User";
 "Blog" = "Blog";
 "Bài viết" = "Bài viết";
+"Chọn 5" = "Chọn 5";
+"Xong" = "Xong";

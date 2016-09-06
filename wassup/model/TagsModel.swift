@@ -11,7 +11,7 @@ import UIKit
 class TagsModel: ModelBase {
     func getRecommandtionTags(callback: ServiceResponse) {
         let modul = "tag/getRecommandtionTags"
-        self.callAPI("GET", module: modul, params: nil, callback: callback)
+        self.callAPI("POST", module: modul, params: nil, callback: callback)
     }
     
     func saveRecommandtionTags(tags: Array<String>, callback: ServiceResponse) {

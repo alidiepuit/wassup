@@ -55,8 +55,8 @@
                                             <constraint firstAttribute="width" constant="12" id="WE3-EV-Gch"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-Ve-bwM" customClass="TagListView" customModule="wassup" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="95" width="304" height="272"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-Ve-bwM" customClass="TagListView" customModule="wassup" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="95" width="304" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">

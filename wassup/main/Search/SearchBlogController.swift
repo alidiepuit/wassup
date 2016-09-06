@@ -27,6 +27,7 @@ class SearchBlogController: SearchEventController {
     override func initFilter() {
         self.filterBlog = FilterBlog(frame: insideView!.frame)
         self.filterBlog?.hidden = true
+        action = "1"
     }
     
     override func clickFilter() {

@@ -13,13 +13,20 @@ public enum ObjectType: Int32 {
     case Follow
     case Checkin
     case Comment
-    case UserRegistEvent
+    case UserRegistEvent = 5
     case ActivityLog
     case Article
     case Host
     case CommentArticle
-    case Tag
+    case Tag = 10
     case Users
+}
+
+public enum ActivityType: String {
+    case Checkin = "%@ tại %@"
+    case CheckinHasFeeling = "%@ đang %@ tại %@"
+    case Comment = "%@ đã bình luận %@"
+    case UserRegistEvent = "%@ đã quan tâm hoạt động %@"
 }
 
 class Filter: ModelBase {

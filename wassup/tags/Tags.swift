@@ -40,12 +40,12 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             (result:AnyObject?) in
             let dict = result as! Dictionary<String, AnyObject>
             let status = dict["status"] as? Int
-            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
+//            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
             if status == 1 {
                 self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 self.removeFromParentViewController()
             }
-            alert.show()
+//            alert.show()
         }
     }
     
@@ -81,6 +81,7 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             btnSubmit.backgroundColor = UIColor.whiteColor()
             btnSubmit.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
             btnSubmit.enabled = true
+            btnSubmit.setTitle(Localization("Xong"), forState: .Normal)
         }
     }
     
@@ -94,6 +95,7 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
                 btnSubmit.backgroundColor = UIColor.fromRgbHex(0xAAAAAA)
                 btnSubmit.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                 btnSubmit.enabled = false
+                btnSubmit.setTitle(Localization("Chọn 5"), forState: .Normal)
             }
         }
     }
