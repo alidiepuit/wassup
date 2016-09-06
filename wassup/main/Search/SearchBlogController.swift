@@ -55,7 +55,7 @@ class SearchBlogController: SearchEventController {
             page = 1
         }
         let md = Search()
-        md.blogs(1, index: page, keyword: "", action: action, districtId: districtId) {
+        md.blogs(0, index: page, keyword: "", action: action, districtId: districtId) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
@@ -96,6 +96,14 @@ class SearchBlogController: SearchEventController {
         let next = segue.destinationViewController as! DetailBlogController
         if let data:Dictionary<String,AnyObject> = self.data![(tableView.indexPathForSelectedRow?.row)!] {
             next.id = CONVERT_STRING(data["id"])
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let data:Dictionary<String,AnyObject> = self.data![indexPath.row] {
+            let text = CONVERT_STRING(data["short_description"])
+            let hei = text.heightWithConstrainedWidth(self.view.frame.size.width-18, font: UIFont(name: "Helvetica", size: 14)!)
+            return 335+hei
         }
     }
 }

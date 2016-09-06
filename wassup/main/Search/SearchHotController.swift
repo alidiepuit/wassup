@@ -28,7 +28,7 @@ class SearchHotController: SearchEventController {
             page = 1
         }
         let md = Search()
-        md.hot(1, index: page, keyword: "", action: action, districtId: districtId) {
+        md.hot(0, index: page, keyword: "", action: action, districtId: districtId) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
@@ -53,7 +53,6 @@ class SearchHotController: SearchEventController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellSearch", forIndexPath: indexPath) as! CellSearch
         
         let data:Dictionary<String,AnyObject> = self.data![indexPath.row]
         let objectType = data["object_type"]?.intValue
@@ -63,6 +62,7 @@ class SearchHotController: SearchEventController {
             return cell
         }
         
+        let cell = tableView.dequeueReusableCellWithIdentifier("CellSearch", forIndexPath: indexPath) as! CellSearch
         if objectType == ObjectType.Event.rawValue {
             cell.cate = ObjectType.Event
         } else {

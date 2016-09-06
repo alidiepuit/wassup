@@ -93,9 +93,7 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         tabPage!.view.frame = self.container.frame
         self.container.addSubview(tabPage!.view)
         insideView = container
-    }
-    
-    override func viewDidAppear(animated: Bool) {
+        
     }
     
     override func didReceiveMemoryWarning() {

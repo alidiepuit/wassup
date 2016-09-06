@@ -111,6 +111,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
+        stopObservingHeight()
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -118,7 +119,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     var MyObservationContext = 0
     
     deinit {
-//        stopObservingHeight()
+        stopObservingHeight()
     }
     
     func startObservingHeight() {
@@ -128,7 +129,9 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     }
     
     func stopObservingHeight() {
-        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
+        if observing {
+            webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
+        }
         observing = false
     }
     
@@ -140,7 +143,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
         switch (keyPath, context) {
         case("contentSize", &MyObservationContext):
             webviewHeightConstraint.constant = webview.scrollView.contentSize.height
-            stopObservingHeight()
+//            stopObservingHeight()
         default:
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }

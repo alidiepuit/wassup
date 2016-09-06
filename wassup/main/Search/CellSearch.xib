@@ -70,29 +70,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pizza Hut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1r-r1-Yyb">
-                                <rect key="frame" x="8" y="40" width="190" height="28"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="123 Tham Gia  |  56 Check In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ro-1J-wjP">
-                                <rect key="frame" x="8" y="76" width="190" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="947 Jaime Crescent Apt. 185" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLO-Lw-fXA">
                                 <rect key="frame" x="59" y="171" width="253" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sự kiện" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-q0-36E">
-                                <rect key="frame" x="8" y="8" width="89" height="27"/>
-                                <color key="backgroundColor" red="0.086274509799999996" green="0.39607843139999999" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover_map_marker" translatesAutoresizingMaskIntoConstraints="NO" id="eEZ-ea-FgS">
@@ -101,8 +82,17 @@
                                     <constraint firstAttribute="height" constant="168" id="LJj-Yn-dZP"/>
                                 </constraints>
                             </imageView>
+                            <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCo-Yf-x0D">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="168" id="k59-mR-ppi"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 Tham Gia  |  56 Check In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59k-uK-HBH">
                                 <rect key="frame" x="10" y="78" width="302" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="7Ff-9L-uFm"/>
                                     <constraint firstAttribute="width" constant="302" id="rjs-Xv-EnF"/>
@@ -124,6 +114,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza Hut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jz-F4-wcQ">
                                 <rect key="frame" x="10" y="42" width="302" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="302" id="14u-Ja-3X6"/>
                                     <constraint firstAttribute="height" constant="28" id="jyW-d9-aBH"/>
@@ -140,8 +131,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lbC-z9-4kS" secondAttribute="trailing" id="3Gg-Le-ZyZ"/>
                             <constraint firstAttribute="bottom" secondItem="lbC-z9-4kS" secondAttribute="bottom" id="6B0-o7-mVf"/>
+                            <constraint firstItem="MCo-Yf-x0D" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" id="9Cd-sT-8ON"/>
                             <constraint firstItem="1Jz-F4-wcQ" firstAttribute="top" secondItem="TOD-2u-KiX" secondAttribute="bottom" constant="5" id="9Ch-rX-pyE"/>
                             <constraint firstItem="I17-nN-gzQ" firstAttribute="width" secondItem="keN-ez-2P7" secondAttribute="width" multiplier="1:2" id="ALj-vN-rI1"/>
+                            <constraint firstItem="MCo-Yf-x0D" firstAttribute="top" secondItem="keN-ez-2P7" secondAttribute="top" id="F07-tV-Yq1"/>
                             <constraint firstAttribute="trailing" secondItem="eEZ-ea-FgS" secondAttribute="trailing" id="JXZ-qA-miC"/>
                             <constraint firstItem="eEZ-ea-FgS" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" id="Kad-T1-SYO"/>
                             <constraint firstItem="59k-uK-HBH" firstAttribute="top" secondItem="1Jz-F4-wcQ" secondAttribute="bottom" constant="8" id="Rou-X3-qzk"/>
@@ -149,6 +142,7 @@
                             <constraint firstItem="TOD-2u-KiX" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="10" id="T2x-e8-CbY"/>
                             <constraint firstItem="TOD-2u-KiX" firstAttribute="top" secondItem="keN-ez-2P7" secondAttribute="top" constant="10" id="cJm-dl-1Wr"/>
                             <constraint firstItem="lbC-z9-4kS" firstAttribute="width" secondItem="keN-ez-2P7" secondAttribute="width" multiplier="1:2" id="fxm-4c-K6d"/>
+                            <constraint firstAttribute="trailing" secondItem="MCo-Yf-x0D" secondAttribute="trailing" id="mtH-KM-Zu3"/>
                             <constraint firstItem="1Jz-F4-wcQ" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="10" id="oZA-9o-nE4"/>
                             <constraint firstAttribute="bottom" secondItem="I17-nN-gzQ" secondAttribute="bottom" id="rap-eG-TGS"/>
                             <constraint firstItem="59k-uK-HBH" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="10" id="ugd-kb-SV7"/>

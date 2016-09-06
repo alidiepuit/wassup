@@ -1100,10 +1100,10 @@
                         <viewControllerLayoutGuide type="bottom" id="gfQ-S8-m7V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="28Z-NK-HRq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-No-Xul">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-No-Xul">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mey-rC-UPx">
@@ -1126,7 +1126,7 @@
                                     <constraint firstAttribute="height" constant="44" id="gf1-TH-Wli"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDA-Ko-c7X">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDA-Ko-c7X">
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHb-XW-yYf">
@@ -1182,7 +1182,7 @@
                                     <constraint firstItem="h7f-vw-eJR" firstAttribute="top" secondItem="HJz-zq-34C" secondAttribute="bottom" constant="7" id="vfS-tx-s5C"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-sz-YQB">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-sz-YQB">
                                 <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DjI-T3-K8d">
@@ -1933,7 +1933,7 @@
                         <viewControllerLayoutGuide type="bottom" id="gvZ-YA-Xcg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wzE-CD-vZz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2026,7 +2026,6 @@
                                     <outlet property="avatar" destination="2x9-Qm-5d8" id="99Q-lT-aub"/>
                                     <outlet property="name" destination="dc1-YH-0wF" id="Wtq-ai-e36"/>
                                     <outlet property="time" destination="cXV-om-uq0" id="Sgr-y2-WNd"/>
-                                    <segue destination="ndr-GN-e8n" kind="push" identifier="DetailTag" id="eTS-oN-gHs"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2039,6 +2038,7 @@
                     <connections>
                         <segue destination="5sK-CI-VMZ" kind="push" identifier="DetailEvent" id="RIH-ef-xLe"/>
                         <segue destination="CLh-OX-6pU" kind="push" identifier="DetailBlog" id="iX6-t9-B2j"/>
+                        <segue destination="ndr-GN-e8n" kind="push" identifier="DetailTag" id="768-fh-bCu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JP-rh-RCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2075,7 +2075,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EW4-l9-uQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5202" y="2616"/>
+            <point key="canvasLocation" x="5110" y="2624"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yYh-Vh-a3a">
@@ -2287,7 +2287,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="3s0-L5-ZSh"/>
         <segue reference="G6P-dY-7ol"/>
-        <segue reference="iX6-t9-B2j"/>
-        <segue reference="RIH-ef-xLe"/>
+        <segue reference="6qD-LT-lXv"/>
+        <segue reference="iDn-X6-cFJ"/>
     </inferredMetricsTieBreakers>
 </document>

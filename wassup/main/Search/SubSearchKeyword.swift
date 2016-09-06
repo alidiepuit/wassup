@@ -56,12 +56,11 @@ class SubSearchKeyword: UITableViewController {
     
     func refreshData(ref: UIRefreshControl?) {
         page = 1
-        self.data.removeAll()
         self.keyword = GLOBAL_KEYWORD
-        loadData()
+        callData(true)
     }
     
-    func loadData() {
+    func callData(resetData: Bool) {
         let md = Search()
         md.keyword(keyword, index: page) {
             (result:AnyObject?) in
@@ -69,6 +68,9 @@ class SubSearchKeyword: UITableViewController {
                 if let d = result!["objects"] as? [Dictionary<String,AnyObject>] {
                     if d.count <= 0 {
                         self.finishData = true
+                    }
+                    if resetData {
+                        self.data.removeAll()
                     }
                     for ele:Dictionary<String,AnyObject> in d {
                         let objectType = ele["object_type"]?.intValue
@@ -106,6 +108,10 @@ class SubSearchKeyword: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if self.data.count <= 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("CellEvent", forIndexPath: indexPath)
+            return cell
+        }
         if let d:Dictionary<String,AnyObject> = self.data[indexPath.row] {
             switch self.typeSearch {
             case .Tag:
@@ -155,7 +161,7 @@ class SubSearchKeyword: UITableViewController {
         if !finishData && !isLoading && indexPath.row == data.count-1 {
             isLoading = true
             page += 1
-            loadData()
+            callData(false)
         }
     }
     
@@ -169,8 +175,10 @@ class SubSearchKeyword: UITableViewController {
             break
         case .Event, .Host:
             performSegueWithIdentifier("DetailEvent", sender: nil)
+            break
         case .Article:
             performSegueWithIdentifier("DetailBlog", sender: nil)
+            break
         default:
             performSegueWithIdentifier("DetailTag", sender: nil)
         }

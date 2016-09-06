@@ -24,6 +24,8 @@ class CellBlog: UITableViewCell {
     var activeRight = false
     var id = ""
     
+    @IBOutlet weak var constrainHeightContent: NSLayoutConstraint!
+    
     func initCell(data: Dictionary<String, AnyObject>) {
         titleCate.layer.cornerRadius = 10
         titleCate.clipsToBounds = true
@@ -38,6 +40,9 @@ class CellBlog: UITableViewCell {
         date.formatOutput = formatDate
         info.text = "\(date.print(CONVERT_STRING(data["created_at"]))) | By: \(CONVERT_STRING(data["author"]))"
         content.text = CONVERT_STRING(data["short_description"])
+        
+        let hei = content.text.heightWithConstrainedWidth(self.frame.size.width-18, font: UIFont(name: "Helvetica", size: 14)!)
+        constrainHeightContent.constant = hei
         
         let isFollow = data["is_bookmark"] != nil ? CONVERT_BOOL(data["is_bookmark"]) : false
         if isFollow {

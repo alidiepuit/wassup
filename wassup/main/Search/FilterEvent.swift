@@ -29,7 +29,7 @@ class FilterEvent: UIView {
     }
     
     var dataDistrict = [CellDropdown]()
-    var dataRange = [CellDropdown(id: "0", value:"Tất cả"),
+    var dataRange = [CellDropdown(id: "", value:"Tất cả"),
                      CellDropdown(id: "4", value:"Hôm nay"),
                      CellDropdown(id: "5", value:"Ngày mai"),
                      CellDropdown(id: "6", value:"Trong tuần"),
@@ -39,7 +39,7 @@ class FilterEvent: UIView {
     var selIndex = 0
     var selTime = "8"
     var selDistrict = ""
-    var selRange = "0"
+    var selRange = ""
     
     override init(frame: CGRect) { // for using CustomView in code
         super.init(frame: frame)

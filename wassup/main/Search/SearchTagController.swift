@@ -56,4 +56,16 @@ class SearchTagController: SearchHotController {
             self.isLoading = false
         }
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let data:Dictionary<String,AnyObject> = self.data![indexPath.row]
+        let objectType = data["object_type"]?.intValue
+        if objectType == ObjectType.Event.rawValue || objectType == ObjectType.Host.rawValue {
+            return 285
+        } else {
+            let text = CONVERT_STRING(data["short_description"])
+            let hei = text.heightWithConstrainedWidth(self.view.frame.size.width-18, font: UIFont(name: "Helvetica", size: 14)!)
+            return 335+hei
+        }
+    }
 }

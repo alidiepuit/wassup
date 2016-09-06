@@ -56,7 +56,7 @@ class SearchHostController: SearchEventController {
             page = 1
         }
         let md = Search()
-        md.hosts(1, index: page, keyword: "", action: action, districtId: districtId) {
+        md.hosts(0, index: page, keyword: "", action: action, districtId: districtId) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
