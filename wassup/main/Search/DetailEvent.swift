@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 
 class DetailEvent: UITableViewCell {
-    @IBOutlet weak var content: UITextView!
+    @IBOutlet weak var content: UIWebView!
     
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var btnLeft: UIButton!
@@ -25,12 +25,24 @@ class DetailEvent: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var album: UICollectionView!
     
+    @IBOutlet weak var constraintContent: NSLayoutConstraint!
+    
+    @IBOutlet weak var viewTime: UIView!
+    @IBOutlet weak var constraintHeightViewTime: NSLayoutConstraint!
+    
     var cate = ObjectType.Event
     var id = ""
     var activeLeft = false
     var activeRight = false
     
     var listImage:Array<String> = []
+    
+    var observing = false
+    var MyObservationContext = 0
+    
+    deinit {
+        stopObservingHeight()
+    }
     
     func initData(data:Dictionary<String,AnyObject>) {
         if cate == ObjectType.Event {
@@ -62,6 +74,7 @@ class DetailEvent: UITableViewCell {
             btnLeft.backgroundColor = UIColor.fromRgbHex(0x31ACF9)
             btnLeft.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             activeLeft = true
+            btnLeft.setTitle(Localization("Đã quan tâm"), forState: .Normal)
         }
         
         let isCheckin = data["is_checkin"]! as! Bool
@@ -73,19 +86,27 @@ class DetailEvent: UITableViewCell {
         
         name.text = CONVERT_STRING(data["name"])
         do {
-            let str = CONVERT_STRING(data["description"])
+            var str = CONVERT_STRING(data["description"])
+            str = Utils.HTMLImageCorrector(str)
+            str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"width:\(content.frame.size.width-20); word-wrap:break-word\">" + str + "</div>"
             let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                 NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
                 NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
-            content.attributedText = attr
+            content.loadHTMLString(str, baseURL: NSURL(string:BASE_URL))
             content.sizeToFit()
+            constraintContent.constant = attr.heightWithConstrainedWidth(content.frame.size.width)
         } catch {
             
         }
         
-        location.text = CONVERT_STRING(data["location"])
-        if CONVERT_STRING(data["starttime"]) != "" && CONVERT_STRING(data["endtime"]) != "" {
+        location.text = cate == ObjectType.Event ? CONVERT_STRING(data["location"]) : CONVERT_STRING(data["address"])
+        if cate == ObjectType.Event && CONVERT_STRING(data["starttime"]) != "" && CONVERT_STRING(data["endtime"]) != "" {
             time.text = Date.sharedInstance.printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
+        }
+        
+        if cate == ObjectType.Host {
+            viewTime.hidden = true
+            constraintHeightViewTime.constant = 0
         }
         
         listImage = data["photos"] != nil ? data["photos"] as! Array<String> : []
@@ -120,9 +141,11 @@ class DetailEvent: UITableViewCell {
         if activeLeft {
             btnLeft.backgroundColor = UIColor.fromRgbHex(0x31ACF9)
             btnLeft.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            btnLeft.setTitle(Localization("Đã quan tâm"), forState: .Normal)
         } else {
             btnLeft.backgroundColor = UIColor.whiteColor()
             btnLeft.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            btnLeft.setTitle(Localization("Quan Tâm"), forState: .Normal)
         }
         let md = User()
         if cate == ObjectType.Event {
@@ -147,5 +170,43 @@ extension DetailEvent: UICollectionViewDelegate, UICollectionViewDataSource {
         let url = listImage[indexPath.row]
         LazyImage.showForImageView(cell.img, url: url)
         return cell
+    }
+}
+
+extension DetailEvent: UIWebViewDelegate {
+ 
+    func startObservingHeight() {
+        let options = NSKeyValueObservingOptions([.New])
+        content.scrollView.addObserver(self, forKeyPath: "contentSize", options: options, context: &MyObservationContext)
+        observing = true;
+    }
+    
+    func stopObservingHeight() {
+        if observing {
+            content.scrollView.removeObserver(self, forKeyPath: "contentSize")
+        }
+        observing = false
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard let keyPath = keyPath else {
+            super.observeValueForKeyPath(nil, ofObject: object, change: change, context: context)
+            return
+        }
+        switch (keyPath, context) {
+        case("contentSize", &MyObservationContext):
+            constraintContent.constant = content.scrollView.contentSize.height
+        //            stopObservingHeight()
+        default:
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        constraintContent.constant = content.scrollView.contentSize.height
+        NSNotificationCenter.defaultCenter().postNotificationName("RESIZE_HEIGHT_HEADER_DETAIL_EVENT", object: nil, userInfo: ["height": constraintContent.constant])
+        if (!observing) {
+            startObservingHeight()
+        }
     }
 }

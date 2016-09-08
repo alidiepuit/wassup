@@ -18,11 +18,16 @@ class SearchHostController: SearchEventController {
     
     override func refreshDataFilter(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
-        action = "\(CONVERT_STRING(d["time"]))"
+        action = "\(CONVERT_STRING(d["time"])),9"
         districtId = CONVERT_STRING(d["district"])
-        self.data = nil
-        self.page = 1
-        loadData(nil)
+        city = CONVERT_STRING(d["city"])
+        
+        if d["district"] == "" {
+            action = "\(CONVERT_STRING(d["time"])),12"
+        }
+        
+        resetData()
+        loadData()
     }
     
     override func initFilter() {
@@ -44,38 +49,34 @@ class SearchHostController: SearchEventController {
     override func selectProvince(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
         self.filterHost?.cityId = CellDropdown(id: d["cityId"]!, value: d["cityName"]!)
+        action = "12"
+        city = d["cityName"]!
+        resetData()
+        loadData()
     }
     
-    override func loadData(ref: UIRefreshControl?) {
+    override func loadData() {
         if isFinish {
             return
         }
         isLoading = true
-        if ref != nil {
-            self.data = nil
-            page = 1
-        }
         let md = Search()
-        md.hosts(0, index: page, keyword: "", action: action, districtId: districtId) {
+        md.hosts(0, index: page, keyword: "", action: action, districtId: districtId, city: city) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
-                    self.data = nil
                     return
                 }
-                if self.data == nil {
-                    self.data = d
-                } else {
-                    if d.count <= 0 {
-                        self.isFinish = true
-                    }
-                    self.data?.appendContentsOf(d)
+                if d.count <= 0 {
+                    self.isFinish = true
                 }
-                self.tableView.reloadData()
+                for a:Dictionary<String,AnyObject> in d {
+                    self.data!.append(a)
+                    let lastIndexPath = NSIndexPath(forRow: self.data!.count - 1, inSection: 0)
+                    self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
+                }
             }
-            if ref != nil {
-                ref!.endRefreshing()
-            }
+            self.ref.endRefreshing()
             self.isLoading = false
         }
     }

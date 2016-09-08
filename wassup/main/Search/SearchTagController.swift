@@ -23,21 +23,16 @@ class SearchTagController: SearchHotController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    override func loadData(ref: UIRefreshControl?) {
+    override func loadData() {
         if isFinish {
             return
         }
         isLoading = true
-        if ref != nil {
-            self.data = nil
-            page = 1
-        }
         let md = Search()
         md.tag(self.tagId, index: page) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
-                    self.data = nil
                     return
                 }
                 if self.data == nil {
@@ -50,9 +45,7 @@ class SearchTagController: SearchHotController {
                 }
                 self.tableView.reloadData()
             }
-            if ref != nil {
-                ref!.endRefreshing()
-            }
+            self.ref.endRefreshing()
             self.isLoading = false
         }
     }

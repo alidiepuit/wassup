@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tp5-VK-eC7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Pgb-VW-NXc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -667,11 +667,11 @@
             </objects>
             <point key="canvasLocation" x="1010" y="783"/>
         </scene>
-        <!--Feeds Controller-->
+        <!--News Feed-->
         <scene sceneID="RDT-aD-PTU">
             <objects>
                 <tableViewController id="smu-ij-Rgp" customClass="FeedsController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="502" sectionHeaderHeight="28" sectionFooterHeight="28" id="1EV-fC-m60">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="502" sectionHeaderHeight="28" sectionFooterHeight="28" id="1EV-fC-m60">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -681,7 +681,11 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="DQ4-93-p8b"/>
+                    <navigationItem key="navigationItem" title="News Feed" id="DQ4-93-p8b"/>
+                    <connections>
+                        <segue destination="slM-4D-CIW" kind="show" identifier="SearchKeyword" id="Sil-1a-buj"/>
+                        <segue destination="5sK-CI-VMZ" kind="show" identifier="DetailEvent" id="t9a-NK-aZM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSw-wP-GI6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -980,7 +984,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="content" destination="Xoe-YH-Bvd" id="uAP-UK-f3L"/>
-                        <segue destination="slM-4D-CIW" kind="push" identifier="SearchKeyword" id="16H-gn-Bgb"/>
+                        <segue destination="slM-4D-CIW" kind="show" identifier="SearchKeyword" id="16H-gn-Bgb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zg8-db-24n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1090,10 +1094,10 @@
                         <viewControllerLayoutGuide type="bottom" id="gfQ-S8-m7V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="28Z-NK-HRq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-No-Xul">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppu-No-Xul">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mey-rC-UPx">
@@ -1116,7 +1120,7 @@
                                     <constraint firstAttribute="height" constant="44" id="gf1-TH-Wli"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDA-Ko-c7X">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDA-Ko-c7X">
                                 <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHb-XW-yYf">
@@ -1172,7 +1176,7 @@
                                     <constraint firstItem="h7f-vw-eJR" firstAttribute="top" secondItem="HJz-zq-34C" secondAttribute="bottom" constant="7" id="vfS-tx-s5C"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-sz-YQB">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-sz-YQB">
                                 <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DjI-T3-K8d">
@@ -1923,7 +1927,7 @@
                         <viewControllerLayoutGuide type="bottom" id="gvZ-YA-Xcg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wzE-CD-vZz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2210,7 +2214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pbn-rt-1fR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5742" y="2477"/>
+            <point key="canvasLocation" x="2102" y="1909"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wEy-aW-3DE">
@@ -2275,9 +2279,10 @@
         <image name="logo" width="262" height="130"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3s0-L5-ZSh"/>
         <segue reference="3Mc-Rw-QDv"/>
-        <segue reference="6qD-LT-lXv"/>
-        <segue reference="iDn-X6-cFJ"/>
+        <segue reference="3s0-L5-ZSh"/>
+        <segue reference="t9a-NK-aZM"/>
+        <segue reference="Sil-1a-buj"/>
+        <segue reference="iX6-t9-B2j"/>
     </inferredMetricsTieBreakers>
 </document>

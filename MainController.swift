@@ -30,4 +30,7 @@ class MainController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        NSNotificationCenter.defaultCenter().postNotificationName("CLOSE_SEARCH_KEYWORD_WHEN_CHANGE_TAG", object: nil)
+    }
 }

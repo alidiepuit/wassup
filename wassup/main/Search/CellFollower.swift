@@ -36,4 +36,11 @@ class CellFollower: UITableViewCell {
         btnFollow.hidden = true
         btnFollowed.hidden = false
     }
+    
+    @IBAction func clickUnFollow(sender: AnyObject) {
+        let md = User()
+        md.followUser(userId)
+        btnFollow.hidden = false
+        btnFollowed.hidden = true
+    }
 }

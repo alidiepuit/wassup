@@ -44,9 +44,9 @@ class CheckInEventController: UIViewController {
     func loadData() {
         let md = Search()
         if typeSearch == ObjectType.Event {
-            md.events(0, index: page, keyword: GLOBAL_KEYWORD, action: "8", districtId: "", callback: callAPI)
+            md.events(0, index: page, keyword: GLOBAL_KEYWORD, action: "8", districtId: "", city: "", callback: callAPI)
         } else {
-            md.hosts(0, index: page, keyword: GLOBAL_KEYWORD, action: "8", districtId: "", callback: callAPI)
+            md.hosts(0, index: page, keyword: GLOBAL_KEYWORD, action: "8", districtId: "", city: "", callback: callAPI)
         }
     }
     

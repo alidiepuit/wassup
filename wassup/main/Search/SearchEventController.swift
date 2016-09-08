@@ -11,39 +11,38 @@ import UIKit
 class SearchEventController: UITableViewController {
 
     var page = 1
-    var data: [Dictionary<String, AnyObject>]!
+    var data:[Dictionary<String, AnyObject>]!
     var isLoading = false
     var cate:ObjectType {
         return ObjectType.Event
     }
     var action = ""
     var districtId = ""
+    var city = ""
     var filterEvent:FilterEvent?
     var isFinish = false
+    let ref = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        data = [Dictionary<String,AnyObject>]()
+        
         tableView.registerNib(UINib(nibName: "CellSearch", bundle: nil), forCellReuseIdentifier: "CellSearch")
         tableView.registerNib(UINib(nibName: "CellBlog", bundle: nil), forCellReuseIdentifier: "CellBlog")
         
+        self.data = [Dictionary<String,AnyObject>]()
+        
         self.initView()
-                
-        let ref = UIRefreshControl()
-        ref.addTarget(self, action: #selector(loadData(_:)), forControlEvents: .ValueChanged)
+        
+        ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
         
         //init filter
         initFilter()
         
-        loadData(nil)
+        loadData()
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_FILTER", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickFilter), name: "CLICK_FILTER", object: nil)
-        
-        //init select province
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "SELECT_PROVINCE", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectProvince), name: "SELECT_PROVINCE", object: nil)
     }
     
     func initView() {
@@ -71,6 +70,10 @@ class SearchEventController: UITableViewController {
         //click filter
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_FILTER", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickFilter), name: "CLICK_FILTER", object: nil)
+        
+        //init select province
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "SELECT_PROVINCE", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectProvince), name: "SELECT_PROVINCE", object: nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -81,11 +84,19 @@ class SearchEventController: UITableViewController {
     
     func refreshDataFilter(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
-        action = "\(CONVERT_STRING(d["time"])),\(CONVERT_STRING(d["range"]))"
+        action = "\(CONVERT_STRING(d["time"])),9,\(CONVERT_STRING(d["range"]))"
         districtId = CONVERT_STRING(d["district"])
-        self.data = nil
+        city = CONVERT_STRING(d["city"])
+        
+        if d["district"] == "" {
+            action = "\(CONVERT_STRING(d["time"])),12,\(CONVERT_STRING(d["range"]))"
+        }
+        
+        self.data!.removeAll()
+        self.tableView.reloadData()
         self.page = 1
-        loadData(nil)
+        isFinish = false
+        loadData()
     }
     
     func clickFilter() {
@@ -102,38 +113,46 @@ class SearchEventController: UITableViewController {
     func selectProvince(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
         self.filterEvent?.cityId = CellDropdown(id: d["cityId"]!, value: d["cityName"]!)
+        action = "12"
+        city = d["cityName"]!
+        resetData()
+        loadData()
     }
     
-    func loadData(ref: UIRefreshControl?) {
+    func resetData() {
+        page = 1
+        data.removeAll()
+        isFinish = false
+        tableView.reloadData()
+    }
+    
+    func refreshData(ref: UIRefreshControl) {
+        resetData()
+        loadData()
+    }
+    
+    func loadData() {
         if isFinish {
             return
         }
         isLoading = true
-        if ref != nil {
-            self.data = nil
-            page = 1
-        }
         let md = Search()
-        md.events(0, index: page, keyword: "", action: action, districtId: districtId) {
+        md.events(0, index: page, keyword: "", action: action, districtId: districtId, city: city) {
             (result:AnyObject?) in
             if result != nil {
-                guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
-                    self.data = nil
-                    return
+                guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {                    return
                 }
-                if self.data == nil {
-                    self.data = d
-                } else {
-                    if d.count <= 0 {
-                        self.isFinish = true
-                    }
-                    self.data?.appendContentsOf(d)
+                if d.count <= 0 {
+                    self.isFinish = true
+                    
                 }
-                self.tableView.reloadData()
+                for a:Dictionary<String,AnyObject> in d {
+                    self.data!.append(a)
+                    let lastIndexPath = NSIndexPath(forRow: self.data!.count - 1, inSection: 0)
+                    self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
+                }
             }
-            if ref != nil {
-                ref!.endRefreshing()
-            }
+            self.ref.endRefreshing()
             self.isLoading = false
         }
     }
@@ -152,7 +171,7 @@ class SearchEventController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.data == nil ? 0 : (self.data?.count)!
+        return self.data != nil ? self.data.count : 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -179,9 +198,9 @@ class SearchEventController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if !isLoading && indexPath.row == (data?.count)!-1 {
+        if !isLoading && !isFinish && indexPath.row == data!.count-1 {
             page+=1
-            loadData(nil)
+            loadData()
         }
     }
 }

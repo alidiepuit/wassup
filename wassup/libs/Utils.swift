@@ -35,6 +35,10 @@ struct DeviceType
     static let IS_IPHONE_6P = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.SCREEN_MAX_LENGTH == 736.0
 }
 
+var BASE_URL:String {
+    return "http://dev.wassup.com.vn"
+}
+
 func CONVERT_STRING(a:AnyObject?) -> String {
     return Utils.convertToString(a)
 }

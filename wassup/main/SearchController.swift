@@ -21,7 +21,7 @@ class SearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selProvince = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: "Hồ Chí Minh", items: [])
+        selProvince = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: "Việt Nam", items: [])
         self.navigationItem.titleView = selProvince
         selProvince!.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
             NSNotificationCenter.defaultCenter().postNotificationName("SELECT_PROVINCE", object: nil, userInfo: ["cityId": self!.listProvince[indexPath].id,
@@ -91,6 +91,9 @@ class SearchController: UIViewController {
     }
     
     @IBAction func clickSearch(sender: AnyObject) {
+        if CONVERT_BOOL(selProvince?.isShown) {
+            selProvince?.toggle()
+        }
         performSegueWithIdentifier("SearchKeyword", sender: nil)
     }
 }

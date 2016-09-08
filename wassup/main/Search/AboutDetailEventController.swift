@@ -10,7 +10,7 @@ import UIKit
 
 class AboutDetailEventController: UITableViewController {
 
-    var data:Dictionary<String,AnyObject>?
+    var data:Dictionary<String,AnyObject>!
     var page = 1
     var listFeeds:[Dictionary<String,AnyObject>]?
     var finishDetail = false
@@ -18,21 +18,40 @@ class AboutDetailEventController: UITableViewController {
     var isLoadingMore = false
     var cate = ObjectType.Event
     var id = ""
+    let ref = UIRefreshControl()
+    
+    var headerHeight = CGFloat(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let inset = UIEdgeInsetsMake(45, 0, 0, 0)
+        tableView.contentInset = inset;
+        
         tableView.registerNib(UINib(nibName: "DetailEvent", bundle: nil), forCellReuseIdentifier: "DetailEvent")
         tableView.registerNib(UINib(nibName: "CellFeed", bundle: nil), forCellReuseIdentifier: "CellFeed")
         
-        let ref = UIRefreshControl()
-        ref.addTarget(self, action: #selector(loadData(_:)), forControlEvents: .ValueChanged)
+        ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
         
-        loadData(nil)
-//        loadFeed()
+        loadData()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resizeHeightHeader(_:)), name: "RESIZE_HEIGHT_HEADER_DETAIL_EVENT", object: nil)
     }
     
-    func loadData(ref: UIRefreshControl?) {
+    func resizeHeightHeader(noti: NSNotification) {
+        if headerHeight == 0 {
+            let d = noti.userInfo as! Dictionary<String,CGFloat>
+            headerHeight = d["height"]!
+            tableView.reloadData()
+        }
+    }
+    
+    func refreshData(ref: UIRefreshControl) {
+        loadData()
+    }
+    
+    func loadData() {
         finishDetail = false
         let md = Search()
         if cate == ObjectType.Event {
@@ -41,7 +60,6 @@ class AboutDetailEventController: UITableViewController {
                 self.finishDetail = true
                 if result != nil {
                     guard let d = result!["event"] as? Dictionary<String, AnyObject> else {
-                        self.data = nil
                         return
                     }
                     self.data = d
@@ -49,9 +67,7 @@ class AboutDetailEventController: UITableViewController {
                         self.tableView.reloadData()
                     }
                 }
-                if ref != nil {
-                    ref!.endRefreshing()
-                }
+                self.ref.endRefreshing()
             }
         } else {
             md.eventDetailHost(self.id) {
@@ -59,7 +75,6 @@ class AboutDetailEventController: UITableViewController {
                 self.finishDetail = true
                 if result != nil {
                     guard let d = result!["host"] as? Dictionary<String, AnyObject> else {
-                        self.data = nil
                         return
                     }
                     self.data = d
@@ -67,9 +82,7 @@ class AboutDetailEventController: UITableViewController {
                         self.tableView.reloadData()
                     }
                 }
-                if ref != nil {
-                    ref!.endRefreshing()
-                }
+                self.ref.endRefreshing()
             }
         }
     }
@@ -121,7 +134,7 @@ class AboutDetailEventController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
+        if section == 0 && self.data != nil {
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("DetailEvent") as! DetailEvent
             headerCell.cate = cate
             headerCell.initData(self.data!)
@@ -133,21 +146,19 @@ class AboutDetailEventController: UITableViewController {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 && self.data != nil {
-            do {
-                let label:UILabel = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, CGFloat.max))
-                label.numberOfLines = 0
-                label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                label.font = UIFont(name: "Helvetica", size: 15.0)
-                let str = CONVERT_STRING(self.data!["description"])
-                let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                    NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
-                    NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
-                label.attributedText = attr
-                label.sizeToFit()
-                return 800+label.frame.size.height+50
-            } catch {
-                
+            if headerHeight == 0 {
+                do {
+                    let str = CONVERT_STRING(self.data!["description"])
+                    let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                        NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
+                        NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
+                    let hei = attr.heightWithConstrainedWidth(tableView.frame.size.width-16)
+                    return 800+hei
+                } catch {
+                    return 800
+                }
             }
+            return 800+headerHeight
         }
         return 0
     }

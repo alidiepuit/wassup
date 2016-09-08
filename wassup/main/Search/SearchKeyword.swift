@@ -26,7 +26,6 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], forState: UIControlState.Normal)
         self.navigationItem.setHidesBackButton(true, animated: false)
-        GLOBAL_KEYWORD = ""
         
         searchBar.delegate = self
         searchBar.sizeToFit()
@@ -94,6 +93,20 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         self.container.addSubview(tabPage!.view)
         insideView = container
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(closeSearchKeywordWhenChangeTag), name: "CLOSE_SEARCH_KEYWORD_WHEN_CHANGE_TAG", object: nil)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        searchBar.becomeFirstResponder()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func closeSearchKeywordWhenChangeTag() {
+        GLOBAL_KEYWORD = ""
+        self.navigationController?.popViewControllerAnimated(false)
     }
     
     override func didReceiveMemoryWarning() {

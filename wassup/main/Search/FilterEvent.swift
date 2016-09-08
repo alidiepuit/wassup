@@ -37,7 +37,7 @@ class FilterEvent: UIView {
                     ]
     
     var selIndex = 0
-    var selTime = "1"
+    var selTime = "8"
     var selDistrict = ""
     var selRange = ""
     
@@ -109,6 +109,7 @@ class FilterEvent: UIView {
                                                                   userInfo: ["time": selTime,
                                                                     "district": selDistrict,
                                                                     "range": selRange,
+                                                                    "city": cityId.value,
             ])
     }
     

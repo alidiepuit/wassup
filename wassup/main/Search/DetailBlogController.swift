@@ -57,7 +57,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
                 
                 str = Utils.HTMLImageCorrector(str)
                 str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"width:\(self.webview.frame.size.width-20); word-wrap:break-word\">" + str + "</div>"
-                self.webview.loadHTMLString(str, baseURL: NSURL(string:"http://dev.wassup.com.vn"))
+                self.webview.loadHTMLString(str, baseURL: NSURL(string:BASE_URL))
                 
                 let isFollow = d["is_bookmark"] != nil ? CONVERT_BOOL(d["is_bookmark"]) : false
                 if isFollow {

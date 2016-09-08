@@ -38,6 +38,9 @@
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNT-h9-Vg1">
                         <rect key="frame" x="266" y="23" width="46" height="32"/>
                         <state key="normal" image="ic_followed"/>
+                        <connections>
+                            <action selector="clickUnFollow:" destination="Ujw-Bd-uqi" eventType="touchUpInside" id="rpe-td-dhM"/>
+                        </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_follow" translatesAutoresizingMaskIntoConstraints="NO" id="kcn-hn-z4V">
                         <rect key="frame" x="239" y="32" width="14" height="15"/>

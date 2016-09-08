@@ -18,36 +18,29 @@ class SearchHotController: SearchEventController {
         return
     }
     
-    override func loadData(ref: UIRefreshControl?) {
+    override func loadData() {
         if isFinish {
             return
         }
         isLoading = true
-        if ref != nil {
-            self.data = nil
-            page = 1
-        }
         let md = Search()
         md.hot(0, index: page, keyword: "", action: action, districtId: districtId) {
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["objects"] as? [Dictionary<String, AnyObject>] else {
-                    self.data = nil
                     return
                 }
-                if self.data == nil {
-                    self.data = d
-                } else {
-                    if d.count <= 0 {
-                        self.isFinish = true
-                    }
-                    self.data?.appendContentsOf(d)
+                if d.count <= 0 {
+                    self.isFinish = true
+                    
                 }
-                self.tableView.reloadData()
+                for a:Dictionary<String,AnyObject> in d {
+                    self.data!.append(a)
+                    let lastIndexPath = NSIndexPath(forRow: self.data!.count - 1, inSection: 0)
+                    self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
+                }
             }
-            if ref != nil {
-                ref!.endRefreshing()
-            }
+            self.ref.endRefreshing()
             self.isLoading = false
         }
     }

@@ -82,8 +82,12 @@ class FollowerController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellFollower", forIndexPath: indexPath) as! CellFollower
         let d:Dictionary<String,AnyObject> = self.data![indexPath.row]
 
-        LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
-        cell.name.text = CONVERT_STRING(d["fullname"])
+        if CONVERT_STRING(d["image"]) != "" {
+            LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
+        } else {
+            cell.avatar.image = UIImage(named: "avatar_default")
+        }
+        cell.name.text = CONVERT_STRING(d["fullname"]) != "" ? CONVERT_STRING(d["fullname"]) : "no name"
         cell.address.text = CONVERT_STRING(d["address"])
         if CONVERT_BOOL(d["is_follow"]) {
             cell.btnFollow.hidden = true

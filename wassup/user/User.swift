@@ -183,4 +183,12 @@ class User: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: nil)
     }
     
+    func likeFeed(feedId: String) {
+        let model = "u_user/likeFeed"
+        let dict = ["id": feedId,
+                    "user_id": User.sharedInstance.userId,
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: nil)
+    }
 }

@@ -77,7 +77,12 @@ class CellSearch: UITableViewCell {
             imgBtnLeft.image = UIImage(named: "ic_join_selected")
             activeLeft = true
             btnLeft.text = Localization("Đã quan tâm")
+        } else {
+            imgBtnLeft.image = UIImage(named: "ic_join_normal")
+            activeLeft = false
+            btnLeft.text = Localization("Quan Tâm")
         }
+        
         
         let isCheckin = CONVERT_BOOL(data["is_checkin"])
         if isCheckin {

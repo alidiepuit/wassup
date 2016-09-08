@@ -78,7 +78,7 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func events(hasTop: Int, index page: Int, keyword: String, action: String, districtId: String, callback: ServiceResponse) {
+    func events(hasTop: Int, index page: Int, keyword: String, action: String, districtId: String, city: String, callback: ServiceResponse) {
         let model = "event/getHotEvent"
         
         let dict = ["has_top": String(hasTop),
@@ -90,11 +90,13 @@ class Search: ModelBase {
                     "longtitude": String(Utils.sharedInstance.location.long),
                     "lattitude": String(Utils.sharedInstance.location.lat),
                     "distance": "100",
-                    "district_id": districtId]
+                    "district_id": districtId,
+                    "city_alias": city,
+                ]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func hosts(hasTop: Int, index page: Int, keyword: String, action: String, districtId: String, callback: ServiceResponse) {
+    func hosts(hasTop: Int, index page: Int, keyword: String, action: String, districtId: String, city: String,  callback: ServiceResponse) {
         let model = "host/getHotHost"
         let dict = ["has_top": String(hasTop),
                     "index": getIndex(page),
@@ -105,7 +107,9 @@ class Search: ModelBase {
                     "longtitude": String(Utils.sharedInstance.location.long),
                     "lattitude": String(Utils.sharedInstance.location.lat),
                     "distance": "100",
-                    "district_id": districtId]
+                    "district_id": districtId,
+                    "city_alias": city,
+        ]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     

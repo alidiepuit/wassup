@@ -21,22 +21,33 @@ class CellFeed: UITableViewCell {
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblTimeAgo: UILabel!
-    @IBOutlet weak var lblStatus: UILabel!
-    
+    @IBOutlet weak var lblStatus: UITextView!
     @IBOutlet weak var containerLocation: UIView!
     @IBOutlet weak var constraintLocation: NSLayoutConstraint!
     @IBOutlet weak var constraintComment: NSLayoutConstraint!
     @IBOutlet weak var lblComment: UITextView!
     
+    @IBOutlet weak var imgBtnRight: UIImageView!
+    @IBOutlet weak var imgBtnLeft: UIImageView!
     var listImage = [String]()
     var listTags = [Dictionary<String,String>]()
+    var activeLeft = false
+    var activeRight = false
+    var id = ""
+    var indexPath = NSIndexPath(index: 0)
     
     func initCell(data: Dictionary<String, AnyObject>) {
-        LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["user_image"]))
+        if CONVERT_STRING(data["user_image"]) != "" {
+            LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["user_image"]))
+        } else {
+            avatar.image = UIImage(named: "avatar_default")
+        }
+        
         lblTimeAgo.text = CONVERT_STRING(data["time_ago"])
         
         let item = data["item"] as! Dictionary<String, AnyObject>
         
+        id = CONVERT_STRING(data["id"])
         if CONVERT_STRING(item["endtime"]) != "" && CONVERT_STRING(item["starttime"]) != "" {
             lblTime.text = Date().printDateToDate(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
         } else {
@@ -46,7 +57,10 @@ class CellFeed: UITableViewCell {
         let objectType = CONVERT_INT32(data["object_type"])
         let name = CONVERT_STRING(data["email"])
         let event = CONVERT_STRING(item["title"])
-        let feelings = item["feelings"] != nil ? item["feelings"] as! Dictionary<String,AnyObject> : Dictionary<String,AnyObject>()
+        var feelings = Dictionary<String,AnyObject>()
+        if let feel = item["feelings"] as? Dictionary<String,AnyObject> {
+            feelings = feel
+        }
         
         var activity = ""
         if feelings.count > 0 && feelings["1"] != nil {
@@ -70,15 +84,22 @@ class CellFeed: UITableViewCell {
             status = String.init(format: format, name, event)
         }
         
-        let mutableString = NSMutableAttributedString(string: status)
+        let attribute = [ NSFontAttributeName: UIFont(name: "Helvetica", size: 14.0)! ]
+        let mutableString = NSMutableAttributedString(string: status, attributes: attribute)
         mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: NSRange(location:0,length:name.characters.count))
         mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: NSRange(location:status.characters.count-event.characters.count,length:event.characters.count))
+        
         
         if objectType == ObjectType.Checkin.rawValue && activity != "" {
             mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: NSRange(location:name.characters.count + 6,length:activity.characters.count))
         }
         
+        //event click profile, event
+        mutableString.addAttribute(NSLinkAttributeName, value: "haha", range: NSRange(location:status.characters.count-event.characters.count,length:event.characters.count))
+        mutableString.addAttribute(NSLinkAttributeName, value: "profile", range: NSRange(location:0,length:name.characters.count))
+        
         lblStatus.attributedText = mutableString
+        
         lblComment.text = CONVERT_STRING(item["comment"])
         if lblComment.text == "" {
             constraintComment.constant = 0
@@ -96,6 +117,7 @@ class CellFeed: UITableViewCell {
         if item["location"] != nil {
             lblLocation.text = CONVERT_STRING(item["location"])
             containerLocation.hidden = false
+            constraintLocation.constant = 77
         } else {
             constraintLocation.constant = 0
             containerLocation.hidden = true
@@ -109,18 +131,43 @@ class CellFeed: UITableViewCell {
         collectionImage.reloadData()
         collectionImage.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
         
+        viewlistTags.delegate = self
         if let _ = feelings["3"] as? [Dictionary<String,String>] {
             listTags = feelings["3"] as! [Dictionary<String,String>]
             viewlistTags.removeAllTags()
             for tag:Dictionary<String,String> in listTags {
                 viewlistTags.addTag(tag["text_feeling"]!, id: tag["id"]!)
             }
-            constraintListTags.constant = 45 * CGFloat(viewlistTags.rows)
+            constraintListTags.constant = viewlistTags.intrinsicContentSize().height
             viewlistTags.hidden = false
         } else {
             constraintListTags.constant = 0
             viewlistTags.hidden = true
         }
+        
+        let isFollow = CONVERT_BOOL(data["is_bookmark"])
+        activeLeft = false
+        if isFollow {
+            imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
+            activeLeft = true
+        } else {
+            imgBtnLeft.image = UIImage(named: "ic_bookmark")
+        }
+        
+        let isCheckin = CONVERT_BOOL(data["is_like"])
+        activeRight = false
+        if isCheckin {
+            imgBtnRight.image = UIImage(named: "ic_love_enable")
+            activeRight = true
+        } else {
+            imgBtnRight.image = UIImage(named: "ic_love")
+        }
+        
+        let gestureJoin = UITapGestureRecognizer(target: self, action: #selector(clickLeft))
+        btnLeft.addGestureRecognizer(gestureJoin)
+        
+        let gestureRight = UITapGestureRecognizer(target: self, action: #selector(clickRight))
+        btnRight.addGestureRecognizer(gestureRight)
     }
     
     override func awakeFromNib() {
@@ -133,7 +180,26 @@ class CellFeed: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func clickLeft(sender: AnyObject) {
+        activeLeft = !activeLeft
+        if activeLeft {
+            imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
+        } else {
+            imgBtnLeft.image = UIImage(named: "ic_bookmark")
+        }
+    }
+    
+    @IBAction func clickRight(sender: AnyObject) {
+        activeRight = !activeRight
+        if activeRight {
+            imgBtnRight.image = UIImage(named: "ic_love_enable")
+        } else {
+            imgBtnRight.image = UIImage(named: "ic_love")
+        }
+        let md = User()
+        md.likeFeed(id)
+    }
 }
 
 extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -155,4 +221,22 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return CGSizeMake(collectionView.bounds.size.height, CGFloat(collectionView.bounds.size.height))
     }
+}
+
+extension CellFeed: UITextViewDelegate {
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
+        return false
+    }
+}
+
+extension CellFeed: TagListViewDelegate {
+    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
+        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_TAG_ON_FEED", object: nil, userInfo: ["keyword":(tagView.titleLabel?.text)!])
+    }
+    
+    func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) {
+        
+    }
+    
 }
