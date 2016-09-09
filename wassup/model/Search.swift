@@ -54,7 +54,7 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func eventDetailEvent(id: String, callback: ServiceResponse) {
+    func getDetailEvent(id: String, callback: ServiceResponse) {
         let model = "event/getEvent"
         let dict = ["id": id,
                     "user_token": User.sharedInstance.token,
@@ -62,7 +62,7 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func eventDetailHost(id: String, callback: ServiceResponse) {
+    func getDetailHost(id: String, callback: ServiceResponse) {
         let model = "host/getHost"
         let dict = ["id": id,
                     "user_token": User.sharedInstance.token,
@@ -70,7 +70,7 @@ class Search: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func eventDetailBlog(id: String, callback: ServiceResponse) {
+    func getDetailBlog(id: String, callback: ServiceResponse) {
         let model = "article/getArticle"
         let dict = ["id": id,
                     "user_token": User.sharedInstance.token,

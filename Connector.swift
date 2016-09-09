@@ -34,11 +34,16 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         myRequest.HTTPMethod = method
         myRequest.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let vc = appDelegate.window!.rootViewController
+//        vc!.view.lock()
+        
         urlRequest = myRequest
         _call = callback
         NSURLConnection.sendAsynchronousRequest(myRequest, queue: NSOperationQueue.mainQueue()) {
             (response, data, error) -> Void in
             do {
+                vc!.view.unlock()
                 if data != nil {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
                     if (self._call != nil) {

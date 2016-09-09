@@ -22,4 +22,12 @@ class TagsModel: ModelBase {
             "user_token": User.sharedInstance.token]
         self.callAPI("POST", module: modul, params: dict, callback: callback)
     }
+    
+    func getTags(keyword: String, index page: Int, callback: ServiceResponse) {
+        let modul = "tag/getTags"
+        let param = ["keyword":keyword,
+                     "index": getIndex(page)
+        ]
+        self.callAPI("POST", module: modul, params: param, callback: callback)
+    }
 }

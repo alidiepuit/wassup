@@ -55,7 +55,7 @@ class AboutDetailEventController: UITableViewController {
         finishDetail = false
         let md = Search()
         if cate == ObjectType.Event {
-            md.eventDetailEvent(self.id) {
+            md.getDetailEvent(self.id) {
                 (result:AnyObject?) in
                 self.finishDetail = true
                 if result != nil {
@@ -70,7 +70,7 @@ class AboutDetailEventController: UITableViewController {
                 self.ref.endRefreshing()
             }
         } else {
-            md.eventDetailHost(self.id) {
+            md.getDetailHost(self.id) {
                 (result:AnyObject?) in
                 self.finishDetail = true
                 if result != nil {

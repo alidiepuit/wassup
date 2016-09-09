@@ -283,9 +283,10 @@ public class TagListView: UIView {
         return CGSizeMake(frame.width, height)
     }
     
-    public func addTag(title:String, id:String) -> TagView {
+    public func addTag(title:String, id:String, selected: Bool = false) -> TagView {
         let tagView = self.addTag(title)
         tagView.id = id
+        tagView.selected = selected
         return tagView
     }
     

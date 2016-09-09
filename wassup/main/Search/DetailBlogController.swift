@@ -47,7 +47,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     
     func loadData() {
         let md = Search()
-        md.eventDetailBlog(id){
+        md.getDetailBlog(id){
             (result:AnyObject?) in
             if result != nil {
                 guard let d = result!["article"] as? Dictionary<String, AnyObject> else {
