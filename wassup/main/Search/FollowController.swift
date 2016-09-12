@@ -11,6 +11,8 @@ import UIKit
 class FollowController: UIViewController {
 
     var eventId = ""
+    var data:Dictionary<String,AnyObject>!
+    var cate = ObjectType.Event
     
     @IBOutlet weak var content: UIView!
     override func viewDidLoad() {
@@ -18,9 +20,21 @@ class FollowController: UIViewController {
 
         let tabPage = TabPageViewController.create()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         let vc1 = storyboard.instantiateViewControllerWithIdentifier("FollowerController") as! FollowerController
         vc1.eventId = eventId
-        let vc2 = storyboard.instantiateViewControllerWithIdentifier("FollowingController")
+        vc1.cate = cate
+        if data != nil && data.count > 0 {
+            vc1.data = data["followed"] as! [Dictionary<String,AnyObject>]
+        }
+        
+        let vc2 = storyboard.instantiateViewControllerWithIdentifier("FollowerController") as! FollowerController
+        vc2.eventId = eventId
+        vc2.cate = cate
+        if data != nil && data.count > 0 {
+            vc2.data = data["following"] as! [Dictionary<String,AnyObject>]
+        }
+        
         tabPage.tabItems = [(vc1, "Follower"), (vc2, "Following")]
         
         var option = TabPageOption()

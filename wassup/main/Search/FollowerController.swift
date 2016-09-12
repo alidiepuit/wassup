@@ -12,7 +12,7 @@ class FollowerController: UITableViewController {
 
     var eventId = ""
     var cate = ObjectType.Event
-    var data:[Dictionary<String,AnyObject>]?
+    var data:[Dictionary<String,AnyObject>]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class FollowerController: UITableViewController {
                     ref?.endRefreshing()
                 }
             }
-        } else {
+        } else if cate == ObjectType.Host {
             let md = Host()
             md.listFollows(eventId) {
                 (result: AnyObject?) in
@@ -57,6 +57,10 @@ class FollowerController: UITableViewController {
                 if ref != nil {
                     ref?.endRefreshing()
                 }
+            }
+        } else {
+            if self.data != nil && self.data.count > 0 {
+                self.tableView.reloadData()
             }
         }
     }

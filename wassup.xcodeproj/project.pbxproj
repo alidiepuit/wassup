@@ -24,8 +24,16 @@
 		043298021D740C8100616D09 /* CellFollower.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043298001D740C8100616D09 /* CellFollower.xib */; };
 		043298041D7416FE00616D09 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043298031D7416FE00616D09 /* Host.swift */; };
 		0435947A1D69B73600604133 /* CellFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043594791D69B73600604133 /* CellFeed.xib */; };
+		043F11131D86494E004A06A0 /* ProfileMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11121D86494E004A06A0 /* ProfileMainController.swift */; };
+		043F11161D865261004A06A0 /* CellProfileHeaderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11151D865261004A06A0 /* CellProfileHeaderInfo.swift */; };
+		043F11181D86528A004A06A0 /* CellProfileHeaderFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11171D86528A004A06A0 /* CellProfileHeaderFavorite.swift */; };
+		043F111A1D8652A8004A06A0 /* CellProfileHeaderPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11191D8652A8004A06A0 /* CellProfileHeaderPhoto.swift */; };
+		043F111C1D865350004A06A0 /* CellProfileHeaderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111B1D865350004A06A0 /* CellProfileHeaderInfo.xib */; };
+		043F111F1D865414004A06A0 /* CellProfileHeaderFavorite.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */; };
+		043F11201D865414004A06A0 /* CellProfileHeaderPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */; };
 		04422D0D1D816D5E009C470E /* MyMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0C1D816D5E009C470E /* MyMarker.swift */; };
 		04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0E1D826761009C470E /* MapSearchTagController.swift */; };
+		04422D121D82A428009C470E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D111D82A428009C470E /* ProfileController.swift */; };
 		047F35CF1D62A0C500F0FE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F35CE1D62A0C500F0FE80 /* AppDelegate.swift */; };
 		047F35D11D62A0C500F0FE80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F35D01D62A0C500F0FE80 /* ViewController.swift */; };
 		047F35D61D62A0C500F0FE80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047F35D51D62A0C500F0FE80 /* Images.xcassets */; };
@@ -179,8 +187,16 @@
 		043298001D740C8100616D09 /* CellFollower.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellFollower.xib; path = wassup/main/Search/CellFollower.xib; sourceTree = "<group>"; };
 		043298031D7416FE00616D09 /* Host.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Host.swift; path = wassup/model/Host.swift; sourceTree = "<group>"; };
 		043594791D69B73600604133 /* CellFeed.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellFeed.xib; path = wassup/main/Feeds/CellFeed.xib; sourceTree = "<group>"; };
+		043F11121D86494E004A06A0 /* ProfileMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileMainController.swift; path = wassup/main/User/ProfileMainController.swift; sourceTree = "<group>"; };
+		043F11151D865261004A06A0 /* CellProfileHeaderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellProfileHeaderInfo.swift; path = wassup/main/User/CellProfileMain/CellProfileHeaderInfo.swift; sourceTree = "<group>"; };
+		043F11171D86528A004A06A0 /* CellProfileHeaderFavorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellProfileHeaderFavorite.swift; path = wassup/main/User/CellProfileMain/CellProfileHeaderFavorite.swift; sourceTree = "<group>"; };
+		043F11191D8652A8004A06A0 /* CellProfileHeaderPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellProfileHeaderPhoto.swift; path = wassup/main/User/CellProfileMain/CellProfileHeaderPhoto.swift; sourceTree = "<group>"; };
+		043F111B1D865350004A06A0 /* CellProfileHeaderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderInfo.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderInfo.xib; sourceTree = "<group>"; };
+		043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderFavorite.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderFavorite.xib; sourceTree = "<group>"; };
+		043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderPhoto.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderPhoto.xib; sourceTree = "<group>"; };
 		04422D0C1D816D5E009C470E /* MyMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyMarker.swift; path = wassup/main/maps/MyMarker.swift; sourceTree = "<group>"; };
 		04422D0E1D826761009C470E /* MapSearchTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchTagController.swift; path = wassup/main/maps/MapSearchTagController.swift; sourceTree = "<group>"; };
+		04422D111D82A428009C470E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = wassup/main/User/ProfileController.swift; sourceTree = "<group>"; };
 		047F35C91D62A0C500F0FE80 /* wassup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wassup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047F35CD1D62A0C500F0FE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047F35CE1D62A0C500F0FE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -379,6 +395,29 @@
 				0424807A1D75277F005D89C9 /* SubSearchKeyword.swift */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		043F11141D86522C004A06A0 /* CellProfileMain */ = {
+			isa = PBXGroup;
+			children = (
+				043F11151D865261004A06A0 /* CellProfileHeaderInfo.swift */,
+				043F111B1D865350004A06A0 /* CellProfileHeaderInfo.xib */,
+				043F11171D86528A004A06A0 /* CellProfileHeaderFavorite.swift */,
+				043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */,
+				043F11191D8652A8004A06A0 /* CellProfileHeaderPhoto.swift */,
+				043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */,
+			);
+			name = CellProfileMain;
+			sourceTree = "<group>";
+		};
+		04422D101D82A407009C470E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				043F11141D86522C004A06A0 /* CellProfileMain */,
+				04422D111D82A428009C470E /* ProfileController.swift */,
+				043F11121D86494E004A06A0 /* ProfileMainController.swift */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		047F35C01D62A0C500F0FE80 = {
@@ -732,6 +771,7 @@
 				04F389411D681C4000625121 /* Search */,
 				04F389141D67056900625121 /* Maps */,
 				04F3890D1D66BC9A00625121 /* Feeds */,
+				04422D101D82A407009C470E /* User */,
 				04F572821D65B8D3002C5EBC /* MainController.swift */,
 				04F5727C1D65B7D0002C5EBC /* SearchController.swift */,
 				04F572761D659DAE002C5EBC /* FeedsController.swift */,
@@ -848,6 +888,7 @@
 				047F36081D62BEB100F0FE80 /* HelveticaNeue-CondensedBlack.otf in Resources */,
 				04F389471D6820B300625121 /* CellSearch.xib in Resources */,
 				0487C7401D703CB600D37580 /* FilterEvent.xib in Resources */,
+				043F111C1D865350004A06A0 /* CellProfileHeaderInfo.xib in Resources */,
 				043298021D740C8100616D09 /* CellFollower.xib in Resources */,
 				04F389181D6705CD00625121 /* InfoMarker.xib in Resources */,
 				04A74E631D6EA198005F6418 /* CellImage.xib in Resources */,
@@ -862,9 +903,11 @@
 				04F3893F1D67F91100625121 /* BTNavigationDropdownMenu.bundle in Resources */,
 				04F3893B1D67F90D00625121 /* TabView.xib in Resources */,
 				047F360D1D62BEB100F0FE80 /* HelveticaNeue-Medium.otf in Resources */,
+				043F111F1D865414004A06A0 /* CellProfileHeaderFavorite.xib in Resources */,
 				048AA7441D6AF682001912BA /* DemoCell.xib in Resources */,
 				047F36281D62EC3700F0FE80 /* Screen2Controller.xib in Resources */,
 				047F360E1D62BEB100F0FE80 /* HelveticaNeue-UltraLight.otf in Resources */,
+				043F11201D865414004A06A0 /* CellProfileHeaderPhoto.xib in Resources */,
 				047F360F1D62BEB100F0FE80 /* HelveticaNeue-UltraLightItalic.otf in Resources */,
 				048AA73C1D6AB1EF001912BA /* DetailEvent.xib in Resources */,
 				047F36101D62BEB100F0FE80 /* HelveticaNeue.otf in Resources */,
@@ -998,6 +1041,7 @@
 				048AA7421D6AE82F001912BA /* DemoCell.swift in Sources */,
 				04C503F71D64165900E2B266 /* Captcha.m in Sources */,
 				047F35D11D62A0C500F0FE80 /* ViewController.swift in Sources */,
+				043F11181D86528A004A06A0 /* CellProfileHeaderFavorite.swift in Sources */,
 				04C504001D64486C00E2B266 /* CellTags.swift in Sources */,
 				04F389351D67F90D00625121 /* TabCollectionCell.swift in Sources */,
 				04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */,
@@ -1012,14 +1056,18 @@
 				04954F7A1D7D4D150096B4B3 /* UIProgressView+AFNetworking.m in Sources */,
 				042C20881D6D4CC30069DDFB /* SearchHostController.swift in Sources */,
 				047F36351D62FD2B00F0FE80 /* LoginController.swift in Sources */,
+				043F11161D865261004A06A0 /* CellProfileHeaderInfo.swift in Sources */,
 				0424807B1D75277F005D89C9 /* SubSearchKeyword.swift in Sources */,
+				04422D121D82A428009C470E /* ProfileController.swift in Sources */,
 				0487C74B1D7150B200D37580 /* FilterBlog.swift in Sources */,
 				04F389371D67F90D00625121 /* TabPageOption.swift in Sources */,
 				04954F751D7D4D150096B4B3 /* AFImageDownloader.m in Sources */,
 				048AA73A1D6AADCB001912BA /* AboutDetailEventController.swift in Sources */,
 				04BBAD1F1D6BFE4000626019 /* DetailEventController.swift in Sources */,
+				043F111A1D8652A8004A06A0 /* CellProfileHeaderPhoto.swift in Sources */,
 				04BBAD261D6C306300626019 /* FollowingController.swift in Sources */,
 				042480791D75275F005D89C9 /* SearchKeyword.swift in Sources */,
+				043F11131D86494E004A06A0 /* ProfileMainController.swift in Sources */,
 				04BBAD2A1D6C419000626019 /* CellFeed.swift in Sources */,
 				04BBAD2C1D6CA08700626019 /* Language.swift in Sources */,
 				04F389131D66F9FD00625121 /* MapsModel.swift in Sources */,

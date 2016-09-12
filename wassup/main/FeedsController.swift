@@ -16,6 +16,10 @@ class FeedsController: UITableViewController {
     var loading = false
     var isFinished = false
     var indexPath = NSIndexPath(index: 0)
+    var sectionHasData:Int {
+        return 0
+    }
+    var detailProfile:Dictionary<String,AnyObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,10 @@ class FeedsController: UITableViewController {
 
         callAPI()
         
+        initTable()
+    }
+    
+    func initTable() {
         tableView.registerNib(UINib(nibName: "CellFeed", bundle: nil), forCellReuseIdentifier: "CellFeed")
         
         ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
@@ -32,6 +40,8 @@ class FeedsController: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickTagOnFeed), name: "CLICK_TAG_ON_FEED", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToDetailEventOnFeed), name: "CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToProfileOnFeed), name: "CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil)
     }
     
     deinit {
@@ -47,6 +57,16 @@ class FeedsController: UITableViewController {
     func clickStatusGoToDetailEventOnFeed(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         self.tableView(tableView, didSelectRowAtIndexPath: d["indexPath"] as! NSIndexPath)
+    }
+    
+    func clickStatusGoToProfileOnFeed(noti: NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,String>
+        let md = User()
+        md.getUserProfile(d["userId"]!) {
+            (result:AnyObject?) in
+            self.detailProfile = result!["user"] as! Dictionary<String,AnyObject>
+            self.performSegueWithIdentifier("DetailProfile", sender: nil)
+        }
     }
     
     func refreshData(ref: UIRefreshControl) {
@@ -99,13 +119,17 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
-        
-        let d:Dictionary<String,AnyObject> = data[indexPath.row]
-        cell.initCell(d)
-        cell.indexPath = indexPath
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
+        if sectionHasData == indexPath.section {
+            let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
+            
+            let d:Dictionary<String,AnyObject> = data[indexPath.row]
+            cell.initCell(d)
+            cell.indexPath = indexPath
+            cell.setNeedsUpdateConstraints()
+            cell.updateConstraintsIfNeeded()
+            return cell
+        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath)
         return cell
     }
     
@@ -170,6 +194,12 @@ class FeedsController: UITableViewController {
                 data["id"] = CONVERT_STRING(item["host_id"])
             }
             vc.data = data
+        }
+        
+        if segue.identifier == "DetailProfile" {
+            let navi = segue.destinationViewController as! UINavigationController
+            let vc = navi.topViewController as! ProfileController
+            vc.data = detailProfile
         }
     }
 }

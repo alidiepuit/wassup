@@ -27,4 +27,24 @@ class Feeds: ModelBase {
                     ]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
+    
+    func getMyPost(userId: String, index page: Int, callback: ServiceResponse) {
+        let model = "feed/getMyPost"
+        let dict = ["user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style,
+                    "user_id": userId,
+                    "index": getIndex(page)
+        ]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func getOwnerActivities(userId: String, index page: Int, callback: ServiceResponse) {
+        let model = "feed/getOwnerActivities"
+        let dict = ["user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style,
+                    "user_id": userId,
+                    "index": getIndex(page)
+        ]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
 }

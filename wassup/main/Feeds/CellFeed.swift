@@ -34,7 +34,10 @@ class CellFeed: UITableViewCell {
     var activeLeft = false
     var activeRight = false
     var id = ""
+    var userId = ""
     var indexPath = NSIndexPath(index: 0)
+    var rangeProfile = NSRange()
+    var rangeDetailEvent = NSRange()
     
     func initCell(data: Dictionary<String, AnyObject>) {
         if CONVERT_STRING(data["user_image"]) != "" {
@@ -48,6 +51,7 @@ class CellFeed: UITableViewCell {
         let item = data["item"] as! Dictionary<String, AnyObject>
         
         id = CONVERT_STRING(data["id"])
+        userId = CONVERT_STRING(data["user_id"])
         if CONVERT_STRING(item["endtime"]) != "" && CONVERT_STRING(item["starttime"]) != "" {
             lblTime.text = Date().printDateToDate(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
         } else {
@@ -86,8 +90,10 @@ class CellFeed: UITableViewCell {
         
         let attribute = [ NSFontAttributeName: UIFont(name: "Helvetica", size: 14.0)! ]
         let mutableString = NSMutableAttributedString(string: status, attributes: attribute)
-        mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: NSRange(location:0,length:name.characters.count))
-        mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: NSRange(location:status.characters.count-event.characters.count,length:event.characters.count))
+        rangeProfile = NSRange(location:0,length:name.characters.count)
+        mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: rangeProfile)
+        rangeDetailEvent = NSRange(location:status.characters.count-event.characters.count,length:event.characters.count)
+        mutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.fromRgbHex(0x4A90E2), range: rangeDetailEvent)
         
         
         if objectType == ObjectType.Checkin.rawValue && activity != "" {
@@ -95,8 +101,8 @@ class CellFeed: UITableViewCell {
         }
         
         //event click profile, event
-        mutableString.addAttribute(NSLinkAttributeName, value: "haha", range: NSRange(location:status.characters.count-event.characters.count,length:event.characters.count))
-        mutableString.addAttribute(NSLinkAttributeName, value: "profile", range: NSRange(location:0,length:name.characters.count))
+        mutableString.addAttribute(NSLinkAttributeName, value: id, range: rangeDetailEvent)
+        mutableString.addAttribute(NSLinkAttributeName, value: userId, range: rangeProfile)
         
         lblStatus.attributedText = mutableString
         
@@ -225,7 +231,14 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension CellFeed: UITextViewDelegate {
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
+        var intersection = NSIntersectionRange(rangeProfile, characterRange)
+        if intersection.length == rangeProfile.length {
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil, userInfo: ["userId":userId])
+        }
+        intersection = NSIntersectionRange(rangeDetailEvent, characterRange)
+        if intersection.length == rangeDetailEvent.length {
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
+        }
         return false
     }
 }

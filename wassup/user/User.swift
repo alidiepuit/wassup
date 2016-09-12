@@ -72,6 +72,11 @@ class User: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
+    func logout() {
+        userId = ""
+        token = ""
+    }
+    
     func facebook(callback: ServiceResponse) {
         self.callback = callback
         let fbManager = FBSDKLoginManager()
@@ -190,5 +195,21 @@ class User: ModelBase {
                     "user_token": User.sharedInstance.token,
                     "login_style": User.sharedInstance.login_style]
         self.callAPI("POST", module: model, params: dict, callback: nil)
+    }
+    
+    func getMyProfile(callback: ServiceResponse) {
+        let model = "u_user/getProfile"
+        let dict = ["user_id": User.sharedInstance.userId,
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func getUserProfile(userId: String, callback: ServiceResponse) {
+        let model = "user/getProfile"
+        let dict = ["user_id": userId,
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
     }
 }
