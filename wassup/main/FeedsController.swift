@@ -42,6 +42,8 @@ class FeedsController: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToDetailEventOnFeed), name: "CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToProfileOnFeed), name: "CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickBookmarkOnFeed(_:)), name: "CLICK_BOOKMARK_ON_FEED", object: nil)
     }
     
     deinit {
@@ -57,6 +59,10 @@ class FeedsController: UITableViewController {
     func clickStatusGoToDetailEventOnFeed(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         self.tableView(tableView, didSelectRowAtIndexPath: d["indexPath"] as! NSIndexPath)
+    }
+    
+    func clickBookmarkOnFeed(noti: NSNotification) {
+        performSegueWithIdentifier("SaveCollection", sender: nil)
     }
     
     func clickStatusGoToProfileOnFeed(noti: NSNotification) {
@@ -200,6 +206,10 @@ class FeedsController: UITableViewController {
             let navi = segue.destinationViewController as! UINavigationController
             let vc = navi.topViewController as! ProfileController
             vc.data = detailProfile
+        }
+        
+        if segue.identifier == "SaveCollection" {
+            
         }
     }
 }

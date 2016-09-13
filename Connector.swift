@@ -71,7 +71,9 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         }
         if client != nil {
             client!.send({(response:AnyObject!, status:Int) -> Void in
-                print(response)
+                if callback != nil {
+                    callback!(response)
+                }
                 },failure:{(error:NSError!) -> Void in
                     print(error)
             })

@@ -35,6 +35,10 @@
 		043F11251D879FD2004A06A0 /* CellEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11231D879FD2004A06A0 /* CellEditProfile.swift */; };
 		043F11281D87C52B004A06A0 /* NSMutableData+AppendString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11271D87C52B004A06A0 /* NSMutableData+AppendString.swift */; };
 		043F112A1D87D72C004A06A0 /* SRWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11291D87D72C004A06A0 /* SRWebClient.swift */; };
+		043F112D1D87EC84004A06A0 /* CellListCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F112C1D87EC84004A06A0 /* CellListCollection.swift */; };
+		043F11301D87ED53004A06A0 /* ListCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F112F1D87ED53004A06A0 /* ListCollectionController.swift */; };
+		043F11321D87EF7A004A06A0 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11311D87EF7A004A06A0 /* Collection.swift */; };
+		043F11351D87F4B2004A06A0 /* CreateCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11341D87F4B2004A06A0 /* CreateCollectionController.swift */; };
 		04422D0D1D816D5E009C470E /* MyMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0C1D816D5E009C470E /* MyMarker.swift */; };
 		04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0E1D826761009C470E /* MapSearchTagController.swift */; };
 		04422D121D82A428009C470E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D111D82A428009C470E /* ProfileController.swift */; };
@@ -202,6 +206,10 @@
 		043F11231D879FD2004A06A0 /* CellEditProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellEditProfile.swift; path = wassup/main/User/CellProfileMain/CellEditProfile.swift; sourceTree = "<group>"; };
 		043F11271D87C52B004A06A0 /* NSMutableData+AppendString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSMutableData+AppendString.swift"; path = "wassup/libs/NSMutableData+AppendString.swift"; sourceTree = "<group>"; };
 		043F11291D87D72C004A06A0 /* SRWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRWebClient.swift; sourceTree = "<group>"; };
+		043F112C1D87EC84004A06A0 /* CellListCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellListCollection.swift; path = wassup/main/User/CellCollection/CellListCollection.swift; sourceTree = "<group>"; };
+		043F112F1D87ED53004A06A0 /* ListCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCollectionController.swift; path = wassup/main/User/ListCollectionController.swift; sourceTree = "<group>"; };
+		043F11311D87EF7A004A06A0 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Collection.swift; path = wassup/model/Collection.swift; sourceTree = "<group>"; };
+		043F11341D87F4B2004A06A0 /* CreateCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateCollectionController.swift; path = wassup/main/Collection/CreateCollectionController.swift; sourceTree = "<group>"; };
 		04422D0C1D816D5E009C470E /* MyMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyMarker.swift; path = wassup/main/maps/MyMarker.swift; sourceTree = "<group>"; };
 		04422D0E1D826761009C470E /* MapSearchTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchTagController.swift; path = wassup/main/maps/MapSearchTagController.swift; sourceTree = "<group>"; };
 		04422D111D82A428009C470E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = wassup/main/User/ProfileController.swift; sourceTree = "<group>"; };
@@ -419,6 +427,24 @@
 			name = CellProfileMain;
 			sourceTree = "<group>";
 		};
+		043F112B1D87EC5A004A06A0 /* CellCollection */ = {
+			isa = PBXGroup;
+			children = (
+				043F112C1D87EC84004A06A0 /* CellListCollection.swift */,
+			);
+			name = CellCollection;
+			sourceTree = "<group>";
+		};
+		043F11331D87F41A004A06A0 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				043F112B1D87EC5A004A06A0 /* CellCollection */,
+				043F11341D87F4B2004A06A0 /* CreateCollectionController.swift */,
+				043F112F1D87ED53004A06A0 /* ListCollectionController.swift */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
 		04422D101D82A407009C470E /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +552,7 @@
 		047F35EF1D62B80600F0FE80 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				043F11311D87EF7A004A06A0 /* Collection.swift */,
 				043298031D7416FE00616D09 /* Host.swift */,
 				043297FD1D73F79700616D09 /* Event.swift */,
 				0487C7351D7020A800D37580 /* Filter.swift */,
@@ -779,6 +806,7 @@
 		04F572751D659D8B002C5EBC /* main */ = {
 			isa = PBXGroup;
 			children = (
+				043F11331D87F41A004A06A0 /* Collection */,
 				04954F2D1D77C1AC0096B4B3 /* CheckIn */,
 				04F389411D681C4000625121 /* Search */,
 				04F389141D67056900625121 /* Maps */,
@@ -1005,6 +1033,7 @@
 				04954F711D7D4D150096B4B3 /* AFURLRequestSerialization.m in Sources */,
 				047F35F81D62BB7900F0FE80 /* Screen1Controller.swift in Sources */,
 				04C504021D644A8200E2B266 /* TagsModel.swift in Sources */,
+				043F11321D87EF7A004A06A0 /* Collection.swift in Sources */,
 				04954F431D77E3D60096B4B3 /* TagListView.swift in Sources */,
 				04954F761D7D4D150096B4B3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				04F572741D654DB9002C5EBC /* UIView+Corner.swift in Sources */,
@@ -1044,6 +1073,7 @@
 				04954F371D77D72B0096B4B3 /* CheckInCollectionCell.swift in Sources */,
 				04954F3A1D77D8FF0096B4B3 /* DetailCheckInController.swift in Sources */,
 				04C503F91D642DB200E2B266 /* String+Email.swift in Sources */,
+				043F11301D87ED53004A06A0 /* ListCollectionController.swift in Sources */,
 				04F3893A1D67F90D00625121 /* TabView.swift in Sources */,
 				04954F731D7D4D150096B4B3 /* AFURLSessionManager.m in Sources */,
 				04F389161D67059F00625121 /* InfoMarker.swift in Sources */,
@@ -1060,6 +1090,7 @@
 				04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */,
 				042C208A1D6D4CDA0069DDFB /* SearchBlogController.swift in Sources */,
 				04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */,
+				043F112D1D87EC84004A06A0 /* CellListCollection.swift in Sources */,
 				047F36321D62F9C500F0FE80 /* OptionController.swift in Sources */,
 				04F389401D67F91100625121 /* BTNavigationDropdownMenu.swift in Sources */,
 				043298041D7416FE00616D09 /* Host.swift in Sources */,
@@ -1068,6 +1099,7 @@
 				04954F411D77E3D60096B4B3 /* CloseButton.swift in Sources */,
 				04954F7A1D7D4D150096B4B3 /* UIProgressView+AFNetworking.m in Sources */,
 				042C20881D6D4CC30069DDFB /* SearchHostController.swift in Sources */,
+				043F11351D87F4B2004A06A0 /* CreateCollectionController.swift in Sources */,
 				047F36351D62FD2B00F0FE80 /* LoginController.swift in Sources */,
 				043F11161D865261004A06A0 /* CellProfileHeaderInfo.swift in Sources */,
 				0424807B1D75277F005D89C9 /* SubSearchKeyword.swift in Sources */,

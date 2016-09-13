@@ -28,7 +28,9 @@ class ProfileController: UIViewController {
         vc3.data = data
         vc3.cate = ObjectType.Users
         
-        let vc4 = storyboard.instantiateViewControllerWithIdentifier("ProfileCollection")
+        let vc4 = storyboard.instantiateViewControllerWithIdentifier("ProfileCollection") as! ListCollectionController
+        vc4.userId = CONVERT_STRING(data["id"])
+        
         tabPage!.tabItems = [(vc1, "Main"), (vc2, "Hoạt động"), (vc3, "Followers"), (vc4, "Collection")]
         
         var option = TabPageOption()

@@ -194,6 +194,7 @@ class CellFeed: UITableViewCell {
         } else {
             imgBtnLeft.image = UIImage(named: "ic_bookmark")
         }
+        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["id":""])
     }
     
     @IBAction func clickRight(sender: AnyObject) {

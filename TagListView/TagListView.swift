@@ -13,7 +13,7 @@ import UIKit
     optional func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) -> Void
 }
 
-@IBDesignable
+//@IBDesignable
 public class TagListView: UIView {
     
     @IBInspectable public dynamic var textColor: UIColor = UIColor.whiteColor() {
