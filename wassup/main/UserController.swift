@@ -26,8 +26,10 @@ class UserController: UIViewController {
         super.viewDidLoad()
         
         avatar.corner(30, border: 0, colorBorder: 0x000000)
-        
-        getProfile()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+         getProfile()
     }
     
     func getProfile() {

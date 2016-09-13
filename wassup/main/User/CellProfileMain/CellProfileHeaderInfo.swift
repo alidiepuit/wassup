@@ -29,6 +29,7 @@ class CellProfileHeaderInfo: UITableViewCell {
 
     func initData(data:Dictionary<String,AnyObject>) {
         LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["image"]))
+        LazyImage.showForImageView(cover, url: CONVERT_STRING(data["banner"]))
         name.text = CONVERT_STRING(data["fullname"])
         lblView.text = CONVERT_STRING(data["hit"])
         lblFollow.text = CONVERT_STRING(data["attend_number"])
@@ -55,7 +56,7 @@ class CellProfileHeaderInfo: UITableViewCell {
     }
 
     @IBAction func clickEditProfile(sender: AnyObject) {
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("EDIT_PROFILE", object: nil)
     }
     
     @IBAction func clickUnFollow(sender: AnyObject) {

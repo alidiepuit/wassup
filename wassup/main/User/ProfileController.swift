@@ -43,6 +43,12 @@ class ProfileController: UIViewController {
         self.view.addSubview(tabPage!.view)
         
         title = CONVERT_STRING(data["fullname"])
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(editProfile), name: "EDIT_PROFILE", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,8 +56,22 @@ class ProfileController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func clickEditProfile(sender: AnyObject) {
+        editProfile()
+    }
 
     @IBAction func goBack(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditProfile" {
+            let vc = segue.destinationViewController as! EditProfileController
+            vc.profile = data
+        }
+    }
+    
+    func editProfile() {
+        performSegueWithIdentifier("EditProfile", sender: nil)
     }
 }

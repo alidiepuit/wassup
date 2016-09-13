@@ -31,4 +31,10 @@ public class ModelBase: NSObject{
         let connector:Connector = Connector()
         connector.callService(method, serviceURL: api, params: params, callback: callback)
     }
+    
+    public func callAPI(module: String, params:Dictionary<String, AnyObject>?, callback: ServiceResponse?) {
+        let api = API + module
+        let connector:Connector = Connector()
+        connector.callService(api, params: params, callback: callback)
+    }
 }

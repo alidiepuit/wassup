@@ -1,4 +1,5 @@
 PODS:
+  - Fusuma (0.5.2)
   - GoogleMaps (2.0.1):
     - GoogleMaps/Maps (= 2.0.1)
   - GoogleMaps/Base (2.0.1)
@@ -8,13 +9,15 @@ PODS:
     - GoogleMaps/Base (= 2.0.1)
 
 DEPENDENCIES:
+  - Fusuma
   - GoogleMaps
   - GooglePlaces
 
 SPEC CHECKSUMS:
+  Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlaces: 72fab1d1651c6df0322f2aad245ffb15b80d3c56
 
-PODFILE CHECKSUM: b7177544e6d437b87388ab0a49a012d217b2eadd
+PODFILE CHECKSUM: a0314483df416331ec8a0e9a481ee2fc9b951cf1
 
 COCOAPODS: 1.0.1

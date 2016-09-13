@@ -212,4 +212,16 @@ class User: ModelBase {
                     "login_style": User.sharedInstance.login_style]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
+    
+    func updateProfile(fullname: String, email: String, address: String, avatar: NSData, cover: NSData, callback: ServiceResponse) {
+        let model = "u_user/updateProfile"
+        let dict = ["fullname": fullname,
+                    "email": email,
+                    "address": address,
+                    "image": avatar,
+                    "banner": cover,
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style]
+        self.callAPI(model, params: dict, callback: callback)
+    }
 }

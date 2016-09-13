@@ -1646,13 +1646,140 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="compose" id="jU4-y8-0oQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="clickEditProfile:" destination="ZBQ-dx-Ju1" id="l9Q-Or-GqR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="j7X-gX-HWb" kind="show" identifier="EditProfile" id="xzg-Bt-jHC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8j4-HZ-KPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2484" y="4447"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="axL-Pm-aDk">
+            <objects>
+                <tableViewController id="j7X-gX-HWb" customClass="EditProfileController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="712" sectionHeaderHeight="28" sectionFooterHeight="28" id="JDh-DJ-Vjo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="712" id="6jg-Ot-4SB" customClass="CellEditProfile" customModule="wassup" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="712"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6jg-Ot-4SB" id="yCk-Ke-DJJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="712"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBO-ri-0Co">
+                                            <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4H-H8-OYt">
+                                            <rect key="frame" x="8" y="37" width="304" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwm-aq-58M">
+                                            <rect key="frame" x="8" y="96" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thành phố" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWf-ZD-wF8">
+                                            <rect key="frame" x="8" y="183" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thay đổi hình đại diện" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0IQ-Gs-Tn5">
+                                            <rect key="frame" x="8" y="274" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thay đổi hình đại diện" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hab-Lq-nIM">
+                                            <rect key="frame" x="8" y="450" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-1p-2GS">
+                                            <rect key="frame" x="8" y="212" width="304" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        </textField>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="3vX-vI-2mc">
+                                            <rect key="frame" x="96" y="303" width="128" height="128"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="fk2-a4-GK6">
+                                            <rect key="frame" x="8" y="479" width="304" height="188"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ct-GJ-JLZ">
+                                            <rect key="frame" x="144" y="410" width="32" height="32"/>
+                                            <state key="normal" backgroundImage="pencil"/>
+                                            <connections>
+                                                <action selector="clickChangeAvatar:" destination="6jg-Ot-4SB" eventType="touchUpInside" id="9hQ-nb-7J8"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q97-zx-KDL">
+                                            <rect key="frame" x="144" y="650" width="32" height="32"/>
+                                            <state key="normal" backgroundImage="pencil"/>
+                                            <connections>
+                                                <action selector="clickChangeCover:" destination="6jg-Ot-4SB" eventType="touchUpInside" id="FtR-Rv-3Vq"/>
+                                            </connections>
+                                        </button>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jWh-2U-bbR">
+                                            <rect key="frame" x="8" y="125" width="304" height="44"/>
+                                            <color key="backgroundColor" red="0.92447916666666663" green="0.92447916666666663" blue="0.92447916666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avatar" destination="3vX-vI-2mc" id="gYm-UV-7F7"/>
+                                    <outlet property="btnChangeAvatar" destination="9Ct-GJ-JLZ" id="Emg-3C-1yO"/>
+                                    <outlet property="btnChangeCover" destination="Q97-zx-KDL" id="tQx-aM-Iur"/>
+                                    <outlet property="city" destination="ug1-1p-2GS" id="q4w-d0-1fw"/>
+                                    <outlet property="cover" destination="fk2-a4-GK6" id="e8P-iW-ejf"/>
+                                    <outlet property="email" destination="jWh-2U-bbR" id="KGv-FN-ezz"/>
+                                    <outlet property="name" destination="h4H-H8-OYt" id="uch-yP-9ru"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="j7X-gX-HWb" id="ao7-lR-dwR"/>
+                            <outlet property="delegate" destination="j7X-gX-HWb" id="Maa-H4-UwK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="hcu-7Z-qg3">
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="xz9-Oa-RR3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="goBack:" destination="j7X-gX-HWb" id="ac3-BW-pbG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Lưu" id="O0p-w9-hkV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveProfile:" destination="j7X-gX-HWb" id="VeV-87-EIk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="800"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dK-jB-qwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2484" y="5313"/>
         </scene>
         <!--Profile Main Controller-->
         <scene sceneID="TnG-hj-tGf">
@@ -1673,6 +1800,7 @@
                         <segue destination="5sK-CI-VMZ" kind="show" identifier="DetailEvent" id="tRq-jB-itp"/>
                         <segue destination="slM-4D-CIW" kind="show" identifier="SearchKeyword" id="QLb-49-UcC"/>
                         <segue destination="eiV-bF-851" kind="show" identifier="DetailProfile" id="fWS-ay-2kw"/>
+                        <segue destination="j7X-gX-HWb" kind="show" identifier="EditProfile" id="RjB-2B-s8Y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4Q-K5-WOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2504,13 +2632,15 @@
         <image name="icon_me" width="60" height="110"/>
         <image name="img_mr_bean" width="60" height="60"/>
         <image name="logo" width="262" height="130"/>
+        <image name="pencil" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Mc-Rw-QDv"/>
         <segue reference="3s0-L5-ZSh"/>
+        <segue reference="3Mc-Rw-QDv"/>
         <segue reference="fWS-ay-2kw"/>
         <segue reference="QLb-49-UcC"/>
         <segue reference="tRq-jB-itp"/>
+        <segue reference="RjB-2B-s8Y"/>
         <segue reference="iDn-X6-cFJ"/>
     </inferredMetricsTieBreakers>
 </document>

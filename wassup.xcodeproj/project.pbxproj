@@ -31,6 +31,10 @@
 		043F111C1D865350004A06A0 /* CellProfileHeaderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111B1D865350004A06A0 /* CellProfileHeaderInfo.xib */; };
 		043F111F1D865414004A06A0 /* CellProfileHeaderFavorite.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */; };
 		043F11201D865414004A06A0 /* CellProfileHeaderPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */; };
+		043F11221D879B7F004A06A0 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11211D879B7F004A06A0 /* EditProfileController.swift */; };
+		043F11251D879FD2004A06A0 /* CellEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11231D879FD2004A06A0 /* CellEditProfile.swift */; };
+		043F11281D87C52B004A06A0 /* NSMutableData+AppendString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11271D87C52B004A06A0 /* NSMutableData+AppendString.swift */; };
+		043F112A1D87D72C004A06A0 /* SRWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043F11291D87D72C004A06A0 /* SRWebClient.swift */; };
 		04422D0D1D816D5E009C470E /* MyMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0C1D816D5E009C470E /* MyMarker.swift */; };
 		04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0E1D826761009C470E /* MapSearchTagController.swift */; };
 		04422D121D82A428009C470E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D111D82A428009C470E /* ProfileController.swift */; };
@@ -194,6 +198,10 @@
 		043F111B1D865350004A06A0 /* CellProfileHeaderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderInfo.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderInfo.xib; sourceTree = "<group>"; };
 		043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderFavorite.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderFavorite.xib; sourceTree = "<group>"; };
 		043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellProfileHeaderPhoto.xib; path = wassup/main/User/CellProfileMain/CellProfileHeaderPhoto.xib; sourceTree = "<group>"; };
+		043F11211D879B7F004A06A0 /* EditProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileController.swift; path = wassup/main/User/EditProfileController.swift; sourceTree = "<group>"; };
+		043F11231D879FD2004A06A0 /* CellEditProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellEditProfile.swift; path = wassup/main/User/CellProfileMain/CellEditProfile.swift; sourceTree = "<group>"; };
+		043F11271D87C52B004A06A0 /* NSMutableData+AppendString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSMutableData+AppendString.swift"; path = "wassup/libs/NSMutableData+AppendString.swift"; sourceTree = "<group>"; };
+		043F11291D87D72C004A06A0 /* SRWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRWebClient.swift; sourceTree = "<group>"; };
 		04422D0C1D816D5E009C470E /* MyMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyMarker.swift; path = wassup/main/maps/MyMarker.swift; sourceTree = "<group>"; };
 		04422D0E1D826761009C470E /* MapSearchTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchTagController.swift; path = wassup/main/maps/MapSearchTagController.swift; sourceTree = "<group>"; };
 		04422D111D82A428009C470E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = wassup/main/User/ProfileController.swift; sourceTree = "<group>"; };
@@ -406,6 +414,7 @@
 				043F111D1D865414004A06A0 /* CellProfileHeaderFavorite.xib */,
 				043F11191D8652A8004A06A0 /* CellProfileHeaderPhoto.swift */,
 				043F111E1D865414004A06A0 /* CellProfileHeaderPhoto.xib */,
+				043F11231D879FD2004A06A0 /* CellEditProfile.swift */,
 			);
 			name = CellProfileMain;
 			sourceTree = "<group>";
@@ -416,6 +425,7 @@
 				043F11141D86522C004A06A0 /* CellProfileMain */,
 				04422D111D82A428009C470E /* ProfileController.swift */,
 				043F11121D86494E004A06A0 /* ProfileMainController.swift */,
+				043F11211D879B7F004A06A0 /* EditProfileController.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -495,12 +505,14 @@
 				04F3893C1D67F91100625121 /* BTNavigation */,
 				04F3892D1D67F90D00625121 /* TabPage */,
 				04C504051D645A7700E2B266 /* LazyImage.swift */,
+				043F11291D87D72C004A06A0 /* SRWebClient.swift */,
 				047F363C1D630B4400F0FE80 /* Connector.swift */,
 				047F36401D63188600F0FE80 /* UIButton+Corner.swift */,
 				047F36421D631A0300F0FE80 /* UIColor+FromRGBHex.swift */,
 				047F36441D631DF300F0FE80 /* UITextField+Corner.swift */,
 				04F572731D654DB9002C5EBC /* UIView+Corner.swift */,
 				04C503F81D642DB200E2B266 /* String+Email.swift */,
+				043F11271D87C52B004A06A0 /* NSMutableData+AppendString.swift */,
 				04C503F51D64165900E2B266 /* Captcha.h */,
 				04C503F61D64165900E2B266 /* Captcha.m */,
 				04C504031D64599400E2B266 /* Utils.swift */,
@@ -983,6 +995,7 @@
 			files = (
 				048AA73E1D6ABC05001912BA /* DetailEvent.swift in Sources */,
 				04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */,
+				043F112A1D87D72C004A06A0 /* SRWebClient.swift in Sources */,
 				0487C7361D7020A800D37580 /* Filter.swift in Sources */,
 				04F389431D681CDC00625121 /* ItemSearch.swift in Sources */,
 				04F389391D67F90D00625121 /* TabPageViewController.swift in Sources */,
@@ -1067,6 +1080,8 @@
 				043F111A1D8652A8004A06A0 /* CellProfileHeaderPhoto.swift in Sources */,
 				04BBAD261D6C306300626019 /* FollowingController.swift in Sources */,
 				042480791D75275F005D89C9 /* SearchKeyword.swift in Sources */,
+				043F11221D879B7F004A06A0 /* EditProfileController.swift in Sources */,
+				043F11281D87C52B004A06A0 /* NSMutableData+AppendString.swift in Sources */,
 				043F11131D86494E004A06A0 /* ProfileMainController.swift in Sources */,
 				04BBAD2A1D6C419000626019 /* CellFeed.swift in Sources */,
 				04BBAD2C1D6CA08700626019 /* Language.swift in Sources */,
@@ -1085,6 +1100,7 @@
 				04BBAD241D6C2FC800626019 /* FollowController.swift in Sources */,
 				04C503FB1D64399D00E2B266 /* ForgotPassword.swift in Sources */,
 				04F5727E1D65B7D0002C5EBC /* CheckInController.swift in Sources */,
+				043F11251D879FD2004A06A0 /* CellEditProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,7 +1235,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = wassup/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1240,7 +1256,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = wassup/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

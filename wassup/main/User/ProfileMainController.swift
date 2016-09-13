@@ -29,6 +29,10 @@ class ProfileMainController: FeedsController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTypeFeed(_:)), name: "CHANGE_TYPE_FEED_PROFILE", object: nil)
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func callAPI() {
         let md = Feeds()
         if typeFeed == 0 {

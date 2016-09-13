@@ -58,6 +58,26 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         }
     }
     
+    public func callService(serviceURL: String, params: Dictionary<String, AnyObject>?, callback: ServiceResponse?) {
+        var client:SRWebClient?
+        for (key, value) in params! {
+            if value is NSData {
+                if client == nil {
+                    client = SRWebClient.POST(serviceURL).data(value as! NSData, fieldName:key, data:params)
+                } else {
+                    client?.addImage(value as! NSData, fieldName: key)
+                }
+            }
+        }
+        if client != nil {
+            client!.send({(response:AnyObject!, status:Int) -> Void in
+                print(response)
+                },failure:{(error:NSError!) -> Void in
+                    print(error)
+            })
+        }
+    }
+    
     public func connection(connection: NSURLConnection, didReceiveData data: NSData) {
 
         do {
