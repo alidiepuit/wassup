@@ -30,6 +30,8 @@ class ProfileController: UIViewController {
         
         let vc4 = storyboard.instantiateViewControllerWithIdentifier("ProfileCollection") as! ListCollectionController
         vc4.userId = CONVERT_STRING(data["id"])
+        vc4.dataProfile = data
+        vc4.typeListCollection = "list"
         
         tabPage!.tabItems = [(vc1, "Main"), (vc2, "Hoạt động"), (vc3, "Followers"), (vc4, "Collection")]
         

@@ -27,9 +27,10 @@ class Collection: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func bookmark(collectionId: String, objectId: String, objectType: String, callback: ServiceResponse) {
+    func bookmark(collectionId: String, collectionName: String, objectId: String, objectType: String, callback: ServiceResponse) {
         let model = "u_user/bookmark"
         let dict = ["collection_id": collectionId,
+                    "collection_name": collectionName,
                     "object_id": objectId,
                     "object_type": objectType,
                     "user_token": User.sharedInstance.token,
@@ -46,5 +47,11 @@ class Collection: ModelBase {
                     "login_style": User.sharedInstance.login_style,
                     ]
         self.callAPI(model, params: dict, callback: callback)
+    }
+    
+    func getBookmarks(collectionId: String, callback: ServiceResponse) {
+        let model = "bookmark/getBookmarks"
+        let dict = ["collection_id": collectionId]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class CellProfileHeaderPhoto: UITableViewCell {
 
@@ -15,6 +16,7 @@ class CellProfileHeaderPhoto: UITableViewCell {
     @IBOutlet weak var viewPhoto: UIView!
     @IBOutlet weak var collection: UICollectionView!
     var listImage = [String]()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,5 +52,9 @@ extension CellProfileHeaderPhoto: UICollectionViewDelegate, UICollectionViewData
         let cell = collection.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
         LazyImage.showForImageView(cell.img, url: listImage[indexPath.row])
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        NSNotificationCenter.defaultCenter().postNotificationName("SHOW_BROWSER_IMAGE", object: nil, userInfo: ["index": indexPath.row])
     }
 }

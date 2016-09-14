@@ -29,6 +29,11 @@ public enum ActivityType: String {
     case UserRegistEvent = "%@ đã quan tâm hoạt động %@"
 }
 
+public enum CollectionType: String {
+    case Feed = "6"
+    case Article = "7"
+}
+
 class Filter: ModelBase {
     func getProvince(callback: ServiceResponse) {
         let model = "district/getProvince"

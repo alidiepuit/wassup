@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import SKPhotoBrowser
 
 class DetailEvent: UITableViewCell {
     @IBOutlet weak var content: UIWebView!
@@ -170,6 +171,10 @@ extension DetailEvent: UICollectionViewDelegate, UICollectionViewDataSource {
         let url = listImage[indexPath.row]
         LazyImage.showForImageView(cell.img, url: url)
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        NSNotificationCenter.defaultCenter().postNotificationName("SHOW_BROWSER_IMAGE", object: nil, userInfo: ["index": indexPath.row])
     }
 }
 

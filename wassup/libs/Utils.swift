@@ -185,4 +185,16 @@ class Utils: NSObject, CLLocationManagerDelegate {
         
         return HTMLToBeReturned
     }
+    
+    class func lock() {
+        let dele = UIApplication.sharedApplication().delegate as! AppDelegate
+        let vc = dele.window?.rootViewController
+        vc?.view.lock()
+    }
+    
+    class func unlock() {
+        let dele = UIApplication.sharedApplication().delegate as! AppDelegate
+        let vc = dele.window?.rootViewController
+        vc?.view.unlock()
+    }
 }

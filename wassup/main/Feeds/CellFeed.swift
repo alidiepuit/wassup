@@ -188,13 +188,11 @@ class CellFeed: UITableViewCell {
     }
     
     @IBAction func clickLeft(sender: AnyObject) {
-        activeLeft = !activeLeft
-        if activeLeft {
+        if !activeLeft {
+            activeLeft = !activeLeft
             imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
-        } else {
-            imgBtnLeft.image = UIImage(named: "ic_bookmark")
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
         }
-        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["id":""])
     }
     
     @IBAction func clickRight(sender: AnyObject) {

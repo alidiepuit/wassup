@@ -13,6 +13,7 @@ class CellListCollection: UITableViewCell {
     @IBOutlet weak var info: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var radioBtn: SSRadioButton!
     
     var id = ""
     

@@ -138,6 +138,10 @@
 		04C504041D64599400E2B266 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504031D64599400E2B266 /* Utils.swift */; };
 		04C504061D645A7700E2B266 /* LazyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504051D645A7700E2B266 /* LazyImage.swift */; };
 		04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504071D646A3300E2B266 /* HeaderCellTags.swift */; };
+		04D7E5081D88E5ED00DF291A /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E5061D88E5ED00DF291A /* SSRadioButtonsController.swift */; };
+		04D7E5091D88E5ED00DF291A /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E5071D88E5ED00DF291A /* SSRadioButton.swift */; };
+		04D7E50D1D8927B800DF291A /* DetailCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */; };
+		04D7E50F1D892CCE00DF291A /* CellDetailCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E50E1D892CCE00DF291A /* CellDetailCollection.swift */; };
 		04F389111D66E3A600625121 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F389101D66E3A600625121 /* CoreLocation.framework */; };
 		04F389131D66F9FD00625121 /* MapsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F389121D66F9FD00625121 /* MapsModel.swift */; };
 		04F389161D67059F00625121 /* InfoMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F389151D67059F00625121 /* InfoMarker.swift */; };
@@ -332,6 +336,10 @@
 		04C504031D64599400E2B266 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = wassup/libs/Utils.swift; sourceTree = "<group>"; };
 		04C504051D645A7700E2B266 /* LazyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyImage.swift; sourceTree = "<group>"; };
 		04C504071D646A3300E2B266 /* HeaderCellTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCellTags.swift; path = wassup/tags/HeaderCellTags.swift; sourceTree = "<group>"; };
+		04D7E5061D88E5ED00DF291A /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
+		04D7E5071D88E5ED00DF291A /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
+		04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailCollectionController.swift; path = wassup/main/User/DetailCollectionController.swift; sourceTree = "<group>"; };
+		04D7E50E1D892CCE00DF291A /* CellDetailCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDetailCollection.swift; path = wassup/main/Collection/CellDetailCollection.swift; sourceTree = "<group>"; };
 		04F389101D66E3A600625121 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		04F389121D66F9FD00625121 /* MapsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapsModel.swift; path = wassup/model/MapsModel.swift; sourceTree = "<group>"; };
 		04F389151D67059F00625121 /* InfoMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoMarker.swift; path = wassup/main/maps/InfoMarker.swift; sourceTree = "<group>"; };
@@ -431,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				043F112C1D87EC84004A06A0 /* CellListCollection.swift */,
+				04D7E50E1D892CCE00DF291A /* CellDetailCollection.swift */,
 			);
 			name = CellCollection;
 			sourceTree = "<group>";
@@ -441,6 +450,7 @@
 				043F112B1D87EC5A004A06A0 /* CellCollection */,
 				043F11341D87F4B2004A06A0 /* CreateCollectionController.swift */,
 				043F112F1D87ED53004A06A0 /* ListCollectionController.swift */,
+				04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */,
 			);
 			name = Collection;
 			sourceTree = "<group>";
@@ -525,6 +535,7 @@
 		047F35EE1D62B7FE00F0FE80 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				04D7E5051D88E5E100DF291A /* RadioButton */,
 				04954F4B1D7D4D150096B4B3 /* AFNetworking */,
 				04954F591D7D4D150096B4B3 /* UIKit+AFNetworking */,
 				04954F3B1D77E3D60096B4B3 /* TagListView */,
@@ -731,6 +742,15 @@
 				04C504071D646A3300E2B266 /* HeaderCellTags.swift */,
 			);
 			name = tags;
+			sourceTree = "<group>";
+		};
+		04D7E5051D88E5E100DF291A /* RadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				04D7E5061D88E5ED00DF291A /* SSRadioButtonsController.swift */,
+				04D7E5071D88E5ED00DF291A /* SSRadioButton.swift */,
+			);
+			name = RadioButton;
 			sourceTree = "<group>";
 		};
 		04F3890D1D66BC9A00625121 /* Feeds */ = {
@@ -1043,6 +1063,7 @@
 				041C51EF1D637C0100977ABD /* Screen3Controller.swift in Sources */,
 				0487C7431D70417C00D37580 /* FilterCell.swift in Sources */,
 				047F36271D62EC3700F0FE80 /* Screen2Controller.swift in Sources */,
+				04D7E50D1D8927B800DF291A /* DetailCollectionController.swift in Sources */,
 				04954F721D7D4D150096B4B3 /* AFURLResponseSerialization.m in Sources */,
 				042C208C1D6D4FCD0069DDFB /* Search.swift in Sources */,
 				042480771D7526E9005D89C9 /* CellEvent.swift in Sources */,
@@ -1092,6 +1113,7 @@
 				04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */,
 				043F112D1D87EC84004A06A0 /* CellListCollection.swift in Sources */,
 				047F36321D62F9C500F0FE80 /* OptionController.swift in Sources */,
+				04D7E5091D88E5ED00DF291A /* SSRadioButton.swift in Sources */,
 				04F389401D67F91100625121 /* BTNavigationDropdownMenu.swift in Sources */,
 				043298041D7416FE00616D09 /* Host.swift in Sources */,
 				04954F331D77C2240096B4B3 /* CheckInEventController.swift in Sources */,
@@ -1099,6 +1121,7 @@
 				04954F411D77E3D60096B4B3 /* CloseButton.swift in Sources */,
 				04954F7A1D7D4D150096B4B3 /* UIProgressView+AFNetworking.m in Sources */,
 				042C20881D6D4CC30069DDFB /* SearchHostController.swift in Sources */,
+				04D7E5081D88E5ED00DF291A /* SSRadioButtonsController.swift in Sources */,
 				043F11351D87F4B2004A06A0 /* CreateCollectionController.swift in Sources */,
 				047F36351D62FD2B00F0FE80 /* LoginController.swift in Sources */,
 				043F11161D865261004A06A0 /* CellProfileHeaderInfo.swift in Sources */,
@@ -1118,6 +1141,7 @@
 				04BBAD2A1D6C419000626019 /* CellFeed.swift in Sources */,
 				04BBAD2C1D6CA08700626019 /* Language.swift in Sources */,
 				04F389131D66F9FD00625121 /* MapsModel.swift in Sources */,
+				04D7E50F1D892CCE00DF291A /* CellDetailCollection.swift in Sources */,
 				04BBAD221D6C2F4600626019 /* FollowerController.swift in Sources */,
 				047F36231D62CEEE00F0FE80 /* WelcomeController.swift in Sources */,
 				047F35CF1D62A0C500F0FE80 /* AppDelegate.swift in Sources */,
@@ -1275,6 +1299,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -1296,6 +1321,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class AboutDetailEventController: UITableViewController {
 
@@ -21,6 +22,9 @@ class AboutDetailEventController: UITableViewController {
     let ref = UIRefreshControl()
     
     var headerHeight = CGFloat(0)
+    
+    var images = [SKPhoto]()
+    var browser = SKPhotoBrowser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +41,14 @@ class AboutDetailEventController: UITableViewController {
         loadData()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resizeHeightHeader(_:)), name: "RESIZE_HEIGHT_HEADER_DETAIL_EVENT", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showBrowserImage(_:)), name: "SHOW_BROWSER_IMAGE", object: nil)
+    }
+    
+    func showBrowserImage(noti:NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,AnyObject>
+        browser.initializePageIndex(CONVERT_INT(d["index"]))
+        presentViewController(browser, animated: true, completion: nil)
     }
     
     func resizeHeightHeader(noti: NSNotification) {
@@ -68,6 +80,7 @@ class AboutDetailEventController: UITableViewController {
                     }
                 }
                 self.ref.endRefreshing()
+                self.loadBrowserImage()
             }
         } else {
             md.getDetailHost(self.id) {
@@ -83,7 +96,21 @@ class AboutDetailEventController: UITableViewController {
                     }
                 }
                 self.ref.endRefreshing()
+                self.loadBrowserImage()
             }
+        }
+    }
+    
+    func loadBrowserImage() {
+        images.removeAll()
+        if let d = data["photos"] as? [String] {
+            for a in d {
+                let photo = SKPhoto.photoWithImageURL(a)
+                images.append(photo)
+            }
+        }
+        if images.count > 0 {
+            browser = SKPhotoBrowser(photos: images)
         }
     }
     

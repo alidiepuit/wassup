@@ -5,4 +5,5 @@ target 'wassup' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Fusuma'
+  pod 'SKPhotoBrowser'
 end

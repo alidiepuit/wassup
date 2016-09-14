@@ -1633,7 +1633,7 @@
                         <viewControllerLayoutGuide type="bottom" id="u3J-Gm-brG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PYt-cI-64e">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1642,7 +1642,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="KW5-ff-lFq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="goBack:" destination="ZBQ-dx-Ju1" id="NLJ-sd-Wxf"/>
+                                <segue destination="C90-ou-GwO" kind="unwind" unwindAction="unwind:" id="fyP-Mb-thC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="compose" id="jU4-y8-0oQ">
@@ -1658,6 +1658,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8j4-HZ-KPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="C90-ou-GwO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2484" y="4447"/>
         </scene>
@@ -1671,7 +1672,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="712" id="6jg-Ot-4SB" customClass="CellEditProfile" customModule="wassup" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="712"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="712"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6jg-Ot-4SB" id="yCk-Ke-DJJ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="712"/>
@@ -1765,7 +1766,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="xz9-Oa-RR3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="goBack:" destination="j7X-gX-HWb" id="ac3-BW-pbG"/>
+                                <action selector="goBack:" destination="j7X-gX-HWb" id="Xiy-nV-sBD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lưu" id="O0p-w9-hkV">
@@ -1855,10 +1856,28 @@
                                                         <constraint firstItem="A6w-dk-Uo7" firstAttribute="top" secondItem="aSF-bv-CPQ" secondAttribute="top" id="qd5-Cq-Btf"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoF-ga-Nw7" customClass="SSRadioButton" customModule="wassup" customModuleProvider="target">
+                                                    <rect key="frame" x="260" y="8" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="8qj-nb-LPY"/>
+                                                        <constraint firstAttribute="height" constant="30" id="i4S-dq-Owt"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="circleColor">
+                                                            <color key="value" red="0.1450980392" green="0.72156862749999995" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="circleRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IVN-TO-tJX" firstAttribute="top" secondItem="2X9-TZ-nYE" secondAttribute="top" id="Atu-ba-iI6"/>
+                                                <constraint firstItem="NoF-ga-Nw7" firstAttribute="leading" secondItem="IVN-TO-tJX" secondAttribute="trailing" constant="-40" id="NFn-hd-QUn"/>
                                                 <constraint firstItem="IVN-TO-tJX" firstAttribute="leading" secondItem="2X9-TZ-nYE" secondAttribute="leading" constant="20" id="ZmJ-gm-xGl"/>
+                                                <constraint firstItem="NoF-ga-Nw7" firstAttribute="top" secondItem="2X9-TZ-nYE" secondAttribute="top" constant="8" id="nX3-x3-YV4"/>
                                                 <constraint firstAttribute="trailing" secondItem="IVN-TO-tJX" secondAttribute="trailing" constant="20" id="oRq-Yj-2k2"/>
                                                 <constraint firstAttribute="bottom" secondItem="IVN-TO-tJX" secondAttribute="bottom" constant="8" id="pZt-sw-rb8"/>
                                             </constraints>
@@ -1871,6 +1890,7 @@
                                             <outlet property="img" destination="IVN-TO-tJX" id="9Mv-54-16H"/>
                                             <outlet property="info" destination="OUI-UI-b5h" id="H5i-gY-RIX"/>
                                             <outlet property="name" destination="A6w-dk-Uo7" id="GXN-mK-bT0"/>
+                                            <outlet property="radioBtn" destination="NoF-ga-Nw7" id="Yr5-j5-208"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1897,7 +1917,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="Bnz-Oe-wdn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="goBack:" destination="4bf-gC-IVk" id="IhN-eB-7Hh"/>
+                                <action selector="unwind:" destination="4bf-gC-IVk" id="oxf-jb-Ttj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lưu" id="0Oy-m0-RN1">
@@ -1914,6 +1934,7 @@
                         <outlet property="constraintTop" destination="Ffo-vQ-mfo" id="iAl-Hi-Co0"/>
                         <outlet property="tableView" destination="xbM-9R-Yxx" id="cdm-4h-XKe"/>
                         <segue destination="N4W-mO-LNE" kind="show" identifier="CreateCollection" id="MHW-2q-PQU"/>
+                        <segue destination="fMP-Um-yHh" kind="show" identifier="DetailCollection" id="t2s-H8-qaf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNs-lC-4z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1998,7 +2019,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="ME7-8O-6xO">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="goBack:" destination="N4W-mO-LNE" id="Nqx-2x-92x"/>
+                                <segue destination="TFS-Wj-B93" kind="unwind" unwindAction="unwind:" id="qrW-mA-OyD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tạo" id="4WP-tq-qf7">
@@ -2015,6 +2036,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2T-gA-NF5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TFS-Wj-B93" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3102" y="5904"/>
         </scene>
@@ -2073,28 +2095,56 @@
             </objects>
             <point key="canvasLocation" x="3566" y="4447"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Collection-->
         <scene sceneID="eUN-a1-DR9">
             <objects>
-                <collectionViewController id="fMP-Um-yHh" sceneMemberID="viewController">
+                <collectionViewController id="fMP-Um-yHh" customClass="DetailCollectionController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="FYV-d7-p5v">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MMd-Nx-kdV">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="140" height="230"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="99J-tB-ch6">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" reuseIdentifier="Cell" id="99J-tB-ch6" customClass="CellDetailCollection" customModule="wassup" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="140" height="230"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="230"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bn5-4A-tnW">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="118"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="118" id="67k-1M-UzW"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ZQ-PJ-SKU">
+                                            <rect key="frame" x="0.0" y="118" width="140" height="112"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="Bn5-4A-tnW" firstAttribute="top" secondItem="99J-tB-ch6" secondAttribute="top" id="NpF-Fi-SDi"/>
+                                    <constraint firstAttribute="bottom" secondItem="4ZQ-PJ-SKU" secondAttribute="bottom" id="OAQ-S8-w5t"/>
+                                    <constraint firstItem="Bn5-4A-tnW" firstAttribute="leading" secondItem="99J-tB-ch6" secondAttribute="leading" id="OEh-Cv-GYn"/>
+                                    <constraint firstItem="4ZQ-PJ-SKU" firstAttribute="leading" secondItem="99J-tB-ch6" secondAttribute="leading" id="PGW-F1-ngr"/>
+                                    <constraint firstItem="4ZQ-PJ-SKU" firstAttribute="top" secondItem="Bn5-4A-tnW" secondAttribute="bottom" id="TR9-PE-Z8d"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bn5-4A-tnW" secondAttribute="trailing" id="ij6-BE-hTL"/>
+                                    <constraint firstAttribute="trailing" secondItem="4ZQ-PJ-SKU" secondAttribute="trailing" id="yar-KX-N3w"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="content" destination="4ZQ-PJ-SKU" id="hLm-tr-Sfd"/>
+                                    <outlet property="img" destination="Bn5-4A-tnW" id="QwB-mw-2Ab"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -2102,9 +2152,18 @@
                             <outlet property="delegate" destination="fMP-Um-yHh" id="i7Z-wf-hbh"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Collection" id="0EC-DZ-69g">
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="7Gw-8b-UxK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="0Uj-WZ-ksF" kind="unwind" unwindAction="unwind:" id="9sv-hU-ZLb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIG-Bn-ndc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0Uj-WZ-ksF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3617" y="5197"/>
         </scene>
@@ -2873,12 +2932,12 @@
         <image name="pencil" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RjB-2B-s8Y"/>
         <segue reference="3s0-L5-ZSh"/>
         <segue reference="3Mc-Rw-QDv"/>
         <segue reference="t9a-NK-aZM"/>
-        <segue reference="3A2-OM-TfS"/>
         <segue reference="Sil-1a-buj"/>
+        <segue reference="xzg-Bt-jHC"/>
+        <segue reference="fWS-ay-2kw"/>
         <segue reference="iDn-X6-cFJ"/>
     </inferredMetricsTieBreakers>
 </document>

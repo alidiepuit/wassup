@@ -7,17 +7,20 @@ PODS:
     - GoogleMaps/Base (= 2.0.1)
   - GooglePlaces (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
+  - SKPhotoBrowser (2.0.2)
 
 DEPENDENCIES:
   - Fusuma
   - GoogleMaps
   - GooglePlaces
+  - SKPhotoBrowser
 
 SPEC CHECKSUMS:
   Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlaces: 72fab1d1651c6df0322f2aad245ffb15b80d3c56
+  SKPhotoBrowser: a23a4125deca7451d298248c7eafc8332fb909df
 
-PODFILE CHECKSUM: a0314483df416331ec8a0e9a481ee2fc9b951cf1
+PODFILE CHECKSUM: a6bb43cba17915615644e18da6547eed960af7e8
 
 COCOAPODS: 1.0.1

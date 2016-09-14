@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class ProfileMainController: FeedsController {
 
@@ -15,6 +16,9 @@ class ProfileMainController: FeedsController {
         return 3
     }
     var typeFeed = 0
+    
+    var images = [SKPhoto]()
+    var browser = SKPhotoBrowser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +31,28 @@ class ProfileMainController: FeedsController {
         tableView.registerNib(UINib(nibName: "CellProfileHeaderPhoto", bundle: nil), forCellReuseIdentifier: "CellProfileHeaderPhoto")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTypeFeed(_:)), name: "CHANGE_TYPE_FEED_PROFILE", object: nil)
+        
+        if let d = detailUser["photos"] as? [String] {
+            for a in d {
+                let photo = SKPhoto.photoWithImageURL(a)
+                images.append(photo)
+            }
+        }
+        if images.count > 0 {
+            browser = SKPhotoBrowser(photos: images)
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showBrowserImage(_:)), name: "SHOW_BROWSER_IMAGE", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func showBrowserImage(noti:NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,AnyObject>
+        browser.initializePageIndex(CONVERT_INT(d["index"]))
+        presentViewController(browser, animated: true, completion: nil)
     }
     
     override func callAPI() {

@@ -63,13 +63,13 @@ class SearchController: UIViewController {
         md.getProvince() {
             (result:AnyObject?) in
             if result != nil {
-                if let d = result!["provinces"] as? Dictionary<String, String> {
+                if let d = result!["provinces"] as? [Dictionary<String, String>] {
                     self.listProvince = []
                     var a = [String]()
-                    for b in 1...80 {
-                        if let val = d[CONVERT_STRING(b)] {
-                            a.append(val)
-                            self.listProvince.append(CellDropdown(id: CONVERT_STRING(b), value: val))
+                    for b in d {
+                        if let name = b["name"] {
+                            a.append(name)
+                            self.listProvince.append(CellDropdown(id: b["id"]!, value: name))
                         }
                     }
                     self.selProvince?.updateItems(a)

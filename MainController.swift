@@ -33,4 +33,8 @@ class MainController: UITabBarController {
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         NSNotificationCenter.defaultCenter().postNotificationName("CLOSE_SEARCH_KEYWORD_WHEN_CHANGE_TAG", object: nil)
     }
+    
+    @IBAction func unwind(sender: UIStoryboardSegue) {
+        navigationController?.popViewControllerAnimated(true)
+    }
 }

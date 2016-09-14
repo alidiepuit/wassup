@@ -62,6 +62,8 @@ class FeedsController: UITableViewController {
     }
     
     func clickBookmarkOnFeed(noti: NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,AnyObject>
+        indexPath = d["indexPath"] as! NSIndexPath
         performSegueWithIdentifier("SaveCollection", sender: nil)
     }
     
@@ -84,6 +86,7 @@ class FeedsController: UITableViewController {
     
     func callAPI() {
         let md = Feeds()
+        loading = true
         md.getFeeds(index: page) {
             (result: AnyObject?) in
             if result != nil {
@@ -171,7 +174,6 @@ class FeedsController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if !loading && !isFinished && indexPath.row == data.count-1 {
             page += 1
-            loading = true
             callAPI()
         }
     }
@@ -209,7 +211,10 @@ class FeedsController: UITableViewController {
         }
         
         if segue.identifier == "SaveCollection" {
-            
+            let vc = segue.destinationViewController as! ListCollectionController
+            let d:Dictionary<String,AnyObject> = self.data[indexPath.row]
+            vc.objectId = CONVERT_STRING(d["object_id"])
+            vc.objectType = CollectionType.Feed
         }
     }
 }
