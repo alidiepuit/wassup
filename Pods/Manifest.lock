@@ -1,4 +1,7 @@
 PODS:
+  - Crashlytics (3.8.1):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.8)
   - Fusuma (0.5.2)
   - GoogleMaps (2.0.1):
     - GoogleMaps/Maps (= 2.0.1)
@@ -10,17 +13,21 @@ PODS:
   - SKPhotoBrowser (2.0.2)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - Fusuma
   - GoogleMaps
   - GooglePlaces
   - SKPhotoBrowser
 
 SPEC CHECKSUMS:
+  Crashlytics: 4391d8df0b125345e9f209c5db6e7f40a6a8435d
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlaces: 72fab1d1651c6df0322f2aad245ffb15b80d3c56
   SKPhotoBrowser: a23a4125deca7451d298248c7eafc8332fb909df
 
-PODFILE CHECKSUM: a6bb43cba17915615644e18da6547eed960af7e8
+PODFILE CHECKSUM: 15fb55a07acbc95de1bcb1e3e253c24dfc5d494b
 
 COCOAPODS: 1.0.1

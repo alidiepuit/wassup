@@ -83,10 +83,12 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                     md.isFirstTimeOpen = true
                     md.login_style = String(1)
                     
-                    self.removeFromParentViewController()
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView")
-                    self.presentViewController(vc, animated: true, completion: nil)
+                    self.presentViewController(vc, animated: true) {
+                        () in
+                        self.removeFromParentViewController()
+                    }
                 }
                 alert.message = dict["message"] as? String
                 alert.show()
@@ -95,10 +97,11 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func back(sender: AnyObject) {
-        self.removeFromParentViewController()
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("OptionLogin") 
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.presentViewController(vc, animated: true) {
+            () in
+            self.removeFromParentViewController()
+        }
     }
 }

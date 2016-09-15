@@ -19,6 +19,9 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         self.collectionView?.allowsMultipleSelection = true
         loadData()
     }
@@ -42,6 +45,7 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             let status = dict["status"] as? Int
 //            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
             if status == 1 {
+                User.sharedInstance.hasRecommandation = true
                 self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 self.removeFromParentViewController()
             }

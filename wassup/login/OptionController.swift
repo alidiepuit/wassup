@@ -25,11 +25,13 @@ class OptionController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         if User.sharedInstance.isLogined {
-            self.removeFromParentViewController()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("RecommandtionTags") 
-            self.presentViewController(vc, animated: true, completion: nil)
+            self.presentViewController(vc, animated: true) {
+                () in
+                self.removeFromParentViewController()
+            }
         }
     }
 
@@ -40,16 +42,20 @@ class OptionController: UIViewController {
     
 
     @IBAction func btnRegEmail(sender: AnyObject) {
-        self.removeFromParentViewController()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("RegisterView") 
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.presentViewController(vc, animated: true) {
+            () in
+            self.removeFromParentViewController()
+        }
     }
 
     @IBAction func btnRegFB(sender: AnyObject) {
+        self.view.lock()
         let model = User()
         model.facebook() {
             (result:AnyObject?) in
+            self.view.unlock()
             let dict:Dictionary<String, AnyObject> = result as! Dictionary<String, AnyObject>
             let status = Int(dict["status"] as! NSNumber)
             if status == 1 {
@@ -58,19 +64,21 @@ class OptionController: UIViewController {
                 model.token = dict["etoken"] as! String
                 model.login_style = String(2)
                 
-                let alert = UIAlertView(title: Localization("Thong bao"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                
-                self.removeFromParentViewController()
-                self.performSegueWithIdentifier("afterOption", sender: nil)
+                if User.sharedInstance.hasRecommandation {
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                }
             }
         }
     }
     
     @IBAction func btnAlreadyLogin(sender: AnyObject) {
-        self.removeFromParentViewController()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView") 
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.presentViewController(vc, animated: true) {
+            () in
+            self.removeFromParentViewController()
+        }
     }
 }

@@ -68,7 +68,13 @@ extension UserController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             performSegueWithIdentifier("DetailProfile", sender: nil)
         case 1:
-            performSegueWithIdentifier("Logout", sender: nil)
+            User.sharedInstance.logout()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView")
+            self.presentViewController(vc, animated: true) {
+                () in
+                self.removeFromParentViewController()
+            }
         default:
             return
         }

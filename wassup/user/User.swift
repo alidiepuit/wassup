@@ -28,7 +28,7 @@ class User: ModelBase {
     var token:String {
         get {
             let id = NSUserDefaults.standardUserDefaults().stringForKey("user_token")
-            return id!
+            return id != nil ? id! : ""
         }
         set(id) {
             NSUserDefaults.standardUserDefaults().setObject(id, forKey: "user_token")
@@ -137,6 +137,15 @@ class User: ModelBase {
         }
         set(val) {
             return NSUserDefaults.standardUserDefaults().setBool(val, forKey: "IS_FIRST_TIME_OPEN")
+        }
+    }
+    
+    var hasRecommandation:Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey("USER_HAS_RECOMMANDATION")
+        }
+        set(val) {
+            return NSUserDefaults.standardUserDefaults().setBool(val, forKey: "USER_HAS_RECOMMANDATION")
         }
     }
     

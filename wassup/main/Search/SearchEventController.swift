@@ -16,9 +16,9 @@ class SearchEventController: UITableViewController {
     var cate:ObjectType {
         return ObjectType.Event
     }
-    var action = ""
+    var action = "12"
     var districtId = ""
-    var city = ""
+    var city = "Hồ Chí Minh"
     var filterEvent:FilterEvent?
     var isFinish = false
     let ref = UIRefreshControl()

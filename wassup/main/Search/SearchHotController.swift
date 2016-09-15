@@ -77,19 +77,21 @@ class SearchHotController: SearchEventController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let data:Dictionary<String,AnyObject> = self.data![(tableView.indexPathForSelectedRow?.row)!] {
-            if segue.identifier == "DetailEvent" {
-                let next = segue.destinationViewController as! DetailEventController
-                next.data = data
-                let objectType = data["object_type"]?.intValue
-                if objectType == ObjectType.Event.rawValue {
-                    next.cate = ObjectType.Event
+        if segue.identifier == "DetailEvent" || segue.identifier == "DetailHost" || segue.identifier == "DetailBlog" {
+            if let data:Dictionary<String,AnyObject> = self.data![(tableView.indexPathForSelectedRow?.row)!] {
+                if segue.identifier == "DetailEvent" {
+                    let next = segue.destinationViewController as! DetailEventController
+                    next.data = data
+                    let objectType = data["object_type"]?.intValue
+                    if objectType == ObjectType.Event.rawValue {
+                        next.cate = ObjectType.Event
+                    } else {
+                        next.cate = ObjectType.Host
+                    }
                 } else {
-                    next.cate = ObjectType.Host
+                    let next = segue.destinationViewController as! DetailBlogController
+                    next.id = CONVERT_STRING(data["id"])
                 }
-            } else {
-                let next = segue.destinationViewController as! DetailBlogController
-                next.id = CONVERT_STRING(data["id"])
             }
         }
     }

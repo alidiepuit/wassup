@@ -8,17 +8,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellProfileHeaderPhoto" rowHeight="300" id="NNn-UL-YsX" customClass="CellProfileHeaderPhoto" customModule="wassup" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNn-UL-YsX" id="iSA-wl-EvH">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXd-Nu-C6h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="U7n-ah-84O">
-                                <rect key="frame" x="8" y="35" width="304" height="201"/>
+                                <rect key="frame" x="8" y="35" width="304" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G4r-U0-Hs3">
                                     <size key="itemSize" width="90" height="90"/>
@@ -46,16 +46,16 @@
                         <constraints>
                             <constraint firstItem="7H0-hs-HkB" firstAttribute="top" secondItem="fXd-Nu-C6h" secondAttribute="top" constant="8" id="5ae-nl-2MZ"/>
                             <constraint firstItem="7H0-hs-HkB" firstAttribute="leading" secondItem="fXd-Nu-C6h" secondAttribute="leading" constant="8" id="6WB-pv-M33"/>
-                            <constraint firstAttribute="height" constant="238" id="AgM-Hs-Jeb"/>
-                            <constraint firstAttribute="bottom" secondItem="U7n-ah-84O" secondAttribute="bottom" constant="2" id="D5A-tw-DNu"/>
+                            <constraint firstAttribute="height" constant="130" id="AgM-Hs-Jeb"/>
                             <constraint firstItem="U7n-ah-84O" firstAttribute="top" secondItem="7H0-hs-HkB" secondAttribute="bottom" constant="6" id="Mbw-7T-M3W"/>
+                            <constraint firstAttribute="bottom" secondItem="U7n-ah-84O" secondAttribute="bottom" constant="-5" id="Mcz-WS-KoB"/>
                             <constraint firstItem="U7n-ah-84O" firstAttribute="leading" secondItem="fXd-Nu-C6h" secondAttribute="leading" constant="8" id="X8a-Hd-Pqj"/>
                             <constraint firstAttribute="trailing" secondItem="7H0-hs-HkB" secondAttribute="trailing" constant="8" id="b6i-QX-h6X"/>
                             <constraint firstAttribute="trailing" secondItem="U7n-ah-84O" secondAttribute="trailing" constant="8" id="lXR-L4-bFs"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wT-hX-FBn">
-                        <rect key="frame" x="0.0" y="246" width="320" height="53"/>
+                        <rect key="frame" x="0.0" y="146" width="320" height="53"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gov-lp-Aus">
                                 <rect key="frame" x="8" y="16" width="151" height="21"/>
@@ -97,7 +97,6 @@
                     <constraint firstItem="fXd-Nu-C6h" firstAttribute="leading" secondItem="iSA-wl-EvH" secondAttribute="leading" id="UqI-rm-Qvv"/>
                     <constraint firstItem="fXd-Nu-C6h" firstAttribute="top" secondItem="iSA-wl-EvH" secondAttribute="top" id="Vdl-r4-qge"/>
                     <constraint firstAttribute="bottom" secondItem="2wT-hX-FBn" secondAttribute="bottom" id="VtY-UX-iPi"/>
-                    <constraint firstItem="2wT-hX-FBn" firstAttribute="top" secondItem="fXd-Nu-C6h" secondAttribute="bottom" constant="8" id="WzF-o3-Ovm"/>
                     <constraint firstItem="2wT-hX-FBn" firstAttribute="leading" secondItem="iSA-wl-EvH" secondAttribute="leading" id="ZQ6-Jz-OJa"/>
                     <constraint firstAttribute="trailing" secondItem="2wT-hX-FBn" secondAttribute="trailing" id="tny-vz-YW7"/>
                 </constraints>

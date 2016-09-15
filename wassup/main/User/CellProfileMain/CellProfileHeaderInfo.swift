@@ -12,7 +12,7 @@ class CellProfileHeaderInfo: UITableViewCell {
 
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var cover: UIImageView!
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var namefuck: UILabel!
     @IBOutlet weak var lblView: UILabel!
     @IBOutlet weak var lblFollow: UILabel!
     @IBOutlet weak var lblCheckIn: UILabel!
@@ -30,7 +30,7 @@ class CellProfileHeaderInfo: UITableViewCell {
     func initData(data:Dictionary<String,AnyObject>) {
         LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["image"]))
         LazyImage.showForImageView(cover, url: CONVERT_STRING(data["banner"]))
-        name.text = CONVERT_STRING(data["fullname"])
+        namefuck.text = CONVERT_STRING(data["fullname"])
         lblView.text = CONVERT_STRING(data["hit"])
         lblFollow.text = CONVERT_STRING(data["attend_number"])
         lblCheckIn.text = CONVERT_STRING(data["checkin_number"])

@@ -63,27 +63,6 @@ class ProfileMainController: FeedsController {
             md.getMyPost(CONVERT_STRING(detailUser["id"]), index: page, callback: handleData)
         }
     }
-    
-    func handleData(result: AnyObject?) {
-        if result != nil {
-            if let d = result!["activities"] as? [Dictionary<String,AnyObject>] {
-                if d.count <= 0 {
-                    self.isFinished = true
-                }
-                for a in d {
-                    let item = a["item"] as! Dictionary<String,AnyObject>
-                    let objectId = item["id"]
-                    if CONVERT_STRING(objectId) != "" {
-                        self.data.append(a)
-                        let lastIndexPath = NSIndexPath(forRow: self.data.count - 1, inSection: self.sectionHasData)
-                        self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
-                    }
-                }
-            }
-            self.loading = false
-            self.ref.endRefreshing()
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -154,10 +133,7 @@ class ProfileMainController: FeedsController {
                 if photos.count <= 0 {
                     return 53
                 }
-                if photos.count <= 3 {
-                    return 200
-                }
-                return 300
+                return 200
             }
             return 0
         default:

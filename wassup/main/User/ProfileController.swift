@@ -49,6 +49,11 @@ class ProfileController: UIViewController {
         title = CONVERT_STRING(data["fullname"])
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(editProfile), name: "EDIT_PROFILE", object: nil)
+        
+        let userId = CONVERT_STRING(data["id"])
+        if userId != User.sharedInstance.userId {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     deinit {

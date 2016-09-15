@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class CellFeed: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
@@ -38,6 +39,9 @@ class CellFeed: UITableViewCell {
     var indexPath = NSIndexPath(index: 0)
     var rangeProfile = NSRange()
     var rangeDetailEvent = NSRange()
+    
+    var images = [SKPhoto]()
+    var browser = SKPhotoBrowser()
     
     func initCell(data: Dictionary<String, AnyObject>) {
         if CONVERT_STRING(data["user_image"]) != "" {
@@ -131,6 +135,11 @@ class CellFeed: UITableViewCell {
         
         if let l = item["images"] as? [String] {
             listImage = l
+            for img in listImage {
+                let photo = SKPhoto.photoWithImageURL(img)
+                images.append(photo)
+            }
+            browser = SKPhotoBrowser(photos: images)
         } else {
             listImage = [CONVERT_STRING(item["image"])]
         }
@@ -225,6 +234,14 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
             return CGSizeMake(collectionView.bounds.size.width, CGFloat(collectionView.bounds.size.height))
         }
         return CGSizeMake(collectionView.bounds.size.height, CGFloat(collectionView.bounds.size.height))
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if listImage.count == 1 {
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil, userInfo: ["indexPath":self.indexPath])
+            return
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("BROWSER_PHOTOS_ON_FEED", object: nil, userInfo: ["index":indexPath.row, "browser": browser])
     }
 }
 

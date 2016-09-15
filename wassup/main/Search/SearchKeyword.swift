@@ -96,7 +96,7 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(closeSearchKeywordWhenChangeTag), name: "CLOSE_SEARCH_KEYWORD_WHEN_CHANGE_TAG", object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         searchBar.becomeFirstResponder()
     }
     

@@ -19,10 +19,6 @@ class SearchTagController: SearchHotController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     override func loadData() {
         if isFinish {
             return

@@ -6,4 +6,6 @@ target 'wassup' do
   pod 'GooglePlaces'
   pod 'Fusuma'
   pod 'SKPhotoBrowser'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

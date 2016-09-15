@@ -9,9 +9,19 @@
 import UIKit
 
 class Feeds: ModelBase {
-    func listEventFeeds(eventId: String, index page:Int, top:Int, callback: ServiceResponse) {
+    func listEventFeeds(id: String, index page:Int, top:Int, callback: ServiceResponse) {
         let model = "event/getEventFeeds"
-        let dict = ["event_id": eventId,
+        let dict = ["event_id": id,
+                    "user_token": User.sharedInstance.token,
+                    "login_style": User.sharedInstance.login_style,
+                    "index": getIndex(page),
+                    "top": CONVERT_STRING(top)]
+        self.callAPI("POST", module: model, params: dict, callback: callback)
+    }
+    
+    func listHostFeeds(id: String, index page:Int, top:Int, callback: ServiceResponse) {
+        let model = "host/getHostFeeds"
+        let dict = ["host_id": id,
                     "user_token": User.sharedInstance.token,
                     "login_style": User.sharedInstance.login_style,
                     "index": getIndex(page),

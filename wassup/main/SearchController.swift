@@ -21,7 +21,7 @@ class SearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selProvince = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: "Việt Nam", items: [])
+        selProvince = BTNavigationDropdownMenu(navigationController: self.navigationController, containerView: self.navigationController!.view, title: "Hồ Chí Minh", items: [])
         self.navigationItem.titleView = selProvince
         selProvince!.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
             NSNotificationCenter.defaultCenter().postNotificationName("SELECT_PROVINCE", object: nil, userInfo: ["cityId": self!.listProvince[indexPath].id,

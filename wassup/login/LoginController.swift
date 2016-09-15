@@ -39,6 +39,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBAction func clickLogin(sender: AnyObject) {
         let email = self.email.text
         let pass = self.password.text
+        
+        
         let model = User()
         model.login(email!, passwd: pass!) {
             (result:AnyObject?) in
@@ -50,18 +52,21 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 model.token = dict["etoken"] as! String
                 model.login_style = String(1)
                 
-                self.removeFromParentViewController()
-                self.performSegueWithIdentifier("afterLogin", sender: nil)
+                if User.sharedInstance.hasRecommandation {
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                }
             }
-//            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: self, cancelButtonTitle: "OK")
-//            alert.show()
         }
     }
     
     @IBAction func clickLoginFB(sender: AnyObject) {
         let model = User()
+        self.view.lock()
         model.facebook() {
             (result:AnyObject?) in
+            self.view.unlock()
             let dict:Dictionary<String, AnyObject> = result as! Dictionary<String, AnyObject>
             let status = Int(dict["status"] as! NSNumber)
             if status == 1 {
@@ -70,11 +75,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 model.token = dict["etoken"] as! String
                 model.login_style = String(2)
                 
-                let alert = UIAlertView(title: Localization("Thong bao"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                
-                self.removeFromParentViewController()
-                self.performSegueWithIdentifier("afterLogin", sender: nil)
+                if User.sharedInstance.hasRecommandation {
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
+                } else {
+                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                }
             }
         }
     }
@@ -88,10 +93,15 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func clickRegister(sender: AnyObject) {
-        self.removeFromParentViewController()
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("RegisterView") 
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.presentViewController(vc, animated: true) {
+            () in
+            self.removeFromParentViewController()
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print(segue.identifier)
     }
 }

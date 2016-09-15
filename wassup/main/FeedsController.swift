@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class FeedsController: UITableViewController {
     
@@ -32,6 +33,8 @@ class FeedsController: UITableViewController {
     }
     
     func initTable() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
         tableView.registerNib(UINib(nibName: "CellFeed", bundle: nil), forCellReuseIdentifier: "CellFeed")
         
         ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
@@ -44,10 +47,20 @@ class FeedsController: UITableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToProfileOnFeed), name: "CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickBookmarkOnFeed(_:)), name: "CLICK_BOOKMARK_ON_FEED", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(browserPhotosOnFeed(_:)), name: "BROWSER_PHOTOS_ON_FEED", object: nil)
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func browserPhotosOnFeed(noti:NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,AnyObject>
+        let idx = CONVERT_INT(d["index"])
+        let browser = d["browser"] as! SKPhotoBrowser
+        browser.initializePageIndex(idx)
+        presentViewController(browser, animated: true, completion: nil)
     }
     
     func clickTagOnFeed(noti: NSNotification) {
@@ -87,26 +100,27 @@ class FeedsController: UITableViewController {
     func callAPI() {
         let md = Feeds()
         loading = true
-        md.getFeeds(index: page) {
-            (result: AnyObject?) in
-            if result != nil {
-                if let d = result!["activities"] as? [Dictionary<String,AnyObject>] {
-                    if d.count <= 0 {
-                        self.isFinished = true
-                    }
-                    for a in d {
-                        let item = a["item"] as! Dictionary<String,AnyObject>
-                        let objectId = item["id"]
-                        if CONVERT_STRING(objectId) != "" {
-                            self.data.append(a)
-                            let lastIndexPath = NSIndexPath(forRow: self.data.count - 1, inSection: 0)
-                            self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
-                        }
+        md.getFeeds(index: page, callback: handleData)
+    }
+    
+    func handleData(result:AnyObject?) {
+        if result != nil {
+            if let d = result!["activities"] as? [Dictionary<String,AnyObject>] {
+                if d.count <= 0 {
+                    self.isFinished = true
+                }
+                for a in d {
+                    let item = a["item"] as! Dictionary<String,AnyObject>
+                    let objectId = item["id"]
+                    if CONVERT_STRING(objectId) != "" {
+                        self.data.append(a)
+                        let lastIndexPath = NSIndexPath(forRow: self.data.count - 1, inSection: self.sectionHasData)
+                        self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
                     }
                 }
-                self.loading = false
-                self.ref.endRefreshing()
             }
+            self.loading = false
+            self.ref.endRefreshing()
         }
     }
     

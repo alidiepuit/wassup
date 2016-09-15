@@ -85,7 +85,11 @@ class SubSearchKeyword: UITableViewController {
             self.ref.endRefreshing()
         }
     }
-
+    
+    @IBAction func unwind(sender: UIStoryboardSegue) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

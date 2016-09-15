@@ -864,6 +864,7 @@
 				047F35C71D62A0C500F0FE80 /* Resources */,
 				910FF051283B140FE28F95A6 /* [CP] Embed Pods Frameworks */,
 				571EA47EA5E3B89C12C47771 /* [CP] Copy Pods Resources */,
+				04F1733E1D8A84EA003248B9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -905,6 +906,7 @@
 				TargetAttributes = {
 					047F35C81D62A0C500F0FE80 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = J7WYJP5H3V;
 					};
 					047F35DD1D62A0C500F0FE80 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1003,6 +1005,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		04F1733E1D8A84EA003248B9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 1e791eb052d6fb68c261abb386855c53e544c24e dc94a2251898faaf83c010e3c22f34b3b006a82f8ad7e822cbaae43d2f38089c";
 		};
 		571EA47EA5E3B89C12C47771 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1286,6 +1301,8 @@
 			baseConfigurationReference = 0DCF924BB9A31ABF501AE3C2 /* Pods-wassup.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1297,6 +1314,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1308,6 +1326,8 @@
 			baseConfigurationReference = 3B3B230DFB7B2D9F731C3889 /* Pods-wassup.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1319,6 +1339,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";

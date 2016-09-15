@@ -9,18 +9,14 @@
 import UIKit
 import SKPhotoBrowser
 
-class AboutDetailEventController: UITableViewController {
+class AboutDetailEventController: FeedsController {
 
-    var data:Dictionary<String,AnyObject>!
-    var page = 1
-    var listFeeds:[Dictionary<String,AnyObject>]?
-    var finishDetail = false
-    var finishFeeds = true
-    var isLoadingMore = false
+    var detail:Dictionary<String,AnyObject>!
     var cate = ObjectType.Event
     var id = ""
-    let ref = UIRefreshControl()
-    
+    override var sectionHasData: Int {
+        return 1
+    }
     var headerHeight = CGFloat(0)
     
     var images = [SKPhoto]()
@@ -33,12 +29,8 @@ class AboutDetailEventController: UITableViewController {
         tableView.contentInset = inset;
         
         tableView.registerNib(UINib(nibName: "DetailEvent", bundle: nil), forCellReuseIdentifier: "DetailEvent")
-        tableView.registerNib(UINib(nibName: "CellFeed", bundle: nil), forCellReuseIdentifier: "CellFeed")
         
-        ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
-        tableView.addSubview(ref)
-        
-        loadData()
+        loadDetail()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resizeHeightHeader(_:)), name: "RESIZE_HEIGHT_HEADER_DETAIL_EVENT", object: nil)
         
@@ -59,25 +51,17 @@ class AboutDetailEventController: UITableViewController {
         }
     }
     
-    func refreshData(ref: UIRefreshControl) {
-        loadData()
-    }
-    
-    func loadData() {
-        finishDetail = false
+    func loadDetail() {
         let md = Search()
         if cate == ObjectType.Event {
             md.getDetailEvent(self.id) {
                 (result:AnyObject?) in
-                self.finishDetail = true
                 if result != nil {
                     guard let d = result!["event"] as? Dictionary<String, AnyObject> else {
                         return
                     }
-                    self.data = d
-                    if self.finishDetail && self.finishFeeds {
-                        self.tableView.reloadData()
-                    }
+                    self.detail = d
+                    self.tableView.reloadData()
                 }
                 self.ref.endRefreshing()
                 self.loadBrowserImage()
@@ -85,15 +69,12 @@ class AboutDetailEventController: UITableViewController {
         } else {
             md.getDetailHost(self.id) {
                 (result:AnyObject?) in
-                self.finishDetail = true
                 if result != nil {
                     guard let d = result!["host"] as? Dictionary<String, AnyObject> else {
                         return
                     }
-                    self.data = d
-                    if self.finishDetail {
-                        self.tableView.reloadData()
-                    }
+                    self.detail = d
+                    self.tableView.reloadData()
                 }
                 self.ref.endRefreshing()
                 self.loadBrowserImage()
@@ -103,7 +84,7 @@ class AboutDetailEventController: UITableViewController {
     
     func loadBrowserImage() {
         images.removeAll()
-        if let d = data["photos"] as? [String] {
+        if let d = detail["photos"] as? [String] {
             for a in d {
                 let photo = SKPhoto.photoWithImageURL(a)
                 images.append(photo)
@@ -114,24 +95,14 @@ class AboutDetailEventController: UITableViewController {
         }
     }
     
-    func loadFeed() {
-        finishFeeds = false
+    override func callAPI() {
         let md = Feeds()
-        md.listEventFeeds(CONVERT_STRING(data!["id"]), index: page, top: 0){
-            (result:AnyObject?) in
-            self.finishFeeds = true
-            self.isLoadingMore = false
-            if result != nil {
-                guard let d = result as? [Dictionary<String, AnyObject>] else {
-                    self.listFeeds = []
-                    return
-                }
-                self.listFeeds = d
-                if self.finishDetail && self.finishFeeds {
-                    self.tableView.reloadData()
-                }
-            }
+        if cate == ObjectType.Event {
+            md.listEventFeeds(self.id, index: page, top: 0, callback: self.handleData)
+        } else {
+            md.listHostFeeds(self.id, index: page, top: 0, callback: self.handleData)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,21 +121,14 @@ class AboutDetailEventController: UITableViewController {
         if section == 0 {
             return 0
         }
-        return listFeeds != nil ? (listFeeds?.count)! : 0
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
-        let d = listFeeds![indexPath.row]
-        cell.initCell(d)
-        return cell
+        return self.data.count
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 && self.data != nil {
+        if section == 0 && self.detail != nil {
             let  headerCell = tableView.dequeueReusableCellWithIdentifier("DetailEvent") as! DetailEvent
             headerCell.cate = cate
-            headerCell.initData(self.data!)
+            headerCell.initData(self.detail!)
             return headerCell
         }
         return nil
@@ -172,29 +136,28 @@ class AboutDetailEventController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // #warning Incomplete implementation, return the number of rows
-        if section == 0 && self.data != nil {
+        if section == 0 && self.detail != nil {
+            var hei = CGFloat(750)
+            
+            let listImage = self.detail["photos"] != nil ? self.detail["photos"] as! Array<String> : []
+            if listImage.count <= 0 {
+                hei -= 130
+            }
+            
             if headerHeight == 0 {
                 do {
-                    let str = CONVERT_STRING(self.data!["description"])
+                    let str = CONVERT_STRING(self.detail!["description"])
                     let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                         NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
                         NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
                     let hei = attr.heightWithConstrainedWidth(tableView.frame.size.width-16)
-                    return 800+hei
+                    return hei+hei
                 } catch {
-                    return 800
+                    return hei
                 }
             }
-            return 800+headerHeight
+            return hei+headerHeight
         }
         return 0
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if !isLoadingMore && indexPath.row == (listFeeds?.count)!-1 {
-            isLoadingMore = true
-            page += 1
-            loadFeed()
-        }
     }
 }

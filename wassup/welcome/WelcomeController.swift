@@ -69,11 +69,12 @@ class WelcomeController: UIViewController, UIPageViewControllerDataSource, UIPag
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! Screen1Controller
         if vc.index == arr.count-1 {
-            self.removeFromParentViewController()
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("OptionLogin")
-            self.presentViewController(vc, animated: true, completion: nil)
+            self.presentViewController(vc, animated: true) {
+                () in
+                self.removeFromParentViewController()
+            }
             return nil
         }
         return arr[vc.index+1]

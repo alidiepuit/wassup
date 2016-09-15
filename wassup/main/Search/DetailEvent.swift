@@ -13,6 +13,7 @@ import SKPhotoBrowser
 class DetailEvent: UITableViewCell {
     @IBOutlet weak var content: UIWebView!
     
+    @IBOutlet weak var viewPhoto: UIView!
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var btnLeft: UIButton!
     @IBOutlet weak var btnRight: UIButton!
@@ -78,7 +79,7 @@ class DetailEvent: UITableViewCell {
             btnLeft.setTitle(Localization("Đã quan tâm"), forState: .Normal)
         }
         
-        let isCheckin = data["is_checkin"]! as! Bool
+        let isCheckin = CONVERT_BOOL(data["is_checkin"])
         if isCheckin {
             btnRight.backgroundColor = UIColor.fromRgbHex(0x31ACF9)
             btnRight.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -89,7 +90,7 @@ class DetailEvent: UITableViewCell {
         do {
             var str = CONVERT_STRING(data["description"])
             str = Utils.HTMLImageCorrector(str)
-            str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"width:\(content.frame.size.width-20); word-wrap:break-word\">" + str + "</div>"
+            str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"\">" + str + "</div>"
             let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                 NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
                 NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
@@ -111,8 +112,12 @@ class DetailEvent: UITableViewCell {
         }
         
         listImage = data["photos"] != nil ? data["photos"] as! Array<String> : []
-        album.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
-        album.reloadData()
+        if listImage.count <= 0 {
+            viewPhoto.removeFromSuperview()
+        } else {
+            album.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
+            album.reloadData()
+        }
     }
     
     func loadMap(loc: Location) {
