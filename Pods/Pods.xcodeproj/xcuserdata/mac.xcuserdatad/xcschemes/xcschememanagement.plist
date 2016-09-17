@@ -4,12 +4,37 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Fusuma.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MWPhotoBrowser-MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MWPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-wassup.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +47,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05BADE11C3F42982E16D6BC0926F9F67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0AAB93DF8EBBB7E9797ACB8C763889F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14E6E2E2484806AB62B60CA2EAD41F9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6461FF73E606AC17ECB9C28944E4F30F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7380ABD049E12DCFEC9B9E1D2D52C627</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85DD7AB9C9CE4554E737ABC28E9665BE</key>
+		<key>94624EC6C9739263AA965CFE2D8933F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C7779C2BCEBCA7AAADEF3D20763AEE96</key>
+		<key>BE7A5E8E0FDE9CA58316BC4D6568818D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>

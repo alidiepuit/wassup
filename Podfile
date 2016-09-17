@@ -8,4 +8,5 @@ target 'wassup' do
   pod 'SKPhotoBrowser'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'MWPhotoBrowser'
 end

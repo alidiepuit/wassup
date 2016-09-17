@@ -62,8 +62,10 @@ class Date: NSDate {
     }
     
     func parseFromString(d: String) -> NSDate {
-        let date = try self.formatInput.dateFromString(d)!
-        return parseFromDate(date)
+        if let date = self.formatInput.dateFromString(d) {
+            return parseFromDate(date)
+        }
+        return NSDate()
     }
     
     func parseFromDate(d: NSDate) -> NSDate {
