@@ -47,10 +47,14 @@ class CellSearch: UITableViewCell {
         }
         position.text = data["location"] as? String
         
-        if CONVERT_STRING(data["endtime"]) != "" && CONVERT_STRING(data["starttime"]) != "" && data["starttime"] != nil {
-            time.text = Date().printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
+        if cate == ObjectType.Event {
+            if CONVERT_STRING(data["endtime"]) != "" && CONVERT_STRING(data["starttime"]) != "" && data["starttime"] != nil {
+                time.text = Date().printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
+            } else {
+                
+            }
         } else {
-            
+            time.text = Date().printTimeOpen(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
         }
         
         if data["image"] != nil {

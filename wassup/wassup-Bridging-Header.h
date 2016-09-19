@@ -13,5 +13,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "Captcha.h"
 #import "AFNetworking.h"
+#import "UIPlaceHolderTextView.h"
 
 #endif

@@ -61,11 +61,16 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     public func callService(serviceURL: String, params: Dictionary<String, AnyObject>?, callback: ServiceResponse?) {
         var client:SRWebClient?
         for (key, value) in params! {
-            if value is NSData {
+            if value is NSData || value is [NSData] {
+                let d = value is NSData ? [value] : value
                 if client == nil {
-                    client = SRWebClient.POST(serviceURL).data(value as! NSData, fieldName:key, data:params)
+                    client = SRWebClient.POST(serviceURL).data(d as! [NSData], fieldName:key, data:params)
                 } else {
-                    client?.addImage(value as! NSData, fieldName: key)
+                    if value is NSData {
+                        client?.addImage(value as! NSData, fieldName: key)
+                    } else {
+                        client?.addMultiImage(value as! [NSData], fieldName: key)
+                    }
                 }
             }
         }

@@ -61,18 +61,19 @@
                                     <constraint firstAttribute="height" constant="44" id="qpm-bY-6MY"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_anchor" translatesAutoresizingMaskIntoConstraints="NO" id="nGu-l4-du6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_anchor" translatesAutoresizingMaskIntoConstraints="NO" id="nGu-l4-du6">
                                 <rect key="frame" x="21" y="180" width="14" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="ecf-zE-eIO"/>
+                                    <constraint firstAttribute="width" constant="14" id="pFO-fy-Baq"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="07:00AM - 09:00PM | 21 - 31/03/2016" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47K-Ic-Lu6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07:00AM - 09:00PM | 21 - 31/03/2016" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47K-Ic-Lu6">
                                 <rect key="frame" x="59" y="207" width="253" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="947 Jaime Crescent Apt. 185" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLO-Lw-fXA">
-                                <rect key="frame" x="59" y="171" width="253" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="o2w-wp-nkQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -123,23 +124,46 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_clock" translatesAutoresizingMaskIntoConstraints="NO" id="OMM-YL-r2C">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_clock" translatesAutoresizingMaskIntoConstraints="NO" id="OMM-YL-r2C">
                                 <rect key="frame" x="19" y="217" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Nl4-f9-Z8h"/>
+                                    <constraint firstAttribute="height" constant="16" id="awc-bq-AWM"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="947 Jaime Crescent Apt. 185" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLO-Lw-fXA">
+                                <rect key="frame" x="59" y="171" width="253" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="rhZ-Bg-dnS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="OMM-YL-r2C" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="19" id="0QW-mz-wQd"/>
                             <constraint firstAttribute="trailing" secondItem="lbC-z9-4kS" secondAttribute="trailing" id="3Gg-Le-ZyZ"/>
+                            <constraint firstItem="47K-Ic-Lu6" firstAttribute="leading" secondItem="OMM-YL-r2C" secondAttribute="trailing" constant="24" id="5VX-go-h0M"/>
                             <constraint firstAttribute="bottom" secondItem="lbC-z9-4kS" secondAttribute="bottom" id="6B0-o7-mVf"/>
+                            <constraint firstItem="nGu-l4-du6" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="21" id="8ml-9x-uJX"/>
                             <constraint firstItem="MCo-Yf-x0D" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" id="9Cd-sT-8ON"/>
                             <constraint firstItem="1Jz-F4-wcQ" firstAttribute="top" secondItem="TOD-2u-KiX" secondAttribute="bottom" constant="5" id="9Ch-rX-pyE"/>
                             <constraint firstItem="I17-nN-gzQ" firstAttribute="width" secondItem="keN-ez-2P7" secondAttribute="width" multiplier="1:2" id="ALj-vN-rI1"/>
+                            <constraint firstItem="47K-Ic-Lu6" firstAttribute="centerY" secondItem="OMM-YL-r2C" secondAttribute="centerY" id="Ehw-Ob-CQP"/>
                             <constraint firstItem="MCo-Yf-x0D" firstAttribute="top" secondItem="keN-ez-2P7" secondAttribute="top" id="F07-tV-Yq1"/>
                             <constraint firstAttribute="trailing" secondItem="eEZ-ea-FgS" secondAttribute="trailing" id="JXZ-qA-miC"/>
+                            <constraint firstItem="OLO-Lw-fXA" firstAttribute="leading" secondItem="nGu-l4-du6" secondAttribute="trailing" constant="24" id="JmV-nh-wK4"/>
                             <constraint firstItem="eEZ-ea-FgS" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" id="Kad-T1-SYO"/>
                             <constraint firstItem="59k-uK-HBH" firstAttribute="top" secondItem="1Jz-F4-wcQ" secondAttribute="bottom" constant="8" id="Rou-X3-qzk"/>
                             <constraint firstItem="I17-nN-gzQ" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" id="Sde-Pc-mj0"/>
+                            <constraint firstItem="OLO-Lw-fXA" firstAttribute="centerY" secondItem="nGu-l4-du6" secondAttribute="centerY" id="T22-wX-eWO"/>
                             <constraint firstItem="TOD-2u-KiX" firstAttribute="leading" secondItem="keN-ez-2P7" secondAttribute="leading" constant="10" id="T2x-e8-CbY"/>
+                            <constraint firstAttribute="trailing" secondItem="47K-Ic-Lu6" secondAttribute="trailing" constant="8" id="U5g-WC-Uft"/>
+                            <constraint firstItem="nGu-l4-du6" firstAttribute="top" secondItem="MCo-Yf-x0D" secondAttribute="bottom" constant="12" id="XLa-fd-N04"/>
+                            <constraint firstItem="OMM-YL-r2C" firstAttribute="top" secondItem="nGu-l4-du6" secondAttribute="bottom" constant="19" id="YNt-fq-4Sp"/>
+                            <constraint firstAttribute="trailing" secondItem="OLO-Lw-fXA" secondAttribute="trailing" constant="8" id="aTE-6Q-I6o"/>
                             <constraint firstItem="TOD-2u-KiX" firstAttribute="top" secondItem="keN-ez-2P7" secondAttribute="top" constant="10" id="cJm-dl-1Wr"/>
                             <constraint firstItem="lbC-z9-4kS" firstAttribute="width" secondItem="keN-ez-2P7" secondAttribute="width" multiplier="1:2" id="fxm-4c-K6d"/>
                             <constraint firstAttribute="trailing" secondItem="MCo-Yf-x0D" secondAttribute="trailing" id="mtH-KM-Zu3"/>

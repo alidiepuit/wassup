@@ -61,11 +61,11 @@ class Date: NSDate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func parseFromString(d: String) -> NSDate {
+    func parseFromString(d: String) -> NSDate? {
         if let date = self.formatInput.dateFromString(d) {
             return parseFromDate(date)
         }
-        return NSDate()
+        return nil
     }
     
     func parseFromDate(d: NSDate) -> NSDate {
@@ -83,14 +83,34 @@ class Date: NSDate {
     
     func printDateToDate(from: String, to: String) -> String{
         let dateFrom = Date()
-        dateFrom.parseFromString(from)
+        guard (dateFrom.parseFromString(from) != nil) else {
+            return "8:00AM - 8:00PM"
+        }
+        
         let dateTo = Date()
-        dateTo.parseFromString(to)
+        guard dateTo.parseFromString(to) != nil else {
+            return "8:00AM - 8:00PM"
+        }
         
         var res = "\(dateFrom.hm) - \(dateTo.hm) | \(dateFrom.day) - \(dateTo.day)/\(dateTo.month)/\(dateTo.year)"
         if dateFrom.month != dateTo.month {
             res = "\(dateFrom.hm) - \(dateTo.hm) | \(dateFrom.day)/\(dateFrom.month)/\(dateFrom.year) - \(dateTo.day)/\(dateTo.month)/\(dateTo.year)"
         }
+        return res
+    }
+    
+    func printTimeOpen(from: String, to: String) -> String {
+        let dateFrom = Date()
+        guard (dateFrom.parseFromString(from) != nil) else {
+            return "8:00AM - 8:00PM"
+        }
+        
+        let dateTo = Date()
+        guard dateTo.parseFromString(to) != nil else {
+            return "8:00AM - 8:00PM"
+        }
+        
+        let res = "\(dateFrom.hm) - \(dateTo.hm)"
         return res
     }
 }

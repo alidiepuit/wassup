@@ -16,18 +16,35 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
                         <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-Uv-Sm8">
+                        <rect key="frame" x="65" y="0.0" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="eUZ-rM-dED"/>
+                            <constraint firstAttribute="height" constant="30" id="oe0-eY-aFV"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="ic_close_red"/>
+                        <connections>
+                            <action selector="close:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ysd-DH-GA6"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="Txp-Uv-Sm8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Q6R-IM-Bys"/>
                 <constraint firstItem="vkU-ur-bi6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cin-Qs-Wir"/>
                 <constraint firstAttribute="trailing" secondItem="vkU-ur-bi6" secondAttribute="trailing" id="g7G-oM-eE0"/>
                 <constraint firstAttribute="bottom" secondItem="vkU-ur-bi6" secondAttribute="bottom" id="iaT-ki-8mN"/>
+                <constraint firstAttribute="trailing" secondItem="Txp-Uv-Sm8" secondAttribute="trailing" id="pMY-9j-DdN"/>
                 <constraint firstItem="vkU-ur-bi6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zLf-HD-pwM"/>
             </constraints>
             <connections>
+                <outlet property="btnClose" destination="Txp-Uv-Sm8" id="Ohs-KT-oJR"/>
                 <outlet property="img" destination="vkU-ur-bi6" id="lN0-Lb-Wsc"/>
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_close_red" width="128" height="128"/>
+    </resources>
 </document>

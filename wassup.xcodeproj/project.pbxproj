@@ -42,6 +42,10 @@
 		04422D0D1D816D5E009C470E /* MyMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0C1D816D5E009C470E /* MyMarker.swift */; };
 		04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0E1D826761009C470E /* MapSearchTagController.swift */; };
 		04422D121D82A428009C470E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D111D82A428009C470E /* ProfileController.swift */; };
+		044EC5091D902071007C604D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EC5081D902071007C604D /* UIPlaceHolderTextView.m */; };
+		046703011D8FBDA5003A612B /* WassupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703001D8FBDA5003A612B /* WassupMessage.swift */; };
+		046703081D8FC00F003A612B /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703071D8FC00F003A612B /* GSMessage.swift */; };
+		0467030B1D8FD8B4003A612B /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467030A1D8FD8B4003A612B /* CommentController.swift */; };
 		047F35CF1D62A0C500F0FE80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F35CE1D62A0C500F0FE80 /* AppDelegate.swift */; };
 		047F35D11D62A0C500F0FE80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F35D01D62A0C500F0FE80 /* ViewController.swift */; };
 		047F35D61D62A0C500F0FE80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047F35D51D62A0C500F0FE80 /* Images.xcassets */; };
@@ -217,6 +221,11 @@
 		04422D0C1D816D5E009C470E /* MyMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyMarker.swift; path = wassup/main/maps/MyMarker.swift; sourceTree = "<group>"; };
 		04422D0E1D826761009C470E /* MapSearchTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSearchTagController.swift; path = wassup/main/maps/MapSearchTagController.swift; sourceTree = "<group>"; };
 		04422D111D82A428009C470E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = wassup/main/User/ProfileController.swift; sourceTree = "<group>"; };
+		044EC5071D902071007C604D /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		044EC5081D902071007C604D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		046703001D8FBDA5003A612B /* WassupMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WassupMessage.swift; path = wassup/libs/WassupMessage.swift; sourceTree = "<group>"; };
+		046703071D8FC00F003A612B /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
+		0467030A1D8FD8B4003A612B /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentController.swift; path = wassup/main/Comment/CommentController.swift; sourceTree = "<group>"; };
 		047F35C91D62A0C500F0FE80 /* wassup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wassup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047F35CD1D62A0C500F0FE80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		047F35CE1D62A0C500F0FE80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -466,6 +475,23 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		044EC5061D902061007C604D /* UIPlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				044EC5071D902071007C604D /* UIPlaceHolderTextView.h */,
+				044EC5081D902071007C604D /* UIPlaceHolderTextView.m */,
+			);
+			name = UIPlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		046703091D8FD898003A612B /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				0467030A1D8FD8B4003A612B /* CommentController.swift */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
 		047F35C01D62A0C500F0FE80 = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +561,7 @@
 		047F35EE1D62B7FE00F0FE80 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				044EC5061D902061007C604D /* UIPlaceholderTextView */,
 				04D7E5051D88E5E100DF291A /* RadioButton */,
 				04954F4B1D7D4D150096B4B3 /* AFNetworking */,
 				04954F591D7D4D150096B4B3 /* UIKit+AFNetworking */,
@@ -556,6 +583,8 @@
 				04BBAD2B1D6CA08700626019 /* Language.swift */,
 				042C208D1D6D5DA20069DDFB /* Date.swift */,
 				04954F471D7D18290096B4B3 /* SwiftyJSON.swift */,
+				046703001D8FBDA5003A612B /* WassupMessage.swift */,
+				046703071D8FC00F003A612B /* GSMessage.swift */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -826,6 +855,7 @@
 		04F572751D659D8B002C5EBC /* main */ = {
 			isa = PBXGroup;
 			children = (
+				046703091D8FD898003A612B /* Comment */,
 				043F11331D87F41A004A06A0 /* Collection */,
 				04954F2D1D77C1AC0096B4B3 /* CheckIn */,
 				04F389411D681C4000625121 /* Search */,
@@ -1057,6 +1087,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				048AA73E1D6ABC05001912BA /* DetailEvent.swift in Sources */,
+				046703081D8FC00F003A612B /* GSMessage.swift in Sources */,
 				04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */,
 				043F112A1D87D72C004A06A0 /* SRWebClient.swift in Sources */,
 				0487C7361D7020A800D37580 /* Filter.swift in Sources */,
@@ -1090,6 +1121,7 @@
 				043298011D740C8100616D09 /* CellFollower.swift in Sources */,
 				048AA7381D6A904D001912BA /* CellBlog.swift in Sources */,
 				04A74E6D1D6EF9D0005F6418 /* DetailBlogController.swift in Sources */,
+				0467030B1D8FD8B4003A612B /* CommentController.swift in Sources */,
 				04F572831D65B8D3002C5EBC /* MainController.swift in Sources */,
 				04422D0D1D816D5E009C470E /* MyMarker.swift in Sources */,
 				04954F441D77E3D60096B4B3 /* TagView.swift in Sources */,
@@ -1106,6 +1138,7 @@
 				047F362E1D62F7AB00F0FE80 /* User.swift in Sources */,
 				043297FE1D73F79700616D09 /* Event.swift in Sources */,
 				04954F791D7D4D150096B4B3 /* UIImageView+AFNetworking.m in Sources */,
+				046703011D8FBDA5003A612B /* WassupMessage.swift in Sources */,
 				04954F371D77D72B0096B4B3 /* CheckInCollectionCell.swift in Sources */,
 				04954F3A1D77D8FF0096B4B3 /* DetailCheckInController.swift in Sources */,
 				04C503F91D642DB200E2B266 /* String+Email.swift in Sources */,
@@ -1120,6 +1153,7 @@
 				048AA7421D6AE82F001912BA /* DemoCell.swift in Sources */,
 				04C503F71D64165900E2B266 /* Captcha.m in Sources */,
 				047F35D11D62A0C500F0FE80 /* ViewController.swift in Sources */,
+				044EC5091D902071007C604D /* UIPlaceHolderTextView.m in Sources */,
 				043F11181D86528A004A06A0 /* CellProfileHeaderFavorite.swift in Sources */,
 				04C504001D64486C00E2B266 /* CellTags.swift in Sources */,
 				04F389351D67F90D00625121 /* TabCollectionCell.swift in Sources */,

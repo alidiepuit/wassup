@@ -147,8 +147,8 @@ public class SRWebClient : NSObject
     *
     *  @return self instance to support function chaining
     */
-    public func data(image:NSData, fieldName:String, data:RequestData?) -> SRWebClient {
-        if(image.length > 0 && self.urlRequest!.HTTPMethod == "POST") {
+    public func data(image:[NSData], fieldName:String, data:RequestData?) -> SRWebClient {
+        if(self.urlRequest!.HTTPMethod == "POST") {
             let postBody:NSMutableData = NSMutableData()
             var postData:String = String()
             let boundary:String = "------WebKitFormBoundary\(uniqueId)"
@@ -165,15 +165,19 @@ public class SRWebClient : NSObject
                     }
                 }
             }
-            postData += "--\(boundary)\r\n"
-            postData += "Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(Int64(NSDate().timeIntervalSince1970*1000)).jpg\"\r\n"
-            postData += "Content-Type: image/jpeg\r\n\r\n"
-            postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
-            postBody.appendData(image)
-            postData = String()
-            postData += "\r\n"
-            postData += "\r\n--\(boundary)--\r\n"
-            postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
+            
+            for i in image{
+                postData += "--\(boundary)\r\n"
+                postData += "Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(Int64(NSDate().timeIntervalSince1970*1000)).jpg\"\r\n"
+                postData += "Content-Type: image/jpeg\r\n\r\n"
+                postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
+                postBody.appendData(i)
+                postData = String()
+                postData += "\r\n"
+                postData += "\r\n--\(boundary)--\r\n"
+                postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
+                
+            }
             
             self.urlRequest!.HTTPBody = NSData(data: postBody)
         }
@@ -196,6 +200,13 @@ public class SRWebClient : NSObject
         
         self.urlRequest!.HTTPBody = NSData(data: postBody)
         
+        return self
+    }
+    
+    public func addMultiImage(images:[NSData], fieldName:String) -> SRWebClient {
+        for i in images {
+            self.addImage(i, fieldName: fieldName)
+        }
         return self
     }
     

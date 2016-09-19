@@ -35,6 +35,12 @@ class AboutDetailEventController: FeedsController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resizeHeightHeader(_:)), name: "RESIZE_HEIGHT_HEADER_DETAIL_EVENT", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showBrowserImage(_:)), name: "SHOW_BROWSER_IMAGE", object: nil)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+
+
     }
     
     func showBrowserImage(noti:NSNotification) {
