@@ -35,10 +35,11 @@ class CellEditProfile: UITableViewCell {
     }
     
     func saveProfile() {
+        Utils.lock()
         let md = User()
-        let avatarData = UIImagePNGRepresentation(avatar.image!)
-        let coverData = UIImagePNGRepresentation(cover.image!)
-        md.updateProfile(name.text!, email: email.text!, address: city.text!, avatar: avatarData!, cover: coverData!) {
+        let avatarData = avatar.image!
+        let coverData = cover.image!
+        md.updateProfile(name.text!, email: email.text!, address: city.text!, avatar: avatarData, cover: coverData) {
             (result:AnyObject?) in
             print(result)
         }

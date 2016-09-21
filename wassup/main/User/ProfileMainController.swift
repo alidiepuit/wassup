@@ -60,7 +60,26 @@ class ProfileMainController: FeedsController {
         if typeFeed == 0 {
             md.getOwnerActivities(CONVERT_STRING(detailUser["id"]), index: page, callback: handleData)
         } else {
-            md.getMyPost(CONVERT_STRING(detailUser["id"]), index: page, callback: handleData)
+            md.getMyPost(CONVERT_STRING(detailUser["id"]), index: page) {
+                (result:AnyObject?) in
+                if result != nil {
+                    if let d = result!["objects"] as? [Dictionary<String,AnyObject>] {
+                        if d.count <= 0 {
+                            self.isFinished = true
+                        }
+                        for a in d {
+                            let objectId = a["id"]
+                            if CONVERT_STRING(objectId) != "" {
+                                self.data.append(a)
+                                let lastIndexPath = NSIndexPath(forRow: self.data.count - 1, inSection: self.sectionHasData)
+                                self.tableView.insertRowsAtIndexPaths([lastIndexPath], withRowAnimation: .None)
+                            }
+                        }
+                    }
+                    self.loading = false
+                    self.ref.endRefreshing()
+                }
+            }
         }
     }
 
@@ -97,6 +116,7 @@ class ProfileMainController: FeedsController {
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("CellProfileHeaderPhoto") as! CellProfileHeaderPhoto
             cell.initData(detailUser)
+            cell.selectTypeFeed.selectedSegmentIndex = typeFeed
             return cell
         default:
             return nil

@@ -147,7 +147,7 @@ public class SRWebClient : NSObject
     *
     *  @return self instance to support function chaining
     */
-    public func data(image:[NSData], fieldName:String, data:RequestData?) -> SRWebClient {
+    public func data(images:[NSData]?, fieldName:String?, data:RequestData?) -> SRWebClient {
         if(self.urlRequest!.HTTPMethod == "POST") {
             let postBody:NSMutableData = NSMutableData()
             var postData:String = String()
@@ -166,22 +166,73 @@ public class SRWebClient : NSObject
                 }
             }
             
-            for i in image{
-                postData += "--\(boundary)\r\n"
-                postData += "Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(Int64(NSDate().timeIntervalSince1970*1000)).jpg\"\r\n"
-                postData += "Content-Type: image/jpeg\r\n\r\n"
-                postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
-                postBody.appendData(i)
-                postData = String()
-                postData += "\r\n"
-                postData += "\r\n--\(boundary)--\r\n"
-                postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
-                
+            if images != nil {
+                for i in images! {
+                    postData += "--\(boundary)\r\n"
+                    postData += "Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(Int64(NSDate().timeIntervalSince1970*1000)).jpg\"\r\n"
+                    postData += "Content-Type: image/jpeg\r\n\r\n"
+                    postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
+                    postBody.appendData(i)
+                    postData = String()
+                    postData += "\r\n"
+                    postData += "\r\n--\(boundary)--\r\n"
+                    postBody.appendData(postData.dataUsingEncoding(NSUTF8StringEncoding)!)
+                    
+                }
             }
             
             self.urlRequest!.HTTPBody = NSData(data: postBody)
         }
         return self
+    }
+    
+    func createBodyWithParameters(parameters: Dictionary<String,AnyObject>?) -> SRWebClient {
+        let body = NSMutableData()
+        let boundary:String = "Boundary-\(uniqueId)"
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                
+                if(value is String || value is NSString){
+                    body.appendString("--\(boundary)\r\n")
+                    body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                    body.appendString("\(value)\r\n")
+                }
+                else if(value is [UIImage]){
+                    var i = 0;
+                    for image in value as! [UIImage]{
+                        let filename = "image\(i).jpg"
+                        let data = UIImageJPEGRepresentation(image,1);
+                        let mimetype = mimeTypeForPath(NSURL(string:filename)!)
+                        
+                        body.appendString("--\(boundary)\r\n")
+                        body.appendString("Content-Disposition: form-data; name=\"\(key)[]\"; filename=\"\(filename)\"\r\n")
+                        body.appendString("Content-Type: \(mimetype)\r\n\r\n")
+                        body.appendData(data!)
+                        body.appendString("\r\n")
+                        i += 1;
+                    }
+                    
+                    
+                }
+            }
+        }
+        body.appendString("--\(boundary)--\r\n")
+//        print(NSString(data: body, encoding: NSUTF8StringEncoding)!);
+        self.urlRequest!.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField:"Content-Type")
+        self.urlRequest!.HTTPBody = body
+        return self
+    }
+    
+    func mimeTypeForPath(path: NSURL) -> String {
+        let pathExtension = path.pathExtension
+        var stringMimeType = "application/octet-stream";
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension!, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                stringMimeType = mimetype as NSString as String
+            }
+        }
+        return stringMimeType;
     }
     
     public func addImage(image:NSData, fieldName:String) -> SRWebClient {

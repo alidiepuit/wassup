@@ -34,16 +34,12 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         myRequest.HTTPMethod = method
         myRequest.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let vc = appDelegate.window!.rootViewController
-//        vc!.view.lock()
-        
         urlRequest = myRequest
         _call = callback
         NSURLConnection.sendAsynchronousRequest(myRequest, queue: NSOperationQueue.mainQueue()) {
             (response, data, error) -> Void in
             do {
-                vc!.view.unlock()
+                Utils.unlock()
                 if data != nil {
                     let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
                     if (self._call != nil) {
@@ -59,30 +55,15 @@ public class Connector: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     }
     
     public func callService(serviceURL: String, params: Dictionary<String, AnyObject>?, callback: ServiceResponse?) {
-        var client:SRWebClient?
-        for (key, value) in params! {
-            if value is NSData || value is [NSData] {
-                let d = value is NSData ? [value] : value
-                if client == nil {
-                    client = SRWebClient.POST(serviceURL).data(d as! [NSData], fieldName:key, data:params)
-                } else {
-                    if value is NSData {
-                        client?.addImage(value as! NSData, fieldName: key)
-                    } else {
-                        client?.addMultiImage(value as! [NSData], fieldName: key)
-                    }
-                }
+        let client = SRWebClient.POST(serviceURL).createBodyWithParameters(params)
+        client.send({(response:AnyObject!, status:Int) -> Void in
+            Utils.unlock()
+            if callback != nil {
+                callback!(response)
             }
-        }
-        if client != nil {
-            client!.send({(response:AnyObject!, status:Int) -> Void in
-                if callback != nil {
-                    callback!(response)
-                }
-                },failure:{(error:NSError!) -> Void in
-                    print(error)
-            })
-        }
+            },failure:{(error:NSError!) -> Void in
+                print(error)
+        })
     }
     
     public func connection(connection: NSURLConnection, didReceiveData data: NSData) {

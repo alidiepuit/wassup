@@ -27,6 +27,8 @@ public enum ActivityType: String {
     case CheckinHasFeeling = "%@ đang %@ tại %@"
     case Comment = "%@ đã bình luận %@"
     case UserRegistEvent = "%@ đã quan tâm hoạt động %@"
+    case PostActivity = "%@ mới đăng hoạt động %@"
+    case PostArticle = "%@ mới đăng bài viết %@"
 }
 
 public enum CollectionType: String {

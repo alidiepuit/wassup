@@ -17,10 +17,15 @@ class AboutDetailEventController: FeedsController {
     override var sectionHasData: Int {
         return 1
     }
-    var headerHeight = CGFloat(0)
+    override var canClickCell:Bool {
+        return false
+    }
+    var contentHeight = CGFloat(0)
     
     var images = [SKPhoto]()
     var browser = SKPhotoBrowser()
+    private var lastContentOffset: CGFloat = 0
+    var messageView:GSMessage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +41,46 @@ class AboutDetailEventController: FeedsController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showBrowserImage(_:)), name: "SHOW_BROWSER_IMAGE", object: nil)
         
+        messageView = GSMessage(text: Localization("Hãy để lại ấn tượng của bạn!"), type: .Success, options: [
+            .Animation(.Slide),
+            .AnimationDuration(0.3),
+            .AutoHide(false),
+            .AutoHideDelay(3.0),
+            .Height(44.0),
+            .HideOnTap(true),
+            .Position(.Bottom),
+            .TextAlignment(.Center),
+            .TextColor(UIColor.whiteColor()),
+            .TextNumberOfLines(1),
+            .TextPadding(30.0)
+            ], inView: self.view , inViewController: self)
+        messageView.delegate = self
+        messageView.show()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-
-
+        guard messageView != nil else {
+            return
+        }
+        messageView.hide()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        messageView.hide()
     }
     
     func showBrowserImage(noti:NSNotification) {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         browser.initializePageIndex(CONVERT_INT(d["index"]))
-        presentViewController(browser, animated: true, completion: nil)
+        Utils.presentViewController(browser, animated: true, completion: nil)
     }
     
     func resizeHeightHeader(noti: NSNotification) {
-        if headerHeight == 0 {
+        if contentHeight == 0 {
             let d = noti.userInfo as! Dictionary<String,CGFloat>
-            headerHeight = d["height"]!
+            contentHeight = d["height"]!
             tableView.reloadData()
         }
     }
@@ -143,27 +171,79 @@ class AboutDetailEventController: FeedsController {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 && self.detail != nil {
-            var hei = CGFloat(750)
+            var hei = CGFloat(650)
             
             let listImage = self.detail["photos"] != nil ? self.detail["photos"] as! Array<String> : []
-            if listImage.count <= 0 {
-                hei -= 130
+            if listImage.count > 0 {
+                hei += 140
             }
             
-            if headerHeight == 0 {
-                do {
-                    let str = CONVERT_STRING(self.detail!["description"])
-                    let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                        NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
-                        NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
-                    let hei = attr.heightWithConstrainedWidth(tableView.frame.size.width-16)
-                    return hei+hei
-                } catch {
-                    return hei
+            var heiListTag = CGFloat(0)
+            if let listTags = self.detail["tags"] as? [Dictionary<String,String>] {
+                let viewlistTags = TagListView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width - 30, height: 53))
+                viewlistTags.paddingY = 10
+                viewlistTags.paddingX = 15
+                viewlistTags.marginY = 10
+                viewlistTags.marginX = 10
+                viewlistTags.removeAllTags()
+                viewlistTags.cornerRadius = 15
+                viewlistTags.borderWidth = 2
+                for tag:Dictionary<String,String> in listTags {
+                    viewlistTags.addTag(tag["tag"]!, id: tag["tag_id"]!)
                 }
+                heiListTag = viewlistTags.intrinsicContentSize().height
+                hei += heiListTag
             }
-            return hei+headerHeight
+            
+            if contentHeight == 0 {
+                return hei
+            }
+            return hei + contentHeight
         }
         return 0
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "Comment" && detail != nil && detail!.count > 0 {
+            let vc = segue.destinationViewController as! CommentController
+            vc.data = detail
+            vc.cate = cate
+        }
+    }
 }
+
+extension AboutDetailEventController {
+
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        guard messageView != nil else {
+            return
+        }
+        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // move up
+            messageView.show()
+        }
+        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // move down
+            messageView.hide()
+        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+    
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        guard messageView != nil else {
+            return
+        }
+        messageView.show()
+    }
+}
+
+
+extension AboutDetailEventController: WassupMessageDelegate {
+    func didTapMessage() {
+        performSegueWithIdentifier("Comment", sender: nil)
+    }
+}
+

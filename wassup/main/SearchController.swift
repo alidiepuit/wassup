@@ -96,4 +96,8 @@ class SearchController: UIViewController {
         }
         performSegueWithIdentifier("SearchKeyword", sender: nil)
     }
+    
+    @IBAction func unwind(sender: UIStoryboardSegue) {
+        navigationController?.popViewControllerAnimated(true)
+    }
 }

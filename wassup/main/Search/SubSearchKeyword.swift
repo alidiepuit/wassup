@@ -29,7 +29,7 @@ class SubSearchKeyword: UITableViewController {
         
         tableView.registerNib(UINib(nibName: "CellFollower", bundle: nil), forCellReuseIdentifier: "CellFollower")
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loadData(_:)), name: "RELOAD_DATA_SEARCH_WHEN_APPEAR", object: nil)
+        refreshData(nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,8 +38,8 @@ class SubSearchKeyword: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "LOAD_DATA_SEARCH_WITH_NEW_KEYWORD", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loadData(_:)), name: "LOAD_DATA_SEARCH_WITH_NEW_KEYWORD", object: nil)
-        refreshData(nil)
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -13,6 +13,7 @@ class DetailEventController: UIViewController {
     @IBOutlet weak var content: UIView!
     var data:Dictionary<String,AnyObject>?
     var cate = ObjectType.Event
+    var messageView:GSMessage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,53 +50,31 @@ class DetailEventController: UIViewController {
         self.view.addSubview(tabPage.view)
         
         self.title = CONVERT_STRING(data!["name"])
-        
-        
     }
     
-    override func viewWillAppear(animated: Bool) {     
-        let message = GSMessage(text: Localization("Hãy để lại ấn tượng của bạn!"), type: .Success, options: [
-            .Animation(.Slide),
-            .AnimationDuration(0.3),
-            .AutoHide(false),
-            .AutoHideDelay(3.0),
-            .Height(44.0),
-            .HideOnTap(true),
-            .Position(.Bottom),
-            .TextAlignment(.Center),
-            .TextColor(UIColor.whiteColor()),
-            .TextNumberOfLines(1),
-            .TextPadding(30.0)
-            ], inView: self.view, inViewController: self)
-        message.delegate = self
-        message.show()
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+//        messageView.hide()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         
-            }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancel(sender: UIStoryboardSegue) {
+    @IBAction func unwind(sender: UIStoryboardSegue) {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "Comment" && data != nil && data!.count > 0 {
-            print(data)
-            let vc = segue.destinationViewController as! CommentController
-            vc.data = data
-            vc.cate = cate
-        }
-    }
-}
-
-extension DetailEventController: WassupMessageDelegate {
-    func didTapMessage() {
-        performSegueWithIdentifier("Comment", sender: nil)
-    }
 }

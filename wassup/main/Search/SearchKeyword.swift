@@ -154,6 +154,10 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCellWithIdentifier("cellFeed", forIndexPath: indexPath)
         return cell
     }
+    
+    @IBAction func unwind(sender: UIStoryboardSegue) {
+        navigationController?.popViewControllerAnimated(true)
+    }
 }
 
 extension SearchKeyword: TabPageViewDelegate {

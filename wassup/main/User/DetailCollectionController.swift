@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class DetailCollectionController: UICollectionViewController {
 
-    var collectionId = "1"
+    var collectionId = ""
     var data = [Dictionary<String,AnyObject>]()
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class DetailCollectionController: UICollectionViewController {
             return
         }
         let md = Collection()
-        md.getBookmarks("1") {
+        md.getBookmarks(collectionId) {
             (result:AnyObject?) in
             let d = result!["bookmarks"] as! [Dictionary<String,AnyObject>]
             for a in d {

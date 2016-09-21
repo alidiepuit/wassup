@@ -81,7 +81,7 @@ public class GSMessage {
     }
 
     func show() {
-
+        self.messageView.hidden = false
         if inView?.installedMessage != nil { return }
         
         updateFrames()
@@ -110,7 +110,8 @@ public class GSMessage {
     }
 
     func hide() {
-
+        self.messageView.hidden = true
+        return
         if inView?.installedMessage !== self || inView?.uninstallMessage != nil { return }
 
         inView?.uninstallMessage = self
@@ -137,9 +138,6 @@ public class GSMessage {
             )
         }
 
-        if delegate != nil {
-            delegate.didTapMessage()
-        }
     }
 
     private(set) weak var inView: UIView!
@@ -223,6 +221,10 @@ public class GSMessage {
 
     @objc private func handleTap(tapGesture: UITapGestureRecognizer) {
         hide()
+        
+        if delegate != nil {
+            delegate.didTapMessage()
+        }
     }
     
     @objc private func updateFrames() {

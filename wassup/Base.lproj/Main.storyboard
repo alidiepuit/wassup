@@ -824,7 +824,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJP-zB-TBJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="2985"/>
+            <point key="canvasLocation" x="2454" y="2985"/>
         </scene>
         <!--CheckIn-->
         <scene sceneID="lBl-86-jgy">
@@ -946,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fj4-zP-F1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3740" y="2985"/>
+            <point key="canvasLocation" x="3500" y="2985"/>
         </scene>
         <!--Search Controller-->
         <scene sceneID="jTp-FR-5no">
@@ -1006,7 +1006,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MMb-BK-e96"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0hC-cy-Iem">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22z-RC-afC">
@@ -1063,7 +1063,7 @@
                                     <constraint firstItem="0FG-84-bak" firstAttribute="centerY" secondItem="22z-RC-afC" secondAttribute="centerY" id="nuW-ii-UHe"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-mc-ahZ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-mc-ahZ">
                                 <rect key="frame" x="0.0" y="94" width="320" height="294"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rv2-SX-c3X">
@@ -1119,7 +1119,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M04-W1-7Tr">
-                                <rect key="frame" x="8" y="397" width="50" height="50"/>
+                                <rect key="frame" x="8" y="446" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="7Gv-jP-pCo"/>
                                     <constraint firstAttribute="width" constant="50" id="By7-H7-MMO"/>
@@ -1814,7 +1814,7 @@
                         <viewControllerLayoutGuide type="bottom" id="u3J-Gm-brG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PYt-cI-64e">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1823,7 +1823,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="KW5-ff-lFq">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="C90-ou-GwO" kind="unwind" unwindAction="unwind:" id="fyP-Mb-thC"/>
+                                <action selector="goBack:" destination="ZBQ-dx-Ju1" id="sBs-bY-XpB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="compose" id="jU4-y8-0oQ">
@@ -1839,7 +1839,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8j4-HZ-KPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="C90-ou-GwO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2484" y="4447"/>
         </scene>
@@ -1848,7 +1847,7 @@
             <objects>
                 <tableViewController id="j7X-gX-HWb" customClass="EditProfileController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="712" sectionHeaderHeight="28" sectionFooterHeight="28" id="JDh-DJ-Vjo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2098,7 +2097,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="Bnz-Oe-wdn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="unwind:" destination="4bf-gC-IVk" id="oxf-jb-Ttj"/>
+                                <segue destination="3Ut-xp-GND" kind="unwind" unwindAction="unwind:" id="RYj-wU-Y51"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lưu" id="0Oy-m0-RN1">
@@ -2119,6 +2118,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNs-lC-4z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Ut-xp-GND" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3102" y="5197"/>
         </scene>
@@ -2241,6 +2241,7 @@
                         <segue destination="slM-4D-CIW" kind="show" identifier="SearchKeyword" id="QLb-49-UcC"/>
                         <segue destination="eiV-bF-851" kind="show" identifier="DetailProfile" id="fWS-ay-2kw"/>
                         <segue destination="j7X-gX-HWb" kind="show" identifier="EditProfile" id="RjB-2B-s8Y"/>
+                        <segue destination="4bf-gC-IVk" kind="show" identifier="SaveCollection" id="nyl-2n-4rj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4Q-K5-WOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2729,6 +2730,7 @@
                         <segue destination="5sK-CI-VMZ" kind="show" identifier="DetailEvent" id="LZj-h3-2LC"/>
                         <segue destination="4bf-gC-IVk" kind="show" identifier="SaveCollection" id="uxa-qb-E7t"/>
                         <segue destination="slM-4D-CIW" kind="show" identifier="SearchKeyword" id="KGV-kP-qaF"/>
+                        <segue destination="y1f-hr-A0p" kind="show" identifier="Comment" id="BAv-fI-k3i"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pt-kE-XVS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2738,13 +2740,13 @@
         <!--Detail Event-->
         <scene sceneID="Qxp-kh-yxD">
             <objects>
-                <viewController id="5sK-CI-VMZ" customClass="DetailEventController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="5sK-CI-VMZ" customClass="DetailEventController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fYf-CM-IQP"/>
                         <viewControllerLayoutGuide type="bottom" id="gvZ-YA-Xcg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wzE-CD-vZz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2753,13 +2755,13 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="Ifq-ib-ECX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="cancel:" destination="5sK-CI-VMZ" id="UIF-XM-nPo"/>
+                                <action selector="unwind:" destination="5sK-CI-VMZ" id="eV6-rD-PAF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="eiV-bF-851" kind="show" identifier="DetailProfile" id="amh-SA-c4a"/>
                         <segue destination="y1f-hr-A0p" kind="show" identifier="Comment" id="RVt-al-01h"/>
+                        <segue destination="ZBQ-dx-Ju1" kind="show" identifier="DetailProfile" id="6TN-Aq-p1a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQx-P7-HVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2858,7 +2860,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JP-rh-RCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6147" y="2477"/>
+            <point key="canvasLocation" x="4787" y="3629"/>
         </scene>
         <!--Search Tag Controller-->
         <scene sceneID="bpf-2l-e2D">
@@ -2891,7 +2893,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EW4-l9-uQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mrx-z7-RZs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5110" y="2624"/>
+            <point key="canvasLocation" x="5374" y="3616"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yYh-Vh-a3a">
@@ -2988,10 +2990,10 @@
                         <viewControllerLayoutGuide type="bottom" id="vjl-Bo-gvk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qJX-gk-CRI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-jD-lvN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M1R-jD-lvN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.19215686269999999" green="0.67450980390000004" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -3010,7 +3012,7 @@
                                     <outlet property="delegate" destination="slM-4D-CIW" id="yeW-OV-VSm"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QbU-mo-cSB">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QbU-mo-cSB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -3036,7 +3038,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pbn-rt-1fR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4686" y="2624"/>
+            <point key="canvasLocation" x="4238" y="3616"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wEy-aW-3DE">
@@ -3055,7 +3057,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbB-r1-Hc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3208" y="2985"/>
+            <point key="canvasLocation" x="2968" y="2985"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5j6-R8-7Yx">
@@ -3074,7 +3076,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DZ-oJ-1OT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2234" y="2985"/>
+            <point key="canvasLocation" x="1994" y="2985"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2oB-6S-1nX">
@@ -3125,13 +3127,15 @@
         <image name="pencil" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zmm-Kh-Jk0"/>
         <segue reference="3Mc-Rw-QDv"/>
-        <segue reference="t9a-NK-aZM"/>
-        <segue reference="amh-SA-c4a"/>
-        <segue reference="QLb-49-UcC"/>
-        <segue reference="RjB-2B-s8Y"/>
-        <segue reference="uxa-qb-E7t"/>
+        <segue reference="zmm-Kh-Jk0"/>
+        <segue reference="Sil-1a-buj"/>
+        <segue reference="TXi-jk-hEo"/>
+        <segue reference="6TN-Aq-p1a"/>
+        <segue reference="RVt-al-01h"/>
+        <segue reference="xzg-Bt-jHC"/>
         <segue reference="iDn-X6-cFJ"/>
+        <segue reference="VTm-9E-o2a"/>
+        <segue reference="uxa-qb-E7t"/>
     </inferredMetricsTieBreakers>
 </document>

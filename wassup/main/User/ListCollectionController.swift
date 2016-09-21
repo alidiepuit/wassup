@@ -40,9 +40,9 @@ class ListCollectionController: UIViewController {
     }
     
     func callAPI() {
-        self.view.lock()
         let md = Collection()
         if dataProfile.count <= 0 {
+            Utils.lock()
             md.getMyCollections(handleData)
         } else {
             handleData(dataProfile)
@@ -50,7 +50,6 @@ class ListCollectionController: UIViewController {
     }
     
     func handleData(result:AnyObject?) {
-        self.view.unlock()
         let data = result!["collections"] as! [Dictionary<String,AnyObject>]
         for a:Dictionary<String,AnyObject> in data {
             self.data.append(a)

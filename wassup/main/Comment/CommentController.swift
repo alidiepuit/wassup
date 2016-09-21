@@ -86,14 +86,15 @@ class CommentController: UIViewController {
             return
         }
         
-        var arrImage = [NSData]()
+        Utils.lock()
+        var arrImage = [UIImage]()
         for i in listImages {
-            arrImage.append(UIImagePNGRepresentation(i.image!)!)
+            arrImage.append(i.image!)
         }
         let md = User()
         md.comment(cate, id: CONVERT_STRING(data["id"]), description: description, images: arrImage) {
             (result:AnyObject?) in
-            print(result)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
 }
@@ -144,7 +145,7 @@ extension CommentController: UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         let text = textView.text
         let hei = text.heightWithConstrainedWidth(content.frame.size.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!) + 20
-        constraintHeightComment.constant = hei < 50 ? 50 : hei
+        constraintHeightComment.constant = hei < 80 ? 80 : hei
         scroll.updateConstraints()
     }
 }

@@ -21,6 +21,10 @@ class FeedsController: UITableViewController {
         return 0
     }
     var detailProfile:Dictionary<String,AnyObject>!
+    var canClickCell:Bool {
+        return true
+    }
+    var heightForRows = [Int:CGFloat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,26 +32,36 @@ class FeedsController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         callAPI()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         initTable()
     }
     
-    func initTable() {
+    override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func initTable() {
         
         tableView.registerNib(UINib(nibName: "CellFeed", bundle: nil), forCellReuseIdentifier: "CellFeed")
         
         ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_TAG_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickTagOnFeed), name: "CLICK_TAG_ON_FEED", object: nil)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToDetailEventOnFeed), name: "CLICK_STATUS_GO_TO_DETAIL_EVENT_ON_FEED", object: nil)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickStatusGoToProfileOnFeed), name: "CLICK_STATUS_GO_TO_PROFILE_ON_FEED", object: nil)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_BOOKMARK_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickBookmarkOnFeed(_:)), name: "CLICK_BOOKMARK_ON_FEED", object: nil)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "BROWSER_PHOTOS_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(browserPhotosOnFeed(_:)), name: "BROWSER_PHOTOS_ON_FEED", object: nil)
     }
     
@@ -58,9 +72,10 @@ class FeedsController: UITableViewController {
     func browserPhotosOnFeed(noti:NSNotification) {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         let idx = CONVERT_INT(d["index"])
-        let browser = d["browser"] as! SKPhotoBrowser
+        let images = d["images"] as! [SKPhoto]
+        let browser = SKPhotoBrowser(photos: images)
         browser.initializePageIndex(idx)
-        presentViewController(browser, animated: true, completion: nil)
+        Utils.presentViewController(browser, animated: true, completion: nil)
     }
     
     func clickTagOnFeed(noti: NSNotification) {
@@ -91,6 +106,10 @@ class FeedsController: UITableViewController {
     }
     
     func refreshData(ref: UIRefreshControl) {
+        reloadDataWhenAppear()
+    }
+    
+    func reloadDataWhenAppear() {
         page = 1
         self.data.removeAll()
         tableView.reloadData()
@@ -98,6 +117,7 @@ class FeedsController: UITableViewController {
     }
     
     func callAPI() {
+        Utils.lock()
         let md = Feeds()
         loading = true
         md.getFeeds(index: page, callback: handleData)
@@ -138,18 +158,18 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("numberOfRowsSection", self.data.count)
         return self.data.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("cellForRowAtIndexPath", self.data.count)
         if sectionHasData == indexPath.section {
             let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
             
             let d:Dictionary<String,AnyObject> = data[indexPath.row]
             cell.initCell(d)
             cell.indexPath = indexPath
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath)
@@ -157,32 +177,42 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let d:Dictionary<String,AnyObject> = data[indexPath.row]
-        let item = d["item"] as! Dictionary<String,AnyObject>
-        let comment = CONVERT_STRING(item["comment"])
-        let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica", size: 14)!)
-        let heiLocation = CONVERT_STRING(item["location"]) != "" ? 77 : 0
-        
-        var heiListTag = CGFloat(0)
-        if let feelings = item["feelings"] as? Dictionary<String,AnyObject> {
-            if let _ = feelings["3"] as? [Dictionary<String,String>] {
-                let listTags = feelings["3"] as! [Dictionary<String,String>]
-                let viewlistTags = TagListView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width - 30, height: 53))
-                viewlistTags.paddingY = 10
-                viewlistTags.paddingX = 15
-                viewlistTags.marginY = 10
-                viewlistTags.marginX = 10
-                viewlistTags.removeAllTags()
-                viewlistTags.cornerRadius = 15
-                viewlistTags.borderWidth = 2
-                for tag:Dictionary<String,String> in listTags {
-                    viewlistTags.addTag(tag["text_feeling"]!, id: tag["id"]!)
-                }
-                heiListTag = viewlistTags.intrinsicContentSize().height
-            }
+        if let hei = heightForRows[indexPath.row] {
+            return hei
         }
-        
-        return heiComment + CGFloat(heiLocation) + CGFloat(heiListTag) + 320;
+        let d:Dictionary<String,AnyObject> = data[indexPath.row]
+        if let item = d["item"] as? Dictionary<String,AnyObject> {
+            let comment = CONVERT_STRING(item["comment"])
+            let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica", size: 14)!)
+            let heiLocation = CONVERT_STRING(item["location"]) != "" ? 77 : 0
+            
+            var heiListTag = CGFloat(0)
+            if let feelings = item["feelings"] as? Dictionary<String,AnyObject> {
+                if let _ = feelings["3"] as? [Dictionary<String,String>] {
+                    let listTags = feelings["3"] as! [Dictionary<String,String>]
+                    let viewlistTags = TagListView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width - 30, height: 53))
+                    viewlistTags.paddingY = 10
+                    viewlistTags.paddingX = 15
+                    viewlistTags.marginY = 10
+                    viewlistTags.marginX = 10
+                    viewlistTags.removeAllTags()
+                    viewlistTags.cornerRadius = 15
+                    viewlistTags.borderWidth = 2
+                    for tag:Dictionary<String,String> in listTags {
+                        viewlistTags.addTag(tag["text_feeling"]!, id: tag["id"]!)
+                    }
+                    heiListTag = viewlistTags.intrinsicContentSize().height
+                }
+            }
+            let res = heiComment + CGFloat(heiLocation) + CGFloat(heiListTag) + 320
+            heightForRows[indexPath.row] = res
+            return res
+        }
+        let comment = CONVERT_STRING(d["description"])
+        let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica", size: 14)!)
+        let res = heiComment + 275
+        heightForRows[indexPath.row] = res
+        return res
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -193,8 +223,14 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.indexPath = indexPath
-        self.performSegueWithIdentifier("DetailEvent", sender: nil)
+        print("didSelectRowAtIndexPath", indexPath.row, "count", self.data.count)
+        if canClickCell {
+            self.indexPath = indexPath
+            let d:Dictionary<String,AnyObject> = self.data[self.indexPath.row]
+            if let _:Dictionary<String,AnyObject> = d["item"] as? Dictionary<String,AnyObject> {
+                self.performSegueWithIdentifier("DetailEvent", sender: nil)
+            }
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -203,19 +239,21 @@ class FeedsController: UITableViewController {
             dest.searchBar.text = GLOBAL_KEYWORD
         }
         if segue.identifier == "DetailEvent" {
+            print(self.data.count)
             let vc = segue.destinationViewController as! DetailEventController
             let d:Dictionary<String,AnyObject> = self.data[self.indexPath.row]
-            let item:Dictionary<String,AnyObject> = d["item"] as! Dictionary<String,AnyObject>
-            var data = Dictionary<String,String>()
-            data["name"] = CONVERT_STRING(item["title"])
-            if CONVERT_STRING(item["event_id"]) != "" {
-                vc.cate = ObjectType.Event
-                data["id"] = CONVERT_STRING(item["event_id"])
-            } else if CONVERT_STRING(item["host_id"]) != "" {
-                vc.cate = ObjectType.Host
-                data["id"] = CONVERT_STRING(item["host_id"])
+            if let item:Dictionary<String,AnyObject> = d["item"] as? Dictionary<String,AnyObject> {
+                var dd = Dictionary<String,String>()
+                dd["name"] = CONVERT_STRING(item["title"])
+                if CONVERT_STRING(item["event_id"]) != "" {
+                    vc.cate = ObjectType.Event
+                    dd["id"] = CONVERT_STRING(item["event_id"])
+                } else if CONVERT_STRING(item["host_id"]) != "" {
+                    vc.cate = ObjectType.Host
+                    dd["id"] = CONVERT_STRING(item["host_id"])
+                }
+                vc.data = dd
             }
-            vc.data = data
         }
         
         if segue.identifier == "DetailProfile" {
@@ -227,8 +265,12 @@ class FeedsController: UITableViewController {
         if segue.identifier == "SaveCollection" {
             let vc = segue.destinationViewController as! ListCollectionController
             let d:Dictionary<String,AnyObject> = self.data[indexPath.row]
-            vc.objectId = CONVERT_STRING(d["object_id"])
+            vc.objectId = CONVERT_STRING(d["id"])
             vc.objectType = CollectionType.Feed
         }
+    }
+    
+    @IBAction func unwind(sender: UIStoryboardSegue) {
+        navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -186,15 +186,45 @@ class Utils: NSObject, CLLocationManagerDelegate {
         return HTMLToBeReturned
     }
     
+    class func presentViewController(vc: UIViewController, animated: Bool, completion: (() -> ())?) {
+        if let root = UIApplication.topViewController() {
+            root.presentViewController(vc, animated: animated, completion: nil)
+        }
+    }
+    
     class func lock() {
-        let dele = UIApplication.sharedApplication().delegate as! AppDelegate
-        let vc = dele.window?.rootViewController
-        vc?.view.lock()
+        if var vc = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            while let presentedViewController = vc.presentedViewController {
+                vc = presentedViewController
+            }
+            vc.view.lock()
+        }
     }
     
     class func unlock() {
-        let dele = UIApplication.sharedApplication().delegate as! AppDelegate
-        let vc = dele.window?.rootViewController
-        vc?.view.unlock()
+        if var vc = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            while let presentedViewController = vc.presentedViewController {
+                vc = presentedViewController
+            }
+            vc.view.unlock()
+        }
+    }
+}
+
+
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(presented)
+        }
+        return base
     }
 }

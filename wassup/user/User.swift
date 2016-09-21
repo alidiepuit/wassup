@@ -222,19 +222,19 @@ class User: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func updateProfile(fullname: String, email: String, address: String, avatar: NSData, cover: NSData, callback: ServiceResponse) {
+    func updateProfile(fullname: String, email: String, address: String, avatar: UIImage, cover: UIImage, callback: ServiceResponse) {
         let model = "u_user/updateProfile"
-        let dict = ["fullname": fullname,
+        let dict:Dictionary<String,AnyObject> = ["fullname": fullname,
                     "email": email,
                     "address": address,
-                    "image": avatar,
-                    "banner": cover,
+                    "image": [avatar],
+                    "banner": [cover],
                     "user_token": User.sharedInstance.token,
                     "login_style": User.sharedInstance.login_style]
         self.callAPI(model, params: dict, callback: callback)
     }
     
-    func comment(type: ObjectType, id: String, description: String, images: [NSData],callback: ServiceResponse) {
+    func comment(type: ObjectType, id: String, description: String, images: [UIImage],callback: ServiceResponse) {
         let model = "u_user/comment"
         
         var paramId = "host_id"

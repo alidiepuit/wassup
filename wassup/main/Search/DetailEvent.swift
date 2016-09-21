@@ -29,6 +29,8 @@ class DetailEvent: UITableViewCell {
     
     @IBOutlet weak var constraintContent: NSLayoutConstraint!
     
+    @IBOutlet weak var constraintHeightTagList: NSLayoutConstraint!
+    @IBOutlet weak var tagListView: TagListView!
     @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var constraintHeightViewTime: NSLayoutConstraint!
     
@@ -38,6 +40,7 @@ class DetailEvent: UITableViewCell {
     var activeRight = false
     
     var listImage:Array<String> = []
+    var listTags = [Dictionary<String,String>]()
     
     var observing = false
     var MyObservationContext = 0
@@ -87,28 +90,17 @@ class DetailEvent: UITableViewCell {
         }
         
         name.text = CONVERT_STRING(data["name"])
-        do {
-            var str = CONVERT_STRING(data["description"])
-            str = Utils.HTMLImageCorrector(str)
-            str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"\">" + str + "</div>"
-            let attr = try NSAttributedString(data: str.dataUsingEncoding(NSUTF8StringEncoding)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
-                NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!], documentAttributes: nil)
-            content.loadHTMLString(str, baseURL: NSURL(string:BASE_URL))
-            content.sizeToFit()
-            constraintContent.constant = attr.heightWithConstrainedWidth(content.frame.size.width)
-        } catch {
-            
-        }
+        var str = CONVERT_STRING(data["description"])
+        str = Utils.HTMLImageCorrector(str)
+        str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"\">" + str + "</div>"
+        content.loadHTMLString(str, baseURL: NSURL(string:BASE_URL))
+        content.sizeToFit()
         
         location.text = cate == ObjectType.Event ? CONVERT_STRING(data["location"]) : CONVERT_STRING(data["address"])
         if cate == ObjectType.Event && CONVERT_STRING(data["starttime"]) != "" && CONVERT_STRING(data["endtime"]) != "" {
             time.text = Date.sharedInstance.printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
-        }
-        
-        if cate == ObjectType.Host {
-            viewTime.hidden = true
-            constraintHeightViewTime.constant = 0
+        } else {
+            time.text = Date.sharedInstance.printTimeOpen(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
         }
         
         listImage = data["photos"] != nil ? data["photos"] as! Array<String> : []
@@ -117,6 +109,20 @@ class DetailEvent: UITableViewCell {
         } else {
             album.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
             album.reloadData()
+        }
+        
+        //init tag list view
+        tagListView.delegate = self
+        if let listTags = data["tags"] as? [Dictionary<String,String>] {
+            tagListView.removeAllTags()
+            for tag:Dictionary<String,String> in listTags {
+                tagListView.addTag(tag["tag"]!, id: tag["tag_id"]!)
+            }
+            constraintHeightTagList.constant = tagListView.intrinsicContentSize().height
+            tagListView.hidden = false
+        } else {
+            constraintHeightTagList.constant = 0
+            tagListView.hidden = true
         }
     }
     
@@ -219,4 +225,15 @@ extension DetailEvent: UIWebViewDelegate {
             startObservingHeight()
         }
     }
+}
+
+extension DetailEvent: TagListViewDelegate {
+    func tagPressed(title: String, tagView: TagView, sender: TagListView) {
+        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_TAG_ON_FEED", object: nil, userInfo: ["keyword":(tagView.titleLabel?.text)!])
+    }
+    
+    func tagRemoveButtonPressed(title: String, tagView: TagView, sender: TagListView) {
+        
+    }
+    
 }

@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailEvent" rowHeight="1183" id="Tsd-cl-oDi" customClass="DetailEvent" customModule="wassup" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="1180"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DetailEvent" rowHeight="800" id="Tsd-cl-oDi" customClass="DetailEvent" customModule="wassup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tsd-cl-oDi" id="Klw-tZ-OXw">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="1179"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="899"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover_blog" translatesAutoresizingMaskIntoConstraints="NO" id="C20-pN-xiX">
@@ -168,10 +168,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <webView userInteractionEnabled="NO" contentMode="scaleAspectFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdj-RQ-ogL">
-                        <rect key="frame" x="0.0" y="490" width="320" height="432"/>
+                        <rect key="frame" x="0.0" y="490" width="320" height="50"/>
                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="432" id="rPM-Z7-W7a"/>
+                            <constraint firstAttribute="height" constant="50" id="rPM-Z7-W7a"/>
                         </constraints>
                         <dataDetectorType key="dataDetectorTypes"/>
                         <connections>
@@ -179,7 +179,7 @@
                         </connections>
                     </webView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWq-sO-vrr">
-                        <rect key="frame" x="8" y="993" width="304" height="49"/>
+                        <rect key="frame" x="8" y="611" width="304" height="49"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_clock" translatesAutoresizingMaskIntoConstraints="NO" id="yN8-gU-1bS">
                                 <rect key="frame" x="0.0" y="17" width="16" height="16"/>
@@ -219,14 +219,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24J-ZB-Ijv">
-                        <rect key="frame" x="10" y="930" width="300" height="1"/>
+                        <rect key="frame" x="10" y="548" width="300" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="sVy-7Y-OM1"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dq-tF-0xj">
-                        <rect key="frame" x="8" y="936" width="304" height="49"/>
+                        <rect key="frame" x="8" y="554" width="304" height="49"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_anchor" translatesAutoresizingMaskIntoConstraints="NO" id="EeV-3j-S35">
                                 <rect key="frame" x="0.0" y="16" width="13" height="18"/>
@@ -266,7 +266,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6x2-LM-hgV">
-                        <rect key="frame" x="0.0" y="1051" width="320" height="129"/>
+                        <rect key="frame" x="0.0" y="671" width="320" height="129"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ev4-c9-tdb">
                                 <rect key="frame" x="8" y="0.0" width="20" height="20"/>
@@ -326,6 +326,54 @@
                             <constraint firstItem="bOv-ZG-AhY" firstAttribute="top" secondItem="6x2-LM-hgV" secondAttribute="top" id="etL-hD-2eF"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBl-db-7BX" customClass="TagListView" customModule="wassup" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="808" width="320" height="91"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="91" id="nRH-bw-bce"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTextColor">
+                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                <color key="value" red="0.19215686269999999" green="0.50588235290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                <color key="value" red="0.19215686269999999" green="0.50588235290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.19215686269999999" green="0.50588235290000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="marginY">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="marginX">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableRemoveButton" value="NO"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="removeButtonIconSize">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="6x2-LM-hgV" secondAttribute="trailing" id="22H-wl-RJF"/>
@@ -340,9 +388,12 @@
                     <constraint firstItem="jdj-RQ-ogL" firstAttribute="leading" secondItem="Klw-tZ-OXw" secondAttribute="leading" id="JQf-ln-pae"/>
                     <constraint firstAttribute="trailing" secondItem="24J-ZB-Ijv" secondAttribute="trailing" constant="10" id="JdN-Rh-P5a"/>
                     <constraint firstItem="DMm-Y3-oy7" firstAttribute="top" secondItem="C20-pN-xiX" secondAttribute="bottom" id="Kg4-p6-vtg"/>
+                    <constraint firstAttribute="bottom" secondItem="WBl-db-7BX" secondAttribute="bottom" id="KxI-er-xIr"/>
+                    <constraint firstAttribute="trailing" secondItem="WBl-db-7BX" secondAttribute="trailing" id="LgJ-Oa-R1K"/>
                     <constraint firstItem="jcQ-3I-v6P" firstAttribute="top" secondItem="hRq-hU-JrA" secondAttribute="bottom" constant="8" id="SZU-Iz-YYa"/>
                     <constraint firstItem="C20-pN-xiX" firstAttribute="leading" secondItem="Klw-tZ-OXw" secondAttribute="leading" id="VWf-G2-rQ0"/>
                     <constraint firstAttribute="trailing" secondItem="jdj-RQ-ogL" secondAttribute="trailing" id="Ygd-3a-uwM"/>
+                    <constraint firstItem="WBl-db-7BX" firstAttribute="leading" secondItem="Klw-tZ-OXw" secondAttribute="leading" id="Zrf-Ef-7M7"/>
                     <constraint firstItem="6dq-tF-0xj" firstAttribute="top" secondItem="24J-ZB-Ijv" secondAttribute="bottom" constant="5" id="a43-5B-UGf"/>
                     <constraint firstItem="6x2-LM-hgV" firstAttribute="leading" secondItem="Klw-tZ-OXw" secondAttribute="leading" id="ewd-Kr-3Cg"/>
                     <constraint firstAttribute="trailing" secondItem="DMm-Y3-oy7" secondAttribute="trailing" id="f9k-zN-Ib6"/>
@@ -354,18 +405,17 @@
                     <constraint firstItem="jcQ-3I-v6P" firstAttribute="leading" secondItem="Klw-tZ-OXw" secondAttribute="leading" id="t8k-ht-ptL"/>
                     <constraint firstItem="GWq-sO-vrr" firstAttribute="top" secondItem="6dq-tF-0xj" secondAttribute="bottom" constant="8" id="tnj-SY-2R8"/>
                     <constraint firstAttribute="trailing" secondItem="jcQ-3I-v6P" secondAttribute="trailing" id="xdi-rv-uvZ"/>
+                    <constraint firstItem="WBl-db-7BX" firstAttribute="top" secondItem="wp8-96-aaG" secondAttribute="bottom" constant="8" id="xuw-KN-09O"/>
                     <constraint firstItem="Wcq-xG-Y2J" firstAttribute="top" secondItem="DMm-Y3-oy7" secondAttribute="bottom" constant="8" id="yD3-aJ-n0x"/>
                     <constraint firstItem="jdj-RQ-ogL" firstAttribute="top" secondItem="Wcq-xG-Y2J" secondAttribute="bottom" constant="8" id="zzO-kC-Oxw"/>
                 </constraints>
             </tableViewCellContentView>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="6x2-LM-hgV" secondAttribute="bottom" id="6nX-DM-4sL"/>
-            </constraints>
             <connections>
                 <outlet property="album" destination="wp8-96-aaG" id="rSL-lC-w9c"/>
                 <outlet property="btnLeft" destination="QYz-YY-lF7" id="GJB-kl-UGg"/>
                 <outlet property="btnRight" destination="u2y-RS-Aps" id="NEG-GU-FNU"/>
                 <outlet property="constraintContent" destination="rPM-Z7-W7a" id="Puh-Ip-rlq"/>
+                <outlet property="constraintHeightTagList" destination="nRH-bw-bce" id="5bT-4Z-vcZ"/>
                 <outlet property="constraintHeightViewTime" destination="aFG-DA-6AO" id="Rmx-P8-pd2"/>
                 <outlet property="content" destination="jdj-RQ-ogL" id="GVo-6G-PEd"/>
                 <outlet property="cover" destination="C20-pN-xiX" id="BMr-5i-xGi"/>
@@ -376,11 +426,12 @@
                 <outlet property="location" destination="exG-Ds-9mf" id="wnU-ef-yse"/>
                 <outlet property="maps" destination="DMm-Y3-oy7" id="ryH-08-yfM"/>
                 <outlet property="name" destination="Wcq-xG-Y2J" id="c1L-ne-vRt"/>
+                <outlet property="tagListView" destination="WBl-db-7BX" id="HFM-XY-Yfi"/>
                 <outlet property="time" destination="UgP-L0-mw8" id="Ryi-J1-FDy"/>
                 <outlet property="viewPhoto" destination="6x2-LM-hgV" id="u4v-ju-20i"/>
                 <outlet property="viewTime" destination="GWq-sO-vrr" id="p0j-6I-eTF"/>
             </connections>
-            <point key="canvasLocation" x="551" y="428.5"/>
+            <point key="canvasLocation" x="551" y="428"/>
         </tableViewCell>
     </objects>
     <resources>

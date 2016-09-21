@@ -33,6 +33,7 @@ class UserController: UIViewController {
     }
     
     func getProfile() {
+        Utils.lock()
         let md = User()
         md.getMyProfile() {
             (result:AnyObject?) in
