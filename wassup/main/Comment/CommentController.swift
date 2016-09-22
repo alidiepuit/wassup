@@ -51,6 +51,14 @@ class CommentController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deselectImageComment(_:)), name: "DESELECT_IMAGE_COMMENT", object: nil)
         
         content.placeholder = Localization("What's on your mind?")
+        
+        let ges = UITapGestureRecognizer(target: self, action: #selector(hiddenKeyboard(_:)))
+        self.view.addGestureRecognizer(ges)
+    }
+    
+    func hiddenKeyboard(gesture: UIGestureRecognizer) {
+        
+        content.resignFirstResponder()
     }
 
     deinit {
@@ -72,10 +80,8 @@ class CommentController: UIViewController {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         let indexPath = d["indexPath"] as! NSIndexPath
         listImages = listImages.filter() {
-            if let i = $0 as? CellImage {
-                return i.indexPath != indexPath
-            }
-            return true
+            let i = $0 as CellImage
+            return i.indexPath != indexPath
         }
         images.reloadData()
     }
@@ -96,6 +102,10 @@ class CommentController: UIViewController {
             (result:AnyObject?) in
             self.navigationController?.popViewControllerAnimated(true)
         }
+    }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 

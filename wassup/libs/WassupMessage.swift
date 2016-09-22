@@ -15,7 +15,4 @@ public protocol WassupMessageDelegate {
 class WassupMessage: GSMessage {
 
     
-    class func showMessage(view: UIView, text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        GSMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: nil)
-    }
 }

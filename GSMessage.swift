@@ -39,28 +39,34 @@ public enum GSMessageOption {
     case TextNumberOfLines(Int)
 }
 
-extension UIViewController {
+extension UIViewController: WassupMessageDelegate {
 
-    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        WassupMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: self)
+    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?, delegate: WassupMessageDelegate) {
+        GSMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: self, delegate: delegate)
     }
 
     public func hideMessage() {
         view.hideMessage()
     }
 
+    public func didTapMessage() {
+        return
+    }
 }
 
-extension UIView {
+extension UIView: WassupMessageDelegate {
 
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?) {
-        WassupMessage.showMessageAddedTo(text, type: type, options: options, inView: self, inViewController: nil)
+        GSMessage.showMessageAddedTo(text, type: type, options: options, inView: self, inViewController: nil, delegate: self)
     }
 
     public func hideMessage() {
         installedMessage?.hide()
     }
 
+    public func didTapMessage() {
+        return
+    }
 }
 
 public class GSMessage {
@@ -73,22 +79,26 @@ public class GSMessage {
 
     public var delegate:WassupMessageDelegate!
     
-    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
-        if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
+    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate) {
+        if inView.installedMessage != nil && inView.uninstallMessage == nil {
+            inView.installedMessage?.show()
+            return
+        }
         if inView.installedMessage == nil {
-            GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController).show()
+            GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController, delegate: delegate).show()
         }
     }
 
     func show() {
-        self.messageView.hidden = false
-        if inView?.installedMessage != nil { return }
+        if inView?.installedMessage == nil {
+            inView?.installedMessage = self
+        } else {
+            messageView = inView.installedMessage!.messageView
+        }
         
         updateFrames()
-
-        inView?.installedMessage = self
         inView?.addSubview(messageView)
-
+        
         if animation == .Fade {
             messageView.alpha = 0
             UIView.animateWithDuration(animationDuration) { self.messageView.alpha = 1 }
@@ -110,8 +120,7 @@ public class GSMessage {
     }
 
     func hide() {
-        self.messageView.hidden = true
-        return
+
         if inView?.installedMessage !== self || inView?.uninstallMessage != nil { return }
 
         inView?.uninstallMessage = self
@@ -161,7 +170,7 @@ public class GSMessage {
 
     private var messageHeight: CGFloat { return offsetY + height }
 
-    init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?) {
+    init(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate?) {
 
         var inView = inView
         
@@ -213,6 +222,10 @@ public class GSMessage {
 
         self.inView = inView
         self.inViewController = inViewController
+        
+        if delegate != nil {
+            self.delegate = delegate
+        }
     }
     
     deinit {
@@ -257,23 +270,29 @@ public class GSMessage {
     }
 
 }
-
+var AssociatedObjectHandle: UInt8 = 0
 extension UIView {
 
     private var installedMessage: GSMessage? {
-        get { return objc_getAssociatedObject(self, &installedMessageKey) as? GSMessage }
-        set { objc_setAssociatedObject(self, &installedMessageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        get {
+            return objc_getAssociatedObject(self, &installedMessageKey) as? GSMessage
+        }
+        set {
+            objc_setAssociatedObject(self, &installedMessageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
 
     private var uninstallMessage: GSMessage? {
-        get { return objc_getAssociatedObject(self, &uninstallMessageKey) as? GSMessage }
-        set { objc_setAssociatedObject(self, &uninstallMessageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        get {
+            return objc_getAssociatedObject(self, &uninstallMessageKey) as? GSMessage
+        }
+        set(v) { objc_setAssociatedObject(self, &uninstallMessageKey, v, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
 }
 
-private var installedMessageKey = ""
-private var uninstallMessageKey = ""
+private var installedMessageKey = "wassupInstall"
+private var uninstallMessageKey = "wassupUninstall"
 
 private func GS_GCDAfter(delay:Double, closure:()->()) {
     dispatch_after(

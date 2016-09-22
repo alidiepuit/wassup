@@ -263,6 +263,10 @@ public final class FusumaViewController: UIViewController {
         
         let view = albumView.imageCropView
 
+        if self.albumView.phAsset == nil {
+            return
+        }
+        
         if fusumaCropImage {
             let normalizedX = view.contentOffset.x / view.contentSize.width
             let normalizedY = view.contentOffset.y / view.contentSize.height

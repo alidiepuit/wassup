@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
                         <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                     </imageView>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-Uv-Sm8">
@@ -27,11 +27,16 @@
                             <action selector="close:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ysd-DH-GA6"/>
                         </connections>
                     </button>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-0p-bhO">
+                        <rect key="frame" x="37" y="38" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="ykf-0p-bhO" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="IN8-Qp-uP3"/>
                 <constraint firstItem="Txp-Uv-Sm8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Q6R-IM-Bys"/>
+                <constraint firstItem="ykf-0p-bhO" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Tfz-ib-P87"/>
                 <constraint firstItem="vkU-ur-bi6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cin-Qs-Wir"/>
                 <constraint firstAttribute="trailing" secondItem="vkU-ur-bi6" secondAttribute="trailing" id="g7G-oM-eE0"/>
                 <constraint firstAttribute="bottom" secondItem="vkU-ur-bi6" secondAttribute="bottom" id="iaT-ki-8mN"/>
@@ -41,10 +46,13 @@
             <connections>
                 <outlet property="btnClose" destination="Txp-Uv-Sm8" id="Ohs-KT-oJR"/>
                 <outlet property="img" destination="vkU-ur-bi6" id="lN0-Lb-Wsc"/>
+                <outlet property="indicator" destination="ykf-0p-bhO" id="1kY-5o-Avc"/>
             </connections>
+            <point key="canvasLocation" x="-4.5" y="107.5"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="avatar_default" width="352" height="349"/>
         <image name="ic_close_red" width="128" height="128"/>
     </resources>
 </document>

@@ -28,9 +28,9 @@ class FeedsController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 400
         callAPI()
     }
     
@@ -117,7 +117,7 @@ class FeedsController: UITableViewController {
     }
     
     func callAPI() {
-        Utils.lock()
+        Utils.lock(self)
         let md = Feeds()
         loading = true
         md.getFeeds(index: page, callback: handleData)
@@ -167,9 +167,9 @@ class FeedsController: UITableViewController {
         if sectionHasData == indexPath.section {
             let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
             
-            let d:Dictionary<String,AnyObject> = data[indexPath.row]
-            cell.initCell(d)
-            cell.indexPath = indexPath
+//            let d:Dictionary<String,AnyObject> = data[indexPath.row]
+//            cell.initCell(d)
+//            cell.indexPath = indexPath
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath)
@@ -216,6 +216,10 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let d:Dictionary<String,AnyObject> = data[indexPath.row]
+        let cell = cell as! CellFeed
+        cell.initCell(d)
+        cell.indexPath = indexPath
         if !loading && !isFinished && indexPath.row == data.count-1 {
             page += 1
             callAPI()

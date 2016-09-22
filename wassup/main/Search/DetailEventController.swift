@@ -50,6 +50,7 @@ class DetailEventController: UIViewController {
         self.view.addSubview(tabPage.view)
         
         self.title = CONVERT_STRING(data!["name"])
+
     }
     
     deinit {
@@ -57,7 +58,7 @@ class DetailEventController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-//        messageView.hide()
+
     }
     
     override func viewWillAppear(animated: Bool) {

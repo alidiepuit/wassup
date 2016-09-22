@@ -8,20 +8,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellFeed" id="ICf-q0-4J4" customClass="CellFeed" customModule="wassup" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellFeed" id="ICf-q0-4J4" customClass="CellFeed" customModule="wassup" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="377" height="502"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ICf-q0-4J4" id="lAA-dc-1RH">
                 <rect key="frame" x="0.0" y="0.0" width="377" height="501"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR5-vp-ry1">
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR5-vp-ry1">
                         <rect key="frame" x="0.0" y="0.0" width="377" height="501"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-Hi-72R">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-Hi-72R">
                                 <rect key="frame" x="19" y="0.0" width="338" height="71"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-7d-ct9">
+                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="DZg-7d-ct9">
                                         <rect key="frame" x="0.0" y="10" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="fPd-OA-gje"/>
@@ -37,7 +37,7 @@
                                         <color key="textColor" red="0.60784313729999995" green="0.64705882349999999" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" editable="NO" text="AliDiep sẽ tham gia Happy Tour AliDiep sẽ tham gia Happy TourAliDiep sẽ tham gia Happy Tour AliDiep sẽ tham gia Happy Tour" translatesAutoresizingMaskIntoConstraints="NO" id="Uhj-PK-qmS">
+                                    <textView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" editable="NO" text="AliDiep sẽ tham gia Happy Tour AliDiep sẽ tham gia Happy TourAliDiep sẽ tham gia Happy Tour AliDiep sẽ tham gia Happy Tour" translatesAutoresizingMaskIntoConstraints="NO" id="Uhj-PK-qmS">
                                         <rect key="frame" x="56" y="0.0" width="282" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Mef-Qy-E4A"/>
@@ -62,10 +62,10 @@
                                     <constraint firstAttribute="height" constant="71" id="vPl-FG-XVo"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-RV-xBP">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-RV-xBP">
                                 <rect key="frame" x="0.0" y="77" width="377" height="424"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bp-qB-UGp">
+                                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bp-qB-UGp">
                                         <rect key="frame" x="15" y="0.0" width="347" height="52"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -74,7 +74,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-i0-cFH">
+                                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-i0-cFH">
                                         <rect key="frame" x="15" y="56" width="347" height="173"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -91,7 +91,7 @@
                                             <outlet property="delegate" destination="ICf-q0-4J4" id="mrC-Wg-GMK"/>
                                         </connections>
                                     </collectionView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvg-Eo-UOu" customClass="TagListView" customModule="wassup" customModuleProvider="target">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvg-Eo-UOu" customClass="TagListView" customModule="wassup" customModuleProvider="target">
                                         <rect key="frame" x="15" y="237" width="347" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="53" id="g09-sN-Kno"/>
@@ -139,7 +139,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-bh-n0r">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-bh-n0r">
                                         <rect key="frame" x="15" y="298" width="347" height="77"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="947 Jaime Crescent Apt. 18" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97N-1H-jSw">
@@ -190,10 +190,10 @@
                                             <constraint firstItem="97N-1H-jSw" firstAttribute="top" secondItem="lO1-bh-n0r" secondAttribute="top" constant="6" id="yr1-XL-QLw"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-OO-btc">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-OO-btc">
                                         <rect key="frame" x="0.0" y="380" width="189" height="44"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm0-Te-HFY">
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm0-Te-HFY">
                                                 <rect key="frame" x="46" y="7" width="96" height="31"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="czI-nm-g6e">
@@ -218,10 +218,10 @@
                                             <constraint firstAttribute="height" constant="44" id="aoB-Is-vu4"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ig0-AI-Pcd">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ig0-AI-Pcd">
                                         <rect key="frame" x="189" y="380" width="188" height="44"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-gW-MXA">
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-gW-MXA">
                                                 <rect key="frame" x="46" y="7" width="96" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thích" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNm-Xe-fg7">

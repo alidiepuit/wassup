@@ -43,6 +43,8 @@
 		04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D0E1D826761009C470E /* MapSearchTagController.swift */; };
 		04422D121D82A428009C470E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04422D111D82A428009C470E /* ProfileController.swift */; };
 		044EC5091D902071007C604D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EC5081D902071007C604D /* UIPlaceHolderTextView.m */; };
+		04578F3F1D93C01F001418CA /* UIImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04578F3E1D93C01F001418CA /* UIImageLoader.m */; };
+		04578F411D93D65B001418CA /* LazyLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04578F401D93D65B001418CA /* LazyLoadImage.swift */; };
 		046703011D8FBDA5003A612B /* WassupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703001D8FBDA5003A612B /* WassupMessage.swift */; };
 		046703081D8FC00F003A612B /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703071D8FC00F003A612B /* GSMessage.swift */; };
 		0467030B1D8FD8B4003A612B /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467030A1D8FD8B4003A612B /* CommentController.swift */; };
@@ -223,6 +225,9 @@
 		04422D111D82A428009C470E /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileController.swift; path = wassup/main/User/ProfileController.swift; sourceTree = "<group>"; };
 		044EC5071D902071007C604D /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		044EC5081D902071007C604D /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		04578F3D1D93C01F001418CA /* UIImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageLoader.h; sourceTree = "<group>"; };
+		04578F3E1D93C01F001418CA /* UIImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageLoader.m; sourceTree = "<group>"; };
+		04578F401D93D65B001418CA /* LazyLoadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LazyLoadImage.swift; path = wassup/libs/LazyLoadImage.swift; sourceTree = "<group>"; };
 		046703001D8FBDA5003A612B /* WassupMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WassupMessage.swift; path = wassup/libs/WassupMessage.swift; sourceTree = "<group>"; };
 		046703071D8FC00F003A612B /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
 		0467030A1D8FD8B4003A612B /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentController.swift; path = wassup/main/Comment/CommentController.swift; sourceTree = "<group>"; };
@@ -484,6 +489,16 @@
 			name = UIPlaceholderTextView;
 			sourceTree = "<group>";
 		};
+		04578F3C1D93BFF9001418CA /* UIImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				04578F3D1D93C01F001418CA /* UIImageLoader.h */,
+				04578F3E1D93C01F001418CA /* UIImageLoader.m */,
+				04578F401D93D65B001418CA /* LazyLoadImage.swift */,
+			);
+			name = UIImageLoader;
+			sourceTree = "<group>";
+		};
 		046703091D8FD898003A612B /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +576,7 @@
 		047F35EE1D62B7FE00F0FE80 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				04578F3C1D93BFF9001418CA /* UIImageLoader */,
 				044EC5061D902061007C604D /* UIPlaceholderTextView */,
 				04D7E5051D88E5E100DF291A /* RadioButton */,
 				04954F4B1D7D4D150096B4B3 /* AFNetworking */,
@@ -1133,6 +1149,7 @@
 				04954F6E1D7D4D150096B4B3 /* AFHTTPSessionManager.m in Sources */,
 				04954F7C1D7D4D150096B4B3 /* UIWebView+AFNetworking.m in Sources */,
 				042C20861D6D4CAE0069DDFB /* SearchEventController.swift in Sources */,
+				04578F3F1D93C01F001418CA /* UIImageLoader.m in Sources */,
 				04BBAD281D6C3F4500626019 /* ListCheckInController.swift in Sources */,
 				04A74E621D6EA198005F6418 /* CellImage.swift in Sources */,
 				047F362E1D62F7AB00F0FE80 /* User.swift in Sources */,
@@ -1168,6 +1185,7 @@
 				04954F331D77C2240096B4B3 /* CheckInEventController.swift in Sources */,
 				0487C73E1D703C7B00D37580 /* FilterEvent.swift in Sources */,
 				04954F411D77E3D60096B4B3 /* CloseButton.swift in Sources */,
+				04578F411D93D65B001418CA /* LazyLoadImage.swift in Sources */,
 				04954F7A1D7D4D150096B4B3 /* UIProgressView+AFNetworking.m in Sources */,
 				042C20881D6D4CC30069DDFB /* SearchHostController.swift in Sources */,
 				04D7E5081D88E5ED00DF291A /* SSRadioButtonsController.swift in Sources */,

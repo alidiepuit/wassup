@@ -142,6 +142,7 @@ class CellFeed: UITableViewCell {
                 listImage = [CONVERT_STRING(item["image"])]
                 collectionImage.scrollEnabled = false
             }
+            images.removeAll()
             for img in listImage {
                 let photo = SKPhoto.photoWithImageURL(img)
                 images.append(photo)
@@ -268,7 +269,8 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
-        LazyImage.showForImageView(cell.img, url: listImage[indexPath.row])
+//        LazyImage.showForImageView(cell.img, url: listImage[indexPath.row])
+        cell.setShot(listImage[indexPath.row])
         return cell
     }
     

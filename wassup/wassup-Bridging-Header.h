@@ -14,5 +14,6 @@
 #import "Captcha.h"
 #import "AFNetworking.h"
 #import "UIPlaceHolderTextView.h"
+#import "UIImageLoader.h"
 
 #endif

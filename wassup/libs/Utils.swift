@@ -191,22 +191,17 @@ class Utils: NSObject, CLLocationManagerDelegate {
             root.presentViewController(vc, animated: animated, completion: nil)
         }
     }
-    
-    class func lock() {
-        if var vc = UIApplication.sharedApplication().keyWindow?.rootViewController {
-            while let presentedViewController = vc.presentedViewController {
-                vc = presentedViewController
-            }
+    static var vc:UIViewController!
+    class func lock(base: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController) {
+        if let vc = UIApplication.topViewController(base) {
             vc.view.lock()
+            self.vc = vc
         }
     }
     
     class func unlock() {
-        if var vc = UIApplication.sharedApplication().keyWindow?.rootViewController {
-            while let presentedViewController = vc.presentedViewController {
-                vc = presentedViewController
-            }
-            vc.view.unlock()
+        if self.vc != nil {
+            self.vc.view.unlock()
         }
     }
 }
