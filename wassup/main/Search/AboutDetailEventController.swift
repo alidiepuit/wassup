@@ -25,6 +25,7 @@ class AboutDetailEventController: FeedsController {
     var images = [SKPhoto]()
     var browser = SKPhotoBrowser()
     private var lastContentOffset: CGFloat = 0
+    var message:GSMessage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +41,7 @@ class AboutDetailEventController: FeedsController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showBrowserImage(_:)), name: "SHOW_BROWSER_IMAGE", object: nil)
         
-        showMessage()
-    }
-    
-    func showMessage() {
-        let vc = UIApplication.topViewController()
-        vc!.showMessage(Localization("Hãy để lại ấn tượng của bạn!"), type: .Success, options: [
+        message = GSMessage(text: Localization("Hãy để lại ấn tượng của bạn!"), type: .Success, options: [
             .Animation(.Slide),
             .AnimationDuration(0.3),
             .AutoHide(false),
@@ -57,21 +53,16 @@ class AboutDetailEventController: FeedsController {
             .TextColor(UIColor.whiteColor()),
             .TextNumberOfLines(1),
             .TextPadding(30.0)
-            ], delegate: self)
-    }
-    
-    func hideMessageView() {
-        let vc = UIApplication.topViewController()
-        vc!.hideMessage()
+            ], inView: self.view, inViewController: self, delegate: self)
     }
     
     override func viewDidAppear(animated: Bool) {
+        message.show()
     }
     
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        let vc = UIApplication.topViewController()
-        vc!.hideMessage()
+        message.hide()
     }
     
     func showBrowserImage(noti:NSNotification) {
@@ -219,13 +210,16 @@ class AboutDetailEventController: FeedsController {
 extension AboutDetailEventController {
 
     override func scrollViewDidScroll(scrollView: UIScrollView) {
+        guard message != nil else {
+            return
+        }
         if (self.lastContentOffset > scrollView.contentOffset.y) {
             // move up
-            showMessage()
+            message.show()
         }
         else if (self.lastContentOffset < scrollView.contentOffset.y) {
             // move down
-            hideMessageView()
+            message.hide()
         }
         
         // update the new position acquired
@@ -233,7 +227,7 @@ extension AboutDetailEventController {
     }
     
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-//        showMessage()
+        message.show()
     }
 }
 

@@ -80,25 +80,21 @@ public class GSMessage {
     public var delegate:WassupMessageDelegate!
     
     class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate) {
-        if inView.installedMessage != nil && inView.uninstallMessage == nil {
-            inView.installedMessage?.show()
-            return
-        }
+        if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
         if inView.installedMessage == nil {
             GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController, delegate: delegate).show()
         }
     }
 
     func show() {
-        if inView?.installedMessage == nil {
-            inView?.installedMessage = self
-        } else {
-            messageView = inView.installedMessage!.messageView
-        }
+
+        if inView?.installedMessage != nil { return }
         
         updateFrames()
+
+        inView?.installedMessage = self
         inView?.addSubview(messageView)
-        
+
         if animation == .Fade {
             messageView.alpha = 0
             UIView.animateWithDuration(animationDuration) { self.messageView.alpha = 1 }
@@ -110,8 +106,8 @@ public class GSMessage {
         }
 
         else if animation == .Slide && position == .Bottom {
-            messageView.transform = CGAffineTransformMakeTranslation(0, height)
-            UIView.animateWithDuration(animationDuration) { self.messageView.transform = CGAffineTransformMakeTranslation(0, 0) }
+//            messageView.transform = CGAffineTransformMakeTranslation(0, height)
+//            UIView.animateWithDuration(animationDuration) { self.messageView.transform = CGAffineTransformMakeTranslation(0, self.height) }
         }
 
         if autoHide { GS_GCDAfter(autoHideDelay) { self.hide() } }
@@ -259,7 +255,6 @@ public class GSMessage {
         case .Bottom:
             y = inView.bounds.size.height - height
         }
-        
         messageView.frame     = CGRect(x: 0, y: y, width: inView.bounds.size.width, height: messageHeight)
         messageText.frame = CGRect(x: textPadding, y: offsetY, width: messageView.bounds.size.width - textPadding * 2, height: height)
     }

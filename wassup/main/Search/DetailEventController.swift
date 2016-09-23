@@ -13,7 +13,6 @@ class DetailEventController: UIViewController {
     @IBOutlet weak var content: UIView!
     var data:Dictionary<String,AnyObject>?
     var cate = ObjectType.Event
-    var messageView:GSMessage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +50,7 @@ class DetailEventController: UIViewController {
         
         self.title = CONVERT_STRING(data!["name"])
 
+        
     }
     
     deinit {
