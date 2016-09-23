@@ -78,7 +78,7 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
                 date.formatOutput = format
                 self.info.text = "\(date.print(CONVERT_STRING(d["created_at"]))) | \(CONVERT_STRING(d["author"]))"
                 
-                LazyImage.showForImageView(self.cover, url: CONVERT_STRING(d["image"]))
+                Utils.loadImage(self.cover, link: CONVERT_STRING(d["image"]))
                 
                 self.title = CONVERT_STRING(d["name"])
             }

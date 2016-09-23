@@ -51,11 +51,11 @@ class OptionController: UIViewController {
     }
 
     @IBAction func btnRegFB(sender: AnyObject) {
-        self.view.lock()
+        Utils.lock()
         let model = User()
         model.facebook() {
             (result:AnyObject?) in
-            self.view.unlock()
+            Utils.unlock()
             let dict:Dictionary<String, AnyObject> = result as! Dictionary<String, AnyObject>
             let status = Int(dict["status"] as! NSNumber)
             if status == 1 {

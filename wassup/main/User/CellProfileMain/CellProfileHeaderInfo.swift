@@ -28,8 +28,8 @@ class CellProfileHeaderInfo: UITableViewCell {
     }
 
     func initData(data:Dictionary<String,AnyObject>) {
-        LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["image"]))
-        LazyImage.showForImageView(cover, url: CONVERT_STRING(data["banner"]))
+        Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
+        Utils.loadImage(cover, link: CONVERT_STRING(data["banner"]))
         namefuck.text = CONVERT_STRING(data["fullname"])
         lblView.text = CONVERT_STRING(data["hit"])
         lblFollow.text = CONVERT_STRING(data["attend_number"])

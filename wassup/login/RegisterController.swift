@@ -17,12 +17,13 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var refresh: UIButton!
     @IBOutlet weak var captcha: UITextField!
     @IBOutlet weak var imgCaptcha: UILabel!
-    
+    @IBOutlet weak var fullname: UITextField!
     let cap = Captcha()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fullname.corner(20, border: 2, colorBorder: 0xFFFFFF)
         email.corner(20, border: 2, colorBorder: 0xFFFFFF)
         password.corner(20, border: 2, colorBorder: 0xFFFFFF)
         rePassword.corner(20, border: 2, colorBorder: 0xFFFFFF)
@@ -54,8 +55,18 @@ class RegisterController: UIViewController, UITextFieldDelegate {
     
     @IBAction func clickRegister(sender: AnyObject) {
         let alert = UIAlertView(title: Localization("Thông báo"), message: "", delegate: nil, cancelButtonTitle: "OK")
-        if email.text == "" || password.text == "" || rePassword.text == "" || captcha.text == "" {
+        if fullname.text!.trim() == "" || email.text!.trim() == "" || password.text!.trim() == "" || rePassword.text!.trim() == "" || captcha.text!.trim() == "" {
             alert.message = Localization("Không được để trống thông tin đăng ký")
+            alert.show()
+            return
+        }
+        if fullname.text!.trim() == "" {
+            alert.message = Localization("Họ tên không hợp lệ")
+            alert.show()
+            return
+        }
+        if !email.text!.validEmail() && !email.text!.validPhoneNumber() {
+            alert.message = Localization("Email hoặc Phone không hợp lệ")
             alert.show()
             return
         }
@@ -69,13 +80,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             alert.show()
             return
         }
-        if !email.text!.validEmail() {
-            alert.message = Localization("Email không hợp lệ")
-            alert.show()
-            return
-        }
         let md = User()
-        md.register(email.text!, passwd: password.text!) {
+        md.register(email.text!.trim(), fullname: fullname.text!.trim(), passwd: password.text!.trim()) {
             (result:AnyObject?) in
             if let dict = result as? Dictionary<String, AnyObject> {
                 let status = Int(dict["status"] as! NSNumber)

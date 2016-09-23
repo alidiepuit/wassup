@@ -58,7 +58,7 @@ class CellSearch: UITableViewCell {
         }
         
         if data["image"] != nil {
-            LazyImage.showForImageView(cover, url: data["image"]! as? String)
+            Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
         }
         
         let gestureJoin = UITapGestureRecognizer(target: self, action: #selector(clickLeft))

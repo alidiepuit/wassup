@@ -125,7 +125,7 @@ class SubSearchKeyword: UITableViewController {
                 return cell
             case .Users:
                 let cell = self.tableView.dequeueReusableCellWithIdentifier("CellFollower", forIndexPath: indexPath) as! CellFollower
-                LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
+                Utils.loadImage(cell.avatar, link: CONVERT_STRING(d["image"]))
                 cell.name.text = CONVERT_STRING(d["name"])
                 cell.address.text = CONVERT_STRING(d["location"])
                 if CONVERT_BOOL(d["is_follow"]) {
@@ -143,7 +143,7 @@ class SubSearchKeyword: UITableViewController {
                 return cell
             default:
                 let cell = tableView.dequeueReusableCellWithIdentifier("CellEvent", forIndexPath: indexPath) as! CellEvent
-                LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
+                Utils.loadImage(cell.avatar, link: CONVERT_STRING(d["image"]))
                 cell.name.text = CONVERT_STRING(d["name"])
                 
                 cell.address.text = ""

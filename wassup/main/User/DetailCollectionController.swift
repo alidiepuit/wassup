@@ -58,7 +58,7 @@ class DetailCollectionController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellDetailCollection
         let d = data[indexPath.row]
-        LazyImage.showForImageView(cell.img, url: CONVERT_STRING(d["image"]))
+        Utils.loadImage(cell.img, link: CONVERT_STRING(d["image"]))
         cell.content.text = CONVERT_STRING(d["description"])
         return cell
     }

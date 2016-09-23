@@ -50,7 +50,7 @@ extension CellProfileHeaderPhoto: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
-        LazyImage.showForImageView(cell.img, url: listImage[indexPath.row])
+        Utils.loadImage(cell.img, link: listImage[indexPath.row])
         return cell
     }
     

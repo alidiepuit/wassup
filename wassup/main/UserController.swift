@@ -38,7 +38,7 @@ class UserController: UIViewController {
         md.getMyProfile() {
             (result:AnyObject?) in
             self.data = result!["user"] as! Dictionary<String,AnyObject>
-            LazyImage.showForImageView(self.avatar, url: CONVERT_STRING(self.data["image"]))
+            Utils.loadImage(self.avatar, link: CONVERT_STRING(self.data["image"]))
             self.name.text = CONVERT_STRING(self.data["fullname"])
         }
     }

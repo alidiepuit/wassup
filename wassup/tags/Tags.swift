@@ -62,7 +62,7 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellTags", forIndexPath: indexPath) as! CellTags
         
         let d = self.data[indexPath.row]
-        LazyImage.showForImageView(cell.img, url: d["image"] as? String)
+        Utils.loadImage(cell.img, link: CONVERT_STRING(d["image"]))
         cell.img.layer.cornerRadius = 10
         cell.img.clipsToBounds = true
         cell.name.text = d["tag"] as? String

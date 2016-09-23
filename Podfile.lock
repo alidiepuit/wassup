@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (3.5.0)
+  - AlamofireImage (2.0.0):
+    - Alamofire (~> 3.0)
   - Crashlytics (3.8.1):
     - Fabric (~> 1.6.3)
   - DACircularProgress (2.3.1)
@@ -22,6 +25,7 @@ PODS:
   - SKPhotoBrowser (2.0.2)
 
 DEPENDENCIES:
+  - AlamofireImage (= 2.0)
   - Crashlytics
   - Fabric
   - Fusuma
@@ -31,6 +35,8 @@ DEPENDENCIES:
   - SKPhotoBrowser
 
 SPEC CHECKSUMS:
+  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
   Crashlytics: 4391d8df0b125345e9f209c5db6e7f40a6a8435d
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
@@ -42,6 +48,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SKPhotoBrowser: a23a4125deca7451d298248c7eafc8332fb909df
 
-PODFILE CHECKSUM: 7dbf73036363d41ff4dd30a12a49cb94a64a38e8
+PODFILE CHECKSUM: ebe6832a8445ee46b368c6c7a614d5f87d9de038
 
 COCOAPODS: 1.0.1

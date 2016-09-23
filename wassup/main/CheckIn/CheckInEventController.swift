@@ -93,7 +93,7 @@ extension CheckInEventController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellEvent", forIndexPath: indexPath) as! CellEvent
         let d:Dictionary<String,AnyObject> = self.data[indexPath.row]
-        LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
+        Utils.loadImage(cell.avatar, link: CONVERT_STRING(d["image"]))
         cell.name.text = CONVERT_STRING(d["name"])
         
         cell.address.text = ""

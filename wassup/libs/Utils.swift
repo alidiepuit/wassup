@@ -204,6 +204,15 @@ class Utils: NSObject, CLLocationManagerDelegate {
             self.vc.view.unlock()
         }
     }
+    
+    class func loadImage(image: UIImageView, link: String?) {
+        if link == nil || link == "" {
+            image.image = UIImage(named:"logo")
+            return
+        }
+        let url = NSURL(string: link!)!
+        image.af_setImageWithURL(url, placeholderImage: UIImage(named:"logo"))
+    }
 }
 
 

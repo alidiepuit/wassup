@@ -13,8 +13,9 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_default" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vkU-ur-bi6">
                         <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-Uv-Sm8">
                         <rect key="frame" x="65" y="0.0" width="30" height="30"/>
@@ -27,7 +28,7 @@
                             <action selector="close:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ysd-DH-GA6"/>
                         </connections>
                     </button>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-0p-bhO">
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-0p-bhO">
                         <rect key="frame" x="37" y="38" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
@@ -52,7 +53,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="avatar_default" width="352" height="349"/>
         <image name="ic_close_red" width="128" height="128"/>
+        <image name="logo" width="262" height="130"/>
     </resources>
 </document>

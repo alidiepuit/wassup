@@ -8,6 +8,7 @@
 
 import UIKit
 import SKPhotoBrowser
+import AlamofireImage
 
 class CellFeed: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
@@ -43,11 +44,7 @@ class CellFeed: UITableViewCell {
     var images = [SKPhoto]()
     
     func initCell(data: Dictionary<String, AnyObject>) {
-        if CONVERT_STRING(data["user_image"]) != "" {
-            LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["user_image"]))
-        } else {
-            avatar.image = UIImage(named: "avatar_default")
-        }
+        Utils.loadImage(avatar, link: CONVERT_STRING(data["user_image"]))
         
         lblTimeAgo.text = CONVERT_STRING(data["time_ago"])
         
@@ -117,6 +114,8 @@ class CellFeed: UITableViewCell {
             if lblComment.text == "" {
                 constraintComment.constant = 0
             } else {
+//                let ges = UITapGestureRecognizer(target: self, action: #selector(viewMore(_:)))
+//                lblComment.addGestureRecognizer(ges)
                 constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica", size: 14)!)
             }
             
@@ -231,6 +230,10 @@ class CellFeed: UITableViewCell {
         }
     }
     
+    func viewMore(tap: UITapGestureRecognizer) {
+        constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica", size: 14)!)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -269,8 +272,7 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
-//        LazyImage.showForImageView(cell.img, url: listImage[indexPath.row])
-        cell.setShot(listImage[indexPath.row])
+        Utils.loadImage(cell.img, link: listImage[indexPath.row])
         return cell
     }
     
@@ -278,9 +280,9 @@ extension CellFeed: UICollectionViewDelegate, UICollectionViewDataSource {
                         layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         if listImage.count == 1 {
-            return CGSizeMake(collectionView.bounds.size.width, CGFloat(collectionView.bounds.size.height))
+            return CGSizeMake(collectionView.bounds.size.width, CGFloat(collectionView.bounds.size.height-10))
         }
-        return CGSizeMake(collectionView.bounds.size.height, CGFloat(collectionView.bounds.size.height))
+        return CGSizeMake(collectionView.bounds.size.height, CGFloat(collectionView.bounds.size.height-10))
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

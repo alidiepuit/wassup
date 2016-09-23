@@ -9,4 +9,5 @@ target 'wassup' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'MWPhotoBrowser'
+  pod 'AlamofireImage', '2.0'
 end

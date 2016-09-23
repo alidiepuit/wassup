@@ -87,7 +87,7 @@ class FollowerController: UITableViewController {
         let d:Dictionary<String,AnyObject> = self.data![indexPath.row]
 
         if CONVERT_STRING(d["image"]) != "" {
-            LazyImage.showForImageView(cell.avatar, url: CONVERT_STRING(d["image"]))
+            Utils.loadImage(cell.avatar, link: CONVERT_STRING(d["image"]))
         } else {
             cell.avatar.image = UIImage(named: "avatar_default")
         }

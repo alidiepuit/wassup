@@ -51,9 +51,9 @@ class DetailEvent: UITableViewCell {
     
     func initData(data:Dictionary<String,AnyObject>) {
         if cate == ObjectType.Event {
-            LazyImage.showForImageView(cover, url: CONVERT_STRING(data["image"]))
+            Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
         } else {
-            LazyImage.showForImageView(cover, url: CONVERT_STRING(data["image_profile"]))
+            Utils.loadImage(cover, link: CONVERT_STRING(data["image_profile"]))
         }
         btnLeft.corner(20, border: 0, colorBorder: 0x000000)
         btnRight.corner(20, border: 0, colorBorder: 0x000000)
@@ -130,6 +130,8 @@ class DetailEvent: UITableViewCell {
         let camera = GMSCameraPosition.cameraWithLatitude(loc.lat, longitude: loc.long, zoom: 16.0)
         maps.camera = camera
         maps.myLocationEnabled = true
+        maps.multipleTouchEnabled = false
+        maps.userInteractionEnabled = false
         let img = UIImage(named: "ic_map_maker")
         let lat = loc.lat
         let long = loc.long
@@ -180,7 +182,7 @@ extension DetailEvent: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
         let url = listImage[indexPath.row]
-        LazyImage.showForImageView(cell.img, url: url)
+        Utils.loadImage(cell.img, link: url)
         return cell
     }
     

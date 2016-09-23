@@ -57,7 +57,7 @@ class InfoMarker: UIView {
     
     func initData(data:Dictionary<String,String>) {
         id = data["id"]!
-        LazyImage.showForImageView(cover, url: data["image"])
+        Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
         lblLocation.text = data["location"]
         lblTime.text = Date().printDateToDate(data["starttime"]!, to: data["endtime"]!)
         name.text = data["name"]

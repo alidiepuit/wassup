@@ -118,10 +118,11 @@ class User: ModelBase {
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     
-    func register(username: String, passwd: String, callback: ServiceResponse) {
+    func register(username: String, fullname: String, passwd: String, callback: ServiceResponse) {
         let model = "user/registerUser"
         let dict = ["email":username,
-            "password": passwd]
+                    "name": fullname,
+                    "password": passwd]
         self.callAPI("POST", module: model, params: dict, callback: callback)
     }
     

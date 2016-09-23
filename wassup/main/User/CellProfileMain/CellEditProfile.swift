@@ -25,8 +25,9 @@ class CellEditProfile: UITableViewCell {
         name.text = CONVERT_STRING(data["fullname"])
         email.text = CONVERT_STRING(data["email"])
         city.text = CONVERT_STRING(data["address"])
-        LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["image"]))
-        LazyImage.showForImageView(cover, url: CONVERT_STRING(data["banner"]))
+        
+        Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
+        Utils.loadImage(cover, link: CONVERT_STRING(data["banner"]))
         
         avatar.corner(64, border: 0, colorBorder: 0x000000)
         

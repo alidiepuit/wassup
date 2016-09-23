@@ -32,7 +32,7 @@ class CellBlog: UITableViewCell {
         viewJoin.corner(0, border: 1, colorBorder: 0xE0E3E7)
         viewCheckIn.corner(0, border: 1, colorBorder: 0xE0E3E7)
         
-        LazyImage.showForImageView(cover, url: CONVERT_STRING(data["image"]))
+        Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
         name.text = CONVERT_STRING(data["name"])
         let date = Date()
         let formatDate = NSDateFormatter()

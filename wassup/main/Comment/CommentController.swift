@@ -43,8 +43,8 @@ class CommentController: UIViewController {
         } else {
             time.text = Date().printTimeOpen(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
         }
-        
-        LazyImage.showForImageView(avatar, url: CONVERT_STRING(data["image"]))
+    
+        Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
         
         images.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
         

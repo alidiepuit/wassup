@@ -25,7 +25,7 @@ class CellListCollection: UITableViewCell {
     
     func initData(data: Dictionary<String,AnyObject>) {
         name.text = CONVERT_STRING(data["name"])
-        LazyImage.showForImageView(img, url: CONVERT_STRING(data["icon"]))
+        Utils.loadImage(img, link: CONVERT_STRING(data["icon"]))
         info.text = "\(CONVERT_STRING(data["total_event"])) hoạt động | \(CONVERT_STRING(data["total_host"])) địa điểm | \(CONVERT_STRING(data["total_article"])) bài viết"
         id = CONVERT_STRING(data["id"])
     }

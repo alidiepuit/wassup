@@ -6,11 +6,13 @@
   Copyright © 2016 MAC. All rights reserved.
 */
 "Thông báo" = "Thông báo";
-"Email hoặc Phone không được để trống" = "Email hoặc Phone không được để trống";
-"Không được để trống thông tin đăng ký" = "Không được để trống thông tin đăng ký";
-"Mật khẩu không khớp" = "Mật khẩu không khớp";
-"Captcha không đúng" = "Captcha không đúng";
-"Email không hợp lệ" = "Email không hợp lệ";
+"Email hoặc Phone không được để trống" = "Email hoặc Phone không được để trống.";
+"Không được để trống thông tin đăng ký" = "Không được để trống thông tin đăng ký.";
+"Mật khẩu không khớp" = "Mật khẩu không khớp.";
+"Captcha không đúng" = "Captcha không đúng.";
+"Email không hợp lệ" = "Email không hợp lệ.";
+"Email hoặc Phone không hợp lệ" = "Email hoặc Phone không hợp lệ.";
+"Họ tên không hợp lệ" = "Họ tên không hợp lệ.";
 "Sự kiện" = "Sự kiện";
 "Địa điểm" = "Địa điểm";
 "%s Tham Gia | %s Check In" = "%s Tham Gia | %s Check In";

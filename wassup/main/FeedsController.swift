@@ -29,8 +29,6 @@ class FeedsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 400
         callAPI()
     }
     
@@ -117,7 +115,6 @@ class FeedsController: UITableViewController {
     }
     
     func callAPI() {
-        Utils.lock(self)
         let md = Feeds()
         loading = true
         md.getFeeds(index: page, callback: handleData)
@@ -176,7 +173,7 @@ class FeedsController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func estimateHeightRow(indexPath: NSIndexPath) -> CGFloat {
         if let hei = heightForRows[indexPath.row] {
             return hei
         }
@@ -213,6 +210,14 @@ class FeedsController: UITableViewController {
         let res = heiComment + 275
         heightForRows[indexPath.row] = res
         return res
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return estimateHeightRow(indexPath)
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return estimateHeightRow(indexPath)
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

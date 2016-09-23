@@ -22,7 +22,8 @@ class CellImage: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        indicator.startAnimating()
+//        indicator.startAnimating()
+        indicator.hidden = true
         cancelsTask = false
     }
     

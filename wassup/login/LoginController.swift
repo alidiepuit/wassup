@@ -63,10 +63,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     @IBAction func clickLoginFB(sender: AnyObject) {
         let model = User()
-        self.view.lock()
+        Utils.lock()
         model.facebook() {
             (result:AnyObject?) in
-            self.view.unlock()
+            Utils.unlock()
             let dict:Dictionary<String, AnyObject> = result as! Dictionary<String, AnyObject>
             let status = Int(dict["status"] as! NSNumber)
             if status == 1 {
