@@ -10,6 +10,7 @@ import UIKit
 
 class ListCollectionController: UIViewController {
 
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var constraintTop: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnCollection: UIButton!
@@ -23,6 +24,7 @@ class ListCollectionController: UIViewController {
     var selectedCollection = -1
     var objectType = CollectionType.Feed
     var objectId = ""
+    var selectedItemCollection:Dictionary<String,AnyObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +33,13 @@ class ListCollectionController: UIViewController {
             constraintTop.constant = 45 + marginTop
         }
         radioController.delegate = self
+        callAPI()
     }
     
     override func viewDidAppear(animated: Bool) {
-        data.removeAll()
-        tableView.reloadData()
-        callAPI()
+//        data.removeAll()
+//        tableView.reloadData()
+//        callAPI()
     }
     
     func callAPI() {
@@ -68,22 +71,37 @@ class ListCollectionController: UIViewController {
     }
     
     @IBAction func clickSaveCollection(sender: AnyObject) {
-        if selectedCollection < 0 {
-            let alert = UIAlertView(title: Localization("Thông báo"), message: "", delegate: nil, cancelButtonTitle: "OK")
-            alert.message = Localization("Bạn chưa chọn collection")
-            alert.show()
-            return
-        }
-        let d = data[selectedCollection] as! Dictionary<String,String>
-        let md = Collection()
-        md.bookmark(d["id"]!, collectionName: d["name"]!, objectId: objectId, objectType: objectType.rawValue) {
-            (result:AnyObject?) in
-            self.navigationController?.popViewControllerAnimated(true)
-        }
+        
     }
     
     @IBAction func unwind(sender: UIStoryboardSegue) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func createBookmark(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? CreateCollectionController, itemCollection = sourceViewController.itemCollection {
+            let md = Collection()
+            md.createCollection(itemCollection.name, icon: itemCollection.avatar) {
+                (result: AnyObject?) in
+                    self.data.removeAll()
+                    self.tableView.reloadData()
+                    self.callAPI()
+            }
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if sender === btnSave {
+            if selectedCollection < 0 {
+                let alert = UIAlertView(title: Localization("Thông báo"), message: "", delegate: nil, cancelButtonTitle: "OK")
+                alert.message = Localization("Bạn chưa chọn collection")
+                alert.show()
+                return false
+            }
+            selectedItemCollection = data[selectedCollection] as! Dictionary<String,String>
+            
+        }
+        return true
     }
 }
 

@@ -8,15 +8,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellFeed" id="ICf-q0-4J4" customClass="CellFeed" customModule="wassup" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="377" height="502"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellFeed" id="ICf-q0-4J4" customClass="CellFeed" customModule="wassup" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="480"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ICf-q0-4J4" id="lAA-dc-1RH">
-                <rect key="frame" x="0.0" y="0.0" width="377" height="501"/>
+                <rect key="frame" x="0.0" y="0.0" width="377" height="479"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR5-vp-ry1">
-                        <rect key="frame" x="0.0" y="0.0" width="377" height="501"/>
+                    <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kR5-vp-ry1">
+                        <rect key="frame" x="0.0" y="0.0" width="377" height="480"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-Hi-72R">
                                 <rect key="frame" x="19" y="0.0" width="338" height="71"/>
@@ -63,19 +63,19 @@
                                 </constraints>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kcr-RV-xBP">
-                                <rect key="frame" x="0.0" y="77" width="377" height="424"/>
+                                <rect key="frame" x="0.0" y="77" width="377" height="402"/>
                                 <subviews>
-                                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bp-qB-UGp">
-                                        <rect key="frame" x="15" y="0.0" width="347" height="52"/>
+                                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="dep" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bp-qB-UGp">
+                                        <rect key="frame" x="15" y="0.0" width="347" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="Gcm-3n-8UZ"/>
+                                            <constraint firstAttribute="height" constant="30" id="Gcm-3n-8UZ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ykB-i0-cFH">
-                                        <rect key="frame" x="15" y="56" width="347" height="173"/>
+                                        <rect key="frame" x="15" y="34" width="347" height="173"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="173" id="mqN-Jx-LmH"/>
@@ -92,7 +92,7 @@
                                         </connections>
                                     </collectionView>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvg-Eo-UOu" customClass="TagListView" customModule="wassup" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="237" width="347" height="53"/>
+                                        <rect key="frame" x="15" y="215" width="347" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="53" id="g09-sN-Kno"/>
                                         </constraints>
@@ -140,7 +140,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO1-bh-n0r">
-                                        <rect key="frame" x="15" y="298" width="347" height="77"/>
+                                        <rect key="frame" x="15" y="276" width="347" height="77"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="947 Jaime Crescent Apt. 18" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97N-1H-jSw">
                                                 <rect key="frame" x="30" y="6" width="317" height="35"/>
@@ -191,7 +191,7 @@
                                         </constraints>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONb-OO-btc">
-                                        <rect key="frame" x="0.0" y="380" width="189" height="44"/>
+                                        <rect key="frame" x="0.0" y="358" width="189" height="44"/>
                                         <subviews>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm0-Te-HFY">
                                                 <rect key="frame" x="46" y="7" width="96" height="31"/>
@@ -219,7 +219,7 @@
                                         </constraints>
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ig0-AI-Pcd">
-                                        <rect key="frame" x="189" y="380" width="188" height="44"/>
+                                        <rect key="frame" x="189" y="358" width="188" height="44"/>
                                         <subviews>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-gW-MXA">
                                                 <rect key="frame" x="46" y="7" width="96" height="31"/>
@@ -291,9 +291,9 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="kR5-vp-ry1" secondAttribute="bottom" constant="1" id="6dL-gW-Q85"/>
                     <constraint firstItem="kR5-vp-ry1" firstAttribute="leading" secondItem="lAA-dc-1RH" secondAttribute="leading" id="KQQ-Cd-B8V"/>
                     <constraint firstAttribute="trailing" secondItem="kR5-vp-ry1" secondAttribute="trailing" id="Vjf-y1-Kyz"/>
-                    <constraint firstAttribute="bottom" secondItem="kR5-vp-ry1" secondAttribute="bottom" id="cIe-ef-LxU"/>
                     <constraint firstItem="kR5-vp-ry1" firstAttribute="top" secondItem="lAA-dc-1RH" secondAttribute="top" id="jbA-H4-E3O"/>
                 </constraints>
             </tableViewCellContentView>
@@ -303,6 +303,7 @@
                 <outlet property="btnRight" destination="Ig0-AI-Pcd" id="eMJ-cp-1pO"/>
                 <outlet property="collectionImage" destination="ykB-i0-cFH" id="T4r-6i-bZR"/>
                 <outlet property="constraintComment" destination="Gcm-3n-8UZ" id="x99-p2-1Zs"/>
+                <outlet property="constraintHeightImage" destination="mqN-Jx-LmH" id="I4F-XW-8t9"/>
                 <outlet property="constraintListTags" destination="g09-sN-Kno" id="fIM-U2-5YN"/>
                 <outlet property="constraintLocation" destination="Rl2-A8-gCC" id="Q12-d1-dYa"/>
                 <outlet property="containerLocation" destination="lO1-bh-n0r" id="VmA-xX-s1c"/>

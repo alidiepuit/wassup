@@ -20,6 +20,9 @@ class FeedsController: UITableViewController {
     var sectionHasData:Int {
         return 0
     }
+    var showCover:Bool {
+        return true
+    }
     var detailProfile:Dictionary<String,AnyObject>!
     var canClickCell:Bool {
         return true
@@ -93,6 +96,27 @@ class FeedsController: UITableViewController {
         performSegueWithIdentifier("SaveCollection", sender: nil)
     }
     
+    @IBAction func saveBookmark(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? ListCollectionController, item = sourceViewController.selectedItemCollection {
+            let data = self.data[indexPath.row]
+            let objectId = CONVERT_STRING(data["id"])
+            let objectType = CollectionType.Feed
+            let md = Collection()
+            md.bookmark(CONVERT_STRING(item["id"]), collectionName: CONVERT_STRING(item["name"]), objectId: objectId, objectType: objectType.rawValue) {
+                (result:AnyObject?) in
+                if let res = result as? Dictionary<String,AnyObject> {
+                    let status = CONVERT_INT(res["status"])
+                    if status == 1 {
+                        var d = self.data[self.indexPath.row]
+                        d["is_bookmark"] = 1
+                        self.data[self.indexPath.row] = d
+                        self.tableView.reloadRowsAtIndexPaths([self.indexPath], withRowAnimation: .Automatic)
+                    }
+                }
+            }
+        }
+    }
+    
     func clickStatusGoToProfileOnFeed(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String,String>
         let md = User()
@@ -163,10 +187,6 @@ class FeedsController: UITableViewController {
         print("cellForRowAtIndexPath", self.data.count)
         if sectionHasData == indexPath.section {
             let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
-            
-//            let d:Dictionary<String,AnyObject> = data[indexPath.row]
-//            cell.initCell(d)
-//            cell.indexPath = indexPath
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath)
@@ -180,8 +200,15 @@ class FeedsController: UITableViewController {
         let d:Dictionary<String,AnyObject> = data[indexPath.row]
         if let item = d["item"] as? Dictionary<String,AnyObject> {
             let comment = CONVERT_STRING(item["comment"])
-            let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica", size: 14)!)
-            let heiLocation = CONVERT_STRING(item["location"]) != "" ? 77 : 0
+            let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica Neue", size: 14)!)
+            let heiLocation = CONVERT_STRING(item["location"]) != "" && showCover ? 77 : 0
+            
+            //height image
+            var heiImage = 173
+            let l = item["images"] as? [String]
+            if (l == nil || (l != nil && l!.count <= 0)) && !showCover {
+                heiImage = 0
+            }
             
             var heiListTag = CGFloat(0)
             if let feelings = item["feelings"] as? Dictionary<String,AnyObject> {
@@ -201,12 +228,12 @@ class FeedsController: UITableViewController {
                     heiListTag = viewlistTags.intrinsicContentSize().height
                 }
             }
-            let res = heiComment + CGFloat(heiLocation) + CGFloat(heiListTag) + 320
+            let res = heiComment + CGFloat(heiImage) + CGFloat(heiLocation) + CGFloat(heiListTag) + 145
             heightForRows[indexPath.row] = res
             return res
         }
         let comment = CONVERT_STRING(d["description"])
-        let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica", size: 14)!)
+        let heiComment = comment.heightWithConstrainedWidth(tableView.frame.size.width-30, font: UIFont(name: "Helvetica Neue", size: 14)!)
         let res = heiComment + 275
         heightForRows[indexPath.row] = res
         return res
@@ -223,6 +250,7 @@ class FeedsController: UITableViewController {
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let d:Dictionary<String,AnyObject> = data[indexPath.row]
         let cell = cell as! CellFeed
+        cell.showCover = self.showCover
         cell.initCell(d)
         cell.indexPath = indexPath
         if !loading && !isFinished && indexPath.row == data.count-1 {

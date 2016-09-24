@@ -45,6 +45,7 @@
 		044EC5091D902071007C604D /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EC5081D902071007C604D /* UIPlaceHolderTextView.m */; };
 		04578F3F1D93C01F001418CA /* UIImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04578F3E1D93C01F001418CA /* UIImageLoader.m */; };
 		04578F411D93D65B001418CA /* LazyLoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04578F401D93D65B001418CA /* LazyLoadImage.swift */; };
+		0463D4791D96336E0074CEBC /* ItemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463D4781D96336E0074CEBC /* ItemCollection.swift */; };
 		046703011D8FBDA5003A612B /* WassupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703001D8FBDA5003A612B /* WassupMessage.swift */; };
 		046703081D8FC00F003A612B /* GSMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046703071D8FC00F003A612B /* GSMessage.swift */; };
 		0467030B1D8FD8B4003A612B /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0467030A1D8FD8B4003A612B /* CommentController.swift */; };
@@ -228,6 +229,7 @@
 		04578F3D1D93C01F001418CA /* UIImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageLoader.h; sourceTree = "<group>"; };
 		04578F3E1D93C01F001418CA /* UIImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageLoader.m; sourceTree = "<group>"; };
 		04578F401D93D65B001418CA /* LazyLoadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LazyLoadImage.swift; path = wassup/libs/LazyLoadImage.swift; sourceTree = "<group>"; };
+		0463D4781D96336E0074CEBC /* ItemCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemCollection.swift; path = wassup/main/Collection/ItemCollection.swift; sourceTree = "<group>"; };
 		046703001D8FBDA5003A612B /* WassupMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WassupMessage.swift; path = wassup/libs/WassupMessage.swift; sourceTree = "<group>"; };
 		046703071D8FC00F003A612B /* GSMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSMessage.swift; sourceTree = "<group>"; };
 		0467030A1D8FD8B4003A612B /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentController.swift; path = wassup/main/Comment/CommentController.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				043F11341D87F4B2004A06A0 /* CreateCollectionController.swift */,
 				043F112F1D87ED53004A06A0 /* ListCollectionController.swift */,
 				04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */,
+				0463D4781D96336E0074CEBC /* ItemCollection.swift */,
 			);
 			name = Collection;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				04954F7C1D7D4D150096B4B3 /* UIWebView+AFNetworking.m in Sources */,
 				042C20861D6D4CAE0069DDFB /* SearchEventController.swift in Sources */,
 				04578F3F1D93C01F001418CA /* UIImageLoader.m in Sources */,
+				0463D4791D96336E0074CEBC /* ItemCollection.swift in Sources */,
 				04BBAD281D6C3F4500626019 /* ListCheckInController.swift in Sources */,
 				04A74E621D6EA198005F6418 /* CellImage.swift in Sources */,
 				047F362E1D62F7AB00F0FE80 /* User.swift in Sources */,

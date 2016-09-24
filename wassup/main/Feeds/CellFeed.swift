@@ -27,6 +27,7 @@ class CellFeed: UITableViewCell {
     @IBOutlet weak var containerLocation: UIView!
     @IBOutlet weak var constraintLocation: NSLayoutConstraint!
     @IBOutlet weak var constraintComment: NSLayoutConstraint!
+    @IBOutlet weak var constraintHeightImage: NSLayoutConstraint!
     @IBOutlet weak var lblComment: UITextView!
     
     @IBOutlet weak var imgBtnRight: UIImageView!
@@ -40,7 +41,7 @@ class CellFeed: UITableViewCell {
     var indexPath = NSIndexPath(index: 0)
     var rangeProfile = NSRange()
     var rangeDetailEvent = NSRange()
-    
+    var showCover = true
     var images = [SKPhoto]()
     
     func initCell(data: Dictionary<String, AnyObject>) {
@@ -114,9 +115,7 @@ class CellFeed: UITableViewCell {
             if lblComment.text == "" {
                 constraintComment.constant = 0
             } else {
-//                let ges = UITapGestureRecognizer(target: self, action: #selector(viewMore(_:)))
-//                lblComment.addGestureRecognizer(ges)
-                constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica", size: 14)!)
+                constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica Neue", size: 14)!)
             }
             
             btnLeft.corner(0, border: 1, colorBorder: 0xE0E3E7)
@@ -125,7 +124,8 @@ class CellFeed: UITableViewCell {
             if item["starttime"] != nil && item["endtime"] != nil {
                 lblTime.text = Date().printDateToDate(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
             }
-            if item["location"] != nil {
+            let location = CONVERT_STRING(item["location"])
+            if location != "" && showCover {
                 lblLocation.text = CONVERT_STRING(item["location"])
                 containerLocation.hidden = false
                 constraintLocation.constant = 77
@@ -134,12 +134,17 @@ class CellFeed: UITableViewCell {
                 containerLocation.hidden = true
             }
             
-            if let l = item["images"] as? [String] {
-                listImage = l
+            listImage = [String]()
+            constraintHeightImage.constant = 173
+            let l = item["images"] as? [String]
+            if l != nil && l!.count > 0 {
+                listImage = l!
                 collectionImage.scrollEnabled = true
-            } else {
+            } else if showCover {
                 listImage = [CONVERT_STRING(item["image"])]
                 collectionImage.scrollEnabled = false
+            } else {
+                constraintHeightImage.constant = 0
             }
             images.removeAll()
             for img in listImage {
@@ -147,8 +152,10 @@ class CellFeed: UITableViewCell {
                 images.append(photo)
             }
             
-            collectionImage.reloadData()
-            collectionImage.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
+            if images.count > 0 {
+                collectionImage.reloadData()
+                collectionImage.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
+            }
             
             viewlistTags.delegate = self
             if let _ = feelings["3"] as? [Dictionary<String,String>] {
@@ -221,17 +228,13 @@ class CellFeed: UITableViewCell {
             if lblComment.text == "" {
                 constraintComment.constant = 0
             } else {
-                constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica", size: 14)!)
+                constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica Neue", size: 14)!)
             }
             
             listImage = [CONVERT_STRING(data["image"])]
             collectionImage.reloadData()
             collectionImage.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
         }
-    }
-    
-    func viewMore(tap: UITapGestureRecognizer) {
-        constraintComment.constant = lblComment.text.heightWithConstrainedWidth(lblComment.frame.size.width, font: UIFont(name: "Helvetica", size: 14)!)
     }
     
     override func awakeFromNib() {
@@ -247,9 +250,9 @@ class CellFeed: UITableViewCell {
     
     @IBAction func clickLeft(sender: AnyObject) {
         if !activeLeft {
-            activeLeft = !activeLeft
-            imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
-            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
+//            activeLeft = !activeLeft
+//            imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
+        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
         }
     }
     

@@ -2115,7 +2115,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Lưu" id="0Oy-m0-RN1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="clickSaveCollection:" destination="4bf-gC-IVk" id="qWt-TE-ajp"/>
+                                <segue destination="3Ut-xp-GND" kind="unwind" unwindAction="saveBookmark:" id="Ry4-Sr-OsR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2123,6 +2123,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="btnCollection" destination="hIx-g3-ln0" id="Q1k-kf-hgJ"/>
+                        <outlet property="btnSave" destination="0Oy-m0-RN1" id="RTT-5y-ica"/>
                         <outlet property="constraintTop" destination="Ffo-vQ-mfo" id="iAl-Hi-Co0"/>
                         <outlet property="tableView" destination="xbM-9R-Yxx" id="cdm-4h-XKe"/>
                         <segue destination="N4W-mO-LNE" kind="show" identifier="CreateCollection" id="MHW-2q-PQU"/>
@@ -2161,7 +2162,10 @@
                                     <constraint firstAttribute="height" constant="40" id="PNZ-Ap-4bO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="N4W-mO-LNE" id="ip9-TP-st0"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover_blog" translatesAutoresizingMaskIntoConstraints="NO" id="Nev-V4-tsu">
                                 <rect key="frame" x="20" y="124" width="280" height="150"/>
@@ -2218,12 +2222,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Tạo" id="4WP-tq-qf7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="save:" destination="N4W-mO-LNE" id="SET-Jl-hgz"/>
+                                <segue destination="TFS-Wj-B93" kind="unwind" unwindAction="createBookmark:" id="a8i-LM-Qdq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="buttonSave" destination="4WP-tq-qf7" id="JR7-Le-adF"/>
                         <outlet property="img" destination="Nev-V4-tsu" id="mKS-vH-4Rp"/>
                         <outlet property="name" destination="U24-1b-jzZ" id="TXX-Pf-pUE"/>
                     </connections>

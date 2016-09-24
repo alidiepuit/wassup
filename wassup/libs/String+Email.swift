@@ -53,7 +53,7 @@ extension String {
         
         let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
         
-        return boundingBox.height + 20
+        return boundingBox.height < 30 ? 30 : boundingBox.height + 10
     }
 }
 

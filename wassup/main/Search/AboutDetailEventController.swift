@@ -20,6 +20,9 @@ class AboutDetailEventController: FeedsController {
     override var canClickCell:Bool {
         return false
     }
+    override var showCover:Bool {
+        return false
+    }
     var contentHeight = CGFloat(0)
     
     var images = [SKPhoto]()
