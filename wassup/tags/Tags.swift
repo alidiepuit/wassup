@@ -45,7 +45,6 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             let status = dict["status"] as? Int
 //            let alert = UIAlertView(title: Localization("Thông báo"), message: dict["message"] as? String, delegate: nil, cancelButtonTitle: "OK")
             if status == 1 {
-                User.sharedInstance.hasRecommandation = true
                 self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 self.removeFromParentViewController()
             }
@@ -105,7 +104,7 @@ class Tags: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if DeviceType.IS_IPHONE_6 {
+        if DeviceType.IS_IPHONE_6 || DeviceType.IS_IPHONE_6P {
             return CGSize(width: 100, height: 100)
         }
         return CGSize(width: 120, height: 120)

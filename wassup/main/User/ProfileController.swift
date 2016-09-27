@@ -54,6 +54,8 @@ class ProfileController: UIViewController {
         if userId != User.sharedInstance.userId {
             navigationItem.rightBarButtonItem = nil
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTitleProfile(_:)), name: "CHANGE_TITLE_PROFILE", object: nil)
     }
     
     deinit {
@@ -75,12 +77,19 @@ class ProfileController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "EditProfile" {
-            let vc = segue.destinationViewController as! EditProfileController
+            let nav = segue.destinationViewController as! UINavigationController
+            let vc = nav.topViewController as! EditProfileController
             vc.profile = data
         }
     }
     
     func editProfile() {
         performSegueWithIdentifier("EditProfile", sender: nil)
+    }
+    
+    func changeTitleProfile(noti: NSNotification) {
+        let d = noti.userInfo as! Dictionary<String,AnyObject>
+        title = CONVERT_STRING(d["fullname"])
+        self.data = d
     }
 }

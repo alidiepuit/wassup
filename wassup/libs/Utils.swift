@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Alamofire
+import AlamofireImage
 
 class Location {
     var lat:CLLocationDegrees = 0
@@ -210,8 +212,18 @@ class Utils: NSObject, CLLocationManagerDelegate {
             image.image = UIImage(named:"logo")
             return
         }
-        let url = NSURL(string: link!)!
-        image.af_setImageWithURL(url, placeholderImage: UIImage(named:"logo"))
+        
+        let l = link!.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        
+        if let img = PhotosDataManager.sharedManager.cachedImage(l) {
+            image.image = img
+        } else {
+            image.image = UIImage(named: "logo")
+            PhotosDataManager.sharedManager.getNetworkImage(l) {
+                img in
+                image.image = img
+            }
+        }
     }
 }
 

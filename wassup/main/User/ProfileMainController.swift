@@ -169,4 +169,30 @@ class ProfileMainController: FeedsController {
         tableView.reloadSections(NSIndexSet(index:sectionHasData), withRowAnimation: .None)
         callAPI()
     }
+    
+    @IBAction func saveProfile(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? EditProfileController, profile = sourceViewController.profile {
+            Utils.lock()
+            let md = User()
+            let avatarData = profile["avatar"] as! UIImage
+            let coverData = profile["cover"] as! UIImage
+            self.title = CONVERT_STRING(profile["name"])
+            
+            md.updateProfile(CONVERT_STRING(profile["name"]), email: CONVERT_STRING(profile["email"]), address: CONVERT_STRING(profile["city"]), avatar: avatarData, cover: coverData) {
+                (result:AnyObject?) in
+                self.getProfile()
+            }
+        }
+    }
+    
+    func getProfile() {
+        Utils.lock()
+        let md = User()
+        md.getMyProfile() {
+            (result:AnyObject?) in
+            self.detailUser = result!["user"] as! Dictionary<String,AnyObject>
+            self.tableView.reloadData()
+            NSNotificationCenter.defaultCenter().postNotificationName("CHANGE_TITLE_PROFILE", object: nil, userInfo: self.detailUser)
+        }
+    }
 }

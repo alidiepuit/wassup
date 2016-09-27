@@ -51,12 +51,17 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 model.userId = dict["user_id"] as! String
                 model.token = dict["etoken"] as! String
                 model.login_style = String(1)
+                let hasRecommandation = CONVERT_INT(dict["flag"]) == 1
                 
-                if User.sharedInstance.hasRecommandation {
+                if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
                     self.performSegueWithIdentifier("Recommendation", sender: nil)
                 }
+            } else {
+                let msg = CONVERT_STRING(dict["message"])
+                let alert = UIAlertView(title: Localization("Thông báo"), message: msg, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         }
     }
@@ -74,8 +79,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 model.userId = dict["user_id"] as! String
                 model.token = dict["etoken"] as! String
                 model.login_style = String(2)
-                
-                if User.sharedInstance.hasRecommandation {
+                let hasRecommandation = CONVERT_BOOL(dict["flag"])
+                if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
                     self.performSegueWithIdentifier("Recommendation", sender: nil)

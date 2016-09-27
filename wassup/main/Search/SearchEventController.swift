@@ -18,7 +18,6 @@ class SearchEventController: UITableViewController {
     }
     var action = "12"
     var districtId = ""
-    var city = "Hồ Chí Minh"
     var filterEvent:FilterEvent?
     var isFinish = false
     let ref = UIRefreshControl()

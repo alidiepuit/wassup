@@ -10,4 +10,5 @@ target 'wassup' do
   pod 'Crashlytics'
   pod 'MWPhotoBrowser'
   pod 'AlamofireImage', '2.0'
+  pod 'IQKeyboardManagerSwift', '4.0.5'
 end

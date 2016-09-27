@@ -179,12 +179,12 @@ class FeedsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsSection", self.data.count)
+//        print("numberOfRowsSection", self.data.count)
         return self.data.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("cellForRowAtIndexPath", self.data.count)
+//        print("cellForRowAtIndexPath", self.data.count)
         if sectionHasData == indexPath.section {
             let cell = tableView.dequeueReusableCellWithIdentifier("CellFeed", forIndexPath: indexPath) as! CellFeed
             return cell

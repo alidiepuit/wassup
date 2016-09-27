@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040DAE481D990721004DA476 /* DecodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE451D990721004DA476 /* DecodeOperation.swift */; };
+		040DAE491D990721004DA476 /* ImageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE461D990721004DA476 /* ImageDecoder.swift */; };
+		040DAE4A1D990721004DA476 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE471D990721004DA476 /* ImageRequest.swift */; };
+		040DAE4C1D99072C004DA476 /* PhotosDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE4B1D99072C004DA476 /* PhotosDataManager.swift */; };
 		041C51EC1D63565E00977ABD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C51EA1D63565E00977ABD /* FBSDKCoreKit.framework */; };
 		041C51ED1D63565E00977ABD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C51EB1D63565E00977ABD /* FBSDKLoginKit.framework */; };
 		041C51EF1D637C0100977ABD /* Screen3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C51EE1D637C0100977ABD /* Screen3Controller.swift */; };
@@ -188,6 +192,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040DAE451D990721004DA476 /* DecodeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeOperation.swift; sourceTree = "<group>"; };
+		040DAE461D990721004DA476 /* ImageDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDecoder.swift; sourceTree = "<group>"; };
+		040DAE471D990721004DA476 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		040DAE4B1D99072C004DA476 /* PhotosDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosDataManager.swift; sourceTree = "<group>"; };
 		041C51E41D63513C00977ABD /* wassup-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "wassup-Bridging-Header.h"; sourceTree = "<group>"; };
 		041C51EA1D63565E00977ABD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		041C51EB1D63565E00977ABD /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -417,6 +425,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		040DAE431D9906F0004DA476 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				040DAE4B1D99072C004DA476 /* PhotosDataManager.swift */,
+				040DAE441D990721004DA476 /* Utilities */,
+			);
+			name = Image;
+			path = wassup/libs/Image;
+			sourceTree = "<group>";
+		};
+		040DAE441D990721004DA476 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				040DAE451D990721004DA476 /* DecodeOperation.swift */,
+				040DAE461D990721004DA476 /* ImageDecoder.swift */,
+				040DAE471D990721004DA476 /* ImageRequest.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		041C51DF1D634ADB00977ABD /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +607,7 @@
 		047F35EE1D62B7FE00F0FE80 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				040DAE431D9906F0004DA476 /* Image */,
 				04578F3C1D93BFF9001418CA /* UIImageLoader */,
 				044EC5061D902061007C604D /* UIPlaceholderTextView */,
 				04D7E5051D88E5E100DF291A /* RadioButton */,
@@ -1107,6 +1136,7 @@
 			files = (
 				048AA73E1D6ABC05001912BA /* DetailEvent.swift in Sources */,
 				046703081D8FC00F003A612B /* GSMessage.swift in Sources */,
+				040DAE491D990721004DA476 /* ImageDecoder.swift in Sources */,
 				04422D0F1D826761009C470E /* MapSearchTagController.swift in Sources */,
 				043F112A1D87D72C004A06A0 /* SRWebClient.swift in Sources */,
 				0487C7361D7020A800D37580 /* Filter.swift in Sources */,
@@ -1165,8 +1195,10 @@
 				04C503F91D642DB200E2B266 /* String+Email.swift in Sources */,
 				043F11301D87ED53004A06A0 /* ListCollectionController.swift in Sources */,
 				04F3893A1D67F90D00625121 /* TabView.swift in Sources */,
+				040DAE4A1D990721004DA476 /* ImageRequest.swift in Sources */,
 				04954F731D7D4D150096B4B3 /* AFURLSessionManager.m in Sources */,
 				04F389161D67059F00625121 /* InfoMarker.swift in Sources */,
+				040DAE4C1D99072C004DA476 /* PhotosDataManager.swift in Sources */,
 				04954F7B1D7D4D150096B4B3 /* UIRefreshControl+AFNetworking.m in Sources */,
 				04954F741D7D4D150096B4B3 /* AFAutoPurgingImageCache.m in Sources */,
 				04F389491D68217E00625121 /* CellSearch.swift in Sources */,
@@ -1214,6 +1246,7 @@
 				04F389131D66F9FD00625121 /* MapsModel.swift in Sources */,
 				04D7E50F1D892CCE00DF291A /* CellDetailCollection.swift in Sources */,
 				04BBAD221D6C2F4600626019 /* FollowerController.swift in Sources */,
+				040DAE481D990721004DA476 /* DecodeOperation.swift in Sources */,
 				047F36231D62CEEE00F0FE80 /* WelcomeController.swift in Sources */,
 				047F35CF1D62A0C500F0FE80 /* AppDelegate.swift in Sources */,
 				04954F481D7D18290096B4B3 /* SwiftyJSON.swift in Sources */,

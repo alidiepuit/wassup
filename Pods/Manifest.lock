@@ -14,6 +14,7 @@ PODS:
     - GoogleMaps/Base (= 2.0.1)
   - GooglePlaces (2.0.1):
     - GoogleMaps/Base (= 2.0.1)
+  - IQKeyboardManagerSwift (4.0.5)
   - MBProgressHUD (0.9.2)
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - Fusuma
   - GoogleMaps
   - GooglePlaces
+  - IQKeyboardManagerSwift (= 4.0.5)
   - MWPhotoBrowser
   - SKPhotoBrowser
 
@@ -43,11 +45,12 @@ SPEC CHECKSUMS:
   Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
   GooglePlaces: 72fab1d1651c6df0322f2aad245ffb15b80d3c56
+  IQKeyboardManagerSwift: 41fd3a45a2cdb2a0e031af697708a95b865068a1
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SKPhotoBrowser: a23a4125deca7451d298248c7eafc8332fb909df
 
-PODFILE CHECKSUM: ebe6832a8445ee46b368c6c7a614d5f87d9de038
+PODFILE CHECKSUM: 906c8bb542291cc19f66c2a0ca566420e2e786cc
 
 COCOAPODS: 1.0.1

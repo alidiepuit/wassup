@@ -9,6 +9,7 @@
 import UIKit
 
 var insideView:UIView?
+var city = "Hồ Chí Minh"
 
 class SearchController: UIViewController {
     

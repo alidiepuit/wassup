@@ -64,7 +64,9 @@ class OptionController: UIViewController {
                 model.token = dict["etoken"] as! String
                 model.login_style = String(2)
                 
-                if User.sharedInstance.hasRecommandation {
+                let hasRecommandation = CONVERT_BOOL(dict["flag"])
+                
+                if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
                     self.performSegueWithIdentifier("Recommendation", sender: nil)

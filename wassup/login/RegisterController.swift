@@ -81,7 +81,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
             return
         }
         let md = User()
-        md.register(email.text!.trim(), fullname: fullname.text!.trim(), passwd: password.text!.trim()) {
+        md.register(email.text!.trim(), fullname: fullname.text!.trim(), passwd: password.text!) {
             (result:AnyObject?) in
             if let dict = result as? Dictionary<String, AnyObject> {
                 let status = Int(dict["status"] as! NSNumber)
@@ -89,11 +89,29 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                     md.isFirstTimeOpen = true
                     md.login_style = String(1)
                     
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView")
-                    self.presentViewController(vc, animated: true) {
-                        () in
-                        self.removeFromParentViewController()
+                    
+                    md.login(self.email.text!.trim(), passwd: self.password.text!) {
+                        (result:AnyObject?) in
+                        let model = User()
+                        let dict = result as! Dictionary<String, AnyObject>
+                        let status = Int(dict["status"]! as! NSNumber)
+                        if status == 1 {
+                            model.isFirstTimeOpen = true
+                            model.userId = dict["user_id"] as! String
+                            model.token = dict["etoken"] as! String
+                            model.login_style = String(1)
+                            let hasRecommandation = CONVERT_INT(dict["flag"]) == 1
+                            
+                            if hasRecommandation {
+                                self.performSegueWithIdentifier("afterRecommendation", sender: nil)
+                            } else {
+                                self.performSegueWithIdentifier("Recommendation", sender: nil)
+                            }
+                        } else {
+                            let msg = CONVERT_STRING(dict["message"])
+                            let alert = UIAlertView(title: Localization("Thông báo"), message: msg, delegate: nil, cancelButtonTitle: "OK")
+                            alert.show()
+                        }
                     }
                 }
                 alert.message = dict["message"] as? String

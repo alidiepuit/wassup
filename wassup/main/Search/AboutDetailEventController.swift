@@ -14,6 +14,7 @@ class AboutDetailEventController: FeedsController {
     var detail:Dictionary<String,AnyObject>!
     var cate = ObjectType.Event
     var id = ""
+    var disappear = false
     override var sectionHasData: Int {
         return 1
     }
@@ -63,7 +64,13 @@ class AboutDetailEventController: FeedsController {
         message.show()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        disappear = false
+    }
+    
     override func viewWillDisappear(animated: Bool) {
+        disappear = true
         NSNotificationCenter.defaultCenter().removeObserver(self)
         message.hide()
     }
@@ -216,6 +223,12 @@ extension AboutDetailEventController {
         guard message != nil else {
             return
         }
+        
+        if disappear {
+            message.hide()
+            return
+        }
+        
         if (self.lastContentOffset > scrollView.contentOffset.y) {
             // move up
             message.show()
@@ -230,7 +243,9 @@ extension AboutDetailEventController {
     }
     
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        message.show()
+        if !disappear {
+            message.show()
+        }
     }
 }
 

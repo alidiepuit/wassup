@@ -9,14 +9,40 @@
 import UIKit
 import Fusuma
 
-class EditProfileController: UITableViewController {
+class EditProfileController: UIViewController {
 
     var profile:Dictionary<String, AnyObject>!
+    var typeImage = "avatar"
+    
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var btnChangeCover: UIButton!
+    @IBOutlet weak var btnChangeAvatar: UIButton!
+    @IBOutlet weak var cover: UIImageView!
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var city: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = Localization("Thông tin cá nhân")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectImage), name: "PROFILE_SELECT_IMAGE", object: nil)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        name.text = CONVERT_STRING(profile["fullname"])
+        email.text = CONVERT_STRING(profile["email"])
+        city.text = CONVERT_STRING(profile["address"])
+        
+        Utils.loadImage(avatar, link: CONVERT_STRING(profile["image"]))
+        Utils.loadImage(cover, link: CONVERT_STRING(profile["banner"]))
+        
+        avatar.corner(64, border: 0, colorBorder: 0x000000)
+        
+        profile["name"] = name.text!
+        profile["city"] = city.text!
+        profile["avatar"] = avatar.image
+        profile["cover"] = cover.image
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,25 +50,30 @@ class EditProfileController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    @IBAction func clickChangeAvatar(sender: AnyObject) {
+        typeImage = "avatar"
+        selectImage()
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CellEditProfile
-        cell.initData(profile)
-        return cell
+    @IBAction func clickChangeCover(sender: AnyObject) {
+        typeImage = "cover"
+        selectImage()
     }
     
-    @IBAction func goBack(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if sender === btnSave {
+            let n = self.name.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            if n == "" {
+                let alert = UIAlertView(title: Localization("Thông báo"), message: Localization("Tên không được rỗng"), delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                return false
+            }
+            profile["name"] = name.text!
+            profile["city"] = city.text!
+            profile["email"] = email.text!
+        }
+        return true
     }
-    
-    @IBAction func saveProfile(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("SAVE_PROFILE", object: nil)
-    }
-
-    
 }
 
 extension EditProfileController: FusumaDelegate {
@@ -53,7 +84,12 @@ extension EditProfileController: FusumaDelegate {
     }
     
     func fusumaImageSelected(image: UIImage) {
-        NSNotificationCenter.defaultCenter().postNotificationName("PROFILE_SAVE_IMAGE", object: nil, userInfo: ["image":image])
+        if typeImage == "cover" {
+            cover.image = image
+        } else {
+            avatar.image = image
+        }
+        profile[typeImage] = image
     }
     
     // Return the image but called after is dismissed.
