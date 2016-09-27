@@ -215,6 +215,18 @@ class AboutDetailEventController: FeedsController {
             vc.cate = cate
         }
     }
+    
+    @IBAction func saveComment(sender: UIStoryboardSegue) {
+        if let vc = sender.sourceViewController as? CommentController, data = vc.saveData {
+            let arrImage = data["arrImage"] as! [UIImage]
+            let description = CONVERT_STRING(data["description"])
+            let md = User()
+            md.comment(cate, id: CONVERT_STRING(data["id"]), description: description, images: arrImage) {
+                (result:AnyObject?) in
+                self.reloadDataWhenAppear()
+            }
+        }
+    }
 }
 
 extension AboutDetailEventController {

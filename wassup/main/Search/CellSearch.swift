@@ -29,8 +29,7 @@ class CellSearch: UITableViewCell {
     var activeRight = false
     
     func initCell(data: Dictionary<String, AnyObject>) {
-        titleCate.layer.cornerRadius = 10
-        titleCate.clipsToBounds = true
+        titleCate.corner(10, border: 0, colorBorder: 0)
         viewJoin.corner(0, border: 1, colorBorder: 0xE0E3E7)
         viewCheckIn.corner(0, border: 1, colorBorder: 0xE0E3E7)
         

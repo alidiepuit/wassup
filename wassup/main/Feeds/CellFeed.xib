@@ -311,7 +311,9 @@
                 <outlet property="icSave" destination="czI-nm-g6e" id="3NX-ny-r2r"/>
                 <outlet property="imgBtnLeft" destination="czI-nm-g6e" id="IIc-o9-d32"/>
                 <outlet property="imgBtnRight" destination="3vj-Qg-dbP" id="gWw-1v-Kqe"/>
+                <outlet property="lblBookmark" destination="zWg-tt-mrU" id="NkL-Tp-y6Z"/>
                 <outlet property="lblComment" destination="6Bp-qB-UGp" id="kwQ-kD-CVE"/>
+                <outlet property="lblLike" destination="jNm-Xe-fg7" id="6ea-6Q-WL0"/>
                 <outlet property="lblLocation" destination="97N-1H-jSw" id="atS-dK-ntX"/>
                 <outlet property="lblStatus" destination="Uhj-PK-qmS" id="E5p-mz-Hn6"/>
                 <outlet property="lblTime" destination="Lgd-tr-Hsh" id="Tfh-mB-xCO"/>

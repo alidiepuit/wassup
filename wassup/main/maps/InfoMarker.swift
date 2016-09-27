@@ -24,6 +24,7 @@ class InfoMarker: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var cover: UIImageView!
     
+    @IBOutlet weak var titleCate: UILabel!
     var id = ""
     var activeLeft = false
     var activeRight = false
@@ -57,16 +58,38 @@ class InfoMarker: UIView {
     
     func initData(data:Dictionary<String,String>) {
         id = data["id"]!
+        
+        titleCate.corner(10, border: 0, colorBorder: 0)
+        titleCate.text = (cate == ObjectType.Event) ? Localization("Sự kiện") : Localization("Địa điểm")
+        if cate == ObjectType.Host {
+            titleCate.backgroundColor = UIColor.fromRgbHex(0xDC5244)
+        }
+        
+        if cate == ObjectType.Event {
+            info.text = "\(CONVERT_STRING(data["attend_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+        } else {
+            info.text = "\(CONVERT_STRING(data["follow_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+        }
+        
         Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
         lblLocation.text = data["location"]
-        lblTime.text = Date().printDateToDate(data["starttime"]!, to: data["endtime"]!)
+        
+        if cate == ObjectType.Event {
+            if CONVERT_STRING(data["endtime"]) != "" && CONVERT_STRING(data["starttime"]) != "" && data["starttime"] != nil {
+                lblTime.text = Date().printDateToDate(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
+            } else {
+                
+            }
+        } else {
+            lblTime.text = Date().printTimeOpen(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
+        }
+        
         name.text = data["name"]
-        info.text = "\(CONVERT_INT(data["attend_number"])) \(Localization("Quan Tâm")) | \(CONVERT_INT(data["hits"])) \(Localization("Check In"))"
         
         icFollow.image = UIImage(named: "ic_join_normal")
         lblFollow.text = Localization("Quan Tâm")
         
-        getDetailEvent(id)
+        getDetail(id)
     }
     
     @IBAction func clickLeft(sender: AnyObject) {
@@ -95,20 +118,31 @@ class InfoMarker: UIView {
         }
     }
     
-    func getDetailEvent(id: String) {
+    func getDetail(id: String) {
         let md = Search()
-        md.getDetailEvent(id) {
-            (result: AnyObject?) in
-            let data = result!["event"] as! Dictionary<String,AnyObject>
-            let isAttend = CONVERT_BOOL(data["is_attend"])
-            self.activeLeft = isAttend
-            if isAttend {
-                self.icFollow.image = UIImage(named: "ic_join_selected")
-                self.lblFollow.text = Localization("Đã quan tâm")
-            } else {
-                self.icFollow.image = UIImage(named: "ic_join_normal")
-                self.lblFollow.text = Localization("Quan Tâm")
-            }
+        if cate == ObjectType.Event {
+            md.getDetailEvent(id, callback: handleData)
+        } else {
+            md.getDetailHost(id, callback: handleData)
         }
+    }
+    
+    func handleData(result:AnyObject?) {
+        let param = self.cate == ObjectType.Event ? "event" : "host"
+        let data = result![param] as! Dictionary<String,AnyObject>
+        
+        let isAttend = CONVERT_BOOL(data["is_attend"])
+        let isFollow = CONVERT_BOOL(data["is_follow"])
+        if isAttend || isFollow {
+            icFollow.image = UIImage(named: "ic_join_selected")
+            activeLeft = true
+            lblFollow.text = Localization("Đã quan tâm")
+        } else {
+            icFollow.image = UIImage(named: "ic_join_normal")
+            activeLeft = false
+            lblFollow.text = Localization("Quan Tâm")
+        }
+        
+        self.activeLeft = isAttend
     }
 }

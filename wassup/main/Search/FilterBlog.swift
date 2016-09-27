@@ -16,6 +16,7 @@ class FilterBlog: FilterEvent {
         contentView!.frame = self.bounds
         contentView!.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(contentView!)
+        selTime = "1"
     }
     
     override var dataTime: [CellDropdown] {

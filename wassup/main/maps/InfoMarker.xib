@@ -19,6 +19,7 @@
                 <outlet property="lblLocation" destination="EJn-n6-tNU" id="gXp-aE-nZ0"/>
                 <outlet property="lblTime" destination="rf4-T1-lYs" id="8WH-sD-cIt"/>
                 <outlet property="name" destination="f6S-ls-B8A" id="fAR-WH-BqX"/>
+                <outlet property="titleCate" destination="c1J-3i-Py6" id="rRu-oi-OXT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -98,7 +99,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover_map_marker" translatesAutoresizingMaskIntoConstraints="NO" id="COf-DG-T4J">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_cover_map_marker" translatesAutoresizingMaskIntoConstraints="NO" id="COf-DG-T4J">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="168" id="3Qb-yd-sGn"/>
@@ -116,7 +117,6 @@
                             <rect key="frame" x="10" y="78" width="302" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="302" id="OoK-Z6-f5m"/>
                                 <constraint firstAttribute="height" constant="21" id="coe-mq-zZH"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -138,7 +138,6 @@
                             <rect key="frame" x="10" y="42" width="302" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="302" id="NEG-MF-xcm"/>
                                 <constraint firstAttribute="height" constant="28" id="yPS-Pp-mZ3"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
@@ -162,6 +161,7 @@
                         <constraint firstItem="azK-Ef-ynm" firstAttribute="width" secondItem="yzW-CL-DVJ" secondAttribute="width" multiplier="1:2" id="B4H-cr-m6s"/>
                         <constraint firstItem="DYf-E7-Vd3" firstAttribute="leading" secondItem="yzW-CL-DVJ" secondAttribute="leading" constant="21" id="Bcs-9G-4Pq"/>
                         <constraint firstItem="rf4-T1-lYs" firstAttribute="leading" secondItem="x8U-8u-KxJ" secondAttribute="trailing" constant="23" id="FNY-pI-f01"/>
+                        <constraint firstAttribute="trailing" secondItem="kcb-Fg-AxF" secondAttribute="trailing" constant="8" id="Gvz-Ng-FLV"/>
                         <constraint firstItem="COf-DG-T4J" firstAttribute="leading" secondItem="yzW-CL-DVJ" secondAttribute="leading" id="KKb-fd-KPb"/>
                         <constraint firstAttribute="bottom" secondItem="PRt-7v-X7h" secondAttribute="bottom" id="Lz7-3F-MBe"/>
                         <constraint firstAttribute="trailing" secondItem="EJn-n6-tNU" secondAttribute="trailing" constant="8" id="RZK-I1-UIR"/>
@@ -183,6 +183,7 @@
                         <constraint firstItem="kcb-Fg-AxF" firstAttribute="leading" secondItem="yzW-CL-DVJ" secondAttribute="leading" constant="10" id="p5z-CP-j1F"/>
                         <constraint firstItem="FaZ-lv-r4z" firstAttribute="leading" secondItem="yzW-CL-DVJ" secondAttribute="leading" id="uK4-Pl-fXw"/>
                         <constraint firstItem="f6S-ls-B8A" firstAttribute="top" secondItem="c1J-3i-Py6" secondAttribute="bottom" constant="5" id="xfS-Mo-IhL"/>
+                        <constraint firstAttribute="trailing" secondItem="f6S-ls-B8A" secondAttribute="trailing" constant="8" id="z0g-r2-aJ7"/>
                     </constraints>
                 </view>
             </subviews>

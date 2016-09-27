@@ -11,6 +11,7 @@ import Fusuma
 
 class CommentController: UIViewController {
 
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var name: UILabel!
@@ -25,6 +26,8 @@ class CommentController: UIViewController {
     var listImages = [CellImage]()
     var cate = ObjectType.Event
     var data:Dictionary<String,AnyObject>!
+    
+    var saveData:Dictionary<String,AnyObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,26 +89,29 @@ class CommentController: UIViewController {
         images.reloadData()
     }
     
-    @IBAction func saveComment(sender: AnyObject) {
-        let description = content.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        if description == "" {
-            return
-        }
-        
-        Utils.lock()
-        var arrImage = [UIImage]()
-        for i in listImages {
-            arrImage.append(i.image!)
-        }
-        let md = User()
-        md.comment(cate, id: CONVERT_STRING(data["id"]), description: description, images: arrImage) {
-            (result:AnyObject?) in
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-    
     @IBAction func cancel(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if sender === btnSave {
+            let description = content.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            if description == "" {
+                let alert = UIAlertView(title: Localization("Thông báo"), message: "Bạn chưa nhập bình luận", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+                return false
+            }
+
+            var arrImage = [UIImage]()
+            for i in listImages {
+                arrImage.append(i.image!)
+            }
+            saveData = ["id": CONVERT_STRING(data["id"]),
+                        "description": description,
+                        "arrImage": arrImage
+            ]
+        }
+        return true
     }
 }
 

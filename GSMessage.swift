@@ -41,7 +41,7 @@ public enum GSMessageOption {
 
 extension UIViewController: WassupMessageDelegate {
 
-    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?, delegate: WassupMessageDelegate) {
+    public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?, delegate: WassupMessageDelegate?) {
         GSMessage.showMessageAddedTo(text, type: type, options: options, inView: view, inViewController: self, delegate: delegate)
     }
 
@@ -79,7 +79,7 @@ public class GSMessage {
 
     public var delegate:WassupMessageDelegate!
     
-    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate) {
+    class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate?) {
         if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
         if inView.installedMessage == nil {
             GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController, delegate: delegate).show()

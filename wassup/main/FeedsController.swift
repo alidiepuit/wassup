@@ -64,6 +64,12 @@ class FeedsController: UITableViewController {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "BROWSER_PHOTOS_ON_FEED", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(browserPhotosOnFeed(_:)), name: "BROWSER_PHOTOS_ON_FEED", object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CLICK_LIKE_ON_FEED", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickLikeOnFeed(_:)), name: "CLICK_LIKE_ON_FEED", object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "POST_MESSAGE_FROM_FEED", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(postMessageFromFeed(_:)), name: "POST_MESSAGE_FROM_FEED", object: nil)
     }
     
     deinit {
@@ -94,6 +100,40 @@ class FeedsController: UITableViewController {
         let d = noti.userInfo as! Dictionary<String,AnyObject>
         indexPath = d["indexPath"] as! NSIndexPath
         performSegueWithIdentifier("SaveCollection", sender: nil)
+    }
+    
+    func clickLikeOnFeed(noti: NSNotification) {
+        let userInfo = noti.userInfo as! Dictionary<String,AnyObject>
+        
+        indexPath = userInfo["indexPath"] as! NSIndexPath
+        var d = self.data[self.indexPath.row]
+        d["like"] = userInfo["like"]
+        d["is_like"] = userInfo["is_like"]
+        let id = CONVERT_STRING(d["id"])
+        self.data[self.indexPath.row] = d
+        self.tableView.reloadRowsAtIndexPaths([self.indexPath], withRowAnimation: .Automatic)
+        
+        let md = User()
+        md.likeFeed(id)
+    }
+    
+    func postMessageFromFeed(noti: NSNotification) {
+        let userInfo = noti.userInfo as! Dictionary<String,String>
+        postMessage(userInfo["msg"]!)
+    }
+    
+    func postMessage(str: String) {
+        self.showMessage(str, type: .Info, options: [.Animation(.Slide),
+            .AnimationDuration(0.3),
+            .AutoHide(true),
+            .AutoHideDelay(2.0),
+            .Height(44.0),
+            .HideOnTap(true),
+            .Position(.Bottom),
+            .TextAlignment(.Center),
+            .TextColor(UIColor.whiteColor()),
+            .TextNumberOfLines(1),
+            .TextPadding(30.0)], delegate: nil)
     }
     
     @IBAction func saveBookmark(sender: UIStoryboardSegue) {

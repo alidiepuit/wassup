@@ -29,7 +29,8 @@ class CellFeed: UITableViewCell {
     @IBOutlet weak var constraintComment: NSLayoutConstraint!
     @IBOutlet weak var constraintHeightImage: NSLayoutConstraint!
     @IBOutlet weak var lblComment: UITextView!
-    
+    @IBOutlet weak var lblBookmark: UILabel!
+    @IBOutlet weak var lblLike: UILabel!
     @IBOutlet weak var imgBtnRight: UIImageView!
     @IBOutlet weak var imgBtnLeft: UIImageView!
     var listImage = [String]()
@@ -43,6 +44,7 @@ class CellFeed: UITableViewCell {
     var rangeDetailEvent = NSRange()
     var showCover = true
     var images = [SKPhoto]()
+    var numLike = 0
     
     func initCell(data: Dictionary<String, AnyObject>) {
         Utils.loadImage(avatar, link: CONVERT_STRING(data["user_image"]))
@@ -175,9 +177,11 @@ class CellFeed: UITableViewCell {
             activeLeft = false
             if isFollow {
                 imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
+                lblBookmark.text = Localization("Đã lưu")
                 activeLeft = true
             } else {
                 imgBtnLeft.image = UIImage(named: "ic_bookmark")
+                lblBookmark.text = Localization("Lưu lại")
             }
             
             let isCheckin = CONVERT_BOOL(data["is_like"])
@@ -187,6 +191,13 @@ class CellFeed: UITableViewCell {
                 activeRight = true
             } else {
                 imgBtnRight.image = UIImage(named: "ic_love")
+            }
+            
+            numLike = CONVERT_INT(data["like"])
+            if numLike > 0 {
+                lblLike.text = String.init(format: "%@ (%d)", Localization("Thích"), numLike)
+            } else {
+                lblLike.text = Localization("Thích")
             }
             
             let gestureJoin = UITapGestureRecognizer(target: self, action: #selector(clickLeft))
@@ -250,21 +261,20 @@ class CellFeed: UITableViewCell {
     
     @IBAction func clickLeft(sender: AnyObject) {
         if !activeLeft {
-//            activeLeft = !activeLeft
-//            imgBtnLeft.image = UIImage(named: "ic_bookmark_enable")
-        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_BOOKMARK_ON_FEED", object: nil, userInfo: ["indexPath":indexPath])
         }
     }
     
     @IBAction func clickRight(sender: AnyObject) {
-        activeRight = !activeRight
-        if activeRight {
-            imgBtnRight.image = UIImage(named: "ic_love_enable")
+        if !activeRight {
+            activeRight = !activeRight
+            numLike += 1
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_LIKE_ON_FEED", object: nil, userInfo: ["indexPath":indexPath,
+            "like": numLike,
+                "is_like": activeRight])
         } else {
-            imgBtnRight.image = UIImage(named: "ic_love")
+            NSNotificationCenter.defaultCenter().postNotificationName("POST_MESSAGE_FROM_FEED", object: nil, userInfo: ["msg":Localization("Bạn đã thích bài viết này")])
         }
-        let md = User()
-        md.likeFeed(id)
     }
 }
 

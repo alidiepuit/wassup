@@ -17,4 +17,13 @@ class MapsModel: ModelBase {
                                                "tags"       : tags,]
         self.callAPI("POST", module: modul, params: dict, callback: callback)
     }
+    
+    func getHostsOnMap(lat: Double, long: Double, keyword: String, tags: String, callback: ServiceResponse) {
+        let modul = "host/getHostsOnMap"
+        let dict:Dictionary<String, String> = ["lattitude"  : String(lat),
+                                               "longtitude" : String(long),
+                                               "keyword"    : keyword,
+                                               "tags"       : tags,]
+        self.callAPI("POST", module: modul, params: dict, callback: callback)
+    }
 }
