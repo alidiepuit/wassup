@@ -86,9 +86,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Hello</string>
+	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Hi</string>
+	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HelveticaNeue-Bold.otf</string>

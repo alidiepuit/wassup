@@ -117,6 +117,14 @@ class Utils: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print(status)
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
     class func convertFromStringToNumber(str: String) -> NSNumber {
         let f = NSNumberFormatter()
         f.numberStyle = NSNumberFormatterStyle.DecimalStyle

@@ -63,6 +63,8 @@ class InfoMarker: UIView {
         titleCate.text = (cate == ObjectType.Event) ? Localization("Sự kiện") : Localization("Địa điểm")
         if cate == ObjectType.Host {
             titleCate.backgroundColor = UIColor.fromRgbHex(0xDC5244)
+        } else {
+            titleCate.backgroundColor = UIColor.fromRgbHex(0x1665D8)
         }
         
         if cate == ObjectType.Event {

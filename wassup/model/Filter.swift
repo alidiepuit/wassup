@@ -22,6 +22,19 @@ public enum ObjectType: Int32 {
     case Users
 }
 
+extension ObjectType {
+    public static func valueOf(type: Int) -> ObjectType {
+        switch Int32(type) {
+        case Event.rawValue:
+            return ObjectType.Event
+        case Host.rawValue:
+            return ObjectType.Host
+        default:
+            return ObjectType.Event
+        }
+    }
+}
+
 public enum ActivityType: String {
     case Checkin = "%@ tại %@"
     case CheckinHasFeeling = "%@ đang %@ tại %@"

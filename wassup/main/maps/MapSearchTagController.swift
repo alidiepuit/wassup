@@ -31,22 +31,22 @@ class MapSearchTagController: UIViewController {
         searchBar.backgroundColor = UIColor.fromRgbHex(0x31ACF9)
         searchBar.tintColor = UIColor.whiteColor()
         searchBar.barTintColor = UIColor.fromRgbHex(0x90CEF6)
-        searchBar.showsCancelButton = true
-        searchBar.placeholder = Localization("Tìm kiếm")
-        searchBar.setValue(Localization("Search"), forKey: "_cancelButtonText")
+        searchBar.showsCancelButton = false
+//        searchBar.placeholder = Localization("Tìm kiếm")
+//        searchBar.setValue(Localization("Search"), forKey: "_cancelButtonText")
         self.navigationItem.titleView = searchBar
         
         for view in searchBar.subviews {
             for v in view.subviews {
-                if v is UIButton {
-                    if let btn = v as? UIButton {
-                        btn.setTitle(Localization("Search"), forState: .Normal)
-                    }
-                }
+//                if v is UIButton {
+//                    if let btn = v as? UIButton {
+//                        btn.setTitle(Localization("Search"), forState: .Normal)
+//                    }
+//                }
                 if v is UITextField {
                     if let btn = v as? UITextField {
                         btn.autocapitalizationType = .None
-                        btn.becomeFirstResponder()
+//                        btn.becomeFirstResponder()
                     }
                 }
             }
@@ -87,7 +87,7 @@ class MapSearchTagController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        searchBar.becomeFirstResponder()
+//        searchBar.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

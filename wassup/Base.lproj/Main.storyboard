@@ -1584,32 +1584,36 @@
         <!--Live Map-->
         <scene sceneID="bFr-G9-fH3">
             <objects>
-                <viewController storyboardIdentifier="MapsEventHostController" id="VpZ-ur-CPv" customClass="MapsEventHostController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VpZ-ur-CPv" customClass="MapsController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MMc-e5-MUx"/>
                         <viewControllerLayoutGuide type="bottom" id="CmF-e6-2cB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aAk-gQ-6Sw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sw2-jl-GBd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wyY-xZ-rJk" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="410"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view hidden="YES" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0q-w8-wSa">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="410"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_me" translatesAutoresizingMaskIntoConstraints="NO" id="JvG-8F-7Bc">
-                                <rect key="frame" x="145" y="246" width="30" height="55"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_me" translatesAutoresizingMaskIntoConstraints="NO" id="JvG-8F-7Bc">
+                                <rect key="frame" x="145" y="173" width="30" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="SC8-pj-v7q"/>
                                     <constraint firstAttribute="width" constant="30" id="b0r-jE-5iU"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wys-em-5hG" customClass="InfoMarker" customModule="wassup" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="568" width="320" height="285"/>
+                                <rect key="frame" x="0.0" y="455" width="320" height="285"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="285" id="0Rz-hq-K7r"/>
@@ -1620,15 +1624,19 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wyY-xZ-rJk" secondAttribute="trailing" id="1oh-g3-Ldn"/>
                             <constraint firstItem="Wys-em-5hG" firstAttribute="top" secondItem="G0q-w8-wSa" secondAttribute="bottom" id="4Jz-LE-f8k"/>
-                            <constraint firstItem="G0q-w8-wSa" firstAttribute="top" secondItem="MMc-e5-MUx" secondAttribute="bottom" id="5v9-Rh-T9k"/>
+                            <constraint firstItem="G0q-w8-wSa" firstAttribute="top" secondItem="MMc-e5-MUx" secondAttribute="bottom" constant="45" id="5v9-Rh-T9k"/>
                             <constraint firstItem="CmF-e6-2cB" firstAttribute="top" secondItem="wyY-xZ-rJk" secondAttribute="bottom" id="9t6-YZ-enK"/>
-                            <constraint firstItem="wyY-xZ-rJk" firstAttribute="top" secondItem="MMc-e5-MUx" secondAttribute="bottom" id="Drq-sg-Y2m"/>
+                            <constraint firstItem="wyY-xZ-rJk" firstAttribute="top" secondItem="MMc-e5-MUx" secondAttribute="bottom" constant="45" id="Drq-sg-Y2m"/>
+                            <constraint firstItem="sw2-jl-GBd" firstAttribute="leading" secondItem="aAk-gQ-6Sw" secondAttribute="leading" id="Hc6-jT-uBN"/>
                             <constraint firstItem="wyY-xZ-rJk" firstAttribute="leading" secondItem="aAk-gQ-6Sw" secondAttribute="leading" id="Iv2-2j-wgg"/>
                             <constraint firstItem="CmF-e6-2cB" firstAttribute="top" secondItem="G0q-w8-wSa" secondAttribute="bottom" id="QJ6-5v-5L4"/>
                             <constraint firstItem="G0q-w8-wSa" firstAttribute="leading" secondItem="aAk-gQ-6Sw" secondAttribute="leading" id="Vvu-Cm-tyI"/>
                             <constraint firstItem="Wys-em-5hG" firstAttribute="leading" secondItem="aAk-gQ-6Sw" secondAttribute="leading" id="eON-p5-2pr"/>
+                            <constraint firstItem="sw2-jl-GBd" firstAttribute="top" secondItem="MMc-e5-MUx" secondAttribute="bottom" id="f6b-y5-M2C"/>
                             <constraint firstItem="JvG-8F-7Bc" firstAttribute="bottom" secondItem="aAk-gQ-6Sw" secondAttribute="centerY" id="gON-jR-u1O"/>
+                            <constraint firstItem="CmF-e6-2cB" firstAttribute="top" secondItem="sw2-jl-GBd" secondAttribute="bottom" id="kUT-La-3tM"/>
                             <constraint firstAttribute="trailing" secondItem="G0q-w8-wSa" secondAttribute="trailing" id="rrU-hq-zCn"/>
+                            <constraint firstAttribute="trailing" secondItem="sw2-jl-GBd" secondAttribute="trailing" id="s2w-T1-7PA"/>
                             <constraint firstAttribute="trailing" secondItem="Wys-em-5hG" secondAttribute="trailing" id="sCn-ek-HJF"/>
                             <constraint firstItem="JvG-8F-7Bc" firstAttribute="centerX" secondItem="aAk-gQ-6Sw" secondAttribute="centerX" id="xTf-jQ-dsg"/>
                         </constraints>
@@ -1637,21 +1645,27 @@
                     <navigationItem key="navigationItem" title="Live Map" id="06v-Vv-eTw">
                         <barButtonItem key="leftBarButtonItem" image="ic_tags" id="DTn-NO-VD8">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="clickSearchTag:" destination="VpZ-ur-CPv" id="Rny-PE-k1P"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="bg" destination="G0q-w8-wSa" id="8OF-UK-Sh5"/>
-                        <outlet property="infoMarker" destination="Wys-em-5hG" id="3lG-a8-vlu"/>
-                        <outlet property="mapView" destination="wyY-xZ-rJk" id="b0R-E8-xAq"/>
-                        <outlet property="markerCenter" destination="JvG-8F-7Bc" id="IZM-nj-dNN"/>
+                        <outlet property="bg" destination="G0q-w8-wSa" id="s69-5t-LoH"/>
+                        <outlet property="infoMarker" destination="Wys-em-5hG" id="Sci-Jm-7B9"/>
+                        <outlet property="mapView" destination="wyY-xZ-rJk" id="FCK-Ay-S6F"/>
+                        <outlet property="markerCenter" destination="JvG-8F-7Bc" id="3qJ-Gm-gTz"/>
+                        <outlet property="topView" destination="sw2-jl-GBd" id="4EP-BA-hSs"/>
+                        <segue destination="5sK-CI-VMZ" kind="show" identifier="DetailEvent" id="cFs-p7-WP6"/>
+                        <segue destination="bdP-a0-Lph" kind="show" identifier="SearchTag" id="WXZ-9M-KIw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIF-1P-g7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1882" y="3683"/>
+            <point key="canvasLocation" x="1452" y="3683"/>
         </scene>
-        <!--Map Search Tag Controller-->
+        <!--Tags-->
         <scene sceneID="90N-Fb-pYt">
             <objects>
                 <viewController id="bdP-a0-Lph" customClass="MapSearchTagController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
@@ -1719,14 +1733,28 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="tgG-pN-Q3Q"/>
+                    <navigationItem key="navigationItem" title="Tags" id="tgG-pN-Q3Q">
+                        <barButtonItem key="leftBarButtonItem" image="ic_back" id="mvN-XW-A5J">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="ehw-hd-etl" kind="unwind" unwindAction="unwind:" id="ReX-O8-C0C"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="zRW-oc-uJK">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="ehw-hd-etl" kind="unwind" unwindAction="saveSearchTag:" id="TOf-SN-zAV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tagListView" destination="MdN-72-UvS" id="ZLj-Bd-Ms4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dq4-Nt-Azl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ehw-hd-etl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2336" y="3683"/>
+            <point key="canvasLocation" x="1972" y="3683"/>
         </scene>
         <!--User Controller-->
         <scene sceneID="nwx-vL-UQ1">
@@ -2460,42 +2488,36 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wH6-an-qU2" kind="relationship" relationship="rootViewController" id="kdQ-88-ava"/>
+                        <segue destination="VpZ-ur-CPv" kind="relationship" relationship="rootViewController" id="CKP-aZ-rr9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8D-5J-p57" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="906" y="3683"/>
         </scene>
-        <!--Maps Controller-->
+        <!--Maps Event Host Controller-->
         <scene sceneID="NS0-UP-lwT">
             <objects>
-                <viewController id="wH6-an-qU2" customClass="MapsController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapsEventHostController" id="wH6-an-qU2" customClass="MapsEventHostController" customModule="wassup" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sp8-Oq-qBR"/>
                         <viewControllerLayoutGuide type="bottom" id="Czi-hd-WI9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3q7-Oc-2HZ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="6hb-nt-yce">
                         <barButtonItem key="leftBarButtonItem" image="ic_tags" id="emK-9x-tJU">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="clickSearchTag:" destination="wH6-an-qU2" id="1PW-82-Pkg"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="bdP-a0-Lph" kind="show" identifier="SearchTag" id="JrY-6i-F7W"/>
-                        <segue destination="5sK-CI-VMZ" kind="show" identifier="DetailEvent" id="69j-U7-riU"/>
-                    </connections>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GRg-zz-UPC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376" y="3683"/>
+            <point key="canvasLocation" x="2460" y="3683"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wlE-EX-yFm">
@@ -3266,15 +3288,15 @@
         <image name="pencil" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RVt-al-01h"/>
-        <segue reference="69j-U7-riU"/>
         <segue reference="zmm-Kh-Jk0"/>
         <segue reference="3Mc-Rw-QDv"/>
         <segue reference="16H-gn-Bgb"/>
+        <segue reference="cFs-p7-WP6"/>
         <segue reference="6TN-Aq-p1a"/>
-        <segue reference="s9S-fw-7hb"/>
-        <segue reference="Mhx-is-Bhb"/>
+        <segue reference="RVt-al-01h"/>
         <segue reference="VTm-9E-o2a"/>
         <segue reference="uxa-qb-E7t"/>
+        <segue reference="s9S-fw-7hb"/>
+        <segue reference="Mhx-is-Bhb"/>
     </inferredMetricsTieBreakers>
 </document>
