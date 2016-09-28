@@ -46,6 +46,7 @@ class SearchController: UIViewController {
         option.currentColor = UIColor.fromRgbHex(0x31ACF9)
         option.tabEqualizeWidth = true
         option.numberOfItem = 4
+        option.tabHeight = 44
         tabPage!.option = option
         
         self.addChildViewController(tabPage!)

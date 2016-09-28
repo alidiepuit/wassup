@@ -11,19 +11,19 @@ import GoogleMaps
 
 class MapsEventHostController: UIViewController {
     @IBOutlet weak var mapView:GMSMapView!
-    var geocoder:GMSGeocoder!
     @IBOutlet weak var markerCenter: UIImageView!
-    var cellSearch:CellSearch!
     @IBOutlet weak var bg: UIView!
-    var selectedItem:MyMarker!
     @IBOutlet weak var infoMarker: InfoMarker!
     
+    var cellSearch:CellSearch!
+    var selectedItem:MyMarker!
+    var geocoder:GMSGeocoder!
     var debounceTimer: NSTimer?
     var tags = [TagView]()
     var listTag = ""
     var centerPoint = CLLocationCoordinate2D()
     var oldCenterPoint = CLLocationCoordinate2D()
-    var paramResult = "events"
+    var cate = ObjectType.Event
     var isMoving = false
     let heightInfo = CGFloat(285)
     let animationDuration = 0.5
@@ -32,6 +32,7 @@ class MapsEventHostController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         Utils.sharedInstance.refreshLocation(self, action: #selector(loadMap), loop: false)
@@ -78,7 +79,7 @@ class MapsEventHostController: UIViewController {
             return
         }
         let md = MapsModel()
-        if selectType.selectedSegmentIndex == 0 {
+        if cate == ObjectType.Event {
             md.getEventsOnMap(lat, long: long, keyword: "", tags: listTag) {
                 result in
                 self.handleData(result!["events"] as! [Dictionary<String, String>])
@@ -125,16 +126,7 @@ class MapsEventHostController: UIViewController {
         bg.hidden = true
     }
     
-    @IBAction func clickSearchTag(sender: AnyObject) {
-        performSegueWithIdentifier("SearchTag", sender: nil)
-    }
-    
-    @IBAction func clickSelectType(sender: AnyObject) {
-        paramResult = selectType.selectedSegmentIndex == 0 ? "events" : "hosts"
-        callAPI(centerPoint.latitude, long: centerPoint.longitude)
-        clickBg()
-    }
-    
+
 }
 
 extension MapsEventHostController: GMSMapViewDelegate {
@@ -164,7 +156,7 @@ extension MapsEventHostController: GMSMapViewDelegate {
     func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         if let marker = marker as? MyMarker {
             selectedItem = marker
-            infoMarker.cate = selectType.selectedSegmentIndex == 0 ? ObjectType.Event : ObjectType.Host
+            infoMarker.cate = self.cate
             infoMarker.initData(marker.data)
             
             self.bg.hidden = false
