@@ -149,6 +149,18 @@
 		04C504041D64599400E2B266 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504031D64599400E2B266 /* Utils.swift */; };
 		04C504061D645A7700E2B266 /* LazyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504051D645A7700E2B266 /* LazyImage.swift */; };
 		04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C504071D646A3300E2B266 /* HeaderCellTags.swift */; };
+		04D35A3E1D9B5D910013C5DC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A3D1D9B5D910013C5DC /* AVFoundation.framework */; };
+		04D35A401D9B5D970013C5DC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A3F1D9B5D970013C5DC /* CoreData.framework */; };
+		04D35A421D9B5DA20013C5DC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A411D9B5DA20013C5DC /* CoreText.framework */; };
+		04D35A441D9B5DA80013C5DC /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A431D9B5DA80013C5DC /* GLKit.framework */; };
+		04D35A461D9B5DAD0013C5DC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A451D9B5DAD0013C5DC /* ImageIO.framework */; };
+		04D35A481D9B5DBB0013C5DC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A471D9B5DBB0013C5DC /* libc++.tbd */; };
+		04D35A4A1D9B5DC50013C5DC /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A491D9B5DC50013C5DC /* libicucore.tbd */; };
+		04D35A4C1D9B5DCB0013C5DC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A4B1D9B5DCB0013C5DC /* libz.tbd */; };
+		04D35A4E1D9B5DD20013C5DC /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A4D1D9B5DD20013C5DC /* OpenGLES.framework */; };
+		04D35A501D9B5DD80013C5DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A4F1D9B5DD80013C5DC /* QuartzCore.framework */; };
+		04D35A521D9B5DDE0013C5DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D35A511D9B5DDE0013C5DC /* SystemConfiguration.framework */; };
+		04D35A541D9B687A0013C5DC /* MapsEventHostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D35A531D9B687A0013C5DC /* MapsEventHostController.swift */; };
 		04D7E5081D88E5ED00DF291A /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E5061D88E5ED00DF291A /* SSRadioButtonsController.swift */; };
 		04D7E5091D88E5ED00DF291A /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E5071D88E5ED00DF291A /* SSRadioButton.swift */; };
 		04D7E50D1D8927B800DF291A /* DetailCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */; };
@@ -360,6 +372,18 @@
 		04C504031D64599400E2B266 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = wassup/libs/Utils.swift; sourceTree = "<group>"; };
 		04C504051D645A7700E2B266 /* LazyImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyImage.swift; sourceTree = "<group>"; };
 		04C504071D646A3300E2B266 /* HeaderCellTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderCellTags.swift; path = wassup/tags/HeaderCellTags.swift; sourceTree = "<group>"; };
+		04D35A3D1D9B5D910013C5DC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		04D35A3F1D9B5D970013C5DC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		04D35A411D9B5DA20013C5DC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		04D35A431D9B5DA80013C5DC /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		04D35A451D9B5DAD0013C5DC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		04D35A471D9B5DBB0013C5DC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		04D35A491D9B5DC50013C5DC /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		04D35A4B1D9B5DCB0013C5DC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		04D35A4D1D9B5DD20013C5DC /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		04D35A4F1D9B5DD80013C5DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04D35A511D9B5DDE0013C5DC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		04D35A531D9B687A0013C5DC /* MapsEventHostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapsEventHostController.swift; path = wassup/main/maps/MapsEventHostController.swift; sourceTree = "<group>"; };
 		04D7E5061D88E5ED00DF291A /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		04D7E5071D88E5ED00DF291A /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		04D7E50C1D8927B800DF291A /* DetailCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailCollectionController.swift; path = wassup/main/User/DetailCollectionController.swift; sourceTree = "<group>"; };
@@ -399,7 +423,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D35A521D9B5DDE0013C5DC /* SystemConfiguration.framework in Frameworks */,
+				04D35A501D9B5DD80013C5DC /* QuartzCore.framework in Frameworks */,
+				04D35A4E1D9B5DD20013C5DC /* OpenGLES.framework in Frameworks */,
+				04D35A4C1D9B5DCB0013C5DC /* libz.tbd in Frameworks */,
+				04D35A4A1D9B5DC50013C5DC /* libicucore.tbd in Frameworks */,
+				04D35A481D9B5DBB0013C5DC /* libc++.tbd in Frameworks */,
+				04D35A461D9B5DAD0013C5DC /* ImageIO.framework in Frameworks */,
+				04D35A441D9B5DA80013C5DC /* GLKit.framework in Frameworks */,
+				04D35A421D9B5DA20013C5DC /* CoreText.framework in Frameworks */,
 				04F389111D66E3A600625121 /* CoreLocation.framework in Frameworks */,
+				04D35A401D9B5D970013C5DC /* CoreData.framework in Frameworks */,
+				04D35A3E1D9B5D910013C5DC /* AVFoundation.framework in Frameworks */,
 				041C51ED1D63565E00977ABD /* FBSDKLoginKit.framework in Frameworks */,
 				041C51EC1D63565E00977ABD /* FBSDKCoreKit.framework in Frameworks */,
 				125BD9A58CA0D6A69BE6D38B /* Pods_wassup.framework in Frameworks */,
@@ -419,6 +454,17 @@
 		034C749044A5B4E6509DDF8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D35A511D9B5DDE0013C5DC /* SystemConfiguration.framework */,
+				04D35A4F1D9B5DD80013C5DC /* QuartzCore.framework */,
+				04D35A4D1D9B5DD20013C5DC /* OpenGLES.framework */,
+				04D35A4B1D9B5DCB0013C5DC /* libz.tbd */,
+				04D35A491D9B5DC50013C5DC /* libicucore.tbd */,
+				04D35A471D9B5DBB0013C5DC /* libc++.tbd */,
+				04D35A451D9B5DAD0013C5DC /* ImageIO.framework */,
+				04D35A431D9B5DA80013C5DC /* GLKit.framework */,
+				04D35A411D9B5DA20013C5DC /* CoreText.framework */,
+				04D35A3F1D9B5D970013C5DC /* CoreData.framework */,
+				04D35A3D1D9B5D910013C5DC /* AVFoundation.framework */,
 				04F389101D66E3A600625121 /* CoreLocation.framework */,
 				F52A16D6309AD195BE4F9776 /* Pods_wassup.framework */,
 			);
@@ -846,6 +892,7 @@
 				04F389171D6705CD00625121 /* InfoMarker.xib */,
 				04422D0C1D816D5E009C470E /* MyMarker.swift */,
 				04422D0E1D826761009C470E /* MapSearchTagController.swift */,
+				04D35A531D9B687A0013C5DC /* MapsEventHostController.swift */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1211,6 +1258,7 @@
 				04C504001D64486C00E2B266 /* CellTags.swift in Sources */,
 				04F389351D67F90D00625121 /* TabCollectionCell.swift in Sources */,
 				04C504081D646A3300E2B266 /* HeaderCellTags.swift in Sources */,
+				04D35A541D9B687A0013C5DC /* MapsEventHostController.swift in Sources */,
 				042C208A1D6D4CDA0069DDFB /* SearchBlogController.swift in Sources */,
 				04954F2C1D7749680096B4B3 /* SearchTagController.swift in Sources */,
 				043F112D1D87EC84004A06A0 /* CellListCollection.swift in Sources */,
@@ -1406,6 +1454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1431,6 +1480,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

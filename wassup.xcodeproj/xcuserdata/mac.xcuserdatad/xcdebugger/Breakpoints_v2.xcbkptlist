@@ -26,12 +26,12 @@
                   moduleName = "wassup"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/q/Desktop/wassup/wassup/login/ForgotPassword.swift"
-                  timestampString = "496660033.418965"
+                  timestampString = "496721016.252552"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "wassup"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/q/Desktop/wassup/wassup/login/ForgotPassword.swift"
-                  timestampString = "496660033.419138"
+                  timestampString = "496721016.25272"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "45"
                   endingLineNumber = "45"
-                  offsetFromSymbolStart = "276">
+                  offsetFromSymbolStart = "236">
                </Location>
             </Locations>
          </BreakpointContent>
