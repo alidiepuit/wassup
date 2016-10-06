@@ -28,6 +28,7 @@ class CommentController: UIViewController {
     var data:Dictionary<String,AnyObject>!
     
     var saveData:Dictionary<String,AnyObject>!
+    var smallLibrary: SmallLibraryImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +48,24 @@ class CommentController: UIViewController {
             time.text = Date().printTimeOpen(CONVERT_STRING(data["starttime"]), to: CONVERT_STRING(data["endtime"]))
         }
     
-        Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
+        if cate == ObjectType.Event {
+            Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
+        } else {
+            Utils.loadImage(avatar, link: CONVERT_STRING(data["image_profile"]))
+        }
         
-        images.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
+//        images.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deselectImageComment(_:)), name: "DESELECT_IMAGE_COMMENT", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deselectImageComment(_:)), name: "DESELECT_IMAGE_COMMENT", object: nil)
         
         content.placeholder = Localization("What's on your mind?")
         
         let ges = UITapGestureRecognizer(target: self, action: #selector(hiddenKeyboard(_:)))
         self.view.addGestureRecognizer(ges)
+        
+        smallLibrary = SmallLibraryImage(nibName: "SmallLibraryImage", bundle: nil)
+        smallLibrary.view.frame = CGRect(x: 0, y: 0, width: 0, height: 300)
+        content.inputView = smallLibrary.view
     }
     
     func hiddenKeyboard(gesture: UIGestureRecognizer) {
@@ -90,7 +99,7 @@ class CommentController: UIViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
@@ -115,37 +124,37 @@ class CommentController: UIViewController {
     }
 }
 
-extension CommentController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return listImages.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
-        cell.img.image = listImages[indexPath.row].image
-        cell.indexPath = indexPath
-        cell.btnClose.hidden = false
-        return cell
-    }
-}
+//extension CommentController: UICollectionViewDelegate, UICollectionViewDataSource {
+//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return listImages.count
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
+//        cell.img.image = listImages[indexPath.row].image
+//        cell.indexPath = indexPath
+//        cell.btnClose.hidden = false
+//        return cell
+//    }
+//}
 
 extension CommentController: FusumaDelegate {
     func fusumaImageSelected(image: UIImage) {
-        let cell = CellImage()
-        cell.image = image
-        cell.indexPath = NSIndexPath(forRow: listImages.count, inSection: 0)
-        listImages.append(cell)
-        
-        let lastIndexPath = NSIndexPath(forRow: listImages.count - 1, inSection: 0)
-        images.insertItemsAtIndexPaths([lastIndexPath])
-        
-        constraintHeightImages.constant = ((CGFloat(listImages.count) + 2) / 3) * 200
-        scroll.contentSize = CGSize(width: scroll.contentSize.width, height: content.frame.size.height + constraintHeightImages.constant)
-        scroll.updateConstraintsIfNeeded()
+//        let cell = CellImage()
+//        cell.image = image
+//        cell.indexPath = NSIndexPath(forRow: listImages.count, inSection: 0)
+//        listImages.append(cell)
+//        
+//        let lastIndexPath = NSIndexPath(forRow: listImages.count - 1, inSection: 0)
+//        images.insertItemsAtIndexPaths([lastIndexPath])
+//        
+//        constraintHeightImages.constant = ((CGFloat(listImages.count) + 2) / 3) * 200
+//        scroll.contentSize = CGSize(width: scroll.contentSize.width, height: content.frame.size.height + constraintHeightImages.constant)
+//        scroll.updateConstraintsIfNeeded()
     }
     
     func fusumaVideoCompleted(withFileURL fileURL: NSURL) {

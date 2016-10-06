@@ -10,6 +10,10 @@ import UIKit
 
 class DetailCheckInController: UIViewController {
 
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {

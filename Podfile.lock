@@ -2,7 +2,7 @@ PODS:
   - Alamofire (3.5.0)
   - AlamofireImage (2.0.0):
     - Alamofire (~> 3.0)
-  - Crashlytics (3.8.1):
+  - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - DACircularProgress (2.3.1)
   - Fabric (1.6.8)
@@ -39,7 +39,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
-  Crashlytics: 4391d8df0b125345e9f209c5db6e7f40a6a8435d
+  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8

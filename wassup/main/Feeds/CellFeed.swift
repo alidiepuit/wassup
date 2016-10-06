@@ -112,6 +112,7 @@ class CellFeed: UITableViewCell {
             mutableString.addAttribute(NSLinkAttributeName, value: userId, range: rangeProfile)
             
             lblStatus.attributedText = mutableString
+            lblStatus.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.fromRgbHex(0x4A90E2)]
             
             lblComment.text = CONVERT_STRING(item["comment"])
             if lblComment.text == "" {

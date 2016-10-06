@@ -38,6 +38,7 @@ class CheckInEventController: UIViewController {
     func refreshData(ref: UIRefreshControl) {
         page = 1
         data.removeAll()
+        tbl.reloadData()
         loadData()
     }
     
@@ -58,8 +59,9 @@ class CheckInEventController: UIViewController {
                 }
                 for ele:Dictionary<String,AnyObject> in d {
                     self.data.append(ele)
+                    let indexPath = NSIndexPath(forRow: self.data.count - 1, inSection: 0)
+                    self.tbl.insertRowsAtIndexPaths([indexPath], withRowAnimation: .None)
                 }
-                self.tbl.reloadData()
             }
         }
         self.isLoading = false
@@ -114,9 +116,18 @@ extension CheckInEventController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("DetailCheckIn", sender: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailCheckIn" {
-            
+            let navi = segue.destinationViewController as! UINavigationController
+            let vc = navi.topViewController as! CommentController
+            let row = self.tbl.indexPathForSelectedRow!.row
+            let d = self.data[row]
+            vc.data = d
+            vc.cate = typeSearch!
         }
     }
 }

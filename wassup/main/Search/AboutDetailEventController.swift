@@ -61,7 +61,7 @@ class AboutDetailEventController: FeedsController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        message.show()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -99,6 +99,7 @@ class AboutDetailEventController: FeedsController {
                         return
                     }
                     self.detail = d
+                    self.message.show()
                     self.tableView.reloadData()
                 }
                 self.ref.endRefreshing()
@@ -175,7 +176,7 @@ class AboutDetailEventController: FeedsController {
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 && self.detail != nil {
-            var hei = CGFloat(650)
+            var hei = CGFloat(620)
             
             let listImage = self.detail["photos"] != nil ? self.detail["photos"] as! Array<String> : []
             if listImage.count > 0 {
@@ -210,7 +211,8 @@ class AboutDetailEventController: FeedsController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "Comment" && detail != nil && detail!.count > 0 {
-            let vc = segue.destinationViewController as! CommentController
+            let navi = segue.destinationViewController as! UINavigationController
+            let vc = navi.topViewController as! CommentController
             vc.data = detail
             vc.cate = cate
         }
@@ -226,6 +228,10 @@ class AboutDetailEventController: FeedsController {
                 self.reloadDataWhenAppear()
             }
         }
+    }
+    
+    @IBAction override func unwind(sender: UIStoryboardSegue) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }
 

@@ -175,6 +175,7 @@ class FeedsController: UITableViewController {
         page = 1
         self.data.removeAll()
         tableView.reloadData()
+        heightForRows.removeAll()
         callAPI()
     }
     
