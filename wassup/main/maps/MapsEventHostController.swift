@@ -20,7 +20,6 @@ class MapsEventHostController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().postNotificationName("MAPS_SELECT_OBJECT_TYPE", object: nil, userInfo: ["objectType": Int(cate.rawValue)])
     }
     
     override func didReceiveMemoryWarning() {

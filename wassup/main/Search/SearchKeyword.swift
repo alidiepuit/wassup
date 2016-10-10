@@ -164,4 +164,8 @@ extension SearchKeyword: TabPageViewDelegate {
     func didFinishScroll() {
 //        NSNotificationCenter.defaultCenter().postNotificationName("RELOAD_DATA_SEARCH_WHEN_APPEAR", object: nil)
     }
+    
+    func didTabPage(vc: UIViewController) {
+        
+    }
 }

@@ -5,6 +5,11 @@ PODS:
   - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - DACircularProgress (2.3.1)
+  - DKImagePickerController (3.3.4):
+    - DKImagePickerController/Camera (= 3.3.4)
+    - DKImagePickerController/ImageManager (= 3.3.4)
+  - DKImagePickerController/Camera (3.3.4)
+  - DKImagePickerController/ImageManager (3.3.4)
   - Fabric (1.6.8)
   - Fusuma (0.5.2)
   - GoogleMaps (2.0.1):
@@ -28,6 +33,7 @@ PODS:
 DEPENDENCIES:
   - AlamofireImage (= 2.0)
   - Crashlytics
+  - DKImagePickerController (= 3.3.4)
   - Fabric
   - Fusuma
   - GoogleMaps
@@ -41,6 +47,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DKImagePickerController: 4de1703ad3ba8bc216753447cbb00e482d8d4604
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Fusuma: 7cdf6d3ee8e0e09335118a807408795523e20de8
   GoogleMaps: f09da64fc987c1aa29394567c3cab5a3df83c402
@@ -51,6 +58,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SKPhotoBrowser: a23a4125deca7451d298248c7eafc8332fb909df
 
-PODFILE CHECKSUM: 906c8bb542291cc19f66c2a0ca566420e2e786cc
+PODFILE CHECKSUM: 1cdc879612a15ae55ba4ea9bac496aa9e5e8da47
 
 COCOAPODS: 1.1.0.rc.2

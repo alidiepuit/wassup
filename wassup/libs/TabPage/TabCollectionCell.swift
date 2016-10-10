@@ -120,7 +120,6 @@ extension TabCollectionCell {
 
 
 // MARK: - IBAction
-
 extension TabCollectionCell {
     @IBAction private func tabItemTouchUpInside(button: UIButton) {
         tabItemButtonPressedBlock?()

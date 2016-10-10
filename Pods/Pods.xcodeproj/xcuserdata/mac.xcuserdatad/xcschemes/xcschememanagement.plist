@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DKImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Fusuma.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3285F70DA2F6FB14F8FEBABA57624EE7</key>
+		<key>6461FF73E606AC17ECB9C28944E4F30F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6461FF73E606AC17ECB9C28944E4F30F</key>
+		<key>70C28F0E03ED392620939790B2A77B43</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71CA2F0CB649E1404B5E028203A8F1D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -88,11 +98,6 @@
 			<true/>
 		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>91EE55AB6EC45E91EE091A4FDB7F52AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,6 +118,11 @@
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FEA77D333F908B7730F322F3AB7D665B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

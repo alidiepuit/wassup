@@ -10,6 +10,7 @@ import UIKit
 
 protocol TabPageViewDelegate {
     func didFinishScroll()
+    func didTabPage(vc: UIViewController)
 }
 
 public class TabPageViewController: UIPageViewController {
@@ -85,6 +86,9 @@ public extension TabPageViewController {
         shouldScrollCurrentBar = false
         let nextViewControllers: [UIViewController] = [tabItems[index].viewController]
 
+        //delegate did tab page
+        self.pageViewDelegate?.didTabPage(tabItems[index].viewController)
+        
         let completion: (Bool -> Void) = { [weak self] _ in
             self?.shouldScrollCurrentBar = true
             self?.beforeIndex = index

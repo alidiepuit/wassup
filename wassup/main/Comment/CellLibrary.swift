@@ -10,6 +10,8 @@ import UIKit
 
 class CellLibrary: UICollectionViewCell {
 
+    @IBOutlet weak var bg: UIView!
+    @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var image: UIImageView!
     
     override func awakeFromNib() {

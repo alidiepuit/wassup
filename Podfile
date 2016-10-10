@@ -11,4 +11,5 @@ target 'wassup' do
   pod 'MWPhotoBrowser'
   pod 'AlamofireImage', '2.0'
   pod 'IQKeyboardManagerSwift', '4.0.5'
+  pod 'DKImagePickerController', '3.3.4'
 end

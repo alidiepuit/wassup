@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,23 +13,63 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-5F-80m">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-5F-80m">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-nK-d9E">
+                        <rect key="frame" x="32" y="38" width="35" height="24"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUp-ZB-Xf7">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <subviews>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3a-Rd-d43">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_oval" translatesAutoresizingMaskIntoConstraints="NO" id="ccG-ZX-1Cp">
+                                <rect key="frame" x="25" y="25" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="nBj-ed-70o"/>
+                                    <constraint firstAttribute="height" constant="50" id="rgO-rg-CDA"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="d3a-Rd-d43" secondAttribute="trailing" id="29l-aI-6Hy"/>
+                            <constraint firstItem="ccG-ZX-1Cp" firstAttribute="centerX" secondItem="jUp-ZB-Xf7" secondAttribute="centerX" id="AGm-qh-ZZc"/>
+                            <constraint firstAttribute="bottom" secondItem="d3a-Rd-d43" secondAttribute="bottom" id="MNj-hV-eeq"/>
+                            <constraint firstItem="ccG-ZX-1Cp" firstAttribute="centerY" secondItem="jUp-ZB-Xf7" secondAttribute="centerY" id="NI9-uJ-wHS"/>
+                            <constraint firstItem="d3a-Rd-d43" firstAttribute="top" secondItem="jUp-ZB-Xf7" secondAttribute="top" id="e0d-JA-Api"/>
+                            <constraint firstItem="d3a-Rd-d43" firstAttribute="leading" secondItem="jUp-ZB-Xf7" secondAttribute="leading" id="xnf-E8-DfN"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" red="0.12941176469999999" green="0.50196078430000002" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="jUp-ZB-Xf7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AhA-a5-bMK"/>
+                <constraint firstItem="f1T-nK-d9E" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FGu-Yl-RTX"/>
                 <constraint firstAttribute="trailing" secondItem="UXF-5F-80m" secondAttribute="trailing" id="UAV-wU-d74"/>
                 <constraint firstAttribute="bottom" secondItem="UXF-5F-80m" secondAttribute="bottom" id="YHM-TQ-zop"/>
+                <constraint firstAttribute="trailing" secondItem="jUp-ZB-Xf7" secondAttribute="trailing" id="Yy6-b0-pPM"/>
                 <constraint firstItem="UXF-5F-80m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="crH-Bs-ErB"/>
+                <constraint firstItem="f1T-nK-d9E" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="j68-lk-S1D"/>
                 <constraint firstItem="UXF-5F-80m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jdY-DM-E0s"/>
+                <constraint firstItem="jUp-ZB-Xf7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="o2H-He-zYK"/>
+                <constraint firstAttribute="bottom" secondItem="jUp-ZB-Xf7" secondAttribute="bottom" id="t4S-fO-QRM"/>
             </constraints>
             <size key="customSize" width="152" height="139"/>
             <connections>
+                <outlet property="bg" destination="jUp-ZB-Xf7" id="VBD-IN-bgV"/>
+                <outlet property="icon" destination="f1T-nK-d9E" id="Ybz-rB-MvN"/>
                 <outlet property="image" destination="UXF-5F-80m" id="IRR-mP-I3H"/>
             </connections>
-            <point key="canvasLocation" x="315" y="252"/>
+            <point key="canvasLocation" x="435" y="348"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_camera" width="35" height="24"/>
+        <image name="ic_oval" width="86" height="86"/>
+    </resources>
 </document>

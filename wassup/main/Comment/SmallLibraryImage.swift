@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import DKImagePickerController
 
 private let reuseIdentifier = "CellLibrary"
 
@@ -23,9 +24,13 @@ class SmallLibraryImage: UICollectionViewController {
     var images = [UIImage]()
     var totalImageCountNeeded = 7
     
+    let pickerController = DKImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView?.registerNib(UINib(nibName: "CellLibrary", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
+        
+        self.collectionView?.collectionViewLayout = CustomImageFlowLayout()
         
         fetchPhotos()
     }
@@ -46,15 +51,54 @@ class SmallLibraryImage: UICollectionViewController {
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellLibrary
-    
-        // Configure the cell
+        
+        //first or last cell
+        if indexPath.row == 0 || indexPath.row == self.images.count-1 {
+            cell.image.hidden = true
+            cell.icon.hidden = false
+        } else {
+            cell.image.hidden = false
+            cell.icon.hidden = true
+        }
+        
+        cell.icon.image = self.images[indexPath.row]
         cell.image.image = self.images[indexPath.row]
+        
+        cell.bg.hidden = true
         
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let width = (self.collectionView!.frame.size.width - 2) / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 0:
+            //take a picture
+            pickerController.sourceType = .Camera
+            self.presentViewController(pickerController, animated: true) {}
+            break
+        case images.count-1:
+            //chose from library
+            pickerController.sourceType = .Photo
+            pickerController.didSelectAssets = { (assets: [DKAsset]) in
+                print("didSelectAssets")
+                print(assets)
+            }
+            self.presentViewController(pickerController, animated: true) {}
+            break
+        default:
+            return
+        }
+    }
  
     func fetchPhotos() {
+        self.addImgToArray(UIImage(named: "ic_camera")!)
         self.fetchPhotoAtIndexFromEnd(0)
     }
     
@@ -94,6 +138,7 @@ class SmallLibraryImage: UICollectionViewController {
                     if index + 1 < fetchResult.count && self.images.count < self.totalImageCountNeeded {
                         self.fetchPhotoAtIndexFromEnd(index + 1)
                     } else {
+                        self.addImgToArray(UIImage(named: "ic_library")!)
                         self.collectionView?.reloadData()
                     }
                 })
@@ -101,8 +146,7 @@ class SmallLibraryImage: UICollectionViewController {
         }
     }
     
-    func addImgToArray(uploadImage:UIImage)
-    {
+    func addImgToArray(uploadImage:UIImage) {
         self.images.append(uploadImage)
     }
 }

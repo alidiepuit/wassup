@@ -27,7 +27,7 @@ class MapsController: UIViewController {
     var isMoving = false
     let heightInfo = CGFloat(285)
     let animationDuration = 0.5
-    var tabPage:TabPageViewController?
+    var tabPage:TabPageViewController!
     var listSelectedTags = [TagView]()
     var cate = ObjectType.Event
     
@@ -38,9 +38,11 @@ class MapsController: UIViewController {
         tabPage = TabPageViewController.create()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc1 = storyboard.instantiateViewControllerWithIdentifier("MapsEventHostController") as! MapsEventHostController
+        vc1.cate = ObjectType.Event
         let vc2 = storyboard.instantiateViewControllerWithIdentifier("MapsEventHostController") as! MapsEventHostController
         vc2.cate = ObjectType.Host
         tabPage!.tabItems = [(vc1, "Sự kiện"), (vc2, "Địa điểm")]
+        tabPage!.pageViewDelegate = self
         
         var option = TabPageOption()
         option.currentColor = UIColor.fromRgbHex(0x31ACF9)
@@ -68,11 +70,7 @@ class MapsController: UIViewController {
         
     }
     
-    func selectObjectType(noti: NSNotification) {
-        
-        let userInfo = noti.userInfo as! Dictionary<String,AnyObject>
-        let type = userInfo["objectType"] as! Int
-        cate = ObjectType.valueOf(type)
+    func selectObjectType() {
         if centerPoint.latitude != 0.0 && centerPoint.longitude != 0.0 {
             callAPI(centerPoint.latitude, long: centerPoint.longitude)
         } else {
@@ -92,8 +90,10 @@ class MapsController: UIViewController {
             return
         }
         
+    }
+    
+    deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectObjectType(_:)), name: "MAPS_SELECT_OBJECT_TYPE", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -245,5 +245,17 @@ extension MapsController: GMSMapViewDelegate {
         if gesture {
             //            markerCenter.fadeIn(0.25)
         }
+    }
+}
+
+extension MapsController: TabPageViewDelegate {
+    func didTabPage(vc: UIViewController) {
+        let v = vc as! MapsEventHostController
+        cate = v.cate
+        selectObjectType()
+    }
+    
+    func didFinishScroll() {
+        
     }
 }
