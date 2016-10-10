@@ -21,52 +21,70 @@ protocol KeyboardDelegate: class {
 class SmallLibraryImage: UICollectionViewController {
     
     weak var delegate: KeyboardDelegate?
-    var images = [UIImage]()
+    var images = [DKAsset]()
+    var selectedImages = [DKAsset]()
     var totalImageCountNeeded = 7
-    
-    let pickerController = DKImagePickerController()
+    var selectedIndex = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView?.registerNib(UINib(nibName: "CellLibrary", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         self.collectionView?.collectionViewLayout = CustomImageFlowLayout()
-        
-        fetchPhotos()
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        self.images.removeAll()
+        self.collectionView?.reloadData()
+        self.fetchPhotos()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-
-
+    
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.images.count
+        return self.images.count == 0 ? 0 : self.images.count + 2
     }
-
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellLibrary
         
         //first or last cell
-        if indexPath.row == 0 || indexPath.row == self.images.count-1 {
+        
+        cell.bg.hidden = true
+        if indexPath.row == 0 || indexPath.row == self.images.count+1 {
             cell.image.hidden = true
             cell.icon.hidden = false
+            cell.icon.image = indexPath.row == 0 ? UIImage(named: "ic_camera_white") : UIImage(named: "ic_library")
         } else {
             cell.image.hidden = false
             cell.icon.hidden = true
+            
+            let idx = indexPath.row - 1
+            
+            let asset = self.images[idx]
+            let tag = idx + 1
+            cell.tag = tag
+            asset.fetchOriginalImage(true, completeBlock: { image, info in
+                if cell.tag == tag {
+                    cell.image.image = image
+                    cell.icon.image = image
+                }
+            })
+            
+            if self.existedAsset(asset) {
+                cell.bg.hidden = false
+            }
         }
-        
-        cell.icon.image = self.images[indexPath.row]
-        cell.image.image = self.images[indexPath.row]
-        
-        cell.bg.hidden = true
         
         return cell
     }
@@ -80,25 +98,36 @@ class SmallLibraryImage: UICollectionViewController {
         switch indexPath.row {
         case 0:
             //take a picture
-            pickerController.sourceType = .Camera
-            self.presentViewController(pickerController, animated: true) {}
+            NSNotificationCenter.defaultCenter().postNotificationName("SHOW_PICKER_IMAGE", object: nil, userInfo: ["typePicker": DKImagePickerControllerSourceType.Camera.rawValue])
             break
-        case images.count-1:
+        case images.count+1:
             //chose from library
-            pickerController.sourceType = .Photo
-            pickerController.didSelectAssets = { (assets: [DKAsset]) in
-                print("didSelectAssets")
-                print(assets)
-            }
-            self.presentViewController(pickerController, animated: true) {}
+            NSNotificationCenter.defaultCenter().postNotificationName("SHOW_PICKER_IMAGE", object: nil, userInfo: ["typePicker": DKImagePickerControllerSourceType.Photo.rawValue,
+                "selectedImages": self.selectedImages])
             break
         default:
+            let idx = indexPath.row - 1
+            let asset = self.images[idx]
+            if self.selectedIndex.contains(idx) {
+                //remove from selected
+                self.removeFromSelected(asset, index: idx)
+            } else {
+                //add to selected
+                self.addToSelected(asset, index: idx)
+            }
+            self.collectionView?.reloadItemsAtIndexPaths([indexPath])
             return
         }
     }
- 
+    
     func fetchPhotos() {
-        self.addImgToArray(UIImage(named: "ic_camera")!)
+        var idx = 0
+        for asset in self.selectedImages {
+            self.addAssetToArray(asset)
+            self.selectedIndex.append(idx)
+            idx += 1
+        }
+        
         self.fetchPhotoAtIndexFromEnd(0)
     }
     
@@ -112,11 +141,11 @@ class SmallLibraryImage: UICollectionViewController {
         // the requestImageForAsset will return both the image
         // and thumbnail; by setting synchronous to true it
         // will return just the thumbnail
-        var requestOptions = PHImageRequestOptions()
+        let requestOptions = PHImageRequestOptions()
         requestOptions.synchronous = true
         
         // Sort the images by creation date
-        var fetchOptions = PHFetchOptions()
+        let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
         
         if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
@@ -124,29 +153,56 @@ class SmallLibraryImage: UICollectionViewController {
             // If the fetch result isn't empty,
             // proceed with the image request
             if fetchResult.count > 0 {
-                // Perform the image request
-                imgManager.requestImageForAsset(fetchResult.objectAtIndex(fetchResult.count - 1 - index) as! PHAsset, targetSize: view.frame.size, contentMode: PHImageContentMode.AspectFill, options: requestOptions, resultHandler: { (image, _) in
-                    
-                    // Add the returned image to your array
-                    self.addImgToArray(image!)
-                    
-                    // If you haven't already reached the first
-                    // index of the fetch result and if you haven't
-                    // already stored all of the images you need,
-                    // perform the fetch request again with an
-                    // incremented index
-                    if index + 1 < fetchResult.count && self.images.count < self.totalImageCountNeeded {
+                let asset = fetchResult.objectAtIndex(fetchResult.count - 1 - index) as! PHAsset
+                
+                if self.existedAsset(DKAsset(originalAsset: asset)) {
+                    if index + 1 < fetchResult.count {
                         self.fetchPhotoAtIndexFromEnd(index + 1)
-                    } else {
-                        self.addImgToArray(UIImage(named: "ic_library")!)
-                        self.collectionView?.reloadData()
+                        return
                     }
-                })
+                }
+                
+                self.addImgToArray(asset)
+                if index + 1 < fetchResult.count && self.images.count < self.totalImageCountNeeded {
+                    self.fetchPhotoAtIndexFromEnd(index + 1)
+                } else {
+                    self.collectionView?.reloadData()
+                }
             }
         }
     }
     
-    func addImgToArray(uploadImage:UIImage) {
+    func existedAsset(a: DKAsset) -> Bool {
+        for asset in self.selectedImages {
+            if asset.isEqual(a) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func addImgToArray(uploadImage:PHAsset) {
+        self.images.append(DKAsset(originalAsset: uploadImage))
+    }
+    
+    func addAssetToArray(uploadImage:DKAsset) {
         self.images.append(uploadImage)
+    }
+    
+    func removeFromSelected(asset: DKAsset, index idx: Int) {
+        self.selectedImages = self.selectedImages.filter() {
+            let a = $0 as DKAsset
+            return !a.isEqual(asset)
+        }
+        
+        self.selectedIndex = self.selectedIndex.filter() {
+            let i = $0 as Int
+            return i != idx
+        }
+    }
+    
+    func addToSelected(asset: DKAsset, index idx: Int) {
+        self.selectedImages.append(asset)
+        self.selectedIndex.append(idx)
     }
 }

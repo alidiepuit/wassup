@@ -48,7 +48,7 @@ class SearchHotController: SearchEventController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let data:Dictionary<String,AnyObject> = self.data![indexPath.row]
-        let objectType = data["object_type"]?.intValue
+        let objectType = CONVERT_INT(data["object_type"])
         if objectType == ObjectType.Article.rawValue {
             let cell = tableView.dequeueReusableCellWithIdentifier("CellBlog", forIndexPath: indexPath) as! CellBlog
             cell.initCell(data)
@@ -68,7 +68,7 @@ class SearchHotController: SearchEventController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let data:Dictionary<String,AnyObject> = self.data![indexPath.row]
-        let objectType = data["object_type"]?.intValue
+        let objectType = data["object_type"] as! Int
         if objectType == ObjectType.Event.rawValue || objectType == ObjectType.Host.rawValue{
             self.performSegueWithIdentifier("DetailEvent", sender: nil)
         } else {
@@ -82,7 +82,7 @@ class SearchHotController: SearchEventController {
                 if segue.identifier == "DetailEvent" {
                     let next = segue.destinationViewController as! DetailEventController
                     next.data = data
-                    let objectType = data["object_type"]?.intValue
+                    let objectType = data["object_type"] as! Int
                     if objectType == ObjectType.Event.rawValue {
                         next.cate = ObjectType.Event
                     } else {

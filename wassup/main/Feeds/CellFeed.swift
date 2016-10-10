@@ -58,14 +58,18 @@ class CellFeed: UITableViewCell {
         
         if let item = data["item"] as? Dictionary<String, AnyObject> {
         
+            let objectType = CONVERT_INT(data["object_type"])
             
-            if CONVERT_STRING(item["endtime"]) != "" && CONVERT_STRING(item["starttime"]) != "" {
-                lblTime.text = Date().printDateToDate(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
-            } else {
-                
+            if objectType == ObjectType.Event.rawValue || objectType == ObjectType.UserRegistEvent.rawValue {
+                if CONVERT_STRING(item["endtime"]) != "" && CONVERT_STRING(item["starttime"]) != "" {
+                    lblTime.text = Date().printDateToDate(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
+                } else {
+                    
+                }
+            } else if objectType == ObjectType.Host.rawValue || objectType == ObjectType.Checkin.rawValue {
+                lblTime.text = Date().printTimeOpen(CONVERT_STRING(item["starttime"]), to: CONVERT_STRING(item["endtime"]))
             }
             
-            let objectType = CONVERT_INT32(data["object_type"])
             let name = CONVERT_STRING(data["email"])
             let event = CONVERT_STRING(item["title"])
             var feelings = Dictionary<String,AnyObject>()
@@ -210,7 +214,7 @@ class CellFeed: UITableViewCell {
             btnLeft.hidden = true
             btnRight.hidden = true
             
-            let objectType = CONVERT_INT32(data["object_type"])
+            let objectType = CONVERT_INT(data["object_type"])
             let name = CONVERT_STRING(data["fullname"])
             let event = CONVERT_STRING(data["name"])
             var format = ActivityType.PostActivity.rawValue

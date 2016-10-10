@@ -27,8 +27,11 @@ class CellSearch: UITableViewCell {
     var id = ""
     var activeLeft = false
     var activeRight = false
+    var data:Dictionary<String,AnyObject>!
     
     func initCell(data: Dictionary<String, AnyObject>) {
+        self.data = data
+        
         titleCate.corner(10, border: 0, colorBorder: 0)
         viewJoin.corner(0, border: 1, colorBorder: 0xE0E3E7)
         viewCheckIn.corner(0, border: 1, colorBorder: 0xE0E3E7)
@@ -117,9 +120,8 @@ class CellSearch: UITableViewCell {
         activeRight = !activeRight
         if activeRight {
             imgBtnRight.image = UIImage(named: "ic_checkin_selected")
-        } else {
-            imgBtnRight.image = UIImage(named: "ic_checkin_normal")
         }
+        NSNotificationCenter.defaultCenter().postNotificationName("CHECKIN_FROM_MAIN_VIEW", object: nil, userInfo: ["data": data, "cate": cate.rawValue])
     }
     
     override func awakeFromNib() {

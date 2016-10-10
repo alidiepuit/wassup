@@ -48,7 +48,7 @@ class SearchTagController: SearchHotController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let data:Dictionary<String,AnyObject> = self.data![indexPath.row]
-        let objectType = data["object_type"]?.intValue
+        let objectType = data["object_type"] as! Int
         if objectType == ObjectType.Event.rawValue || objectType == ObjectType.Host.rawValue {
             return 285
         } else {

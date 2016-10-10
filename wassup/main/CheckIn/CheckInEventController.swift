@@ -67,6 +67,15 @@ class CheckInEventController: UIViewController {
         self.isLoading = false
         self.ref.endRefreshing()
     }
+    
+    @IBAction func saveComment(sender: UIStoryboardSegue) {
+        if let vc = sender.sourceViewController as? CommentController, data = vc.saveData {
+            let arrImage = data["arrImage"] as! [UIImage]
+            let description = CONVERT_STRING(data["description"])
+            let md = User()
+            md.checkin(typeSearch!, id: CONVERT_STRING(data["id"]), description: description, images: arrImage, callback: nil)
+        }
+    }
 }
 
 extension CheckInEventController: UISearchBarDelegate, UISearchDisplayDelegate {
@@ -128,6 +137,7 @@ extension CheckInEventController: UITableViewDelegate, UITableViewDataSource {
             let d = self.data[row]
             vc.data = d
             vc.cate = typeSearch!
+            vc.cateView = ObjectType.Checkin
         }
     }
 }

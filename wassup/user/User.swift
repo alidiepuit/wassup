@@ -250,4 +250,20 @@ class User: ModelBase {
                                            "login_style": User.sharedInstance.login_style]
         self.callAPI(model, params: dict, callback: callback)
     }
+    
+    func checkin(type: ObjectType, id: String, description: String, images: [UIImage],callback: ServiceResponse?) {
+        let model = "u_user/checkin"
+        
+        var paramId = "host_id"
+        if type == ObjectType.Event {
+            paramId = "event_id"
+        }
+        
+        let dict:Dictionary<String,AnyObject> = [paramId: id,
+                                                 "description": description,
+                                                 "images": images,
+                                                 "user_token": User.sharedInstance.token,
+                                                 "login_style": User.sharedInstance.login_style]
+        self.callAPI(model, params: dict, callback: callback)
+    }
 }

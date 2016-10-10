@@ -170,7 +170,7 @@ class DetailEvent: UITableViewCell {
     }
     
     @IBAction func clickRight(sender: AnyObject) {
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("CHECKIN_FROM_DETAIL", object: nil)
     }
 }
 

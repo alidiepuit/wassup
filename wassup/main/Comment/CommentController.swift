@@ -8,9 +8,14 @@
 
 import UIKit
 import Fusuma
+import DKImagePickerController
 
 class CommentController: UIViewController {
 
+    @IBOutlet weak var btnCancelCheckIn: UIButton!
+    @IBOutlet weak var btnCheckIn: UIButton!
+    @IBOutlet weak var btnSwitch: UIButton!
+    @IBOutlet weak var constrainBottomSwitch: NSLayoutConstraint!
     @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var time: UILabel!
@@ -19,20 +24,24 @@ class CommentController: UIViewController {
     @IBOutlet weak var constraintHeightComment: NSLayoutConstraint!
     
     @IBOutlet weak var constraintHeightImages: NSLayoutConstraint!
-    @IBOutlet weak var images: UICollectionView!
     @IBOutlet weak var content: UIPlaceHolderTextView!
     @IBOutlet weak var scroll: UIScrollView!
     
-    var listImages = [CellImage]()
     var cate = ObjectType.Event
     var data:Dictionary<String,AnyObject>!
     
     var saveData:Dictionary<String,AnyObject>!
     var smallLibrary: SmallLibraryImage!
     
+    let pickerController = DKImagePickerController()
+    
+    var cateView = ObjectType.Checkin
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initData(data)
+        
+        pickerController.assetType = .AllPhotos
     }
     
     func initData(data: Dictionary<String,AnyObject>) {
@@ -53,23 +62,44 @@ class CommentController: UIViewController {
         } else {
             Utils.loadImage(avatar, link: CONVERT_STRING(data["image_profile"]))
         }
-        
-//        images.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deselectImageComment(_:)), name: "DESELECT_IMAGE_COMMENT", object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showPickerImage(_:)), name: "SHOW_PICKER_IMAGE", object: nil)
         
         content.placeholder = Localization("What's on your mind?")
         
-        let ges = UITapGestureRecognizer(target: self, action: #selector(hiddenKeyboard(_:)))
-        self.view.addGestureRecognizer(ges)
+//        let ges = UITapGestureRecognizer(target: self, action: #selector(hiddenKeyboard(_:)))
+//        self.view.addGestureRecognizer(ges)
         
         smallLibrary = SmallLibraryImage(nibName: "SmallLibraryImage", bundle: nil)
         smallLibrary.view.frame = CGRect(x: 0, y: 0, width: 0, height: 300)
-        content.inputView = smallLibrary.view
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        btnCancelCheckIn.corner(10, border: 1, colorBorder: 0x2180FA)
+        btnCheckIn.corner(10, border: 0, colorBorder: 0x000000)
+        
+        if cateView == ObjectType.Checkin {
+            title = "Check in"
+        } else {
+            title = "Comment"
+        }
+        btnCheckIn.setTitle(title, forState: .Normal)
+    }
+    
+    func showKeyboard(noti: NSNotification) {
+        let userInfo = noti.userInfo!
+        let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+        constrainBottomSwitch.constant = keyboardHeight + 10
+        btnSwitch.hidden = false
+    }
+    
+    func hideKeyboard(noti: NSNotification) {
+        constrainBottomSwitch.constant = 10
+        btnSwitch.hidden = true
     }
     
     func hiddenKeyboard(gesture: UIGestureRecognizer) {
-        
         content.resignFirstResponder()
     }
 
@@ -82,20 +112,20 @@ class CommentController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func clickCamera(sender: AnyObject) {
-        let fusuma = FusumaViewController()
-        fusuma.delegate = self
-        self.presentViewController(fusuma, animated: true, completion: nil)
-    }
-    
-    func deselectImageComment(noti: NSNotification) {
-        let d = noti.userInfo as! Dictionary<String,AnyObject>
-        let indexPath = d["indexPath"] as! NSIndexPath
-        listImages = listImages.filter() {
-            let i = $0 as CellImage
-            return i.indexPath != indexPath
+    func showPickerImage(noti: NSNotification) {
+        let userInfo = noti.userInfo as! Dictionary<String,AnyObject>
+        
+        let typePicker = userInfo["typePicker"] as! Int
+        pickerController.sourceType = .Camera
+        //chose from library
+        if typePicker == DKImagePickerControllerSourceType.Photo.rawValue {
+            pickerController.sourceType = .Photo
+            pickerController.selectedAssets = userInfo["selectedImages"] as! [DKAsset]
         }
-        images.reloadData()
+        pickerController.didSelectAssets = { (assets: [DKAsset]) in
+            self.smallLibrary.selectedImages = assets
+        }
+        self.presentViewController(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -104,73 +134,56 @@ class CommentController: UIViewController {
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         if sender === btnSave {
-            let description = content.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            if description == "" {
-                let alert = UIAlertView(title: Localization("Thông báo"), message: "Bạn chưa nhập bình luận", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
-                return false
-            }
-
-            var arrImage = [UIImage]()
-            for i in listImages {
-                arrImage.append(i.image!)
-            }
-            saveData = ["id": CONVERT_STRING(data["id"]),
-                        "description": description,
-                        "arrImage": arrImage
-            ]
+            return self.postData()
         }
         return true
     }
-}
-
-//extension CommentController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return listImages.count
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CellImage", forIndexPath: indexPath) as! CellImage
-//        cell.img.image = listImages[indexPath.row].image
-//        cell.indexPath = indexPath
-//        cell.btnClose.hidden = false
-//        return cell
-//    }
-//}
-
-extension CommentController: FusumaDelegate {
-    func fusumaImageSelected(image: UIImage) {
-//        let cell = CellImage()
-//        cell.image = image
-//        cell.indexPath = NSIndexPath(forRow: listImages.count, inSection: 0)
-//        listImages.append(cell)
-//        
-//        let lastIndexPath = NSIndexPath(forRow: listImages.count - 1, inSection: 0)
-//        images.insertItemsAtIndexPaths([lastIndexPath])
-//        
-//        constraintHeightImages.constant = ((CGFloat(listImages.count) + 2) / 3) * 200
-//        scroll.contentSize = CGSize(width: scroll.contentSize.width, height: content.frame.size.height + constraintHeightImages.constant)
-//        scroll.updateConstraintsIfNeeded()
+    
+    @IBAction func switchKeyboard(sender: AnyObject) {
+        let btn = sender as! UIButton
+        let tag = btn.tag
+        if tag == 0 {
+            content.inputView = smallLibrary.view
+            btnSwitch.setImage(UIImage(named: "ic_keyboard"), forState: .Normal)
+        } else {
+            content.inputView = nil
+            btnSwitch.setImage(UIImage(named: "ic_camera"), forState: .Normal)
+        }
+        
+        content.reloadInputViews()
+        btn.tag = 1 - tag
     }
     
-    func fusumaVideoCompleted(withFileURL fileURL: NSURL) {
-        
+    @IBAction func cancelCheckIn(sender: AnyObject) {
+        content.resignFirstResponder()
     }
     
-    func fusumaCameraRollUnauthorized() {
-        
+    @IBAction func postCheckin(sender: AnyObject) {
+        if self.postData() {
+            self.performSegueWithIdentifier("saveComment", sender: self)
+        }
     }
-}
-
-extension CommentController: UITextViewDelegate {
-    func textViewDidChange(textView: UITextView) {
-        let text = textView.text
-        let hei = text.heightWithConstrainedWidth(content.frame.size.width, font: UIFont(name: "Helvetica Neue", size: 14.0)!) + 20
-        constraintHeightComment.constant = hei < 80 ? 80 : hei
-        scroll.updateConstraints()
+    
+    func postData() -> Bool {
+        let description = content.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if description == "" {
+            let alert = UIAlertView(title: Localization("Thông báo"), message: "Bạn chưa nhập bình luận", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            return false
+        }
+        
+        var arrImage = [UIImage]()
+        for asset in smallLibrary.selectedImages {
+            asset.fetchOriginalImage(true) {
+                (image, info) in
+                arrImage.append(image!)
+            }
+        }
+        saveData = ["id": CONVERT_STRING(data["id"]),
+                    "description": description,
+                    "arrImage": arrImage,
+                    "cate": cate.rawValue
+        ]
+        return true
     }
 }

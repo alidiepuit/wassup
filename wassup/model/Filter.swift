@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum ObjectType: Int32 {
+public enum ObjectType: Int {
     case Event = 1
     case Follow
     case Checkin
@@ -24,7 +24,7 @@ public enum ObjectType: Int32 {
 
 extension ObjectType {
     public static func valueOf(type: Int) -> ObjectType {
-        switch Int32(type) {
+        switch Int(type) {
         case Event.rawValue:
             return ObjectType.Event
         case Host.rawValue:

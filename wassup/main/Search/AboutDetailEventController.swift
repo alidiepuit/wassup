@@ -207,28 +207,6 @@ class AboutDetailEventController: FeedsController {
         }
         return 0
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "Comment" && detail != nil && detail!.count > 0 {
-            let navi = segue.destinationViewController as! UINavigationController
-            let vc = navi.topViewController as! CommentController
-            vc.data = detail
-            vc.cate = cate
-        }
-    }
-    
-    @IBAction func saveComment(sender: UIStoryboardSegue) {
-        if let vc = sender.sourceViewController as? CommentController, data = vc.saveData {
-            let arrImage = data["arrImage"] as! [UIImage]
-            let description = CONVERT_STRING(data["description"])
-            let md = User()
-            md.comment(cate, id: CONVERT_STRING(data["id"]), description: description, images: arrImage) {
-                (result:AnyObject?) in
-                self.reloadDataWhenAppear()
-            }
-        }
-    }
     
     @IBAction override func unwind(sender: UIStoryboardSegue) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -270,7 +248,7 @@ extension AboutDetailEventController {
 
 extension AboutDetailEventController {
     override func didTapMessage() {
-        performSegueWithIdentifier("Comment", sender: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("COMMENT_FROM_DETAIL", object: nil)
     }
 }
 
