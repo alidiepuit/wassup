@@ -19,12 +19,11 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var btnRight: UIView!
     @IBOutlet weak var icLeft: UIImageView!
     @IBOutlet weak var icRight: UIImageView!
-    
+    @IBOutlet weak var lblBookmark: UILabel!
+    @IBOutlet weak var lblLike: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var cover: UIImageView!
-    
     @IBOutlet weak var info: UILabel!
-    
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var webviewHeightConstraint: NSLayoutConstraint!
     
@@ -59,10 +58,15 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
                 str = "<style>input[type=image]{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;} img{width:\(UIScreen.mainScreen().bounds.size.width-20) !important;height: auto !important;}</style><div style=\"width:\(self.webview.frame.size.width-20); word-wrap:break-word\">" + str + "</div>"
                 self.webview.loadHTMLString(str, baseURL: NSURL(string:BASE_URL))
                 
-                let isFollow = d["is_bookmark"] != nil ? CONVERT_BOOL(d["is_bookmark"]) : false
+                let isFollow = CONVERT_BOOL(d["is_bookmark"])
+                self.activeLeft = false
                 if isFollow {
                     self.icLeft.image = UIImage(named: "ic_bookmark_enable")
+                    self.lblBookmark.text = Localization("Đã lưu")
                     self.activeLeft = true
+                } else {
+                    self.icLeft.image = UIImage(named: "ic_bookmark")
+                    self.lblBookmark.text = Localization("Lưu lại")
                 }
                 
                 let isCheckin = CONVERT_BOOL(d["is_like"])
@@ -86,11 +90,17 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
     }
 
     @IBAction func clickLeft(sender: AnyObject) {
-        activeLeft = !activeLeft
-        if activeLeft {
-            icLeft.image = UIImage(named: "ic_bookmark_enable")
-        } else {
-            icLeft.image = UIImage(named: "ic_bookmark")
+        if !activeLeft {
+            performSegueWithIdentifier("SaveCollection", sender: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SaveCollection" {
+            let nav = segue.destinationViewController as! UINavigationController
+            let vc = nav.topViewController as! ListCollectionController
+            vc.objectId = CONVERT_STRING(id)
+            vc.objectType = CollectionType.Article
         }
     }
     
@@ -159,5 +169,24 @@ class DetailBlogController: UIViewController, UIWebViewDelegate {
         scroll.sizeToFit()
         scroll.layoutIfNeeded()
         scroll.setNeedsLayout()
+    }
+    
+    @IBAction func saveBookmark(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? ListCollectionController, item = sourceViewController.selectedItemCollection {
+            let objectId = CONVERT_STRING(id)
+            let objectType = CollectionType.Article
+            let md = Collection()
+            md.bookmark(CONVERT_STRING(item["id"]), collectionName: CONVERT_STRING(item["name"]), objectId: objectId, objectType: objectType.rawValue) {
+                (result:AnyObject?) in
+                if let res = result as? Dictionary<String,AnyObject> {
+                    let status = CONVERT_INT(res["status"])
+                    if status == 1 {
+                        self.icLeft.image = UIImage(named: "ic_bookmark_enable")
+                        self.lblBookmark.text = Localization("Đã lưu")
+                        self.activeLeft = true
+                    }
+                }
+            }
+        }
     }
 }

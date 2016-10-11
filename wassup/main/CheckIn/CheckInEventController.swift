@@ -92,6 +92,7 @@ extension CheckInEventController: UISearchBarDelegate, UISearchDisplayDelegate {
     func filterContentForSearchText() {
         page = 1
         data.removeAll()
+        self.tbl.reloadData()
         loadData()
     }
 }

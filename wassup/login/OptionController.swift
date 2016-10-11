@@ -64,7 +64,7 @@ class OptionController: UIViewController {
                 model.token = dict["etoken"] as! String
                 model.login_style = String(2)
                 
-                let hasRecommandation = CONVERT_BOOL(dict["flag"])
+                let hasRecommandation = CONVERT_INT(dict["flag"]) == 1
                 
                 if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)

@@ -115,7 +115,7 @@ class MapsController: UIViewController {
                 }
                 listTag += a.id
             }
-            
+            selectObjectType()
         }
     }
     
@@ -175,6 +175,7 @@ class MapsController: UIViewController {
 }
 
 extension MapsController: GMSMapViewDelegate {
+    
     func mapView(mapView: GMSMapView, idleAtCameraPosition cameraPosition: GMSCameraPosition) {
         let handler = { (response: GMSReverseGeocodeResponse?, error: NSError?) -> Void in
             guard error == nil else {

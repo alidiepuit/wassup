@@ -33,7 +33,6 @@ class CommentController: UIViewController {
     var saveData:Dictionary<String,AnyObject>!
     var smallLibrary: SmallLibraryImage!
     
-    let pickerController = DKImagePickerController()
     
     var cateView = ObjectType.Checkin
     
@@ -41,7 +40,6 @@ class CommentController: UIViewController {
         super.viewDidLoad()
         initData(data)
         
-        pickerController.assetType = .AllPhotos
     }
     
     func initData(data: Dictionary<String,AnyObject>) {
@@ -60,7 +58,11 @@ class CommentController: UIViewController {
         if cate == ObjectType.Event {
             Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
         } else {
-            Utils.loadImage(avatar, link: CONVERT_STRING(data["image_profile"]))
+            if data["image_profile"] != nil {
+                Utils.loadImage(avatar, link: CONVERT_STRING(data["image_profile"]))
+            } else {
+                Utils.loadImage(avatar, link: CONVERT_STRING(data["image"]))
+            }
         }
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showPickerImage(_:)), name: "SHOW_PICKER_IMAGE", object: nil)
@@ -116,6 +118,9 @@ class CommentController: UIViewController {
         let userInfo = noti.userInfo as! Dictionary<String,AnyObject>
         
         let typePicker = userInfo["typePicker"] as! Int
+        
+        let pickerController = DKImagePickerController()
+        pickerController.assetType = .AllPhotos
         pickerController.sourceType = .Camera
         //chose from library
         if typePicker == DKImagePickerControllerSourceType.Photo.rawValue {
@@ -124,6 +129,7 @@ class CommentController: UIViewController {
         }
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             self.smallLibrary.selectedImages = assets
+            self.content.becomeFirstResponder()
         }
         self.presentViewController(pickerController, animated: true, completion: nil)
     }

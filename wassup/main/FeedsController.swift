@@ -341,7 +341,8 @@ class FeedsController: UITableViewController {
         }
         
         if segue.identifier == "SaveCollection" {
-            let vc = segue.destinationViewController as! ListCollectionController
+            let nav = segue.destinationViewController as! UINavigationController
+            let vc = nav.topViewController as! ListCollectionController
             let d:Dictionary<String,AnyObject> = self.data[indexPath.row]
             vc.objectId = CONVERT_STRING(d["id"])
             vc.objectType = CollectionType.Feed

@@ -78,6 +78,10 @@ class ListCollectionController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBAction func close(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func createBookmark(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? CreateCollectionController, itemCollection = sourceViewController.itemCollection {
             let md = Collection()

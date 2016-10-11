@@ -24,6 +24,7 @@ class MainController: UITabBarController {
         Utils.sharedInstance.refreshLocation(self, action: nil, loop: false)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(checkInFromMainView(_:)), name: "CHECKIN_FROM_MAIN_VIEW", object: nil)
+        
     }
     
     func checkInFromMainView(noti: NSNotification) {
@@ -32,6 +33,7 @@ class MainController: UITabBarController {
         cate = ObjectType.valueOf(userInfo["cate"] as! Int)
         self.performSegueWithIdentifier("Checkin", sender: nil)
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
@@ -71,4 +73,6 @@ class MainController: UITabBarController {
             md.checkin(cate, id: CONVERT_STRING(data["id"]), description: description, images: arrImage, callback: nil)
         }
     }
+    
+    
 }

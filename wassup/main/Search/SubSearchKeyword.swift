@@ -73,7 +73,7 @@ class SubSearchKeyword: UITableViewController {
                         self.data.removeAll()
                     }
                     for ele:Dictionary<String,AnyObject> in d {
-                        let objectType = ele["object_type"] as! Int
+                        let objectType = CONVERT_INT(ele["object_type"])
                         if objectType == self.typeSearch.rawValue {
                             self.data.append(ele)
                         }

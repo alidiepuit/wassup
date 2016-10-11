@@ -18,6 +18,8 @@ class SearchController: UIViewController {
     var listProvince = [CellDropdown]()
     var selProvince:BTNavigationDropdownMenu?
     var tabPage:TabPageViewController?
+    var data:Dictionary<String,AnyObject>!
+    var cate:ObjectType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +58,8 @@ class SearchController: UIViewController {
         
         loadProvince()
         
-        
         Utils.sharedInstance.refreshLocation(self, action: nil, loop: false)
+        
     }
     
     func loadProvince() {
@@ -101,5 +103,9 @@ class SearchController: UIViewController {
     
     @IBAction func unwind(sender: UIStoryboardSegue) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
     }
 }
