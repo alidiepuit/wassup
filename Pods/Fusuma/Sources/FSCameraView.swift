@@ -189,7 +189,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                     // The center coordinate along Y axis
                     let rcy = ih * 0.5
 
-                    let imageRef = CGImageCreateWithImageInRect(image.CGImage, CGRect(x: rcy-iw*0.5, y: 0 , width: iw, height: iw))
+                    let imageRef = CGImageCreateWithImageInRect(image.CGImage!, CGRect(x: rcy-iw*0.5, y: 0 , width: iw, height: iw))
                     
                     
                                         

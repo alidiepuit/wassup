@@ -127,7 +127,7 @@ class SmallLibraryImage: UICollectionViewController {
             self.selectedIndex.append(idx)
             idx += 1
         }
-        
+        self.view.lock()
         self.fetchPhotoAtIndexFromEnd(0)
     }
     
@@ -169,6 +169,7 @@ class SmallLibraryImage: UICollectionViewController {
                     self.collectionView?.reloadData()
                 }
             }
+            self.view.unlock()
         }
     }
     

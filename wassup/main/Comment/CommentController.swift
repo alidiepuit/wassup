@@ -172,11 +172,11 @@ class CommentController: UIViewController {
     
     func postData() -> Bool {
         let description = content.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        if description == "" {
-            let alert = UIAlertView(title: Localization("Thông báo"), message: "Bạn chưa nhập bình luận", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            return false
-        }
+//        if description == "" {
+//            let alert = UIAlertView(title: Localization("Thông báo"), message: "Bạn chưa nhập bình luận", delegate: nil, cancelButtonTitle: "OK")
+//            alert.show()
+//            return false
+//        }
         
         var arrImage = [UIImage]()
         for asset in smallLibrary.selectedImages {

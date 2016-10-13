@@ -1047,9 +1047,11 @@
 					047F35C81D62A0C500F0FE80 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = J7WYJP5H3V;
+						LastSwiftMigration = 0800;
 					};
 					047F35DD1D62A0C500F0FE80 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = 047F35C81D62A0C500F0FE80;
 					};
 				};
@@ -1474,6 +1476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1500,6 +1503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1520,6 +1524,7 @@
 				INFOPLIST_FILE = wassupTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wassup.app/wassup";
 			};
 			name = Debug;
@@ -1535,6 +1540,7 @@
 				INFOPLIST_FILE = wassupTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wassup.app/wassup";
 			};
 			name = Release;

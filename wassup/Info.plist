@@ -85,10 +85,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Cho phép wassup chụp ảnh</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Cho phép wassup truy cập hình ảnh của bạn!</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HelveticaNeue-Bold.otf</string>

@@ -27,14 +27,14 @@ class ImageDecoder {
 
     func decode(image: UIImage, targetSize: CGSize = MaxImageSize, contentMode: ContentMode = DefaultContentMode) -> UIImage {
         let size = decodedSize(image.CGImage, targetSize: targetSize, contentMode: contentMode)
-        guard let context = CGBitmapContextCreate(nil, Int(size.width), Int(size.height), 8, 0, CGColorSpaceCreateDeviceRGB(), CGImageGetBitmapInfo(image.CGImage).rawValue) else { return image }
-        CGContextDrawImage(context, CGRect(origin: CGPointZero, size: size), image.CGImage)
+        guard let context = CGBitmapContextCreate(nil, Int(size.width), Int(size.height), 8, 0, CGColorSpaceCreateDeviceRGB(), CGImageGetBitmapInfo(image.CGImage!).rawValue) else { return image }
+        CGContextDrawImage(context, CGRect(origin: CGPointZero, size: size), image.CGImage!)
         guard let decodedImage = CGBitmapContextCreateImage(context) else { return image }
         return UIImage(CGImage: decodedImage, scale: image.scale, orientation: image.imageOrientation)
     }
 
     func decodedSize(image: CGImage?, targetSize: CGSize, contentMode: ContentMode) -> CGSize {
-        let imageSize = CGSize(width: CGImageGetWidth(image), height: CGImageGetHeight(image))
+        let imageSize = CGSize(width: CGImageGetWidth(image!), height: CGImageGetHeight(image!))
         let horizontalScale = targetSize.width / imageSize.width
         let verticalScale = targetSize.height / imageSize.height
         let scale = contentMode == .AspectFill ? max(horizontalScale, verticalScale) : min(horizontalScale, verticalScale)

@@ -127,7 +127,7 @@ public class SRWebClient : NSObject
         if(data != nil && data!.count > 0) {
             switch self.urlRequest!.HTTPMethod {
             case "GET":
-                let url:String = self.urlRequest!.URL!.absoluteString
+                let url:String = self.urlRequest!.URL!.absoluteString!
                 self.urlRequest!.URL = NSURL(string: url + "?" + self.build(data)!)
             case "POST":
                 self.urlRequest!.HTTPBody  = self.build(data)!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)

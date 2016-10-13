@@ -106,7 +106,7 @@ extension UIImage {
         guard !af_inflated else { return }
 
         af_inflated = true
-        CGDataProviderCopyData(CGImageGetDataProvider(CGImage))
+        CGDataProviderCopyData(CGImageGetDataProvider(CGImage!)!)
     }
 }
 
@@ -127,7 +127,7 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return scaledImage
+        return scaledImage!
     }
 
     /**
@@ -159,7 +159,7 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return scaledImage
+        return scaledImage!
     }
 
     /**
@@ -191,7 +191,7 @@ extension UIImage {
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return scaledImage
+        return scaledImage!
     }
 }
 
@@ -223,7 +223,7 @@ extension UIImage {
         let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return roundedImage
+        return roundedImage!
     }
 
     /**
@@ -255,7 +255,7 @@ extension UIImage {
         let roundedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return roundedImage
+        return roundedImage!
     }
 }
 
@@ -294,7 +294,7 @@ extension UIImage {
 
         let cgImageRef = context.createCGImage(outputImage, fromRect: coreImage.extent)
 
-        return UIImage(CGImage: cgImageRef, scale: scale, orientation: imageOrientation)
+        return UIImage(CGImage: cgImageRef!, scale: scale, orientation: imageOrientation)
     }
 }
 
