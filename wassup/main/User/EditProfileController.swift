@@ -74,6 +74,11 @@ class EditProfileController: UIViewController {
         }
         return true
     }
+    
+    
+    @IBAction func back(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension EditProfileController: FusumaDelegate {

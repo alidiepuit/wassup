@@ -80,11 +80,16 @@ class User: ModelBase {
     func facebook(callback: ServiceResponse) {
         self.callback = callback
         let fbManager = FBSDKLoginManager()
+        fbManager.logOut()
         fbManager.logInWithReadPermissions(["email"], handler:  {
             (result, error) -> Void in
+            Utils.unlock()
             if (error == nil){
+                
                 let fbloginresult : FBSDKLoginManagerLoginResult = result
-                if (fbloginresult.grantedPermissions.contains("email") as? Bool) != nil {
+                
+                if let email = fbloginresult.grantedPermissions {
+                    print(email)
                     let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: fbloginresult.token.tokenString, version: nil, HTTPMethod: "GET")
                     req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
                         if(error == nil) {

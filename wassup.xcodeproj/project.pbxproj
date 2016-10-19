@@ -1473,7 +1473,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
+				PRODUCT_BUNDLE_IDENTIFIER = wassup.vn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
@@ -1500,7 +1500,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.wassup;
+				PRODUCT_BUNDLE_IDENTIFIER = wassup.vn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "wassup/wassup-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;

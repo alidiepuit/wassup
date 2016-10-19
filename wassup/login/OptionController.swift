@@ -69,7 +69,7 @@ class OptionController: UIViewController {
                 if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
-                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 }
             }
         }

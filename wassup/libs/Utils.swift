@@ -38,7 +38,7 @@ struct DeviceType
 }
 
 var BASE_URL:String {
-    return "http://dev.wassup.com.vn"
+    return "https://wassup.vn"
 }
 
 func CONVERT_STRING(a:AnyObject?) -> String {

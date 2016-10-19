@@ -8,7 +8,7 @@
 
 import Foundation
 
-var API: String {return "http://dev.wassup.com.vn/app/api/"}
+var API: String {return "https://wassup.vn/app/api/"}
 
 public class ModelBase: NSObject{
     func getIndex(page: Int) -> String {

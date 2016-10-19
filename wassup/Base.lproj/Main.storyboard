@@ -1050,9 +1050,11 @@
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-mc-ahZ">
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HNf-p8-Nrt" customClass="UIPlaceHolderTextView">
-                                        <rect key="frame" x="8" y="8" width="304" height="346"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HNf-p8-Nrt" customClass="UIPlaceHolderTextView">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="346" id="YYM-q0-uOJ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                                         <connections>
@@ -1061,8 +1063,8 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="HNf-p8-Nrt" secondAttribute="bottom" constant="-108" id="38g-Ql-1lS"/>
                                     <constraint firstAttribute="trailing" secondItem="HNf-p8-Nrt" secondAttribute="trailing" constant="8" id="9ae-hb-LMx"/>
-                                    <constraint firstAttribute="bottom" secondItem="HNf-p8-Nrt" secondAttribute="bottom" id="FhR-FP-jdO"/>
                                     <constraint firstItem="HNf-p8-Nrt" firstAttribute="centerX" secondItem="Pzi-mc-ahZ" secondAttribute="centerX" id="dO8-Yc-awJ"/>
                                     <constraint firstItem="HNf-p8-Nrt" firstAttribute="top" secondItem="Pzi-mc-ahZ" secondAttribute="top" constant="8" id="qnR-c2-xrT"/>
                                     <constraint firstItem="HNf-p8-Nrt" firstAttribute="leading" secondItem="Pzi-mc-ahZ" secondAttribute="leading" constant="8" id="zOm-po-0Sn"/>
@@ -1175,6 +1177,7 @@
                         <outlet property="name" destination="1EA-Ry-Ejj" id="by8-jd-npD"/>
                         <outlet property="scroll" destination="Pzi-mc-ahZ" id="OJB-PM-fdB"/>
                         <outlet property="time" destination="0yA-dW-u0s" id="bkl-2V-9cO"/>
+                        <segue destination="Ebz-nb-fCi" kind="unwind" unwindAction="saveCommentWithSender:" id="rlg-W1-q4e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H7K-Rb-bIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2018,7 +2021,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_back" id="DTe-i9-4X0">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="w1M-Pg-bI0" kind="unwind" unwindAction="unwind:" id="OjQ-9B-v0z"/>
+                                <action selector="back:" destination="qGm-cA-DoO" id="7pT-cS-Ohh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lưu" id="fq3-cI-qko">
@@ -2517,7 +2520,7 @@
                             <constraint firstItem="HwS-g2-iRK" firstAttribute="leading" secondItem="d3N-MZ-aeu" secondAttribute="leading" id="K7d-cw-LVB"/>
                             <constraint firstAttribute="trailing" secondItem="HwS-g2-iRK" secondAttribute="trailing" id="mPo-PA-bZH"/>
                             <constraint firstItem="yTl-5U-dNC" firstAttribute="top" secondItem="HwS-g2-iRK" secondAttribute="bottom" id="pEb-mJ-HXo"/>
-                            <constraint firstItem="HwS-g2-iRK" firstAttribute="top" secondItem="aDg-PG-Xk4" secondAttribute="bottom" constant="10" id="sqK-m1-CfC"/>
+                            <constraint firstItem="HwS-g2-iRK" firstAttribute="top" secondItem="aDg-PG-Xk4" secondAttribute="bottom" constant="50" id="sqK-m1-CfC"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -2527,7 +2530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcF-lk-z9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6152" y="1820"/>
+            <point key="canvasLocation" x="6151.875" y="1820"/>
         </scene>
         <!--Follower Controller-->
         <scene sceneID="zZz-gK-wet">

@@ -105,7 +105,7 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                             if hasRecommandation {
                                 self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                             } else {
-                                self.performSegueWithIdentifier("Recommendation", sender: nil)
+                                self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                             }
                         } else {
                             let msg = CONVERT_STRING(dict["message"])
@@ -114,8 +114,8 @@ class RegisterController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                alert.message = dict["message"] as? String
-                alert.show()
+//                alert.message = dict["message"] as? String
+//                alert.show()
             }
         }
     }

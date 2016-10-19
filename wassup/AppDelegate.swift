@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        GMSServices.provideAPIKey("AIzaSyCcDYZpzqoC7oqpP5WQa46qqaFyec0kArg")
+        GMSServices.provideAPIKey("AIzaSyAQiSCH_WQ3gvGxWrAKHGsQEgXB3EY1nH4")
         Fabric.with([Crashlytics.self])
         
         IQKeyboardManager.sharedManager().enable = true

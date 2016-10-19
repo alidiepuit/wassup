@@ -56,7 +56,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
-                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 }
             } else {
                 let msg = CONVERT_STRING(dict["message"])
@@ -83,7 +83,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 if hasRecommandation {
                     self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 } else {
-                    self.performSegueWithIdentifier("Recommendation", sender: nil)
+                    self.performSegueWithIdentifier("afterRecommendation", sender: nil)
                 }
             }
         }

@@ -17,9 +17,9 @@ class UserController: UIViewController {
     
     let titleMenu = [Localization("Profile"),
                      Localization("Đăng xuất"),
-                     Localization("Giới thiệu"),
-                     Localization("Liên hệ"),
-                     Localization("Quy chế hoạt động"),
+//                     Localization("Giới thiệu"),
+//                     Localization("Liên hệ"),
+//                     Localization("Quy chế hoạt động"),
     ]
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class UserController: UIViewController {
 
 extension UserController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return titleMenu.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -68,8 +68,12 @@ extension UserController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         switch indexPath.row {
         case 0:
+            if self.data == nil || self.data.count <= 0 {
+                return
+            }
             performSegueWithIdentifier("DetailProfile", sender: nil)
         case 1:
             User.sharedInstance.logout()

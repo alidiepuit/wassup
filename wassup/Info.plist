@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Wassup</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>dev.wassup</string>
+			<string>wassup.vn</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>dev.wassup</string>
+				<string>wassup.vn</string>
 			</array>
 		</dict>
 		<dict>
@@ -35,12 +37,12 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1070107333006398</string>
+				<string>fb265880387119243</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -56,7 +58,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>1070107333006398</string>
+	<string>265880387119243</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
