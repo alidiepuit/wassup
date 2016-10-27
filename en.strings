@@ -1,0 +1,50 @@
+/*
+  File.strings
+  wassup
+
+  Created by MAC on 8/23/16.
+  Copyright © 2016 MAC. All rights reserved.
+*/
+"Thông báo" = "Thông báo";
+"Email hoặc Phone không được để trống" = "Email hoặc Phone không được để trống.";
+"Không được để trống thông tin đăng ký" = "Không được để trống thông tin đăng ký.";
+"Mật khẩu không khớp" = "Mật khẩu không khớp.";
+"Captcha không đúng" = "Captcha không đúng.";
+"Email không hợp lệ" = "Email không hợp lệ.";
+"Email hoặc Phone không hợp lệ" = "Email hoặc Phone không hợp lệ.";
+"Họ tên không hợp lệ" = "Họ tên không hợp lệ.";
+"Sự kiện" = "Sự kiện";
+"Địa điểm" = "Địa điểm";
+"%s Tham Gia | %s Check In" = "%s Tham Gia | %s Check In";
+"%s Check In" = "%s Check In";
+"Quan Tâm" = "Quan Tâm";
+"Đã quan tâm" = "Đã quan tâm";
+"Follow" = "Follow";
+"Tất cả" = "Tất cả";
+"Tìm kiếm" = "Tìm kiếm";
+"Đã lưu" = "Đã lưu";
+"Lưu lại" = "Lưu lại";
+"Thích" = "Thích";
+"Huỷ" = "Huỷ";
+"Từ khoá" = "Từ khoá";
+"User" = "User";
+"Blog" = "Blog";
+"Bài viết" = "Bài viết";
+"Chọn 5" = "Chọn 5";
+"Xong" = "Xong";
+"Check In" = "Check In";
+"Search" = "Search";
+"Profile" = "Profile";
+"Đăng xuất" = "Đăng xuất";
+"Giới thiệu" = "Giới thiệu";
+"Liên hệ" = "Liên hệ";
+"Quy chế hoạt động" = "Quy chế hoạt động";
+"Thông tin cá nhân" = "Thông tin cá nhân";
+"Tên và ảnh đại diện không được rỗng" = "Tên và ảnh đại diện không được rỗng";
+"Bạn chưa chọn collection" = "Bạn chưa chọn collection";
+"Hãy để lại ấn tượng của bạn!" = "Hãy để lại ấn tượng của bạn!";
+"What's on your mind?" = "What's on your mind?";
+"mới đăng hoạt động" = "mới đăng hoạt động";
+"Bạn đã thích bài viết này" = "Bạn đã thích bài viết này";
+"Bạn chưa bật GPS" = "Bạn chưa bật GPS";
+"Bạn chưa cho phép ứng dụng sử dụng GPS" = "Bạn chưa cho phép ứng dụng sử dụng GPS";

@@ -13,6 +13,8 @@ import SKPhotoBrowser
 class DetailEvent: UITableViewCell {
     @IBOutlet weak var content: UIWebView!
     
+    @IBOutlet weak var constraintTopListTag: NSLayoutConstraint!
+    @IBOutlet weak var lblView: UILabel!
     @IBOutlet weak var viewPhoto: UIView!
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var btnLeft: UIButton!
@@ -69,12 +71,16 @@ class DetailEvent: UITableViewCell {
         }
         lblNumberCheckin.text = Utils.convertToString(data["checkin_number"])
         
+        lblView.text = Localization("Lượt xem")
+        lblFollow.text = Localization("Quan Tâm")
+        
         if CONVERT_STRING(data["lattitude"]) != "" {
             loadMap(Location(lat: CONVERT_DOUBLE(data["lattitude"]), long: CONVERT_DOUBLE(data["longtitude"])))
         }
         
         let isAttend = CONVERT_BOOL(data["is_attend"])
         let isFollow = CONVERT_BOOL(data["is_follow"])
+        btnLeft.setTitle(Localization("Quan tâm"), forState: .Normal)
         if isAttend || isFollow {
             btnLeft.backgroundColor = UIColor.fromRgbHex(0x31ACF9)
             btnLeft.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -106,9 +112,11 @@ class DetailEvent: UITableViewCell {
         listImage = data["photos"] != nil ? data["photos"] as! Array<String> : []
         if listImage.count <= 0 {
             viewPhoto.removeFromSuperview()
+            constraintTopListTag.constant = 5
         } else {
             album.registerNib(UINib(nibName: "CellImage", bundle: nil), forCellWithReuseIdentifier: "CellImage")
             album.reloadData()
+            constraintTopListTag.constant = 150
         }
         
         //init tag list view

@@ -76,6 +76,15 @@ class SearchHotController: SearchEventController {
         }
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let data:Dictionary<String,AnyObject> = self.data![indexPath.row] where CONVERT_INT(data["object_type"]) == ObjectType.Article.rawValue {
+            let text = CONVERT_STRING(data["short_description"])
+            let hei = text.heightWithConstrainedWidth(self.view.frame.size.width-18, font: UIFont(name: "Helvetica", size: 14)!)
+            return 335+hei
+        }
+        return 285
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "DetailEvent" || segue.identifier == "DetailHost" || segue.identifier == "DetailBlog" {
             if let data:Dictionary<String,AnyObject> = self.data![(tableView.indexPathForSelectedRow?.row)!] {

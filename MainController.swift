@@ -34,7 +34,6 @@ class MainController: UITabBarController {
         self.performSegueWithIdentifier("Checkin", sender: nil)
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if (segue.identifier == "Comment" || segue.identifier == "Checkin")

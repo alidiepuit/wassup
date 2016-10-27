@@ -49,7 +49,7 @@ class SearchHostController: SearchEventController {
     override func selectProvince(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
         self.filterHost?.cityId = CellDropdown(id: d["cityId"]!, value: d["cityName"]!)
-        action = "12"
+        action = "1,12"
         city = d["cityName"]!
         resetData()
         loadData()

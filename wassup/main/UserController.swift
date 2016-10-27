@@ -16,6 +16,7 @@ class UserController: UIViewController {
     var data:Dictionary<String,AnyObject>!
     
     let titleMenu = [Localization("Profile"),
+                     Localization("Đổi ngôn ngữ: Tiếng Anh"),
                      Localization("Đăng xuất"),
 //                     Localization("Giới thiệu"),
 //                     Localization("Liên hệ"),
@@ -76,6 +77,9 @@ extension UserController: UITableViewDelegate, UITableViewDataSource {
             }
             performSegueWithIdentifier("DetailProfile", sender: nil)
         case 1:
+            User.sharedInstance.changeLanguage()
+            UIApplication.sharedApplication().keyWindow?.rootViewController = storyboard!.instantiateViewControllerWithIdentifier("root_view")
+        case 2:
             User.sharedInstance.logout()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewControllerWithIdentifier("LoginView")

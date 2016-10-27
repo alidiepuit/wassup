@@ -39,6 +39,10 @@ public enum GSMessageOption {
     case TextNumberOfLines(Int)
 }
 
+enum GSMessageError: ErrorType {
+    case NullPoint
+}
+
 extension UIViewController: WassupMessageDelegate {
 
     public func showMessage(text: String, type: GSMessageType, options: [GSMessageOption]?, delegate: WassupMessageDelegate?) {
@@ -82,13 +86,24 @@ public class GSMessage {
     class func showMessageAddedTo(text: String, type: GSMessageType, options: [GSMessageOption]?, inView: UIView, inViewController: UIViewController?, delegate: WassupMessageDelegate?) {
         if inView.installedMessage != nil && inView.uninstallMessage == nil { inView.hideMessage() }
         if inView.installedMessage == nil {
-            GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController, delegate: delegate).show()
+            do {
+                try GSMessage(text: text, type: type, options: options, inView: inView, inViewController: inViewController, delegate: delegate).show()
+            }
+            catch {
+                
+            }
         }
     }
 
-    func show() {
+    func show() throws {
 
-        if inView?.installedMessage != nil { return }
+        guard inView?.installedMessage == nil else {
+            throw GSMessageError.NullPoint
+        }
+        
+        guard inView != nil else {
+            throw GSMessageError.NullPoint
+        }
         
         updateFrames()
 

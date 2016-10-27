@@ -31,7 +31,7 @@ class DetailEventController: UIViewController {
         let vc3 = storyboard.instantiateViewControllerWithIdentifier("ListCheckInController") as! ListCheckInController
         vc3.eventId = CONVERT_STRING(data!["id"])
         vc3.cate = cate
-        tabPage.tabItems = [(vc1, "About"), (vc2, "Quan Tâm"), (vc3, "Check in")]
+        tabPage.tabItems = [(vc1, "About"), (vc2, Localization("Quan Tâm")), (vc3, "Check in")]
         
         var option = TabPageOption()
         option.currentColor = UIColor.blackColor()

@@ -10,6 +10,9 @@ import UIKit
 
 class CellProfileHeaderInfo: UITableViewCell {
 
+    @IBOutlet weak var lblTxtView: UILabel!
+    @IBOutlet weak var lblTxtFollow: UILabel!
+    
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var namefuck: UILabel!
@@ -34,6 +37,9 @@ class CellProfileHeaderInfo: UITableViewCell {
         lblView.text = CONVERT_STRING(data["hit"])
         lblFollow.text = CONVERT_STRING(data["attend_number"])
         lblCheckIn.text = CONVERT_STRING(data["checkin_number"])
+        
+        lblTxtView.text = Localization("Lượt xem")
+        lblTxtFollow.text = Localization("Quan tâm")
         
         avatar.corner(47, border: 0, colorBorder: 0x000000)
         

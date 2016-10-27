@@ -68,9 +68,9 @@ class InfoMarker: UIView {
         }
         
         if cate == ObjectType.Event {
-            info.text = "\(CONVERT_STRING(data["attend_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+            info.text = "\(CONVERT_INT(data["attend_number"])) \(Localization("Quan Tâm")) | \(CONVERT_INT(data["checkin_number"])) Check In"
         } else {
-            info.text = "\(CONVERT_STRING(data["follow_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+            info.text = "\(CONVERT_INT(data["follow_number"])) \(Localization("Quan Tâm")) | \(CONVERT_INT(data["checkin_number"])) Check In"
         }
         
         Utils.loadImage(cover, link: CONVERT_STRING(data["image"]))
@@ -131,20 +131,20 @@ class InfoMarker: UIView {
     
     func handleData(result:AnyObject?) {
         let param = self.cate == ObjectType.Event ? "event" : "host"
-        let data = result![param] as! Dictionary<String,AnyObject>
-        
-        let isAttend = CONVERT_BOOL(data["is_attend"])
-        let isFollow = CONVERT_BOOL(data["is_follow"])
-        if isAttend || isFollow {
-            icFollow.image = UIImage(named: "ic_join_selected")
-            activeLeft = true
-            lblFollow.text = Localization("Đã quan tâm")
-        } else {
-            icFollow.image = UIImage(named: "ic_join_normal")
-            activeLeft = false
-            lblFollow.text = Localization("Quan Tâm")
+        if let data = result![param] as? Dictionary<String,AnyObject> {
+            let isAttend = CONVERT_BOOL(data["is_attend"])
+            let isFollow = CONVERT_BOOL(data["is_follow"])
+            if isAttend || isFollow {
+                icFollow.image = UIImage(named: "ic_join_selected")
+                activeLeft = true
+                lblFollow.text = Localization("Đã quan tâm")
+            } else {
+                icFollow.image = UIImage(named: "ic_join_normal")
+                activeLeft = false
+                lblFollow.text = Localization("Quan Tâm")
+            }
+            
+            self.activeLeft = isAttend
         }
-        
-        self.activeLeft = isAttend
     }
 }

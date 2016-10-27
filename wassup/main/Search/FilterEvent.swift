@@ -12,6 +12,7 @@ class FilterEvent: UIView {
     var contentView:UIView?
     // other outlets
     
+    @IBOutlet weak var btnCancel: UIButton!
     @IBOutlet weak var tbl: UITableView!
     @IBOutlet weak var btnRight: UIButton!
     @IBOutlet weak var btnLeft: UIButton!
@@ -21,23 +22,23 @@ class FilterEvent: UIView {
     
     var dataTime: [CellDropdown] {
         
-        return [CellDropdown(id: "8", value:"Gần nhất"),
-                    CellDropdown(id: "1", value:"Mới nhất"),
-                    CellDropdown(id: "2", value:"Đang diễn ra"),
-                    CellDropdown(id: "3", value:"Sắp diễn ra")
+        return [CellDropdown(id: "8", value: Localization("Gần nhất")),
+                    CellDropdown(id: "1", value: Localization("Mới nhất")),
+                    CellDropdown(id: "2", value: Localization("Đang diễn ra")),
+                    CellDropdown(id: "3", value: Localization("Sắp diễn ra"))
                     ]
     }
     
     var dataDistrict = [CellDropdown]()
-    var dataRange = [CellDropdown(id: "", value:"Tất cả"),
-                     CellDropdown(id: "4", value:"Hôm nay"),
-                     CellDropdown(id: "5", value:"Ngày mai"),
-                     CellDropdown(id: "6", value:"Trong tuần"),
-                     CellDropdown(id: "7", value:"Trong tháng")
+    var dataRange = [CellDropdown(id: "", value: Localization("Tất cả")),
+                     CellDropdown(id: "4", value: Localization("Hôm nay")),
+                     CellDropdown(id: "5", value: Localization("Ngày mai")),
+                     CellDropdown(id: "6", value: Localization("Trong tuần")),
+                     CellDropdown(id: "7", value: Localization("Trong tháng"))
                     ]
     
     var selIndex = 0
-    var selTime = "8"
+    var selTime = "1"
     var selDistrict = ""
     var selRange = ""
     
@@ -49,6 +50,7 @@ class FilterEvent: UIView {
     required init?(coder aDecoder: NSCoder) { // for using CustomView in IB
         super.init(coder: aDecoder)
         self.commonInit()
+        
     }
     
     func commonInit() {
@@ -58,7 +60,14 @@ class FilterEvent: UIView {
         contentView!.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(contentView!)
         
+        initNotify()
+    }
+    
+    func initNotify() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "REFRESH_FILTER_AFTER_SELECT_PROVINCE", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resetFilterAfterSelectProvince(_:)), name: "REFRESH_FILTER_AFTER_SELECT_PROVINCE", object: nil)
+        
+        btnCancel.setTitle(Localization("Huỷ"), forState: .Normal)
     }
     
     @IBAction func clickBtnLeft(sender: AnyObject) {
@@ -198,7 +207,9 @@ extension FilterEvent: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension FilterEvent {
+    
     func loadDistrict() {
+        self.lock()
         let md = Filter()
         md.getDistrict(self.cityId.value, objectType: ObjectType.Event) {
             (result:AnyObject?) in
@@ -210,7 +221,7 @@ extension FilterEvent {
                     }
                 }
             }
-            
+            self.unlock()
             self.tbl?.reloadData()
         }
     }

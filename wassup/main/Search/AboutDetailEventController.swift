@@ -60,16 +60,13 @@ class AboutDetailEventController: FeedsController {
             ], inView: self.view, inViewController: self, delegate: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         disappear = false
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
         disappear = true
         NSNotificationCenter.defaultCenter().removeObserver(self)
         message.hide()
@@ -99,7 +96,6 @@ class AboutDetailEventController: FeedsController {
                         return
                     }
                     self.detail = d
-                    self.message.show()
                     self.tableView.reloadData()
                 }
                 self.ref.endRefreshing()
@@ -219,28 +215,41 @@ extension AboutDetailEventController {
         guard message != nil else {
             return
         }
-        
-        if disappear {
-            message.hide()
-            return
+        do {
+            
+            if disappear {
+                message.hide()
+                return
+            }
+            
+            if (self.lastContentOffset > scrollView.contentOffset.y) {
+                // move up
+                try message.show()
+            }
+            else if (self.lastContentOffset < scrollView.contentOffset.y) {
+                // move down
+                message.hide()
+            }
+            
         }
-        
-        if (self.lastContentOffset > scrollView.contentOffset.y) {
-            // move up
-            message.show()
+        catch {
+            
         }
-        else if (self.lastContentOffset < scrollView.contentOffset.y) {
-            // move down
-            message.hide()
-        }
-        
         // update the new position acquired
         self.lastContentOffset = scrollView.contentOffset.y
     }
     
     override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if !disappear {
-            message.show()
+        do {
+            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+            if (bottomEdge >= scrollView.contentSize.height) {
+                message.hide()
+            } else if !disappear {
+                try message.show()
+            }
+        }
+        catch {
+            
         }
     }
 }

@@ -16,11 +16,13 @@ class FilterHost: FilterEvent {
         contentView!.frame = self.bounds
         contentView!.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(contentView!)
+        
+        self.initNotify()
     }
     
     override var dataTime: [CellDropdown] {
-        return [CellDropdown(id: "8", value:"Gần nhất"),
-                CellDropdown(id: "1", value:"Mới nhất"),
+        return [CellDropdown(id: "8", value: Localization("Gần nhất")),
+                CellDropdown(id: "1", value: Localization("Mới nhất")),
         ]
     }
     

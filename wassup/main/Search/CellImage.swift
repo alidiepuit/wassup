@@ -28,7 +28,6 @@ class CellImage: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        img.image = UIImage(named: "logo")
         if cancelsTask {
             task.cancel()
         }

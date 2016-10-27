@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0406A3B01DBDF73D00DE4183 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0406A3AF1DBDF73D00DE4183 /* en.strings */; };
 		040DAE481D990721004DA476 /* DecodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE451D990721004DA476 /* DecodeOperation.swift */; };
 		040DAE491D990721004DA476 /* ImageDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE461D990721004DA476 /* ImageDecoder.swift */; };
 		040DAE4A1D990721004DA476 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DAE471D990721004DA476 /* ImageRequest.swift */; };
@@ -209,6 +210,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0406A3AF1DBDF73D00DE4183 /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; path = en.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		040DAE451D990721004DA476 /* DecodeOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodeOperation.swift; sourceTree = "<group>"; };
 		040DAE461D990721004DA476 /* ImageDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDecoder.swift; sourceTree = "<group>"; };
 		040DAE471D990721004DA476 /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
@@ -370,7 +372,7 @@
 		04BBAD271D6C3F4500626019 /* ListCheckInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCheckInController.swift; path = wassup/main/Search/ListCheckInController.swift; sourceTree = "<group>"; };
 		04BBAD291D6C419000626019 /* CellFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellFeed.swift; path = wassup/main/Feeds/CellFeed.swift; sourceTree = "<group>"; };
 		04BBAD2B1D6CA08700626019 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Language.swift; path = wassup/libs/Language.swift; sourceTree = "<group>"; };
-		04BBAD2D1D6CA6CF00626019 /* vi.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = vi.strings; sourceTree = SOURCE_ROOT; };
+		04BBAD2D1D6CA6CF00626019 /* vi.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; path = vi.strings; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		04C503F51D64165900E2B266 /* Captcha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Captcha.h; path = wassup/libs/Captcha.h; sourceTree = "<group>"; };
 		04C503F61D64165900E2B266 /* Captcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Captcha.m; path = wassup/libs/Captcha.m; sourceTree = "<group>"; };
 		04C503F81D642DB200E2B266 /* String+Email.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Email.swift"; path = "wassup/libs/String+Email.swift"; sourceTree = "<group>"; };
@@ -399,7 +401,7 @@
 		04D7E50E1D892CCE00DF291A /* CellDetailCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDetailCollection.swift; path = wassup/main/Collection/CellDetailCollection.swift; sourceTree = "<group>"; };
 		04F389101D66E3A600625121 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		04F389121D66F9FD00625121 /* MapsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapsModel.swift; path = wassup/model/MapsModel.swift; sourceTree = "<group>"; };
-		04F389151D67059F00625121 /* InfoMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoMarker.swift; path = wassup/main/maps/InfoMarker.swift; sourceTree = "<group>"; };
+		04F389151D67059F00625121 /* InfoMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = InfoMarker.swift; path = wassup/main/maps/InfoMarker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F389171D6705CD00625121 /* InfoMarker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoMarker.xib; path = wassup/main/maps/InfoMarker.xib; sourceTree = "<group>"; };
 		04F3892E1D67F90D00625121 /* TabCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabCollectionCell.swift; sourceTree = "<group>"; };
 		04F3892F1D67F90D00625121 /* TabCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabCollectionCell.xib; sourceTree = "<group>"; };
@@ -413,7 +415,7 @@
 		04F389421D681CDC00625121 /* ItemSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemSearch.swift; path = wassup/main/Search/ItemSearch.swift; sourceTree = "<group>"; };
 		04F389441D681CF200625121 /* ItemSearch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemSearch.xib; path = wassup/main/Search/ItemSearch.xib; sourceTree = "<group>"; };
 		04F389461D6820B300625121 /* CellSearch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CellSearch.xib; path = wassup/main/Search/CellSearch.xib; sourceTree = "<group>"; };
-		04F389481D68217E00625121 /* CellSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellSearch.swift; path = wassup/main/Search/CellSearch.swift; sourceTree = "<group>"; };
+		04F389481D68217E00625121 /* CellSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CellSearch.swift; path = wassup/main/Search/CellSearch.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F3894A1D6821C000625121 /* SearchHotController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SearchHotController.swift; path = wassup/main/Search/SearchHotController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		04F572731D654DB9002C5EBC /* UIView+Corner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Corner.swift"; sourceTree = "<group>"; };
 		04F572761D659DAE002C5EBC /* FeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedsController.swift; path = wassup/main/FeedsController.swift; sourceTree = "<group>"; };
@@ -643,6 +645,7 @@
 			children = (
 				047F35FA1D62BE3000F0FE80 /* Fonts */,
 				047F35CD1D62A0C500F0FE80 /* Info.plist */,
+				0406A3AF1DBDF73D00DE4183 /* en.strings */,
 				04BBAD2D1D6CA6CF00626019 /* vi.strings */,
 			);
 			name = "Supporting Files";
@@ -1113,6 +1116,7 @@
 				048AA7441D6AF682001912BA /* DemoCell.xib in Resources */,
 				047F36281D62EC3700F0FE80 /* Screen2Controller.xib in Resources */,
 				047F360E1D62BEB100F0FE80 /* HelveticaNeue-UltraLight.otf in Resources */,
+				0406A3B01DBDF73D00DE4183 /* en.strings in Resources */,
 				043F11201D865414004A06A0 /* CellProfileHeaderPhoto.xib in Resources */,
 				047F360F1D62BEB100F0FE80 /* HelveticaNeue-UltraLightItalic.otf in Resources */,
 				048AA73C1D6AB1EF001912BA /* DetailEvent.xib in Resources */,

@@ -10,6 +10,7 @@ import UIKit
 
 class CheckInEventController: UIViewController {
     
+    @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tbl: UITableView!
     
@@ -28,6 +29,8 @@ class CheckInEventController: UIViewController {
         tbl.addSubview(ref)
         
         data = [Dictionary<String, AnyObject>]()
+        searchBar.placeholder = Localization("Tìm kiếm")
+        lblHeader.text = Localization("Gần bạn nhất")
         loadData()
     }
     

@@ -170,21 +170,36 @@ class SubSearchKeyword: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let data:Dictionary<String,AnyObject> = self.data[(tableView.indexPathForSelectedRow?.row)!]
         switch self.typeSearch {
         case .Tag:
-            performSegueWithIdentifier("DetailTag", sender: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_DETAIL_FROM_SEARCH", object: nil, userInfo: [
+                "id": data["id"]!,
+                "name": data["name"]!,
+                "segue": "DetailTag"
+                ])
             break
         case .Users:
 //            performSegueWithIdentifier("DetailUser", sender: nil)
             break
         case .Event, .Host:
-            performSegueWithIdentifier("DetailEvent", sender: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_DETAIL_FROM_SEARCH", object: nil, userInfo: [
+                "data": data,
+                "cate": typeSearch.rawValue,
+                "segue": "DetailEvent"
+                ])
             break
         case .Article:
-            performSegueWithIdentifier("DetailBlog", sender: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_DETAIL_FROM_SEARCH", object: nil, userInfo: [
+                "id": data["id"]!,
+                "segue": "DetailBlog"
+                ])
             break
         default:
-            performSegueWithIdentifier("DetailTag", sender: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_DETAIL_FROM_SEARCH", object: nil, userInfo: [
+                "id": data["id"]!,
+                "segue": "DetailBlog"
+                ])
         }
     }
     
@@ -206,4 +221,10 @@ class SubSearchKeyword: UITableViewController {
             }
         }
     }
+    
+    override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        NSNotificationCenter.defaultCenter().postNotificationName("CLOSE_KEYBOARD_ON_SEARCH", object: nil)
+    }
+    
+    
 }

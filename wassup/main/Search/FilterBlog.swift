@@ -17,11 +17,13 @@ class FilterBlog: FilterEvent {
         contentView!.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         self.addSubview(contentView!)
         selTime = "1"
+        
+        btnCancel.setTitle(Localization("Huỷ"), forState: .Normal)
     }
     
     override var dataTime: [CellDropdown] {
-        return [CellDropdown(id: "1", value:"Mới nhất"),
-                CellDropdown(id: "8", value:"Hot nhất"),
+        return [CellDropdown(id: "1", value: Localization("Mới nhất")),
+                CellDropdown(id: "8", value: Localization("Hot nhất")),
         ]
     }
     

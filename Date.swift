@@ -75,8 +75,11 @@ class Date: NSDate {
         return date
     }
     
-    func print(date: String) -> String {
-        let d = self.formatInput.dateFromString(date)
+    func print(date: String?) -> String {
+        if date == nil || date == "" {
+            return "To be defined"
+        }
+        let d = self.formatInput.dateFromString(date!)
         let res = self.formatOutput.stringFromDate(d!)
         return res
     }

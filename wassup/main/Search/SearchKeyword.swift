@@ -17,6 +17,7 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
     var tabPage:TabPageViewController?
     let searchBar = UISearchBar()
     var debounceTimer: NSTimer?
+    var data = Dictionary<String,AnyObject>()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var container: UIView!
@@ -47,7 +48,7 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
                 if v is UITextField {
                     if let btn = v as? UITextField {
                         btn.autocapitalizationType = .None
-                        btn.becomeFirstResponder()
+//                        btn.becomeFirstResponder()
                     }
                 }
             }
@@ -94,6 +95,9 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
         insideView = container
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(closeSearchKeywordWhenChangeTag), name: "CLOSE_SEARCH_KEYWORD_WHEN_CHANGE_TAG", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(closeKeyboard), name: "CLOSE_KEYBOARD_ON_SEARCH", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(clickDetail(_:)), name: "CLICK_DETAIL_FROM_SEARCH", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -107,6 +111,10 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
     func closeSearchKeywordWhenChangeTag() {
         GLOBAL_KEYWORD = ""
         self.navigationController?.popViewControllerAnimated(false)
+    }
+    
+    func closeKeyboard() {
+        searchBar.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -157,6 +165,37 @@ class SearchKeyword: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     @IBAction func unwind(sender: UIStoryboardSegue) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func clickDetail(noti: NSNotification) {
+        self.data = noti.userInfo as! Dictionary<String,AnyObject>
+        let segue = CONVERT_STRING(data["segue"])
+        performSegueWithIdentifier(segue, sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "DetailTag" {
+            let next = segue.destinationViewController as! SearchTagController
+            next.tagId = CONVERT_STRING(data["id"])
+            next.tagName = CONVERT_STRING(data["name"])
+        } else if segue.identifier == "DetailUser" {
+            
+        } else if segue.identifier == "DetailEvent" {
+            let next = segue.destinationViewController as! DetailEventController
+            next.data = data["data"] as? Dictionary<String,AnyObject>
+            next.cate = ObjectType.valueOf(CONVERT_INT(data["cate"]))
+        } else if segue.identifier == "DetailBlog" {
+            let next = segue.destinationViewController as! DetailBlogController
+            next.id = CONVERT_STRING(data["id"])
+        }
     }
 }
 

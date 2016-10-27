@@ -1,0 +1,70 @@
+/*
+  File.strings
+  wassup
+
+  Created by MAC on 8/23/16.
+  Copyright © 2016 MAC. All rights reserved.
+*/
+"thông báo" = "Message";
+"email hoặc phone không được để trống" = "Email or Phone is empty!";
+"không được để trống thông tin đăng ký" = "Check form again!";
+"mật khẩu không khớp" = "Password doesn't match.";
+"captcha không đúng" = "Wrong Captcha.";
+"email không hợp lệ" = "Email address is invalid!";
+"email hoặc phone không hợp lệ" = "Email or Phone is invalid!";
+"họ tên không hợp lệ" = "Name is invalid!";
+"sự kiện" = "Event";
+"địa điểm" = "Host";
+"%s tham gia | %s check in" = "%s Follow | %s Check In";
+"%s check in" = "%s Check In";
+"quan tâm" = "Follow";
+"đã quan tâm" = "Followed";
+"tham gia" = "attended";
+"follow" = "Follow";
+"lượt xem" = "View";
+"tất cả" = "All";
+"tìm kiếm" = "Search";
+"đã lưu" = "Saved";
+"lưu lại" = "Save";
+"thích" = "Like";
+"huỷ" = "Cancel";
+"từ khoá" = "Keyword";
+"user" = "User";
+"blog" = "Blog";
+"bài viết" = "Blog";
+"chọn 5" = "Select 5";
+"xong" = "Done";
+"check in" = "Check In";
+"search" = "Search";
+"profile" = "Profile";
+"đăng xuất" = "Logout";
+"giới thiệu" = "Introduce";
+"liên hệ" = "Contact";
+"quy chế hoạt động" = "Policy";
+"thông tin cá nhân" = "Profile";
+"tên và ảnh đại diện không được rỗng" = "Name or banner is empty!";
+"bạn chưa chọn collection" = "Don't select collection";
+"hãy để lại ấn tượng của bạn!" = "What's on your mind?";
+"what's on your mind?" = "What's on your mind?";
+"mới đăng hoạt động" = "activity";
+"bạn đã thích bài viết này" = "You've liked it!";
+"bạn chưa bật GPS" = "Please turn on GPS";
+"bạn chưa cho phép ứng dụng sử dụng GPS" = "Please turn on GPS";
+"%@ checkin tại %@" = "%@ checkin %@";
+"%@ đang %@ tại %@" = "%@ %@ %@";
+"%@ đã bình luận %@" = "%@ commented %@";
+"%@ đã quan tâm hoạt động %@" = "%@ followed %@";
+"%@ mới đăng hoạt động %@" = "%@ has activity %@";
+"%@ mới đăng bài viết %@" = "%@ post blog %@";
+"gần nhất" = "Nearest";
+"mới nhất" = "Newest";
+"đang diễn ra" = "Happening";
+"sắp diễn ra" = "Upcoming";
+"hôm nay"="Today";
+"ngày mai"="Tomorrow";
+"trong tuần"="In week";
+"trong tháng"="In month";
+"gần bạn nhất" = "From your location";
+"hoạt động" = "Activities";
+"đổi ngôn ngữ: tiếng anh" = "Đổi ngôn ngữ: Tiếng Việt";
+"vị trí checkin quá xa!" = "This position is too far from your location!";

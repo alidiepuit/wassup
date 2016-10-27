@@ -16,7 +16,7 @@ class SearchEventController: UITableViewController {
     var cate:ObjectType {
         return ObjectType.Event
     }
-    var action = "12"
+    var action = "1,12"
     var districtId = ""
     var filterEvent:FilterEvent?
     var isFinish = false
@@ -37,11 +37,9 @@ class SearchEventController: UITableViewController {
         ref.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(ref)
         
-        //init filter
         initFilter()
         
         loadData()
-        
     }
     
     func initView() {
@@ -73,6 +71,7 @@ class SearchEventController: UITableViewController {
         //init select province
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "SELECT_PROVINCE", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(selectProvince), name: "SELECT_PROVINCE", object: nil)
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -112,7 +111,7 @@ class SearchEventController: UITableViewController {
     func selectProvince(noti: NSNotification) {
         let d = noti.userInfo as! Dictionary<String, String>
         self.filterEvent?.cityId = CellDropdown(id: d["cityId"]!, value: d["cityName"]!)
-        action = "12"
+        action = "1,12"
         city = d["cityName"]!
         resetData()
         loadData()

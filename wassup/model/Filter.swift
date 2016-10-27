@@ -36,7 +36,7 @@ extension ObjectType {
 }
 
 public enum ActivityType: String {
-    case Checkin = "%@ tại %@"
+    case Checkin = "%@ checkin tại %@"
     case CheckinHasFeeling = "%@ đang %@ tại %@"
     case Comment = "%@ đã bình luận %@"
     case UserRegistEvent = "%@ đã quan tâm hoạt động %@"

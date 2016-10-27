@@ -25,11 +25,12 @@ class MapsController: UIViewController {
     var oldCenterPoint = CLLocationCoordinate2D()
 
     var isMoving = false
+    var isLoading = false
     let heightInfo = CGFloat(285)
     let animationDuration = 0.5
     var tabPage:TabPageViewController!
     var listSelectedTags = [TagView]()
-    var cate = ObjectType.Event
+    var cate = ObjectType.Host
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class MapsController: UIViewController {
         vc1.cate = ObjectType.Event
         let vc2 = storyboard.instantiateViewControllerWithIdentifier("MapsEventHostController") as! MapsEventHostController
         vc2.cate = ObjectType.Host
-        tabPage!.tabItems = [(vc1, "Sự kiện"), (vc2, "Địa điểm")]
+        tabPage!.tabItems = [(vc2, Localization("Địa điểm")), (vc1, Localization("Sự kiện"))]
         tabPage!.pageViewDelegate = self
         
         var option = TabPageOption()
@@ -124,6 +125,7 @@ class MapsController: UIViewController {
         mapView.camera = camera
         mapView.myLocationEnabled = true
         mapView.settings.myLocationButton = true
+        
         mapView.delegate = self
 
         self.centerPoint = CLLocationCoordinate2D(latitude: Utils.sharedInstance.location.lat, longitude: Utils.sharedInstance.location.long)
@@ -133,6 +135,7 @@ class MapsController: UIViewController {
         if isMoving {
             return
         }
+        self.view.lock()
         let md = MapsModel()
         if cate == ObjectType.Event {
             md.getEventsOnMap(lat, long: long, keyword: "", tags: listTag) {
@@ -158,6 +161,7 @@ class MapsController: UIViewController {
             marker.map = self.mapView
             marker.data = a
         }
+        self.view.unlock()
     }
     
     func searchMapWhenStop() {
@@ -233,8 +237,8 @@ extension MapsController: GMSMapViewDelegate {
     }
     
     func mapView(mapView: GMSMapView, didTapMarker marker: GMSMarker) -> Bool {
-        //        markerCenter.fadeOut(0.25)
-        return false
+        mapView.selectedMarker = marker
+        return true
     }
     
     func didTapMyLocationButtonForMapView(mapView: GMSMapView) -> Bool {

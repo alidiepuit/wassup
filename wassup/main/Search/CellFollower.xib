@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,28 +12,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ujw-Bd-uqi" id="KXo-Ry-8uR">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <frame key="frameInset" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mr_bean" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-NU-Itt">
-                        <rect key="frame" x="8" y="9" width="60" height="60"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_mr_bean" translatesAutoresizingMaskIntoConstraints="NO" id="Ulj-NU-Itt">
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Poi-5H-v29"/>
                             <constraint firstAttribute="width" constant="60" id="hM3-uz-Kc4"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH4-5S-bFq">
-                        <rect key="frame" x="76" y="9" width="177" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="tBb-Ra-FWa"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nP1-8T-Ccz">
-                        <rect key="frame" x="232" y="24" width="80" height="30"/>
-                        <color key="backgroundColor" red="0.2470588235" green="0.61176470589999998" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2470588235" green="0.61176470589999998" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="afa-js-jHH"/>
                             <constraint firstAttribute="height" constant="30" id="rtL-ZZ-a9Z"/>
@@ -40,14 +38,13 @@
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="Follow">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="clickFollow:" destination="Ujw-Bd-uqi" eventType="touchUpInside" id="gmY-Sa-39a"/>
                         </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNT-h9-Vg1">
-                        <rect key="frame" x="266" y="23" width="46" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="VMr-rt-zG0"/>
                             <constraint firstAttribute="width" constant="46" id="mn8-Pp-grd"/>
@@ -58,19 +55,17 @@
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_follow" translatesAutoresizingMaskIntoConstraints="NO" id="kcn-hn-z4V">
-                        <rect key="frame" x="239" y="32" width="14" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="rSo-n2-NCk"/>
                             <constraint firstAttribute="width" constant="14" id="wAg-sg-Ucl"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zat-yi-nYS">
-                        <rect key="frame" x="76" y="48" width="177" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="HWy-of-nuU"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -103,7 +98,7 @@
     </objects>
     <resources>
         <image name="ic_follow" width="15" height="15"/>
-        <image name="ic_followed" width="46" height="32"/>
+        <image name="ic_followed" width="69" height="48"/>
         <image name="img_mr_bean" width="60" height="60"/>
     </resources>
 </document>

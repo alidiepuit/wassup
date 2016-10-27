@@ -13,6 +13,7 @@ var city = "Hồ Chí Minh"
 
 class SearchController: UIViewController {
     
+    var btnFilter: UIBarButtonItem!
     @IBOutlet weak var content: UIView!
     
     var listProvince = [CellDropdown]()
@@ -20,6 +21,7 @@ class SearchController: UIViewController {
     var tabPage:TabPageViewController?
     var data:Dictionary<String,AnyObject>!
     var cate:ObjectType!
+    var vc1:SearchHotController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,11 @@ class SearchController: UIViewController {
         
         tabPage = TabPageViewController.create()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc1 = storyboard.instantiateViewControllerWithIdentifier("SearchHotController")
+        vc1 = storyboard.instantiateViewControllerWithIdentifier("SearchHotController") as! SearchHotController
         let vc2 = storyboard.instantiateViewControllerWithIdentifier("SearchEventController")
         let vc3 = storyboard.instantiateViewControllerWithIdentifier("SearchHostController")
         let vc4 = storyboard.instantiateViewControllerWithIdentifier("SearchBlogController")
-        tabPage!.tabItems = [(vc1, "Hot"), (vc2, "Sự kiện"), (vc3, "Địa Điểm"), (vc4, "Blog")]
+        tabPage!.tabItems = [(vc1, "Hot"), (vc2, Localization("Sự kiện")), (vc3, Localization("Địa điểm")), (vc4, "Blog")]
         
         var option = TabPageOption()
         option.currentColor = UIColor.fromRgbHex(0x31ACF9)
@@ -50,6 +52,7 @@ class SearchController: UIViewController {
         option.numberOfItem = 4
         option.tabHeight = 44
         tabPage!.option = option
+        tabPage!.pageViewDelegate = self
         
         self.addChildViewController(tabPage!)
         tabPage!.view.frame = self.content.frame
@@ -60,6 +63,8 @@ class SearchController: UIViewController {
         
         Utils.sharedInstance.refreshLocation(self, action: nil, loop: false)
         
+        btnFilter = UIBarButtonItem(image: UIImage(named: "ic_more"), style: .Plain, target: self, action: #selector(clickFilter(_:)))
+        btnFilter.tintColor = UIColor.whiteColor()
     }
     
     func loadProvince() {
@@ -91,7 +96,11 @@ class SearchController: UIViewController {
     }
     
     @IBAction func clickFilter(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().postNotificationName("CLICK_FILTER", object: nil)
+        if CONVERT_BOOL(selProvince?.isShown) {
+            selProvince?.toggle()
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName("CLICK_FILTER", object: nil)
+        }
     }
     
     @IBAction func clickSearch(sender: AnyObject) {
@@ -107,5 +116,23 @@ class SearchController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+    }
+}
+
+extension SearchController: TabPageViewDelegate {
+    func didTabPage(vc: UIViewController) {
+        if vc == vc1 {
+            self.navigationItem.leftBarButtonItem = nil
+        } else {
+            self.navigationItem.leftBarButtonItem = btnFilter
+        }
+    }
+    
+    func didFinishScroll() {
+        if tabPage?.currentIndex == 0 {
+            self.navigationItem.leftBarButtonItem = nil
+        } else {
+            self.navigationItem.leftBarButtonItem = btnFilter
+        }
     }
 }

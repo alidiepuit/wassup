@@ -84,19 +84,19 @@ class CellFeed: UITableViewCell {
             }
             
             var format = ActivityType.UserRegistEvent.rawValue
-            var status = String.init(format: format, name, event)
+            var status = String.init(format: Localization(format), name, event)
             
             //check object type
             if objectType == ObjectType.Checkin.rawValue {
                 format = ActivityType.Checkin.rawValue
-                status = String.init(format: format, name, event)
+                status = String.init(format: Localization(format), name, event)
                 if activity != "" {
                     format = ActivityType.CheckinHasFeeling.rawValue
-                    status = String.init(format: format, name, activity, event)
+                    status = String.init(format: Localization(format), name, activity, event)
                 }
             } else if objectType == ObjectType.Comment.rawValue {
                 format = ActivityType.Comment.rawValue
-                status = String.init(format: format, name, event)
+                status = String.init(format: Localization(format), name, event)
             }
             
             let attribute = [ NSFontAttributeName: UIFont(name: "Helvetica", size: 14.0)! ]

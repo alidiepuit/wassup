@@ -45,9 +45,9 @@ class CellSearch: UITableViewCell {
         name.text = data["name"] as? String
         
         if cate == ObjectType.Event {
-            info.text = "\(CONVERT_STRING(data["attend_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+            info.text = "\(CONVERT_STRING(data["attend_number"])) \(Localization("Quan Tâm")) | \(CONVERT_STRING(data["checkin_number"])) Check In"
         } else {
-            info.text = "\(CONVERT_STRING(data["follow_number"])) Tham Gia | \(CONVERT_STRING(data["checkin_number"])) Check In"
+            info.text = "\(CONVERT_STRING(data["follow_number"])) \(Localization("Quan Tâm")) | \(CONVERT_STRING(data["checkin_number"])) Check In"
         }
         position.text = data["location"] as? String
         

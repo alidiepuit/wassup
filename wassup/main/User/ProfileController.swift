@@ -33,7 +33,7 @@ class ProfileController: UIViewController {
         vc4.dataProfile = data
         vc4.typeListCollection = "list"
         
-        tabPage!.tabItems = [(vc1, "Main"), (vc2, "Hoạt động"), (vc3, "Followers"), (vc4, "Collection")]
+        tabPage!.tabItems = [(vc1, "Main"), (vc2, Localization("Hoạt động")), (vc3, "Followers"), (vc4, "Collection")]
         
         var option = TabPageOption()
         option.currentColor = UIColor.fromRgbHex(0x31ACF9)

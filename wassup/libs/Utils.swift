@@ -74,15 +74,7 @@ class Utils: NSObject, CLLocationManagerDelegate {
     var hasSetup = false
     
     func refreshLocation(observe: AnyObject, action: Selector, loop: Bool) {
-        
         self.hasSetup = false
-        
-        // Ask for Authorisation from the User.
-        if #available(iOS 8.0, *) {
-            locationManager.requestAlwaysAuthorization()
-        } else {
-            // Fallback on earlier versions
-        }
         
         // For use in foreground
         if #available(iOS 8.0, *) {
@@ -95,7 +87,7 @@ class Utils: NSObject, CLLocationManagerDelegate {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-            NSNotificationCenter.defaultCenter().removeObserver(observe)
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: "callback_location", object: nil)
             if action != nil {
                 NSNotificationCenter.defaultCenter().addObserver(observe, selector: action, name: "callback_location", object: nil)
             }
@@ -226,7 +218,6 @@ class Utils: NSObject, CLLocationManagerDelegate {
         if let img = PhotosDataManager.sharedManager.cachedImage(l) {
             image.image = img
         } else {
-            image.image = UIImage(named: "logo")
             PhotosDataManager.sharedManager.getNetworkImage(l) {
                 img in
                 image.image = img

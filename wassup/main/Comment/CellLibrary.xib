@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,22 +13,16 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-5F-80m">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-nK-d9E">
-                        <rect key="frame" x="32" y="38" width="35" height="24"/>
-                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXF-5F-80m"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-nK-d9E"/>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jUp-ZB-Xf7">
-                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3a-Rd-d43">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_oval" translatesAutoresizingMaskIntoConstraints="NO" id="ccG-ZX-1Cp">
-                                <rect key="frame" x="25" y="25" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="nBj-ed-70o"/>
                                     <constraint firstAttribute="height" constant="50" id="rgO-rg-CDA"/>
@@ -44,9 +39,8 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.12941176469999999" green="0.50196078430000002" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.12941176469999999" green="0.50196078430000002" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jUp-ZB-Xf7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AhA-a5-bMK"/>
                 <constraint firstItem="f1T-nK-d9E" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FGu-Yl-RTX"/>
@@ -70,6 +64,6 @@
     </objects>
     <resources>
         <image name="ic_camera" width="35" height="24"/>
-        <image name="ic_oval" width="86" height="86"/>
+        <image name="ic_oval" width="57" height="57"/>
     </resources>
 </document>

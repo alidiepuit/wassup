@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>1</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -88,13 +88,11 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Cho phép wassup chụp ảnh</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
+	<string>Cho phép wassup chụp ảnh và chia sẻ đến cộng đồng wassup</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Bật GPS để ứng dụng hiệu quả hơn</string>
+	<string>Bật GPS để wassup tìm thấy nhiều địa điểm ở gần bạn</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Cho phép wassup truy cập hình ảnh của bạn!</string>
+	<string>Cho phép wassup truy cập và chia sẻ hình ảnh của bạn!</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HelveticaNeue-Bold.otf</string>

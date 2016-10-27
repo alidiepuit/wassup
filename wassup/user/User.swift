@@ -50,7 +50,7 @@ class User: ModelBase {
     var language:String {
         get {
             guard let id = NSUserDefaults.standardUserDefaults().stringForKey("user_language") else {
-                return "vi"
+                return "en"
             }
             return id
         }
@@ -270,5 +270,14 @@ class User: ModelBase {
                                                  "user_token": User.sharedInstance.token,
                                                  "login_style": User.sharedInstance.login_style]
         self.callAPI(model, params: dict, callback: callback)
+    }
+    
+    func changeLanguage() {
+        if language == "vi" {
+            language = "en"
+        } else {
+            language = "vi"
+        }
+        Language.sharedInstance.initResource()
     }
 }

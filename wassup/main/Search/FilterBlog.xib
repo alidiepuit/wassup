@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterBlog" customModule="wassup" customModuleProvider="target">
             <connections>
+                <outlet property="btnCancel" destination="yKM-If-9a5" id="a7q-Rt-ht1"/>
                 <outlet property="btnLeft" destination="Hth-ag-ayS" id="hEV-dS-Szm"/>
                 <outlet property="tbl" destination="opn-xo-mZG" id="iK0-cv-aVc"/>
             </connections>
@@ -17,42 +19,39 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-ag-ayS">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Ex0-rw-bA2"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                     <state key="normal" title="Gần nhất">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="clickBtnLeft:" destination="-1" eventType="touchUpInside" id="lb5-Fj-lsE"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="opn-xo-mZG">
-                    <rect key="frame" x="0.0" y="41" width="320" height="487"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="opn-xo-mZG">
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="mQQ-Rp-EKd"/>
                         <outlet property="delegate" destination="-1" id="bVT-0O-Ywb"/>
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKM-If-9a5">
-                    <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="UY4-qi-mYy"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                     <state key="normal" title="Huỷ">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="clickCancel:" destination="-1" eventType="touchUpInside" id="QR2-TI-z7E"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.72549019609999998" green="0.76470588240000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.72549019609999998" green="0.76470588240000004" blue="0.80784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="opn-xo-mZG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1h4-2Z-eWS"/>
                 <constraint firstAttribute="bottom" secondItem="yKM-If-9a5" secondAttribute="bottom" id="8yO-AY-4S3"/>
@@ -65,7 +64,6 @@
                 <constraint firstItem="Hth-ag-ayS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="n51-vs-AqO"/>
                 <constraint firstAttribute="trailing" secondItem="opn-xo-mZG" secondAttribute="trailing" id="nMN-A7-u2n"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="52" y="178"/>
         </view>
     </objects>

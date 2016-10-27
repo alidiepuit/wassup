@@ -26,8 +26,9 @@ class Language: NSObject {
     }
     
     func getString(id: String) -> String{
-        guard let res = data![id] else {
-            return ""
+        let sid = id.lowercaseString
+        guard let res = data![sid] else {
+            return id
         }
         return res
     }

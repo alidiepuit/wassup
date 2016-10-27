@@ -299,7 +299,7 @@ public class BTNavigationDropdownMenu: UIView {
         // Init table view
         let navBarHeight = self.navigationController?.navigationBar.bounds.size.height ?? 0
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height ?? 0
-        self.tableView = BTTableView(frame: CGRectMake(menuWrapperBounds.origin.x, menuWrapperBounds.origin.y + 0.5, menuWrapperBounds.width, menuWrapperBounds.height + 300 - navBarHeight - statusBarHeight), items: items, title: title, configuration: self.configuration)
+        self.tableView = BTTableView(frame: CGRectMake(menuWrapperBounds.origin.x, menuWrapperBounds.origin.y + 0.5, menuWrapperBounds.width, menuWrapperBounds.height + 300 - navBarHeight - statusBarHeight - 44), items: items, title: title, configuration: self.configuration)
         
         self.tableView.selectRowAtIndexPathHandler = { [weak self] (indexPath: Int) -> () in
             guard let selfie = self else {

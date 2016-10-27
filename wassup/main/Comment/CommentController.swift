@@ -9,6 +9,7 @@
 import UIKit
 import Fusuma
 import DKImagePickerController
+import CoreLocation
 
 class CommentController: UIViewController {
 
@@ -33,13 +34,33 @@ class CommentController: UIViewController {
     var saveData:Dictionary<String,AnyObject>!
     var smallLibrary: SmallLibraryImage!
     
-    
+    var canCheckin = true
     var cateView = ObjectType.Checkin
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initData(data)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        
+        Utils.sharedInstance.refreshLocation(self, action: #selector(checkDistance), loop: false)
+    }
+    
+    func checkDistance() {
+        let userLocaltion = CLLocation(latitude: Utils.sharedInstance.location.lat, longitude: Utils.sharedInstance.location.long)
+        let hostLocation = CLLocation(latitude: CONVERT_DOUBLE(data["lattitude"]), longitude: CONVERT_DOUBLE(data["longtitude"]))
+        let distance = userLocaltion.distanceFromLocation(hostLocation)
+        
+        if distance > 10000 {
+            let uiAlert = UIAlertController(title: Localization("Thông báo"), message: Localization("Vị trí checkin quá xa!"), preferredStyle: .Alert)
+            uiAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
+                (alert:UIAlertAction) in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            presentViewController(uiAlert, animated: true, completion: nil)
+        }
     }
     
     func initData(data: Dictionary<String,AnyObject>) {
@@ -75,8 +96,7 @@ class CommentController: UIViewController {
         smallLibrary = SmallLibraryImage(nibName: "SmallLibraryImage", bundle: nil)
         smallLibrary.view.frame = CGRect(x: 0, y: 0, width: 0, height: 300)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         
         btnCancelCheckIn.corner(10, border: 1, colorBorder: 0x2180FA)
         btnCheckIn.corner(10, border: 0, colorBorder: 0x000000)
